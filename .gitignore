@@ -1,7 +1,10 @@
-*
+/*
 
 !.gitignore
 !.gitconfig
+
+!.config/
+.config/*
 !.config/.gitignore_global
 
 # zsh
