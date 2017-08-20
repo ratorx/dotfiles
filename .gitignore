@@ -1,6 +1,8 @@
 *
 
 !.gitignore
+!.gitconfig
+!.config/.gitignore_global
 
 # zsh
 !.zshrc
