@@ -29,6 +29,10 @@ bindkey '^[[B' history-substring-search-down
 # Completions
 autoload -U compinit && compinit
 
-# Custom aliases
+# Custom
+# Aliases
 alias ls="ls --color=auto"
 alias code="code-insiders"
+
+# Options
+setopt AUTO_CD
