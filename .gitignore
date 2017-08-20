@@ -1,3 +1,14 @@
 *
 
 !.gitignore
+
+# zsh
+!.zshrc
+!.zprofile
+!.zlogin
+!.zlogout
+!.zshenv
+
+#zprezto
+!.zpreztorc
+!.zprezto/
