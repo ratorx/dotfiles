@@ -1,1 +1,0 @@
-/home/reeto/.zprezto/runcoms/zshenv
