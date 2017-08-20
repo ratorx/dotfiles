@@ -5,11 +5,12 @@
 # zsh
 !.zshrc
 !.zprofile
-!.zplugins
 !.zlogin
 !.zlogout
 !.zshenv
 
-#zprezto
-!.zpreztorc
-!.zprezto/
+# Antibody
+!.zplugins
+
+# VS Code Insiders update
+!.update

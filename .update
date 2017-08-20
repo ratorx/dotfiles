@@ -1,0 +1,5 @@
+#! /bin/bash
+CURRENT_DIR = `pwd`
+cd ~/.cache/pacaur/visual-studio-code-insiders
+makepkg -sic --skipinteg
+cd $CURRENT_DIR
