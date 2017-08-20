@@ -5,6 +5,7 @@
 # zsh
 !.zshrc
 !.zprofile
+!.zplugins
 !.zlogin
 !.zlogout
 !.zshenv
