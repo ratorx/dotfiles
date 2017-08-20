@@ -25,3 +25,6 @@ antibody bundle < ~/.zplugins
 # History sub-string-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Completions
+autoload -U compinit && compinit
