@@ -1,1 +1,1 @@
-echo "Connected to $(id -un)@$(hostname)"
+echo -n "Connected to $(id -un)@$(hostname)"
