@@ -25,3 +25,4 @@ alias code="code-insiders"
 
 # Options
 setopt AUTO_CD
+cdpath=($HOME/Projects cdpath)
