@@ -2,7 +2,7 @@
 #!/usr/bin/env zsh
 export ANTIBODYDIR="$HOME/.antibody"
 export ANTIBODYPLUGINS="$ANTIBODYDIR/plugins"
-export HISTFILE=.zhistory
+export HISTFILE=~/.zhistory
 export HISTSIZE=500
 export SAVEHIST=1000
 
