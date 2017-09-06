@@ -1,6 +1,9 @@
 mafredri/zsh-async
 zuxfoucault/colored-man-pages_mod
 zsh-users/zsh-completions
+peterhurford/up.zsh
+zdharma/history-search-multi-word
+micrenda/zsh-nohup
 
 # Last
 sindresorhus/pure

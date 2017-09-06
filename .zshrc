@@ -2,26 +2,34 @@
 #!/usr/bin/env zsh
 export ANTIBODYDIR="$HOME/.antibody"
 export ANTIBODYPLUGINS="$ANTIBODYDIR/plugins"
-export HISTFILE=~/.zhistory
+export HISTFILE="$HOME/.zhistory"
+export ALIASFILE="$HOME/.zalias"
 export HISTSIZE=500
 export SAVEHIST=1000
 
 # Antibody
 source "$ANTIBODYDIR/init.zsh"
-# Load plugins
-antibody bundle < "$ANTIBODYPLUGINS"
 
-# History sub-string-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Load everything
+
+# Plugins
+antibody bundle < "$ANTIBODYPLUGINS"
 
 # Completions
 autoload -U compinit && compinit
 
-# Custom
 # Aliases
-alias ls="ls --color=auto"
-alias code="code-insiders"
+source "$ALIASFILE"
 
 # Options
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+export HISTORY_SUBSTRING_SEARCH_FUZZY="true"
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt AUTO_LIST
+
 setopt AUTO_CD
+cdpath=($HOME/Projects cdpath)
