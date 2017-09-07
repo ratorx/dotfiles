@@ -2,8 +2,10 @@
 alias code="code-insiders"
 
 # Utilities
-alias ls="ls --color=auto"
+alias ls="ls -Cx --color=auto"
 alias la="ls -a"
+alias lh="ls -d .*"
+
 alias ip="curl ipinfo.io/ip"
 
 # Git Aliases
@@ -11,9 +13,10 @@ alias gs="git status -sb"
 
 alias gd="git diff"
 alias gpl="git pull"
+alias gps="git push"
+alias gcl="git clone"
 alias gf="git fetch"
 alias gco="git checkout"
-alias gp="git push"
 
 alias ga="git add"
 alias gaa="git add ."
