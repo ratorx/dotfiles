@@ -2,7 +2,7 @@
 alias code="code-insiders"
 
 # Utilities
-alias ls="ls -Cx --color=auto"
+alias ls="ls -x --color=auto"
 alias la="ls -a"
 alias lh="ls -d .*"
 
