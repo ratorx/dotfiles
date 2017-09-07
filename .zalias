@@ -1,5 +1,6 @@
 # Aliases
 alias code="code-insiders"
+alias e="subl -w"
 
 # Utilities
 alias ls="ls --color=auto"
