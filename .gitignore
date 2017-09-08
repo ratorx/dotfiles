@@ -9,7 +9,6 @@
 
 # zsh
 !.zshrc
-!.zprofile
 !.zlogin
 !.zlogout
 !.zshenv
