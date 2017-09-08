@@ -1,11 +1,15 @@
 # Aliases
 alias code="code-insiders"
-alias e="subl -w"
+alias e="$EDITOR"
 
 # Utilities
 alias ls="ls -x --color=auto"
 alias la="ls -a"
 alias lh="ls -d .*"
+
+alias mv="mv -v"
+alias rm="rm -iv"
+alias cp="cp -v"
 
 alias ip="curl ipinfo.io/ip"
 
