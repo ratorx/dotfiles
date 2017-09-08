@@ -4,8 +4,8 @@ export ANTIBODYDIR="$HOME/.antibody"
 export ANTIBODYPLUGINS="$ANTIBODYDIR/plugins"
 export HISTFILE="$HOME/.zhistory"
 export ALIASFILE="$HOME/.zalias"
-export HISTSIZE=500
-export SAVEHIST=1000
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 # Antibody
 source "$ANTIBODYDIR/init.zsh"

@@ -3,15 +3,25 @@ alias code="code-insiders"
 alias e="$EDITOR"
 
 # Utilities
-alias ls="ls -x --color=auto"
-alias la="ls -a"
+alias ls="ls -xF --color=auto"
+alias la="ls -A"
 alias lh="ls -d .*"
 
 alias mv="mv -v"
 alias rm="rm -iv"
 alias cp="cp -v"
 
-alias ip="curl ipinfo.io/ip"
+alias df="df -Pkhl"
+
+alias c="xclip -sel clip"
+alias v="xclip -o -sel clip"
+
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+alias pub="cat $HOME/.ssh/id_rsa.pub"
+alias cpub="pub | c | echo 'RSA public key copied.'"
+
+alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
 
 # Git Aliases
 alias gs="git status -sb"
