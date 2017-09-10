@@ -21,6 +21,8 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias pub="cat $HOME/.ssh/id_rsa.pub"
 alias cpub="pub | c | echo 'RSA public key copied.'"
 
+alias remove-orphans="pacaur -Rns $(pacaur -Qtdq)"
+
 alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
 
 # Git Aliases
