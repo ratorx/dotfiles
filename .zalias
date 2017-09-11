@@ -1,5 +1,4 @@
 # Aliases
-alias code="code-insiders"
 alias e="$EDITOR"
 
 # Utilities
@@ -13,7 +12,7 @@ alias cp="cp -v"
 
 alias df="df -Pkhl"
 
-alias c="xclip -sel clip"
+alias c="perl -pe 'chomp if eof' | xclip -sel clip"
 alias v="xclip -o -sel clip"
 
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
