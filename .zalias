@@ -1,7 +1,6 @@
 # Aliases
 alias e="$EDITOR"
-
-# Utilities
+alias pamac="pamac-manager"
 alias ls="ls -xF --color=auto"
 alias la="ls -A"
 alias lh="ls -d .*"
@@ -12,19 +11,7 @@ alias cp="cp -v"
 
 alias df="df -Pkhl"
 
-alias c="perl -pe 'chomp if eof' | xclip -sel clip"
-alias v="xclip -o -sel clip"
-
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-alias pub="cat $HOME/.ssh/id_rsa.pub"
-alias cpub="pub | c | echo 'RSA public key copied.'"
-
-alias remove-orphans="pacaur -Rns $(pacaur -Qtdq)"
-
-alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
-
-# Git Aliases
+# Git
 alias gs="git status -sb"
 
 alias gd="git diff"
@@ -39,3 +26,18 @@ alias gaa="git add ."
 
 alias gc="git commit -m"
 alias gca="git commit -am"
+
+# Utilities
+
+alias c="perl -pe 'chomp if eof' | xclip -sel clip"
+alias v="xclip -o -sel clip"
+
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+alias pub="cat $HOME/.ssh/id_rsa.pub"
+alias cpub="pub | c | echo 'RSA public key copied.'"
+
+alias remove-orphans='pacaur -Rns $(pacaur -Qtdq)'
+
+alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
+
