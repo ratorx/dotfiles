@@ -1,5 +1,4 @@
-
-#!/usr/bin/env zsh
+#!/usr/bin/zsh
 export ANTIBODYDIR="$HOME/.antibody"
 export ANTIBODYPLUGINS="$ANTIBODYDIR/plugins"
 export HISTFILE="$HOME/.zhistory"
@@ -21,10 +20,20 @@ autoload -U compinit && compinit
 # Aliases
 source "$ALIASFILE"
 
-# Options
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Key Bindings
+bindkey '^[[A' up-line-or-history
+bindkey '^[[B' down-line-or-history
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
 
+bindkey '^[[1;5A' history-substring-search-up
+bindkey '^[[1;5B' history-substring-search-down
+bindkey '^X' prepend-sudo
+
+# Options
 export HISTORY_SUBSTRING_SEARCH_FUZZY="true"
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
