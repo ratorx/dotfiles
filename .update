@@ -1,6 +1,0 @@
-#! /bin/bash
-CURRENT_DIR=$(pwd)
-cd ~/.cache/pacaur/visual-studio-code-insiders
-makepkg -sic --skipinteg --noconfirm
-ls -1 | grep -vE "PKGBUILD|.desktop" | xargs rm -f
-cd $CURRENT_DIR
