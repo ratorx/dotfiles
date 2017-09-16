@@ -1,3 +1,11 @@
+# VS Code
 .vscode/
 .vscode/*
 *.code-workspace
+
+# Python venv
+bin/
+include/
+lib/
+lib64
+pip-selfcheck.json
