@@ -1,2 +1,4 @@
-export editor="subl -w"
-export EDITOR="subl -w"
+export editor="subl -nw"
+export EDITOR="subl -nw"
+
+export GOPATH="$HOME/.go"
