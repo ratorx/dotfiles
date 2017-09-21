@@ -41,5 +41,5 @@ alias cpub="pub | c | echo 'RSA public key copied.'"
 
 alias remove-orphans='pacaur -Rns $(pacaur -Qtdq)'
 
-alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
+alias reload="source $ZDOTDIR/.zshrc && echo 'Config reloaded.'"
 

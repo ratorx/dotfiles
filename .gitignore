@@ -1,21 +1,4 @@
-/*
-
-!.gitignore
-!.gitconfig
-
-!.config/
-.config/*
-!.config/.gitignore_global
-
-# zsh
-!.zshrc
-!.zlogin
-!.zlogout
-!.zshenv
-!.zalias
-
-# Antibody
-!.antibody/
-
-# Arch makepkg update script
-!.update
+# Zsh
+.zcompdump
+.zcompdump.zwc
+history

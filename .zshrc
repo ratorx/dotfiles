@@ -1,13 +1,12 @@
 #!/usr/bin/zsh
-export ANTIBODYDIR="$HOME/.antibody"
-export ANTIBODYPLUGINS="$ANTIBODYDIR/plugins"
-export HISTFILE="$HOME/.zhistory"
-export ALIASFILE="$HOME/.zalias"
+export ANTIBODYPLUGINS="$ZDOTDIR/plugins"
+export HISTFILE="$ZDOTDIR/history"
+export ALIASFILE="$ZDOTDIR/alias"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
 # Antibody
-source "$ANTIBODYDIR/init.zsh"
+source "$ZDOTDIR/antibody.zsh"
 
 # Load everything
 

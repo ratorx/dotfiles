@@ -2,4 +2,4 @@
 	email = reetobratachatterjee@gmail.com
 	name = Reeto Chatterjee
 [core]
-	excludesfile = /home/reeto/.config/.gitignore_global
+	excludesfile = /home/reeto/.shell/gitignore_global
