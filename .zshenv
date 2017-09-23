@@ -1,4 +1,4 @@
-export ZDOTDIR="$HOME/.shell"
+export ZDOTDIR="$HOME/.config/shell"
 
 export editor="subl -nw"
 export EDITOR="subl -nw"
