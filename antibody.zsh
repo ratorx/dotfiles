@@ -2,10 +2,10 @@
 antibody() {
 	case "$1" in
 	bundle)
-		source <( /usr/bin/antibody $@ ) 2> /dev/null || /usr/bin/antibody $@
+		source <( /usr/local/bin/antibody $@ ) 2> /dev/null || /usr/local/bin/antibody $@
 		;;
 	*)
-		/usr/bin/antibody $@
+		/usr/local/bin/antibody $@
 		;;
 	esac
 }

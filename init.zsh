@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 # .zshenv
-ln -s "$HOME/.shell/.zshenv" "$HOME/.zshenv"
+ln -s "$HOME/.config/shell/.zshenv" "$HOME/.zshenv"
 
 # .gitconfig
-ln -s "$HOME/.shell/gitconfig" "$HOME/.gitconfig"
+ln -s "$HOME/.config/shell/gitconfig" "$HOME/.gitconfig"
