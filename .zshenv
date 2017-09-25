@@ -1,6 +1,6 @@
 export ZDOTDIR="$HOME/.config/shell"
 
-export editor="subl -nw"
-export EDITOR="subl -nw"
+export editor="micro"
+export EDITOR="micro"
 
 export GOPATH="$HOME/.go"
