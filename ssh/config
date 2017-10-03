@@ -1,0 +1,20 @@
+# For remote sublime text editing
+Host *
+
+Host hades
+    HostName ree.to
+    User reeto
+    RemoteForward 52698 127.0.0.1:52698
+
+Host poseidon
+    HostName 10.249.160.29
+    User reeto
+
+Host zeus
+    HostName 10.249.160.46
+    User reeto
+
+Host cl
+    HostName linux.cl.ds.cam.ac.uk
+    User rc691
+    RemoteForward 52698 127.0.0.1:52698
