@@ -5,7 +5,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 # Antibody
-source "$HOME/.antibody/antibody.zsh"
+source "$HOME/.antibody/load.zsh"
 
 # Load everything
 
