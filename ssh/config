@@ -7,7 +7,7 @@ Host hades
     RemoteForward 52698 127.0.0.1:52698
 
 Host poseidon
-    HostName 10.249.160.29
+    HostName 10.249.179.235
     User reeto
 
 Host zeus
