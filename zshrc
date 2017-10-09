@@ -41,6 +41,7 @@ cdpath=($HOME/Projects cdpath)
 
 # Aliases
 alias e='$EDITOR'
+alias vim="nvim"
 alias pamac="pamac-manager"
 alias chrome="google-chrome-stable"
 
