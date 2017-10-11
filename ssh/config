@@ -1,6 +1,10 @@
 # For remote sublime text editing
 Host *
 
+Host me
+	HostName 127.0.0.1
+	User reeto
+
 Host hades
     HostName ree.to
     User reeto
