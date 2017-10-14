@@ -9,3 +9,6 @@ include/
 lib/
 lib64
 pip-selfcheck.json
+
+# C temp files
+obj/

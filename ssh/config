@@ -15,7 +15,7 @@ Host poseidon
     User reeto
 
 Host zeus
-    HostName 10.249.189.190
+    HostName 10.249.163.121
     User reeto
 
 Host cl
