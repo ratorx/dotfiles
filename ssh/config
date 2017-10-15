@@ -11,11 +11,11 @@ Host hades
     RemoteForward 52698 127.0.0.1:52698
 
 Host poseidon
-    HostName 10.249.169.177
+    HostName 10.249.166.157
     User reeto
 
 Host zeus
-    HostName 10.249.163.121
+    HostName 10.249.173.35
     User reeto
 
 Host cl
