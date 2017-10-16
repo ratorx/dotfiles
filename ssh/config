@@ -8,14 +8,13 @@ Host me
 Host hades
     HostName ree.to
     User reeto
-    RemoteForward 52698 127.0.0.1:52698
 
 Host poseidon
-    HostName 10.249.166.157
+    HostName 10.249.171.197
     User reeto
 
 Host zeus
-    HostName 10.249.173.35
+    HostName 10.249.188.76
     User reeto
 
 Host cl
