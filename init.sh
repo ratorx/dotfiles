@@ -12,5 +12,5 @@ ln -s "$HOME/.dotfiles/antibody" "$HOME/.antibody"
 ln -s "$HOME/.dotfiles/gitconfig" "$HOME/.gitconfig"
 
 # .ssh/
-ln -s "$HOME/.dotfiles/ssh/config" "$HOME/.ssh/config"
-ln -s "$HOME/.dotfiles/ssh/keys" "$HOME/.ssh/authorized_keys"
+[[ $UID -ne 0 ]] && ln -s "$HOME/.dotfiles/ssh/config" "$HOME/.ssh/config"
+[[ $UID -ne 0 ]] && ln -s "$HOME/.dotfiles/ssh/keys" "$HOME/.ssh/authorized_keys"
