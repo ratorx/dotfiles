@@ -23,6 +23,7 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
+bindkey '^A' kill-whole-line
 
 bindkey '^[[1;5A' history-substring-search-up
 bindkey '^[[1;5B' history-substring-search-down
@@ -45,8 +46,8 @@ alias vim="nvim"
 alias pamac="pamac-manager"
 alias chrome="google-chrome-stable"
 
-alias ls="ls -xF --color=auto"
-alias la="ls -A"
+alias ls="exa -xF"
+alias la="ls -a"
 alias lh="ls -d .*"
 
 alias mv="mv -v"
