@@ -20,17 +20,16 @@ bindkey '^[[A' up-line-or-history
 bindkey '^[[B' down-line-or-history
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[4~" end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^A' kill-whole-line
 
-bindkey '^[[1;5A' history-substring-search-up
-bindkey '^[[1;5B' history-substring-search-down
-bindkey '^X' prepend-sudo
+bindkey '^X' sudo-command-line
 
 # Options
-export HISTORY_SUBSTRING_SEARCH_FUZZY="true"
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -55,22 +54,6 @@ alias rm="rm -iv"
 alias cp="cp -v"
 
 alias df="df -Pkhl"
-
-# Git
-alias gs="git status -sb"
-
-alias gd="git diff"
-alias gpl="git pull"
-alias gps="git push"
-alias gcl="git clone"
-alias gf="git fetch"
-alias gco="git checkout"
-
-alias ga="git add"
-alias gaa="git add ."
-
-alias gc="git commit -m"
-alias gca="git commit -am"
 
 # Utilities
 
