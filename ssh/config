@@ -10,7 +10,7 @@ Host hades
     User reeto
 
 Host poseidon
-    HostName 10.249.166.48
+    HostName 10.249.163.105
     User reeto
 
 Host zeus
