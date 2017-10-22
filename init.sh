@@ -16,7 +16,6 @@ ln -s "$HOME/.dotfiles/gitconfig" "$HOME/.gitconfig"
 # tmux
 ln -s "$HOME/.dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$HOME/.dotfiles/applications/tmux.desktop" "$HOME/.local/share/applications/tmux.desktop"
-systemctl --user enable tmux
 
 # termite - Don't copy by default to allow for different fonts
 # ln -s "$HOME/.dotfiles/termite" "$HOME/.config/termite"
