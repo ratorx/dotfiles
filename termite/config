@@ -1,0 +1,31 @@
+[options]
+font = UbuntuMono 14
+
+cursor_shape = ibeam
+cursor_blink = off
+
+[colors]
+foreground = rgb(239,240,235)
+background = rgba(40,42,54,0.95)
+
+cursor = #97979b
+
+# Colors from original hyper-snazzy theme
+color0 = rgb(40,42,54)
+color1 = rgb(255,92,87)
+color2 = rgb(90,247,142)
+color3 = rgb(243,249,157)
+color4 = rgb(87,199,255)
+color5 = rgb(255,106,193)
+color6 = rgb(154,237,254)
+color7 = rgb(241,241,240)
+color8 = rgb(104,104,104)
+
+# Other default termite colors
+color9  = rgb(255,92,87)
+color10 = rgb(90,247,142)
+color11 = rgb(243,249,157)
+color12 = rgb(87,199,255)
+color13 = rgb(255,106,193)
+color14 = rgb(154,237,254)
+color15 = rgb(239,240,235)
