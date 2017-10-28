@@ -4,6 +4,9 @@ export HISTFILE="$HOME/.zhistory"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
+# Config home
+export XDG_CONFIG_HOME=$HOME/.config
+
 # Antibody
 source "$HOME/.antibody/load.zsh"
 
