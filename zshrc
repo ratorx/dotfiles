@@ -69,4 +69,4 @@ alias remove-orphans='pacaur -Rns $(pacaur -Qtdq)'
 
 alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
 
-alias pkgdiff='colordiff --suppress-common-lines -y <(ssh poseidon "pacman -Qqe") <(ssh zeus "pacman -Qqe")'
+alias pkgdiff='colordiff --suppress-common-lines -y <(pacman -Qqe) <(ssh zeus "pacman -Qqe")'
