@@ -12,10 +12,12 @@ Host hades
 Host zeus
     HostName zeus.ree.to
     User reeto
+	CheckHostIP no
 
 Host poseidon
 	HostName poseidon.ree.to
 	User reeto
+	CheckHostIP no
 
 Host cl
     HostName linux.cl.ds.cam.ac.uk
