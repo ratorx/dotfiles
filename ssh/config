@@ -10,8 +10,12 @@ Host hades
     User reeto
 
 Host zeus
-    HostName 131.111.131.229
+    HostName zeus.ree.to
     User reeto
+
+Host poseidon
+	HostName poseidon.ree.to
+	User reeto
 
 Host cl
     HostName linux.cl.ds.cam.ac.uk
