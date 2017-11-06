@@ -1,24 +1,30 @@
 #!/usr/bin/bash
+
+DOTFILES="$HOME/.dotfiles"
+
 # zsh
-ln -s "$HOME/.dotfiles/zshenv" "$HOME/.zshenv"
-ln -s "$HOME/.dotfiles/zshrc" "$HOME/.zshrc"
+ln -s "$DOTFILES/zshenv" "$HOME/.zshenv"
+ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 
 # antibody
-ln -s "$HOME/.dotfiles/antibody" "$HOME/.antibody"
+ln -s "$DOTFILES/antibody" "$HOME/.antibody"
 
 # git config
-ln -s "$HOME/.dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -s "$DOTFILES/gitconfig" "$HOME/.gitconfig"
 
 # SSH config
-[[ $UID -ne 0 ]] && ln -s "$HOME/.dotfiles/ssh/config" "$HOME/.ssh/config"
-[[ $UID -ne 0 ]] && ln -s "$HOME/.dotfiles/ssh/keys" "$HOME/.ssh/authorized_keys"
+[[ $UID -ne 0 ]] && ln -s "$DOTFILES/ssh/config" "$HOME/.ssh/config"
+[[ $UID -ne 0 ]] && ln -s "$DOTFILES/ssh/keys" "$HOME/.ssh/authorized_keys"
 
 # tmux
-ln -s "$HOME/.dotfiles/tmux.conf" "$HOME/.tmux.conf"
-ln -s "$HOME/.dotfiles/applications/tmux.desktop" "$HOME/.local/share/applications/tmux.desktop"
+ln -s "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
+ln -s "$DOTFILES/applications/tmux.desktop" "$HOME/.local/share/applications/tmux.desktop"
+
+# zshmarks
+ln -s "$DOTFILES/bookmarks" "$HOME/.bookmarks"
 
 # termite - Don't copy by default to allow for different fonts
-# ln -s "$HOME/.dotfiles/termite" "$HOME/.config/termite"
+# ln -s "$DOTFILES/termite" "$HOME/.config/termite"
 
 # npmrc - Move .npm folder to cache
-ln -s "$HOME/.dotfiles/npmrc" "$HOME/.npmrc"
+ln -s "$DOTFILES/npmrc" "$HOME/.npmrc"
