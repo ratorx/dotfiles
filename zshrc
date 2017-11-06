@@ -40,7 +40,6 @@ setopt AUTO_LIST
 setopt NO_NOMATCH
 
 setopt AUTO_CD
-cdpath=($HOME/Dropbox/Documents/Cambridge/IB $HOME/Projects)
 
 # Aliases
 alias e='$EDITOR'
