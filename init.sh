@@ -7,7 +7,7 @@ ln -s "$DOTFILES/zshenv" "$HOME/.zshenv"
 ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 
 # antibody
-ln -s "$DOTFILES/antibody" "$HOME/.antibody"
+ln -sT "$DOTFILES/antibody" "$HOME/.antibody"
 
 # git config
 ln -s "$DOTFILES/gitconfig" "$HOME/.gitconfig"
