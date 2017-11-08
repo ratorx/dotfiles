@@ -30,4 +30,4 @@ ln -s "$DOTFILES/bookmarks" "$HOME/.bookmarks"
 ln -s "$DOTFILES/npmrc" "$HOME/.npmrc"
 
 # neovim config
-ln -s "$DOTFILES/nvim" "$HOME/.config/nvim"
+ln -sT "$DOTFILES/nvim" "$HOME/.config/nvim"
