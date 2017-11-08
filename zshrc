@@ -7,6 +7,9 @@ export SAVEHIST=10000
 # Config home
 export XDG_CONFIG_HOME=$HOME/.config
 
+# Set cursor
+echo -e -n "\x1b[\x36 q"
+
 # Antibody
 source "$HOME/.antibody/load.zsh"
 
@@ -14,6 +17,12 @@ source "$HOME/.antibody/load.zsh"
 
 # Plugins
 antibody bundle < "$ANTIBODYPLUGINS"
+
+# fzf
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Completions
 autoload -U compinit && compinit
