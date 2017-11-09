@@ -43,18 +43,35 @@ nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprev!<CR><Paste>
 
 " Colour Scheme
-colorscheme monokai
-let g:airline_theme='onehalfdark'
+color monokai
+let g:airline_theme='monokai'
 " Plugin settings
 
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+let g:airline_left_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_sep=''
+let g:airline_right_alt_sep=''
+let g:airline_mode_map = {
+\ '__' : '-',
+\ 'n'  : 'N',
+\ 'i'  : 'I',
+\ 'R'  : 'R',
+\ 'c'  : 'C',
+\ 'v'  : 'V',
+\ 'V'  : 'V',
+\ '^V' : 'V',
+\ 's'  : 'S',
+\ 'S'  : 'S',
+\ '^S' : 'S',
+\ }
 set laststatus=2
 
-" deoplete
-let g:deoplete#enable_at_startup=1
-
-" deoplete-clang
-let g:deoplete#sources#clang#libclang_path="/usr/lib/libclang.so"
-let g:deoplete#sources#clang#clang_header="/usr/lib/clang"
+" fzf
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>b :Lines<CR>
+nnoremap <Leader>gf :GFiles<CR>
+nnoremap <Leader>gs :GFiles?<CR>
 
