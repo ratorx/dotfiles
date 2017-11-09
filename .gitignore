@@ -1,4 +1,7 @@
-# Zsh
+# zsh
 .zcompdump
 .zcompdump.zwc
 history
+
+# nvim
+.netrwhist
