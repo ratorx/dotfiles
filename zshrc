@@ -19,10 +19,10 @@ source "$HOME/.antibody/load.zsh"
 antibody bundle < "$ANTIBODYPLUGINS"
 
 # fzf
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Completions
 autoload -U compinit && compinit
@@ -81,3 +81,4 @@ alias remove-orphans='pacaur -Rns $(pacaur -Qtdq)'
 alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
 
 alias pkgdiff='colordiff --suppress-common-lines -y <(ssh poseidon "pacman -Qqe") <(ssh zeus "pacman -Qqe")'
+
