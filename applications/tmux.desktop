@@ -1,9 +1,10 @@
 [Desktop Entry]
 Name=Tmux
 Comment=The terminal and session multiplexer
-Exec=termite -e "tmux new-session -As reeto"
+Exec=tmux new-session -As reeto
 Icon=utilities-terminal
 Type=Application
+Terminal=true
 Categories=GTK;System;TerminalEmulator;
 StartupWMClass=termite
 StartupNotify=true

@@ -4,6 +4,7 @@ DOTFILES="$HOME/.dotfiles"
 
 # zsh
 ln -s "$DOTFILES/zshenv" "$HOME/.zshenv"
+ln -s "$DOTFILES/zprofile" "$HOME/.zprofile"
 ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 
 # antibody

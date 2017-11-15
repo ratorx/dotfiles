@@ -7,26 +7,45 @@ set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
 call dein#begin('~/.local/share/dein/')
 call dein#add('Shougo/dein.vim')
 
-" Plugins 
-" call dein#add('Shougo/unite.vim')
-
 " Git
 call dein#add('airblade/vim-gitgutter')
 
 " Colorscheme
-call dein#add('crusoexia/vim-monokai')
+call dein#add('joshdick/onedark.vim')
 
 " Modeline
-call dein#add('vim-airline/vim-airline')
-call dein#add('rcabralc/monokai-airline.vim')
-" call dein#add('vim-airline/vim-airline-themes')
+call dein#add('itchyny/lightline.vim')
+call dein#add('mgee/lightline-bufferline', {'depends': 'lightline.vim'})
+call dein#add('maximbaz/lightline-ale', {'depends': ['lightline.vim', 'ale']})
 
 " Finder
 call dein#add('junegunn/fzf', {'build': './install --bin', 'merged': 0})
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
 
+" Auto-brackets
+call dein#add('jiangmiao/auto-pairs')
+
+" Comments
+call dein#add('tpope/vim-commentary')
+
+" Easy Motions
+call dein#add('easymotion/vim-easymotion')
+
+" Better Syntax Highlighting
+call dein#add('sheerun/vim-polyglot')
+
+" Linting
+call dein#add('w0rp/ale')
+
+" Completion
+call dein#add('Shougo/deoplete.nvim', {'lazy': 1, 'on_ft': ['c', 'cpp', 'go', 'python', 'rust']})
+
+" Completion Plugins
+call dein#add('zchee/deoplete-go', {'build': 'make', 'lazy': 1, 'on_ft': 'go'})
+call dein#add('zchee/deoplete-jedi', {'lazy': 1, 'on_ft': 'python'})
+call dein#add('zchee/deoplete-clang', {'lazy': 1, 'on_ft': ['c', 'cpp']})
+call dein#add('sebastianmarkow/deoplete-rust', {'lazy': 1, 'on_ft': 'rust'})
+
 call dein#end()
 call dein#save_state()
 
-filetype plugin indent on
-syntax enable
