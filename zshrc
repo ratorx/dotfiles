@@ -23,9 +23,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-nvim-open-fzf() nvim $(fzf)
-zle -N nvim-open-fzf
-bindkey '^P' nvim-open-fzf
+export FZF_ALT_C_COMMAND='fd -I --type d'
 
 # Completions
 autoload -U compinit && compinit
