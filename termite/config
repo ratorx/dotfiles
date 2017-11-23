@@ -1,5 +1,5 @@
 [options]
-font = UbuntuMono 14
+font = UbuntuMono 15
 
 cursor_shape = ibeam
 cursor_blink = off
