@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-DOTFILES="$HOME/.dotfiles"
+export DOTFILES="$HOME/.dotfiles"
 
 # zsh
 ln -s "$DOTFILES/zshenv" "$HOME/.zshenv"
