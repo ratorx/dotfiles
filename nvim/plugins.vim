@@ -49,6 +49,9 @@ call dein#add('sebastianmarkow/deoplete-rust', {'lazy': 1, 'on_ft': 'rust'})
 " vimtex
 call dein#add('lervag/vimtex', {'lazy': 1, 'on_ft': 'tex'})
 
+" Markdown preview
+call dein#add('shime/vim-livedown', {'lazy': 1, 'on_ft': 'markdown'})
+
 " Snippets
 call dein#add('Shougo/neosnippet', {'lazy': 1, 'on_ft': 'tex'})
 call dein#add('Shougo/neosnippet-snippets', {'lazy': 1, 'on_ft': 'tex'})
