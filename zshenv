@@ -14,5 +14,7 @@ export GOBIN="$HOME/.go/bin"
 export CARGO_HOME="$HOME/.cache/cargo"
 export RUSTUP_HOME="$HOME/.cache/rustup"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+# HTTPie
+export HTTPIE_CONFIG_DIR="$HOME/.config/httpie"
 
 export PATH=$PATH:$GOPATH/bin:$CARGO_HOME/bin
