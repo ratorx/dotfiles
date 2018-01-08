@@ -30,5 +30,8 @@ ln -s "$DOTFILES/bookmarks" "$HOME/.bookmarks"
 # npmrc - Move .npm folder to cache
 ln -s "$DOTFILES/npmrc" "$HOME/.npmrc"
 
+# latexmkrc - Add additional temp files
+ln -s "$DOTFILES/latexmkrc" "$HOME/.latexmkrc"
+
 # neovim config
 ln -sT "$DOTFILES/nvim" "$HOME/.config/nvim"
