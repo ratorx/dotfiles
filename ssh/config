@@ -19,6 +19,11 @@ Host poseidon
 	User reeto
 	CheckHostIP no
 
+Host apollo
+    HostName 127.0.1.1
+    User reeto
+    Port 2222
+
 Host cl
     HostName linux.cl.ds.cam.ac.uk
     User rc691
@@ -28,3 +33,7 @@ Host ecad
     HostName 127.0.1.1
     User ecad
     Port 2222
+
+Host srcf
+    HostName shell.srcf.net
+    User rc691
