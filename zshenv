@@ -3,10 +3,8 @@ export EDITOR="/usr/bin/nvim"
 
 export LESSHISTFILE=/dev/null
 # Qt
-case $(hostname) in
-    (poseidon) export QT_SCALE_FACTOR=1.4; export QT_AUTO_SCREEN_SCALE_FACTOR=0;;
-    (*) export QT_AUTO_SCREEN_SCALE_FACTOR=1;;
-esac
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=1
 # Go
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
