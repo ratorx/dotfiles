@@ -32,7 +32,7 @@ call dein#add('tpope/vim-commentary')
 call dein#add('easymotion/vim-easymotion')
 
 " Better Syntax Highlighting
-call dein#add('sheerun/vim-polyglot')
+call dein#add('ratorx/vim-polyglot', {'build': './build'})
 
 " Linting
 call dein#add('w0rp/ale')
@@ -53,7 +53,7 @@ call dein#add('lervag/vimtex', {'lazy': 1, 'on_ft': 'tex'})
 call dein#add('shime/vim-livedown', {'lazy': 1, 'on_ft': 'markdown'})
 
 " Snippets (primarily for latex)
-call dein#add('Shougo/neosnippet', {'lazy': 1, 'on_ft': 'tex'})
+call dein#add('Shougo/neosnippet', {'lazy': 1, 'on_ft': 'tex', 'depends': 'neosnippet-snippets'})
 call dein#add('Shougo/neosnippet-snippets', {'lazy': 1, 'on_ft': 'tex'})
 
 " Meson Support (Support for meson)
