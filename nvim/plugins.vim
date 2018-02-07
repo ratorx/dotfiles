@@ -46,15 +46,18 @@ call dein#add('zchee/deoplete-jedi', {'lazy': 1, 'on_ft': 'python'})
 call dein#add('zchee/deoplete-clang', {'lazy': 1, 'on_ft': ['c', 'cpp']})
 call dein#add('sebastianmarkow/deoplete-rust', {'lazy': 1, 'on_ft': 'rust'})
 
-" vimtex
+" Latex Integration
 call dein#add('lervag/vimtex', {'lazy': 1, 'on_ft': 'tex'})
 
-" Markdown preview
+" Markdown Integration
 call dein#add('shime/vim-livedown', {'lazy': 1, 'on_ft': 'markdown'})
 
-" Snippets
+" Snippets (primarily for latex)
 call dein#add('Shougo/neosnippet', {'lazy': 1, 'on_ft': 'tex'})
 call dein#add('Shougo/neosnippet-snippets', {'lazy': 1, 'on_ft': 'tex'})
+
+" Meson Support (Support for meson)
+call dein#add('igankevich/mesonic', {'lazy': 1, 'on_ft': ['c', 'cpp']})
 
 call dein#end()
 call dein#save_state()

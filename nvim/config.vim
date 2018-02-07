@@ -11,23 +11,20 @@ set clipboard=unnamed
 " Don't let Vim hide characters
 set conceallevel=1
 set noerrorbells
-" Use search highlighting
-set hlsearch
+" Don't highlight searches
+set nohlsearch
 " Space above/beside cursor from screen edges
 set scrolloff=1 sidescrolloff=5
 " Mouse support
 set mouse=a
 " arrow key and backspace wrapping
-set whichwrap+=<,>,[,]
 set backspace=indent,eol,start
 " cursor reset
 au VimLeave * set guicursor=a:ver30-iCursor-blinkon0
-" Turn of hlsearch
-nnoremap <CR> :noh<CR><CR>
 " Relative line numbers & hlsearch
 set number relativenumber
-autocmd InsertEnter * :setlocal norelativenumber nohlsearch
-autocmd InsertLeave * :setlocal relativenumber hlsearch
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
 " Turn on syntax highlighting
 syntax on 
 " True Colours
@@ -49,6 +46,11 @@ set ignorecase
 set smartcase
 " Tab widths
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+" Prefer Prolog over Perl
+augroup ftdetect_prolog
+  autocmd!
+  autocmd BufRead,BufNewFile *.pl set filetype=prolog
+augroup END
 " Language specific indents - Google C++ guide
 au FileType c* setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 " Move line mappings
@@ -95,6 +97,30 @@ nnoremap <Leader><Leader>gs :GFiles?<CR>
 
 " vim-easymotion
 map <Leader> <Plug>(easymotion-prefix)
+
+let g:EasyMotion_smartcase=1
+
+" Replace f
+map f <Plug>(easymotion-fl)
+map F <Plug>(easymotion-Fl)
+
+" <Leader> f
+map <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" Replace /
+map / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 " ale
 let g:ale_sign_error='‼'
