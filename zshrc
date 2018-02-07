@@ -55,6 +55,8 @@ setopt AUTO_CD
 alias e='$EDITOR'
 alias vim="nvim"
 alias pamac="pamac-manager"
+alias pacman="pacman --color=always"
+alias pacaur="pacaur --color=always"
 alias chrome="google-chrome-stable"
 
 alias ls="exa -xF"
@@ -81,5 +83,5 @@ alias remove-orphans='pacaur -Rns $(pacaur -Qtdq)'
 
 alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
 
-alias pkgdiff='colordiff --suppress-common-lines -y <(ssh poseidon "pacman -Qqe") <(ssh zeus "pacman -Qqe")'
+alias pkgdiff='icdiff -U 0 <(ssh poseidon "pacman -Qqe") <(ssh zeus "pacman -Qqe")'
 
