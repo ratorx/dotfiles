@@ -127,27 +127,26 @@ let g:ale_sign_error='‼'
 let g:ale_sign_warning='!'
 let g:ale_rust_check_all_targets=0
 let g:ale_lint_on_text_changed='never'
+let g:ale_lint_on_insert_leave=1
 let g:ale_fix_on_save=1
 let g:ale_linters={
-\                    'c': ['clangtidy'],
-\                    'cpp': ['clangtidy'],
-\                    'go': ['gometalinter'],
+\                    'c': ['clang'],
+\                    'cpp': ['clang'],
+\                    'go': ['golint', 'go vet', 'gotype'],
 \                    'python': ['flake8'],
 \                    'java': [],
+\                    'tex': ['chktex']
 \                 }
 let g:ale_fixers={
 \                    'c': ['clang-format'],
 \                    'cpp': ['clang-format'],
-\                    'go': ['gofmt'],
+\                    'go': ['goimports'],
 \                    'python': ['yapf'],
 \                    'java': [],
-\                    'rust': ['rustfmt'],
 \                }
 
-" Language specific ale options let g:ale_c_clangformat_options='-style=Google'
-let g:ale_cpp_clangtidy_checks=["*", "-cppcoreguidelines-pro-bounds-pointer-arithmetic", "-llvm-header-guard", "-clang-diagnostic-c++11-extensions"]
-let g:ale_go_meta_linter_executable='gometalinter.v1'
-let g:ale_gometalinter_options='--exclude=errcheck --fast'
+" Language specific ale options
+let g:ale_c_clangformat_options='-style=Google'
 
 " vim-polyglot
 let g:polyglot_disabled=['latex']
