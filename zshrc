@@ -81,7 +81,5 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 alias remove-orphans='pacaur -Rns $(pacaur -Qtdq)'
 
-alias reload="source $HOME/.zshrc && echo 'Config reloaded.'"
-
 alias pkgdiff='icdiff -U 0 <(ssh poseidon "pacman -Qqe") <(ssh zeus "pacman -Qqe")'
 
