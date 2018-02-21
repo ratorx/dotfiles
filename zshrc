@@ -87,3 +87,17 @@ function nvimbench() {
     bench=$(mktemp) && /usr/bin/nvim --startuptime $bench $@ && tail -1 $bench && rm -f $bench
 }
 
+# Git Commit Browser (w/ previews)
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
+local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+unalias glog
+glog() {
+    glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview $_viewGitLogLine \
+                --header "enter to view, alt-y to copy hash" \
+                --bind "enter:execute:$_viewGitLogLine   | less -R" \
+                --bind "alt-y:execute:$_gitLogLineToHash | xclip -sel clip"
+}
+
