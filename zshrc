@@ -80,7 +80,7 @@ function pkgdiff() {
         return 1
     fi
 
-    icdiff -U 0 <(pacman $flags) <(ssh $hostname "pacman $flags")
+    icdiff -U 0 -L "$(hostname)" -L "$hostname" <(pacman $flags) <(ssh $hostname "pacman $flags")
 }
 alias nvimconfig="nvim ~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
 function nvimbench() {
