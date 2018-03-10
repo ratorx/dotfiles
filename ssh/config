@@ -1,12 +1,6 @@
-# For remote sublime text editing
-Host *
-
-Host me
-    HostName 127.0.0.1
-    User reeto
-
+# My machines
 Host hades
-    HostName ree.to
+    HostName hades.ree.to
     User reeto
 
 Host zeus
@@ -19,11 +13,12 @@ Host poseidon
 	User reeto
 	CheckHostIP no
 
-Host apollo
-    HostName 127.0.1.1
+Host hercules
+    HostName hercules.ree.to
     User reeto
-    Port 2222
+    CheckHostIP no
 
+# Other Machines
 Host cl
     HostName linux.cl.ds.cam.ac.uk
     User rc691
