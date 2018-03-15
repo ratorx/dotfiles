@@ -1,7 +1,5 @@
 " Set standard file encoding
 set encoding=utf8
-" No special per file vim overide configs
-set nomodeline
 " Word wrapping
 set wrap linebreak breakindent
 " Adjust system undo levels
