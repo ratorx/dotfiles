@@ -1,3 +1,3 @@
-# Fix ZSH path problem on arch
-[ -z $PATH_APP ] && export PATH=$PATH:$PATH_APP
+# Set PATH properly
+[ -z $PATH_APP ] || export PATH=$PATH:$PATH_APP
 

@@ -17,7 +17,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 if command -v go >/dev/null; then
     export GOPATH="$HOME/.go"
     export GOBIN="$HOME/.go/bin"
-    export PATH_APP=$PATH_APP:$GOBIN
+    [ -z $PATH_APP ] && export PATH_APP=$GOBIN || export PATH_APP=$PATH_APP:$GOBIN
 fi
 
 # Rust setup
@@ -25,7 +25,7 @@ if command -v rustc >/dev/null; then
     export CARGO_HOME="$HOME/.cache/cargo"
     export RUSTUP_HOME="$HOME/.cache/rustup"
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-    export PATH_APP=$PATH_APP:$CARGO_HOME/bin
+    [ -z $PATH_APP ] && export PATH_APP=$CARGO_HOME/bin || export PATH_APP=$PATH_APP:$CARGO_HOME/bin
 fi
 
 # HTTPie setup
