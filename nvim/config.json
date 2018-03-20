@@ -1,0 +1,13 @@
+{
+    "init": true,
+    "cleanup": true,
+    "resources": {
+        "init.vim": ".config/nvim/init.vim",
+        "config.vim": ".config/nvim/config.vim",
+        "plugins.vim": ".config/nvim/plugins.vim"
+    },
+    "dependencies": {
+        "required": ["neovim"],
+        "optional": ["neovim-python"]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "tmux.conf": ".tmux.conf",
+        "tmux.desktop": ".local/share/applications/tmux.desktop"
+    },
+    "dependencies": {
+        "required": ["tmux"],
+        "optional": []
+    }
+}

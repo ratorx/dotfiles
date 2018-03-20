@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "config": ".config/termite/config"
+    },
+    "dependencies": {
+        "required": ["ttf-ubuntu-font-family", "ttf-font-awesome"],
+        "optional": []
+    }
+}

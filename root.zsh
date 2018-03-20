@@ -2,5 +2,5 @@
 # Set up root zsh session
 # Run as regular user
 
-sudo -s ln -s $HOME/.dotfiles /root/.dotfiles
-sudo -s source /root/.dotfiles/init.sh
+sudo -s ln -sT $HOME/.dotfiles /root/.dotfiles
+sudo /root/.dotfiles/modman install zsh

@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "latexmkrc": ".latexmkrc"
+    },
+    "dependencies": {
+        "required": ["texlive-core"],
+        "optional": []
+    }
+}

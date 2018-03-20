@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "npmrc": ".npmrc"
+    },
+    "dependencies": {
+        "required": ["npm", "nodejs"],
+        "optional": []
+    }
+}

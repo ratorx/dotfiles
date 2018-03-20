@@ -1,0 +1,12 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "config": ".ssh/config",
+        "keys": ".ssh/authorized_keys"
+    },
+    "dependencies": {
+        "required": ["openssh"],
+        "optional": []
+    }
+}

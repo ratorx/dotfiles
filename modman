@@ -1,0 +1,178 @@
+#! /usr/bin/python
+
+import argparse
+import json
+import os
+import subprocess
+import sys
+
+PACKAGE_MANAGER = "pacaur"
+NON_MODULE_FOLDERS = frozenset(["misc", ".git"])
+
+
+class Module:  # Requires program to be in dotfile directory
+    name = None
+    init = None
+    resources = None
+    dependencies = None
+
+    def __init__(self, name):
+        self.name = name
+        with open("{}/config.json".format(name)) as f:
+            data = json.load(f)
+            self.init = data.get("init", False)
+            self.cleanup = data.get("cleanup", False)
+            self.resources = dict()
+            for k, v in data["resources"].items():
+                self.resources["{}/{}".format(self.name, k)] = "{}/{}".format(
+                    os.environ["HOME"], v)
+            self.dependencies = {
+                "required": data["dependencies"]["required"],
+                "optional": data["dependencies"]["optional"]
+            }
+
+    @staticmethod
+    def install_packages(manager, packages, flags="-yu"):
+        if len(packages) != 0:
+            args = [manager, "-S", flags]
+            args.extend(packages)
+            subprocess.run(args)
+
+    def install_dependencies(self, manager=PACKAGE_MANAGER):
+        if len(self.dependencies["required"]) != 0 or len(
+                self.dependencies["optional"]):
+            print("Installing packages")
+            self.install_packages(manager, self.dependencies["required"])
+            self.install_packages(
+                manager, self.dependencies["optional"], flags="-yu --asdeps")
+
+    def uninstall_dependencies(self, manager=PACKAGE_MANAGER):
+        if len(self.dependencies["required"]) != 0 or len(
+                self.dependencies["optional"]):
+            print("Uninstalling packages")
+
+        args = [manager, "-Rns"]
+        args.extend(
+            self.dependencies["required"] + self.dependencies["optional"])
+        if len(args) > 2:  # There are dependencies to uninstall
+            subprocess.run(args)
+
+    def cleanup_links(self):
+        for file in self.resources.values():
+            try:
+                if file == "":
+                    continue
+                os.remove(file)
+            except FileNotFoundError:
+                continue
+
+    def uninstall_links(self):
+        print("Removing links")
+        self.cleanup_links()
+
+    def install_links(self):
+        print("Creating links")
+        self.cleanup_links()
+        for k, v in self.resources.items():
+            os.makedirs(os.path.dirname(v), exist_ok=True)
+            os.symlink(os.path.abspath(k), v)
+
+    def exec_init(self):
+        if self.init:
+            print("Running init script")
+            subprocess.run(["sh", self.name + "/init.sh"])
+
+    def exec_cleanup(self):
+        if self.cleanup:
+            print("Running cleanup script")
+            subprocess.run(["sh", self.name + "/cleanup.sh"])
+
+    # Exterior Interface
+    def install(self, manager=PACKAGE_MANAGER, install_deps=False):
+        print("MODULE {}\n".format(self.name))
+        self.exec_init()
+        if install_deps:
+            self.install_dependencies(manager)
+        self.install_links()
+
+    def uninstall(self, manager=PACKAGE_MANAGER, uninstall_deps=False):
+        print("MODULE {}\n".format(self.name))
+        self.exec_cleanup()
+        if uninstall_deps:
+            self.uninstall_dependencies()
+        self.uninstall_links()
+
+
+def get_module_names(base, exclude=None):
+    if exclude is None:
+        exclude = []
+    return [
+        d for d in os.listdir(base) if os.path.isdir(os.path.join(base, d))
+        and d not in NON_MODULE_FOLDERS and d not in exclude
+    ]
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="modman - dotfiles module manager")
+    subparsers = parser.add_subparsers(dest="command", metavar="command")
+    subparsers.required = True
+
+    list_parser = subparsers.add_parser("list", help="list available modules")
+
+    install_parser = subparsers.add_parser(
+        "install", help="install specified modules")
+    uninstall_parser = subparsers.add_parser(
+        "uninstall", help="uninstall specified modules")
+
+    for p in [install_parser, uninstall_parser]:
+        g = p.add_mutually_exclusive_group(required=True)
+        g.add_argument(
+            "-a",
+            "--all",
+            action="store_true",
+            default=False,
+            help="Select all available packages")
+        g.add_argument("modules", action="store", nargs="*", default=[])
+
+        p.add_argument(
+            "--deps",
+            action="store_true",
+            default=False,
+            help="Perform package operations".format(PACKAGE_MANAGER))
+        p.add_argument(
+            "-m",
+            "--manager",
+            action="store",
+            default=PACKAGE_MANAGER,
+            help="Specify a pacman wrapper")
+
+    args = parser.parse_args()
+    dotfile_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
+    available_modules = get_module_names(dotfile_dir)
+
+    if args.command == "list":
+        print("\n".join(available_modules))
+        sys.exit(0)
+
+    modules = None
+    if args.all:
+        modules = available_modules
+    else:
+        modules = list()
+        for m in args.modules:
+            if m in available_modules:
+                modules.append(m)
+            else:
+                print("Module {} not found".format(m))
+
+    os.chdir(dotfile_dir)
+    for i, m in enumerate(modules):
+        modules[i] = Module(m)
+
+    if args.command == "install":
+        for m in modules:
+            m.install(manager=args.manager, install_deps=args.deps)
+    elif args.command == "uninstall":
+        for m in modules:
+            m.uninstall(manager=args.manager, uninstall_deps=args.deps)

@@ -1,0 +1,14 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "zshrc": ".zshrc",
+        "zprofile": ".zprofile",
+        "zshenv": ".zshenv",
+        "antibody": ".antibody"
+    },
+    "dependencies": {
+        "required": ["zsh", "antibody"],
+        "optional": []
+    }
+}

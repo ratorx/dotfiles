@@ -1,0 +1,12 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "gitconfig": ".gitconfig",
+        "gitignore": ".gitignore_global"
+    },
+    "dependencies": {
+        "required": ["diff-so-fancy"],
+        "optional": []
+    }
+}
