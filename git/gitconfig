@@ -26,3 +26,22 @@
 	required = true
 [alias]
 	root = !pwd
+    lg = log --oneline
+    pl = pull
+    ps = push
+    df = diff
+    cl = clone
+    f = fetch
+    mg = merge
+    su = submodule update
+    rs = reset
+    # Status
+    s = status -s
+    st = status
+    # Commit
+    c = commit
+    cm = commit -m
+    cam = commit -a -m
+    # Add
+    a = add
+    aa = add .
