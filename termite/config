@@ -1,4 +1,5 @@
 [options]
+font = FontAwesome 15
 font = UbuntuMono 15
 
 cursor_shape = ibeam
