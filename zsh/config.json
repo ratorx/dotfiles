@@ -8,7 +8,7 @@
         "antibody": ".antibody"
     },
     "dependencies": {
-        "required": ["zsh", "antibody"],
+        "required": ["zsh", "antibody", "fzf", "exa", "ripgrep", "fd", "xclip", "icdiff"],
         "optional": []
     }
 }

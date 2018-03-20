@@ -8,7 +8,7 @@ export SAVEHIST=10000
 echo -e -n "\x1b[\x36 q"
 
 # completions
-autoload -U compinit && compinit
+autoload -U compinit && compinit -d
 
 # key bindings
 bindkey '^[[A' up-line-or-history
@@ -104,14 +104,16 @@ alias cp="cp -v"
 alias df="df -hl"
 alias du="du -h"
 
-# clipboard
-alias c="perl -pe 'chomp if eof' | xclip -sel clip"
-function copy() { cat $1 | c }
-alias v="xclip -o -sel clip"
-
 # SSH public key
 alias pub="cat $HOME/.ssh/id_rsa.pub"
-alias cpub="pub | c | echo 'RSA public key copied.'"
+
+# clipboard
+if command -v xclip >/dev/null; then
+    alias c="perl -pe 'chomp if eof' | xclip -sel clip"
+    function copy() { cat $1 | c }
+    alias v="xclip -o -sel clip"
+    alias cpub="pub | c | echo 'RSA public key copied.'"
+fi
 
 # IP
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
