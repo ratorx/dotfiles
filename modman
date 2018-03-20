@@ -17,6 +17,7 @@ class Module:  # Requires program to be in dotfile directory
     dependencies = None
 
     def __init__(self, name):
+        # TODO: Improve verification of config
         self.name = name
         with open("{}/config.json".format(name)) as f:
             data = json.load(f)
@@ -89,14 +90,14 @@ class Module:  # Requires program to be in dotfile directory
 
     # Exterior Interface
     def install(self, manager=PACKAGE_MANAGER, install_deps=False):
-        print("MODULE {}\n".format(self.name))
+        print("\nMODULE {}".format(self.name))
         self.exec_init()
         if install_deps:
             self.install_dependencies(manager)
         self.install_links()
 
     def uninstall(self, manager=PACKAGE_MANAGER, uninstall_deps=False):
-        print("MODULE {}\n".format(self.name))
+        print("\nMODULE {}".format(self.name))
         self.exec_cleanup()
         if uninstall_deps:
             self.uninstall_dependencies()
