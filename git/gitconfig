@@ -26,7 +26,6 @@
 	required = true
 [alias]
 	root = !pwd
-    lg = log --oneline
     pl = pull
     ps = push
     co = checkout
@@ -36,7 +35,7 @@
     mg = merge
     su = submodule update
     rs = reset
-    l = !~/.local/share/git/log
+    lg = !~/.local/share/git/log
     # Status
     s = status -s
     st = status
