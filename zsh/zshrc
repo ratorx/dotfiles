@@ -35,25 +35,15 @@ setopt AUTO_CD
 source "$HOME/.antibody/load.zsh"
 antibody bundle < "$ANTIBODYPLUGINS"
 
+# git
+alias g=git
+
 # fzf
 if command -v fzf >/dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND='fd -I --type d'
-    
-    # Git Commit Browser (w/ previews)
-    alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
-    local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-    local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
 
-    function glog() {
-        glNoGraph |
-            fzf --no-sort --reverse --tiebreak=index --no-multi \
-            --ansi --preview $_viewGitLogLine \
-            --header "enter to view, alt-y to copy hash" \
-            --bind "enter:execute:$_viewGitLogLine   | less -R" \
-            --bind "alt-y:execute:$_gitLogLineToHash | xclip -sel clip"
-    }
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
 fi

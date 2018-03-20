@@ -29,12 +29,14 @@
     lg = log --oneline
     pl = pull
     ps = push
+    co = checkout
     df = diff
     cl = clone
     f = fetch
     mg = merge
     su = submodule update
     rs = reset
+    l = !~/.local/share/git/log
     # Status
     s = status -s
     st = status

@@ -3,10 +3,11 @@
     "cleanup": false,
     "resources": {
         "gitconfig": ".gitconfig",
-        "gitignore": ".gitignore_global"
+        "gitignore": ".gitignore_global",
+        "log.sh": ".local/share/git/log"
     },
     "dependencies": {
-        "required": ["diff-so-fancy"],
+        "required": ["diff-so-fancy", "fzf"],
         "optional": []
     }
 }
