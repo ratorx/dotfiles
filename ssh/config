@@ -1,11 +1,11 @@
-# My machines
+# My Machines
 Host hades
-    HostName hades.ree.to
-    User reeto
+  HostName hades.ree.to
+  User reeto
 
 Host zeus
-    HostName zeus.ree.to
-    User reeto
+  HostName zeus.ree.to
+  User reeto
 	CheckHostIP no
 
 Host poseidon
@@ -14,21 +14,21 @@ Host poseidon
 	CheckHostIP no
 
 Host hercules
-    HostName hercules.ree.to
-    User reeto
-    CheckHostIP no
+  HostName hercules.ree.to
+  User reeto
+  CheckHostIP no
 
 # Other Machines
 Host cl
-    HostName linux.cl.ds.cam.ac.uk
-    User rc691
-    RemoteForward 52698 127.0.0.1:52698
-
-Host ecad
-    HostName 127.0.1.1
-    User ecad
-    Port 2222
+  HostName linux.cl.ds.cam.ac.uk
+  User rc691
 
 Host srcf
-    HostName shell.srcf.net
-    User rc691
+  HostName shell.srcf.net
+  User rc691
+
+# VMs
+Host ecad
+  HostName 127.0.1.1
+  User ecad
+  Port 2222
