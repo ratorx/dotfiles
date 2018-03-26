@@ -5,7 +5,7 @@
         "config": ".config/termite/config"
     },
     "dependencies": {
-        "required": ["ttf-ubuntu-font-family", "ttf-font-awesome"],
+        "required": ["ttf-ubuntu-font-family", "ttf-dejavu", "ttf-font-awesome"],
         "optional": []
     }
 }
