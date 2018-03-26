@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Tmux
 Comment=The terminal and session multiplexer
-Exec=tmux new-session -As reeto
+Exec=tmux new-session -As main
 Icon=utilities-terminal
 Type=Application
 Terminal=true
