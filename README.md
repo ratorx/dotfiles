@@ -7,9 +7,10 @@ Arch Linux config for Reeto Chatterjee. Dotfiles are organised into modules and 
 Python 3 module manager for configuration modules.
 
 ### Modules
-Modules are top-level folders which have a `config.json` file inside. An example structure of the repo is?
+Modules are top-level folders which have a `config.json` file inside.
 
 #### Project Structure
+
 ```
 - Git Repo
 | - Module 1
@@ -24,6 +25,7 @@ Modules are top-level folders which have a `config.json` file inside. An example
 
 #### `config.json`
 The `config.json` file has the following format:
+
 ```json
 {
     "init": false,
@@ -40,6 +42,7 @@ The `config.json` file has the following format:
 ```
 
 ##### Field Names
+
 * `init` - Boolean value indicating whether there is an init script to execute before module install. Stored under the module folder as `init.sh`.
 * `cleanup` - Boolean value indicating whether there is a cleanup script to execute before module uninstall. Stored under the module folder as `cleanup.sh`.
 * `resources` - A map of file names to system locations to to create and delete for the module. File names are relative to the module folder. System locations are relative to the user's home directory.
@@ -50,6 +53,7 @@ The `config.json` file has the following format:
 ### Commands
 
 The top-level commands that are currently provided are:
+
 * `install` - Install the specified module(s) into the system. This has 3 stages:
     1. Execute `init.sh` (if `init` is true).
     2. Install package dependencies (if `--deps` flag provided).
