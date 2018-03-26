@@ -7,7 +7,6 @@ import subprocess
 import sys
 
 PACKAGE_MANAGER = "yay"
-NON_MODULE_FOLDERS = frozenset(["misc", ".git"])
 
 
 class Module:  # Requires program to be in dotfile directory
@@ -104,12 +103,10 @@ class Module:  # Requires program to be in dotfile directory
         self.uninstall_links()
 
 
-def get_module_names(base, exclude=None):
-    if exclude is None:
-        exclude = []
+def get_module_names(base):
     return [
         d for d in os.listdir(base) if os.path.isdir(os.path.join(base, d))
-        and d not in NON_MODULE_FOLDERS and d not in exclude
+        and os.path.isfile(os.path.join(base, d, "config.json"))
     ]
 
 
