@@ -6,7 +6,7 @@ import os
 import subprocess
 import sys
 
-PACKAGE_MANAGER = "pacaur"
+PACKAGE_MANAGER = "yay"
 NON_MODULE_FOLDERS = frozenset(["misc", ".git"])
 
 
