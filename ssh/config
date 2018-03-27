@@ -32,3 +32,8 @@ Host ecad
   HostName 127.0.1.1
   User ecad
   Port 2222
+
+Host prometheus
+  HostName 127.0.1.1
+  User reeto
+  Port 2222
