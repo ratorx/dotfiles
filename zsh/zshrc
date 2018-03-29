@@ -82,7 +82,7 @@ if command -v pacman >/dev/null; then
 
         icdiff -U 0 -L "$(hostname)" -L "$hostname" <(pacman $flags) <(ssh $hostname "pacman $flags")
     }
-    alias remove-orphans='pacman -Rns $(pacman -Qtdq)'
+    alias remove-orphans='sudo pacman -Rns $(pacman -Qtdq)'
 fi
 
 command -v pacaur >/dev/null && alias pacaur="pacaur --color=always"
