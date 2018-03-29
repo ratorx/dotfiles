@@ -105,7 +105,7 @@ alias df="df -hl"
 alias du="du -h"
 
 # SSH public key
-alias pub="cat $HOME/.ssh/id_rsa.pub"
+alias pub="cat $HOME/.ssh/id_ecdsa.pub"
 
 # clipboard
 if command -v xclip >/dev/null; then
