@@ -63,24 +63,27 @@ if command -v pacman >/dev/null; then
     alias pacman="pacman --color=always"
     function pkgdiff() {
         flags="-Qqe"
-        hostname=""
+        hostnames=()
 
-        if ! command -v icdiff >/dev/null; then
-            echo "pkgdiff requires icdiff"
-            return 1
-        fi
+        for var in "$@"
+        do
+            case $var in
+                -*)
+                    flags="$var"
+                    ;;
+                *)
+                    hostnames+=$var
+            esac
+        done
 
-        if [ $# -eq 1 ]; then
-            hostname=$1
-        elif [ $# -eq 2 ]; then
-            flags=$1
-            hostname=$2
+        if [[ ${#hostnames[@]} -eq 1 ]]; then
+            icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman $flags) <(ssh "${hostnames[1]}" "pacman $flags")
+        elif [[ ${#hostnames[@]} -eq 2 ]]; then
+            icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
         else
-            echo "usage: pkgdiff [flags] <hostname>"
+            echo "usage: pkgdiff [flags] <hostname 1> [hostname 2]"
             return 1
         fi
-
-        icdiff -U 0 -L "$(hostname)" -L "$hostname" <(pacman $flags) <(ssh $hostname "pacman $flags")
     }
     alias remove-orphans='sudo pacman -Rns $(pacman -Qtdq)'
 fi
@@ -92,10 +95,10 @@ command -v pamac-manager >/dev/null && alias pamac="pamac-manager"
 command -v google-chrome-stable >/dev/null && alias chrome="google-chrome-stable"
 
 # file listing
-command -v exa >/dev/null && alias ls="exa -xF" || alias ls="ls -xF"
+command -v exa >/dev/null && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && als="exa"
 alias la="ls -a"
 alias lh="ls -d .*"
-alias ll="ls -lF"
+alias ll="als -lF"
 
 # filesystem operations
 alias mv="mv -v"
