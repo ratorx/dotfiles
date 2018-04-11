@@ -23,13 +23,13 @@ class Module:  # Requires program to be in dotfile directory
             self.init = data.get("init", False)
             self.cleanup = data.get("cleanup", False)
             self.resources = dict()
-            for k, v in data["resources"].items():
+            for k, v in data.get("resources", {}).items():
                 self.resources["{}/{}".format(self.name, k)] = "{}/{}".format(
                     os.environ["HOME"], v)
-            self.dependencies = {
-                "required": data["dependencies"]["required"],
-                "optional": data["dependencies"]["optional"]
-            }
+            self.dependencies = data.get("dependencies", {
+                "required": [],
+                "optional": []
+            })
 
     @staticmethod
     def install_packages(manager, packages, flags="-yu"):
