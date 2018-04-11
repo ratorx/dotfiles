@@ -43,6 +43,12 @@ cmap w!! w !sudo tee > /dev/null %
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprev!<CR>
 
+" Splits
+nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>k <C-W><C-K>
+nnoremap <leader>l <C-W><C-L>
+nnoremap <leader>h <C-W><C-H>
+
 color onedark
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
@@ -82,6 +88,10 @@ map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeWinSize=25
 
 " ale
 let g:ale_sign_error='‼'

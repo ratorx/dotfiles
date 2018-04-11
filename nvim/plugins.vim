@@ -59,6 +59,9 @@ call dein#add('Shougo/neosnippet-snippets')
 " Meson Support (Support for meson)
 call dein#add('igankevich/mesonic', {'lazy': 1, 'on_ft': ['c', 'cpp', 'meson']})
 
+" NERDTree
+call dein#add('scrooloose/nerdtree')
+
 call dein#end()
 call dein#save_state()
 
