@@ -89,10 +89,6 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
-" NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeWinSize=25
-
 " ale
 let g:ale_sign_error='‼'
 let g:ale_sign_warning='!'
