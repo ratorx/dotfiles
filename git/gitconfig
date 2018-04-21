@@ -46,3 +46,9 @@
     # Add
     a = add
     aa = add .
+[url "git@github.com:"]
+    insteadOf = gh:
+    pushInsteadOf = gh:
+[url "git@bitbucket.org:"]
+    insteadOf = bb:
+    pushInsteadOf = bb:
