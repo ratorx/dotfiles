@@ -88,14 +88,11 @@ if command -v pacman >/dev/null; then
     alias remove-orphans='sudo pacman -Rns $(pacman -Qtdq)'
 fi
 
-command -v pacaur >/dev/null && alias pacaur="pacaur --color=always"
-command -v pamac-manager >/dev/null && alias pamac="pamac-manager"
-
 # chrome
 command -v google-chrome-stable >/dev/null && alias chrome="google-chrome-stable"
 
 # file listing
-command -v exa >/dev/null && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && als="exa"
+command -v exa >/dev/null && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && alias als="exa"
 alias la="ls -a"
 alias lh="ls -d .*"
 alias ll="als -lF"
@@ -106,6 +103,17 @@ alias rm="rm -iv"
 alias cp="cp -v"
 alias df="df -hl"
 alias du="du -h"
+
+# python
+if command -v bpython >/dev/null; then
+    function python() {
+        if [ "$#" -eq 0 ]; then
+            bpython
+        else
+            /usr/bin/python $@
+        fi
+    }
+fi
 
 # SSH public key
 alias pub="cat $HOME/.ssh/id_ecdsa.pub"
@@ -119,6 +127,6 @@ if command -v xclip >/dev/null; then
 fi
 
 # IP
-alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
 alias privip="hostname -i"
 
