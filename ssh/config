@@ -6,12 +6,12 @@ Host hades
 Host zeus
   HostName zeus.ree.to
   User reeto
-	CheckHostIP no
+  CheckHostIP no
 
 Host poseidon
-	HostName poseidon.ree.to
-	User reeto
-	CheckHostIP no
+  HostName poseidon.ree.to
+  User reeto
+  CheckHostIP no
 
 Host hercules
   HostName hercules.ree.to
