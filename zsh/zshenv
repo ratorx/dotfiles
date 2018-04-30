@@ -24,7 +24,7 @@ fi
 if command -v rustc >/dev/null; then
     export CARGO_HOME="$HOME/.cache/cargo"
     export RUSTUP_HOME="$HOME/.cache/rustup"
-    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+    export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     [ -z $PATH_APP ] && export PATH_APP=$CARGO_HOME/bin || export PATH_APP=$PATH_APP:$CARGO_HOME/bin
 fi
 
