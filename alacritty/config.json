@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "alacritty.yml": ".config/alacritty/alacritty.yml"
+    },
+    "dependencies": {
+        "required": ["alacritty-git", "ttf-ubuntu-font-family", "ttf-dejavu"],
+        "optional": []
+    }
+}

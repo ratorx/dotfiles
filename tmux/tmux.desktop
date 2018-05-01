@@ -1,10 +1,9 @@
 [Desktop Entry]
 Name=Tmux
 Comment=The terminal and session multiplexer
-Exec=tmux new-session -As main
+Exec=tm
 Icon=utilities-terminal
 Type=Application
-Terminal=true
 Categories=GTK;System;TerminalEmulator;
-StartupWMClass=termite
+StartupWMClass=Alacritty
 StartupNotify=true
