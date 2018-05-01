@@ -7,10 +7,16 @@ set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
 call dein#begin('~/.local/share/dein/')
 call dein#add('Shougo/dein.vim')
 
-" Git
+" Vim Improvements
+call dein#add('jiangmiao/auto-pairs') " Auto-brackets
+call dein#add('tpope/vim-commentary') " Auto comments
+call dein#add('tpope/vim-surround')   " Surround text
+call dein#add('tpope/vim-repeat')     " . support for plugins
+
+" Git integration
 call dein#add('airblade/vim-gitgutter')
 
-" Colorscheme
+" Color scheme
 call dein#add('joshdick/onedark.vim')
 
 " Modeline
@@ -18,46 +24,32 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('mgee/lightline-bufferline', {'depends': 'lightline.vim'})
 call dein#add('maximbaz/lightline-ale', {'depends': ['lightline.vim', 'ale']})
 
-" Finder
-call dein#add('junegunn/fzf', {'build': './install --bin', 'merged': 0})
+" Fuzzy finder
+call dein#add('junegunn/fzf', {'merged': 0})
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
 
-" Auto-brackets
-call dein#add('jiangmiao/auto-pairs')
-
-" Comments
-call dein#add('tpope/vim-commentary')
-
-" Easy Motions
-call dein#add('easymotion/vim-easymotion')
-
-" Better Syntax Highlighting
+" Syntax highlighting for additional languages
 call dein#add('sheerun/vim-polyglot', {'build': './build'})
 
 " Linting
 call dein#add('w0rp/ale')
 
-" Completion
+" Completions
 call dein#add('Shougo/deoplete.nvim', {'lazy': 1, 'on_ft': ['c', 'cpp', 'go', 'python', 'rust', 'tex']})
-
-" Completion Plugins
 call dein#add('zchee/deoplete-go', {'build': 'make', 'lazy': 1, 'on_ft': 'go'})
 call dein#add('zchee/deoplete-jedi', {'lazy': 1, 'on_ft': 'python'})
 call dein#add('zchee/deoplete-clang', {'lazy': 1, 'on_ft': ['c', 'cpp']})
 call dein#add('sebastianmarkow/deoplete-rust', {'lazy': 1, 'on_ft': 'rust'})
 
-" Latex Integration
+" Latex
 call dein#add('lervag/vimtex', {'lazy': 1, 'on_ft': 'tex'})
 
-" Markdown Integration
+" Markdown
 call dein#add('shime/vim-livedown', {'lazy': 1, 'on_ft': 'markdown'})
 
-" Snippets (primarily for latex)
+" Snippets
 call dein#add('Shougo/neosnippet', {'depends': 'neosnippet-snippets'})
 call dein#add('Shougo/neosnippet-snippets')
-
-" Meson Support (Support for meson)
-call dein#add('igankevich/mesonic', {'lazy': 1, 'on_ft': ['c', 'cpp', 'meson']})
 
 call dein#end()
 call dein#save_state()

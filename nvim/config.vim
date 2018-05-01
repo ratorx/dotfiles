@@ -8,7 +8,7 @@ set conceallevel=2
 set noerrorbells
 set nohlsearch
 set backspace=indent,eol,start " backspace wrapping
-au VimLeave * set guicursor=a:ver30-iCursor-blinkon0
+au VimLeave * set guicursor=a:ver30-iCursor
 set number relativenumber
 autocmd InsertEnter * :setlocal norelativenumber
 autocmd InsertLeave * :setlocal relativenumber
@@ -42,6 +42,8 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 cmap w!! w !sudo tee > /dev/null %
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprev!<CR>
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
 
 " Splits
 nnoremap <leader>j <C-W><C-J>
@@ -68,26 +70,8 @@ command PlugReinstall call dein#recache_runtimepath()
 command PlugUpdate call dein#update()
 
 " fzf
-nnoremap <Leader><Leader>e :Files<CR>
-nnoremap <Leader><Leader>f :Lines<CR>
-nnoremap <Leader><Leader>gf :GFiles<CR>
-nnoremap <Leader><Leader>b :Buffers<CR>
-
-" vim-easymotion
-map <Leader> <Plug>(easymotion-prefix)
-let g:EasyMotion_smartcase=1
-map f <Plug>(easymotion-fl)
-map F <Plug>(easymotion-Fl)
-map <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-map / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+nnoremap <C-P> :Files<CR>
+nnoremap <C-F> :Lines<CR>
 
 " ale
 let g:ale_sign_error='‼'
@@ -124,7 +108,7 @@ let g:polyglot_disabled=['latex']
 let g:deoplete#enable_at_startup=1
 let g:deoplete#max_list=5
 set completeopt-=preview
-" Completion direction
+
 inoremap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :
 \ <SID>check_back_space() ? "\<TAB>" :
@@ -140,9 +124,6 @@ let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
-imap <C-e> <Plug>(neosnippet_expand_or_jump)
-smap <C-e> <Plug>(neosnippet_expand_or_jump)
-
 " C/C++
 let g:deoplete#sources#clang#libclang_path='/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header='/usr/lib/clang'
@@ -153,21 +134,13 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 let g:deoplete#sources#rust#rust_source_path=$RUST_SRC_PATH
 
+" neosnippet
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+
 " vimtex
 augroup vimtex_event_1 " cleanup on exit
   au!
   au User VimtexEventQuit     call vimtex#compiler#clean(0)
 augroup END
 
- " Close viewers on quit
-function! CloseViewers()
-  if executable('xdotool') && exists('b:vimtex')
-      \ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
-    call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
-  endif
-endfunction
-
- augroup vimtex_event_2
-  au!
-  au User VimtexEventQuit call CloseViewers()
-augroup END

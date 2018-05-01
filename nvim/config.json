@@ -8,6 +8,6 @@
     },
     "dependencies": {
         "required": ["neovim"],
-        "optional": ["neovim-python"]
+        "optional": ["neovim-python", "fzf"]
     }
 }
