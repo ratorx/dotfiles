@@ -64,7 +64,6 @@ fi
 # editor
 alias edit='$EDITOR'
 if command -v nvim >/dev/null; then
-    alias vim="nvim"
     alias nvimconfig="nvim ~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
     function nvimbench() {
         bench=$(mktemp) && /usr/bin/nvim --startuptime $bench $@ && tail -1 $bench && rm -f $bench
@@ -73,7 +72,6 @@ fi
 
 # package manager
 if command -v pacman >/dev/null; then
-    alias pacman="pacman --color=always"
     function pkgdiff() {
         flags="-Qqe"
         hostnames=()
