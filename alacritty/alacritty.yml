@@ -26,8 +26,8 @@ window:
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 2
-    y: 0
+    x: 4
+    y: 2
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
@@ -287,6 +287,8 @@ key_bindings:
   - { key: C,        mods: Control|Shift,    action: Copy                }
   - { key: Q,        mods: Control, action: Quit                         }
   - { key: W,        mods: Control, action: Quit                         }
+  - { key: Q,        mods: Alt,     action: Quit                         }
+  - { key: W,        mods: Alt,     action: Quit                         }
   - { key: Insert,   mods: Shift,   action: PasteSelection               }
   - { key: Key0,     mods: Control, action: ResetFontSize                }
   - { key: Equals,   mods: Control, action: IncreaseFontSize             }
