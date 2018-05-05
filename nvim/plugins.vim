@@ -36,6 +36,11 @@ call dein#add('w0rp/ale')
 
 " Completions
 call dein#add('Shougo/deoplete.nvim', {'lazy': 1, 'on_ft': ['c', 'cpp', 'go', 'python', 'rust', 'tex']})
+if !has('nvim')
+   call dein#add('roxma/nvim-yarp')
+   call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+
 call dein#add('zchee/deoplete-go', {'build': 'make', 'lazy': 1, 'on_ft': 'go'})
 call dein#add('zchee/deoplete-jedi', {'lazy': 1, 'on_ft': 'python'})
 call dein#add('zchee/deoplete-clang', {'lazy': 1, 'on_ft': ['c', 'cpp']})

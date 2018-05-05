@@ -13,8 +13,12 @@ set number relativenumber
 autocmd InsertEnter * :setlocal norelativenumber
 autocmd InsertLeave * :setlocal relativenumber
 syntax on 
-if has('nvim') || has('termguicolors')
+if has('nvim')
   set termguicolors
+elseif has('termguicolors')
+  set termguicolors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 set mouse=a
 set hidden " open new files without saving
