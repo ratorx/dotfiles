@@ -1,3 +1,3 @@
 #!/bin/sh
 TERMINAL=alacritty
-$TERMINAL -e tmux new-session -A -s "$(whoami)"
+exec $TERMINAL -e tmux new-session -A -s "$(whoami)"
