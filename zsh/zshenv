@@ -13,6 +13,9 @@ export QT_SCALE_FACTOR=1
 
 export XDG_CONFIG_HOME=$HOME/.config
 
+# Local executables
+export PATH=$PATH:$HOME/.local/bin:.
+
 # Go setup
 if command -v go >/dev/null; then
     export GOPATH="$HOME/.go"
