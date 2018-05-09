@@ -1,41 +1,33 @@
-let g:python3_host_prog='/usr/bin/python'
-set encoding=utf8
-set wrap linebreak breakindent
-set clipboard=unnamed " system clipboard
+set termguicolors
+set linebreak breakindent
 set scrolloff=1 sidescrolloff=5
 set undolevels=10000
 set conceallevel=2
-set noerrorbells
 set nohlsearch
-set backspace=indent,eol,start " backspace wrapping
-au VimLeave * set guicursor=a:ver30-iCursor
+set backspace=2 " backspace wrapping
 set number relativenumber
 autocmd InsertEnter * :setlocal norelativenumber
 autocmd InsertLeave * :setlocal relativenumber
-syntax on 
-if has('nvim')
-  set termguicolors
-elseif has('termguicolors')
-  set termguicolors
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-set mouse=a
 set hidden " open new files without saving
 set showtabline=2
 filetype plugin indent on
-set splitbelow
-set splitright
+set splitbelow splitright
 set cursorline
-set ignorecase
-set smartcase
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-au FileType c* setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+set ignorecase smartcase
+set softtabstop=0 expandtab smarttab
+set tabstop=4 shiftwidth=4
+au FileType c* setlocal tabstop=2 shiftwidth=2
 augroup ftdetect_prolog " prefer prolog
   autocmd!
   autocmd BufRead,BufNewFile *.pl set filetype=prolog
 augroup END
+if !has('nvim')
+    set encoding=utf8
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
+set mouse=a
 let mapleader="\<SPACE>"
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -55,8 +47,10 @@ nnoremap <leader>k <C-W><C-K>
 nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>h <C-W><C-H>
 
+syntax enable 
 color onedark
-hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+
+let g:python3_host_prog='/usr/bin/python'
 
 " lightline
 let g:lightline={'colorscheme': 'onedark',
