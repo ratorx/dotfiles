@@ -13,4 +13,4 @@ push @generated_exts, "synctex.gz";
 push @generated_exts, "soc";
 push @generated_exts, "run.xml";
 
-$pdflatex = 'xelatex %O %S';
+$pdflatex = 'xelatex -shell-escape -synctex=1 %O %S';
