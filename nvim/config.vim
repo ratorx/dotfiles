@@ -139,8 +139,24 @@ imap <C-e> <Plug>(neosnippet_expand_or_jump)
 smap <C-e> <Plug>(neosnippet_expand_or_jump)
 
 " vimtex
+" au FileType tex setlocal foldmethod=indent foldlevelstart=99
+let g:vimtex_view_method='zathura'
+nmap \lv :VimtexView<CR>
+
 augroup vimtex_event_1 " cleanup on exit
   au!
-  au User VimtexEventQuit     call vimtex#compiler#clean(0)
+  au User VimtexEventQuit call vimtex#compiler#clean(0)
+  au User VimtexEventQuit call CloseViewers()
 augroup END
 
+" Close viewers on quit
+function! CloseViewers()
+  if executable('xdotool') && exists('b:vimtex')
+        \ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
+    call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
+  endif
+endfunction
+augroup vimtex_event_2 " cleanup on exit
+  au!
+  au User VimtexEventQuit call CloseViewers()
+augroup END
