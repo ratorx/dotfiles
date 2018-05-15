@@ -11,8 +11,8 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-set $messenger "messenger"
 set $email "email"
+set $messenger "messenger"
 
 set $scripts ~/.config/i3/scripts
 
@@ -89,8 +89,8 @@ bindsym $mod+f floating toggle
 bindsym $mod+b fullscreen disable; sticky enable; move to scratchpad; scratchpad show
 
 ## workspace
-bindsym $mod+comma workspace $messenger
-bindsym $mod+period workspace $email
+bindsym $mod+comma workspace $email
+bindsym $mod+period workspace $messenger
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
