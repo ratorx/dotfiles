@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = cups
+
+[Action]
+Description = Remove CUPS desktop file
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/rm /usr/share/applications/cups.desktop

@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = hplip
+
+[Action]
+Description = Remove hplip desktop file
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/rm /usr/share/applications/hplip.desktop

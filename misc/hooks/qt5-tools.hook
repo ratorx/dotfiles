@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = qt5-tools
+
+[Action]
+Description = Remove unneeded qt5 desktop files
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/rm /usr/share/applications/assistant.desktop /usr/share/applications/qdbusviewer.desktop /usr/share/applications/linguist.desktop

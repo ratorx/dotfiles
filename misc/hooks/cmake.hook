@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = cmake
+
+[Action]
+Description = Remove avahi desktop files
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/rm /usr/share/applications/cmake-gui.desktop

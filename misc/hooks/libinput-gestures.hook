@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = libinput-gestures
+
+[Action]
+Description = Remove libinput-gestures desktop file
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/rm /usr/share/applications/libinput-gestures.desktop
