@@ -1,0 +1,13 @@
+#! /bin/bash
+
+red=$(xgetres color1)
+text=$(xgetres color15)
+green=$(xgetres color2)
+updates=$(checkupdates | wc -l)
+
+if [ $updates -gt 0 ]; then
+    echo "  %{F$red} %{F-} %{F$text}$updates%{F-}  "
+else
+    echo "  %{F$green}%{F-}  "
+fi
+

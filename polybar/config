@@ -1,0 +1,227 @@
+[colours]
+background = ${xrdb:background:#2f343f}
+background-alt = ${xrdb:color8:#686868}
+foreground = ${xrdb:foreground:#eff0eb}
+foreground-alt = ${xrdb:cursorColor:#97979b}
+
+; ANSI Colours
+black = ${colours.background-alt}
+red = ${xrdb:color1:#ff5c57}
+green = ${xrdb:color2:#5af78e}
+yellow = ${xrdb:color3:#f3f99d}
+blue = ${xrdb:color4:#57c7ff}
+magenta = ${xrdb:color5:#ff6ac1}
+cyan = ${xrdb:color6:#9aedfe}
+white = ${xrdb:color7:#f1f1f0}
+
+[bar/top]
+bottom = false
+fixed-center = true
+
+width = 100%
+height = 25
+
+background = ${colours.background}
+foreground = ${colours.foreground}
+
+underline-size = 3
+
+module-margin = 0
+padding-right = 3
+
+font-0 = Ubuntu:size=13;2
+font-1 = Font Awesome 5 Free:size=12;2
+font-2 = Font Awesome 5 Free:style=Solid:size=12;2
+font-3 = Font Awesome 5 Brands:size=12;2
+
+modules-left = i3
+modules-center = title
+modules-right = wallpaper updates wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
+
+enable-ipc = true
+
+; If true, the bar will not shift its
+; contents when the tray changes
+tray-detached = false
+tray-position = right
+
+; Tray icon max size
+tray-maxsize = 20
+
+tray-background = ${colours.background}
+
+[module/title]
+type = internal/xwindow
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = false
+
+strip-wsnumbers = true
+
+index-sort = false
+
+enable-click = true
+
+fuzzy-match = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = messenger;
+ws-icon-3 = email;
+ws-icon-default = 
+
+format = <label-mode> <label-state>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = ${colours.magenta}
+label-mode-foreground = ${colours.foreground}
+
+label-focused = %icon%
+label-focused-foreground = ${colours.foreground}
+label-focused-background = ${colours.blue}
+; label-focused-underline = ${colours.blue}
+label-focused-padding = 3
+
+label-unfocused = %icon%
+label-unfocused-foreground = ${colours.foreground}
+label-unfocused-background = ${colours.background}
+label-unfocused-padding = 3
+
+label-visible = %icon%
+label-visible-foreground = ${colours.foreground}
+label-visible-background = ${colours.background-alt}
+label-visible-padding = 3
+
+label-urgent = %icon%
+label-urgent-foreground = ${colours.foreground}
+label-urgent-background = ${colours.magenta}
+; label-urgent-underline = ${colours.magenta}
+label-urgent-padding = 3
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+
+polling = 1
+
+format-charging = "<label-charging>  "
+
+label-charging = ""
+label-charging-foreground = ${colours.green}
+
+format-discharging = "<ramp-capacity>  "
+format-discharging-foreground = ${colours.foreground}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+label-full = "  "
+label-full-foreground = ${colours.green}
+
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+time = %H:%M
+time-alt = %A, %d %B %Y
+
+label = "%time%"
+label-font = 3
+label-foreground = ${colours.foreground}
+
+[module/wired-laptop]
+type = internal/network
+interface = enp57s0u1u4
+
+format-connected = <label-connected>
+label-connected = "    " 
+label-connected-foreground = ${colours.green}
+
+format-disconnected = <label-disconnected>
+label-disconnected = "    " 
+label-disconnected-foreground = ${colours.red}
+
+[module/wired-desktop]
+type = internal/network
+interface = enp6s0
+
+format-connected = <label-connected>
+label-connected = "    " 
+label-connected-foreground = ${colours.green}
+
+format-disconnected = <label-disconnected>
+label-disconnected = "    " 
+label-disconnected-foreground = ${colours.red}
+
+[module/wireless-laptop]
+type = internal/network
+interface = wlp58s0
+
+format-connected = <label-connected>
+label-connected = "    %{F#eff0eb}%essid%%{F-}   " 
+label-connected-foreground = ${colours.green}
+
+format-disconnected = <label-disconnected>
+label-disconnected = "      " 
+label-disconnected-foreground = ${colours.red}
+
+[module/wireless-desktop]
+type = internal/network
+interface = wlp3s0
+
+format-connected = <label-connected>
+label-connected = "    %{F#eff0eb}%essid%%{F-}   " 
+label-connected-foreground = ${colours.green}
+
+format-disconnected = <label-disconnected>
+label-disconnected = "      " 
+label-disconnected-foreground = ${colours.red}
+
+[module/volume]
+type = internal/volume
+master-mixer = Master
+
+format-volume = "<ramp-volume>   "
+
+label-volume = %percentage%%
+label-volume-foreground = ${colours.foreground}
+
+label-muted = "     "
+label-muted-foreground = ${colours.red}
+
+ramp-volume-0 = " "
+ramp-volume-1 = ""
+
+reverse-scroll = true
+
+[module/wallpaper]
+type = custom/text
+content = "    "
+
+click-left = ~/.config/i3/scripts/wallpaper
+
+[module/updates]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/updates
+exec-if = ping -c 1 1.1.1.1
+tail = false
+interval = 600
+
+click-left = ~/.config/polybar/scripts/updates
+click-right = alacritty -e yay
+
+[settings]
+format-foreground = ${colours.foreground}
+format-background = ${colours.background}
+
+; vim:ft=dosini

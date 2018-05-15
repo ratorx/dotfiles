@@ -1,0 +1,13 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "config": ".config/polybar/config",
+        "launch": ".config/polybar/launch.sh",
+        "scripts": ".config/polybar/scripts"
+    },
+    "dependencies": {
+        "required": ["aur/polybar"],
+        "optional": ["ttf-ubuntu-font-family", "ttf-font-awesome", "feh", "yay"]
+    }
+}
