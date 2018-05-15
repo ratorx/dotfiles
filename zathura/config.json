@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "zathurarc": ".config/zathura/zathurarc"
+    },
+    "dependencies": {
+        "required": ["zathura-pdf-mupdf"],
+        "optional": ["ttf-ubuntu-font-family", "numix-circle-icon-theme-git"]
+    }
+}
