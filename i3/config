@@ -1,0 +1,188 @@
+# variables
+set $mod Mod4
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $messenger "messenger"
+set $email "email"
+
+set $scripts ~/.config/i3/scripts
+
+# startup applications
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id compton -b --config ~/.config/compton/compton.conf
+exec_always --no-startup-id $scripts/wallpaper
+exec_always --no-startup-id $scripts/layout
+exec_always --no-startup-id QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1 QT_QPA_PLATFORMTHEME=gtk2 albert
+exec_always --no-startup-id light-locker
+
+## desktop apps
+exec_always --no-startup-id dropbox
+exec_always --no-startup-id libinput-gestures
+exec_always --no-startup-id mailspring --background
+
+# workspace assignments
+## window
+assign [class="Google-chrome"] $ws1
+for_window [class="Google-chrome"] focus
+assign [class="Messenger for Desktop"] $messenger
+for_window [class="Mailspring"] focus
+assign [class="Mailspring"] $email
+for_window [class="Messenger for Desktop"] focus
+assign [class="jetbrains-*"] $ws2
+for_window [class="jetbrains-*" title="Welcome to .*"] focus
+
+## floating
+for_window [title="Settings — Albert"] floating enable
+
+## scratchpad
+for_window [class="Spotify"] move to scratchpad, focus
+
+# key binds
+## general
+floating_modifier $mod
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec i3-msg exit
+
+bindsym $mod+z focus mode_toggle
+# focus the parent container
+bindsym $mod+p focus parent
+# focus the child container
+bindsym $mod+o focus child
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# bindsym $mod+h split h
+# bindsym $mod+v split v
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t layout default
+
+bindsym $mod+s scratchpad show
+bindsym $mod+Shift+s move to scratchpad
+
+bindsym $mod+m fullscreen toggle
+bindsym $mod+a sticky toggle
+bindsym $mod+f floating toggle
+
+## Movies
+bindsym $mod+b fullscreen disable; sticky enable; move to scratchpad; scratchpad show
+
+## workspace
+bindsym $mod+comma workspace $messenger
+bindsym $mod+period workspace $email
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+Ctrl+Shift+Right move container to workspace next; workspace next
+bindsym $mod+Ctrl+Shift+Left move container to workspace prev; workspace prev
+
+## mode
+mode "resize" {
+        bindsym Shift+Left resize shrink width 20 px or 10 ppt
+        bindsym Shift+Down resize grow height 20 px or 10 ppt
+        bindsym Shift+Up resize shrink height 20 px or 10 ppt
+        bindsym Shift+Right resize grow width 20 px or 10 ppt
+        
+        bindsym Left move left 20 px
+        bindsym Down move down 20 px
+        bindsym Up move up 20 px
+        bindsym Right move right 20 px
+
+        bindsym $mod+e mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+e mode "resize"
+
+## media
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id $scripts/volume up 5
+bindsym XF86AudioLowerVolume exec --no-startup-id $scripts/volume down 5
+bindsym XF86AudioMute exec --no-startup-id $scripts/volume mute
+
+
+## application
+bindsym $mod+d exec --no-startup-id albert toggle
+# bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun,run -modi combi -show combi"
+# bindsym $mod+w exec --no-startup-id "rofi -modi windowcd,window -show windowcd"
+bindsym $mod+l exec --no-startup-id light-locker-command -l
+bindsym $mod+Return exec --no-startup-id alacritty -e tmux
+
+# settings
+font pango:Ubuntu 13
+
+default_border none
+default_floating_border none
+gaps inner 20
+gaps outer 0
+
+focus_follows_mouse no
+
+## colours
+set_from_resource $black i3wm.color0 #000000
+set_from_resource $red i3wm.color1 #000000
+set_from_resource $green i3wm.color2 #000000
+set_from_resource $yellow i3wm.color3 #000000
+set_from_resource $blue i3wm.color4 #000000
+set_from_resource $magenta i3wm.color5 #000000
+set_from_resource $cyan i3wm.color6 #000000
+set_from_resource $white i3wm.color7 #000000
+set_from_resource $darkgray i3wm.color8 #000000
+set_from_resource $gray i3wm.color15 #000000
+
+### class               border    backgr.    text    indicator child_border
+client.focused          $blue     $blue      $black  $black    $black
+client.focused_inactive $darkgray $darkgray  $gray   $black    $black 
+client.unfocused        $black    $black     $gray   $black    $black
+client.urgent           $magenta  $magenta   $gray   $black    $black
+client.placeholder      $black    $black     $white  $black    $black
+
+client.background       $black
+
+exec_always --no-startup-id i3-msg workspace 1

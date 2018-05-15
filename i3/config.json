@@ -1,0 +1,12 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "config": ".config/i3/config",
+        "scripts": ".config/i3/scripts"
+    },
+    "dependencies": {
+        "required": ["i3-gaps", "alacritty-git"],
+        "optional": ["compton", "light-locker", "python", "python-i3-py", "feh", "polybar", "sed", "grep", "rofi", "ttf-ubuntu-font-family", "pulse-audio", "feh", "xgetres"]
+    }
+}
