@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type = Package
+Target = clion
+
+[Action]
+Description = Set clion config and cache locations
+When = PostTransaction
+Depends = sed
+Depends = bash
+Exec = /bin/bash -c "/etc/pacman.d/hooks/jetbrains clion"
