@@ -1,0 +1,18 @@
+#! /bin/bash
+
+NAME="$HOME/Pictures/Screenshot from $(date '+%Y-%m-%d %H:%M:%S').png"
+
+case "$1" in
+    clipboard-interactive)
+        maim -us | xclip -sel clip -t image/png
+        ;;
+    clipboard)
+        maim -u | xclip -sel clip -t image/png
+        ;;
+    interactive)
+        maim -us "$NAME"
+        ;;
+    *)
+        maim -u "$NAME"
+        ;;
+esac

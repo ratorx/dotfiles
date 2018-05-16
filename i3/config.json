@@ -7,6 +7,6 @@
     },
     "dependencies": {
         "required": ["i3-gaps", "alacritty-git"],
-        "optional": ["compton", "light-locker", "python", "python-i3-py", "feh", "polybar", "sed", "grep", "rofi", "ttf-ubuntu-font-family", "pulse-audio", "feh", "xgetres"]
+        "optional": ["compton", "light-locker", "python", "python-i3-py", "feh", "polybar", "sed", "grep", "rofi", "ttf-ubuntu-font-family", "pulse-audio", "feh", "xgetres", "maim", "xcape", "redshift"]
     }
 }

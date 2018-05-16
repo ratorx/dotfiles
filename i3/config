@@ -17,12 +17,15 @@ set $messenger "messenger"
 set $scripts ~/.config/i3/scripts
 
 # startup applications
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id compton -b --config ~/.config/compton/compton.conf
 exec_always --no-startup-id $scripts/wallpaper
 exec_always --no-startup-id $scripts/layout
+exec_always --no-startup-id xmodmap ~/.config/xmodmap/config
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id compton -b --config ~/.config/compton/compton.conf
 exec_always --no-startup-id QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1 QT_QPA_PLATFORMTHEME=gtk2 albert
 exec_always --no-startup-id light-locker
+exec_always --no-startup-id xcape
+exec_always --no-startup-id redshift
 
 ## desktop apps
 exec_always --no-startup-id dropbox
@@ -70,8 +73,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# bindsym $mod+h split h
-# bindsym $mod+v split v
+bindsym $mod+h split h
+bindsym $mod+v split v
 
 bindsym $mod+Shift+q kill
 
@@ -85,7 +88,14 @@ bindsym $mod+m fullscreen toggle
 bindsym $mod+a sticky toggle
 bindsym $mod+f floating toggle
 
-## Movies
+## screenshot
+bindsym Print exec --no-startup-id $scripts/screenshot clipboard
+bindsym Shift+Print exec --no-startup-id $scripts/screenshot clipboard-interactive
+
+bindsym $mod+Print exec --no-startup-id $scripts/screenshot
+bindsym $mod+Shift+Print exec --no-startup-id $scripts/screenshot interactive
+
+## movies
 bindsym $mod+b fullscreen disable; sticky enable; move to scratchpad; scratchpad show
 
 ## workspace
