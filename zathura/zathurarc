@@ -22,8 +22,8 @@ set completion-group-fg '#eff0eb'
 set completion-highlight-fg '#eff0eb'
 
 set notification-fg '#eff0eb'
-set notification-warning-fg '#f3f99d'
-set notification-fg '#ff5c57'
+set notification-warning-fg '#ff6ac1'
+set notification-error-fg '#ff5c57'
 "" background
 set default-bg '#f1f1f0'
 set inputbar-bg '#686868'
@@ -35,6 +35,6 @@ set completion-highlight-bg '#686868'
 
 set notification-bg '#686868'
 set notification-warning-bg '#686868'
-set notification-bg '#686868'
+set notification-error-bg '#686868'
 
 " vim: ft=vim
