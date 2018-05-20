@@ -15,6 +15,8 @@ cyan = ${xrdb:color6:#9aedfe}
 white = ${xrdb:color7:#f1f1f0}
 
 [bar/top]
+monitor = ${env:MONITOR:}
+
 bottom = false
 fixed-center = true
 
@@ -36,7 +38,7 @@ font-3 = Font Awesome 5 Brands:size=12;2
 
 modules-left = i3
 modules-center = title
-modules-right = wallpaper updates wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
+modules-right = updates wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
 
 enable-ipc = true
 
@@ -56,7 +58,7 @@ type = internal/xwindow
 [module/i3]
 type = internal/i3
 
-pin-workspaces = false
+pin-workspaces = true
 
 strip-wsnumbers = true
 
@@ -202,12 +204,6 @@ ramp-volume-0 = " "
 ramp-volume-1 = ""
 
 reverse-scroll = true
-
-[module/wallpaper]
-type = custom/text
-content = "    "
-
-click-left = ~/.config/i3/scripts/wallpaper
 
 [module/updates]
 type = custom/script
