@@ -1,10 +1,10 @@
 #! /bin/bash
 SINK=$( pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1 )
-NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
+NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
 
 case $1 in
     up)
-        if (( $NOW + $2 <= 101 )); then
+        if (( NOW + $2 <= 101 )); then
             pactl set-sink-volume "$SINK" "+$2%"
         else
             pactl set-sink-volume "$SINK" "101%"
@@ -12,5 +12,5 @@ case $1 in
         ;;
     down) pactl set-sink-volume "$SINK" "-$2%" ;;
     mute) pactl set-sink-mute "$SINK" toggle ;;
-    *) echo $SINK $NOW ;;
+    *) echo "$SINK" "$NOW" ;;
 esac

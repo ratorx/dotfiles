@@ -1,0 +1,5 @@
+#! /bin/bash
+
+if ! pgrep geary >/dev/null; then
+    exec geary --hidden
+fi

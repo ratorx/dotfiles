@@ -17,29 +17,30 @@ set $messenger "messenger"
 set $scripts ~/.config/i3/scripts
 
 # startup applications
-exec_always --no-startup-id $scripts/wallpaper
+exec_always --no-startup-id ~/.local/bin/wallpaper
 exec_always --no-startup-id $scripts/layout
-exec_always --no-startup-id xmodmap ~/.config/xmodmap/config
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id compton -b --config ~/.config/compton/compton.conf
-exec_always --no-startup-id QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1 QT_QPA_PLATFORMTHEME=gtk2 albert
+exec_always --no-startup-id QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1 QT_QPA_PLATFORMTHEME=gtk2 /usr/bin/zsh -c albert
 exec_always --no-startup-id light-locker
-exec_always --no-startup-id xcape
-exec_always --no-startup-id redshift
+exec_always --no-startup-id libinput-gestures
+# redshift
+exec_always --no-startup-id $scripts/rs-start 
 
 ## desktop apps
 exec_always --no-startup-id dropbox
-exec_always --no-startup-id libinput-gestures
-exec_always --no-startup-id mailspring --background
+exec_always --no-startup-id $scripts/mail
 
 # workspace assignments
 ## window
 assign [class="Google-chrome"] $ws1
 for_window [class="Google-chrome"] focus
 assign [class="Messenger for Desktop"] $messenger
-for_window [class="Mailspring"] focus
-assign [class="Mailspring"] $email
 for_window [class="Messenger for Desktop"] focus
+assign [class="Mailspring"] $email
+for_window [class="Mailspring"] focus
+assign [class="Geary"] $email
+for_window [class="Geary"] focus
 assign [class="jetbrains-*"] $ws2
 for_window [class="jetbrains-*" title="Welcome to .*"] focus
 
@@ -112,8 +113,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
@@ -125,8 +126,17 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
-bindsym $mod+Ctrl+Shift+Right move container to workspace next; workspace next
-bindsym $mod+Ctrl+Shift+Left move container to workspace prev; workspace prev
+
+## output
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Down move workspace to output down
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Right move workspace to output right
+
+bindsym $mod+Shift+Ctrl+Left move container to output left
+bindsym $mod+Shift+Ctrl+Down move container to output down
+bindsym $mod+Shift+Ctrl+Up move container to output up
+bindsym $mod+Shift+Ctrl+Right move container to output right
 
 ## mode
 mode "resize" {
@@ -156,11 +166,11 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id $scripts/volume up 5
 bindsym XF86AudioLowerVolume exec --no-startup-id $scripts/volume down 5
 bindsym XF86AudioMute exec --no-startup-id $scripts/volume mute
 
+## search
+bindsym XF86Search exec --no-startup-id albert toggle
 
 ## application
 bindsym $mod+d exec --no-startup-id albert toggle
-# bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun,run -modi combi -show combi"
-# bindsym $mod+w exec --no-startup-id "rofi -modi windowcd,window -show windowcd"
 bindsym $mod+l exec --no-startup-id light-locker-command -l
 bindsym $mod+Return exec --no-startup-id alacritty -e tmux
 
