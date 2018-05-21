@@ -38,14 +38,12 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 cmap w!! w !sudo tee > /dev/null %
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprev!<CR>
-map <ScrollWheelUp> <C-Y>
-map <ScrollWheelDown> <C-E>
 
-" Splits
-nnoremap <leader>j <C-W><C-J>
-nnoremap <leader>k <C-W><C-K>
-nnoremap <leader>l <C-W><C-L>
-nnoremap <leader>h <C-W><C-H>
+" Hard Mode
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 syntax enable 
 color onedark
@@ -146,17 +144,4 @@ nmap \lv :VimtexView<CR>
 augroup vimtex_event_1 " cleanup on exit
   au!
   au User VimtexEventQuit call vimtex#compiler#clean(0)
-  au User VimtexEventQuit call CloseViewers()
-augroup END
-
-" Close viewers on quit
-function! CloseViewers()
-  if executable('xdotool') && exists('b:vimtex')
-        \ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
-    call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
-  endif
-endfunction
-augroup vimtex_event_2 " cleanup on exit
-  au!
-  au User VimtexEventQuit call CloseViewers()
 augroup END
