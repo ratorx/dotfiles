@@ -2,7 +2,7 @@
 	email = reetobratachatterjee@gmail.com
 	name = Reeto Chatterjee
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.local/share/git/gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	autocrlf = input
 [color]

@@ -3,7 +3,7 @@
     "cleanup": false,
     "resources": {
         "gitconfig": ".gitconfig",
-        "gitignore": ".gitignore_global",
+        "gitignore": ".local/share/git/gitignore_global",
         "log.sh": ".local/share/git/log"
     },
     "dependencies": {
