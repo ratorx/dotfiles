@@ -40,15 +40,21 @@ setopt AUTO_LIST
 setopt NO_NOMATCH
 setopt AUTO_CD
 
+# associative array for config function
+typeset -A config
+function cfg() { eval nvim ${config[$1]} }
+
 # antibody
 source "$HOME/.antibody/load.zsh"
 antibody bundle < "$ANTIBODYPLUGINS"
+config[antibody]="~/.antibody/plugins"
 
 # completions
 autoload -U compinit && compinit -d
 
 # git
 alias g=git
+config[git]="~/.gitconfig"
 
 # fzf
 if command -v fzf >/dev/null; then
@@ -63,10 +69,10 @@ fi
 # editor
 alias edit='$EDITOR'
 if command -v nvim >/dev/null; then
-    alias nvimconfig="nvim ~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
     function nvimbench() {
         bench=$(mktemp) && /usr/bin/nvim --startuptime $bench $@ && tail -1 $bench && rm -f $bench
     }
+    config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
 fi
 
 # package manager
@@ -137,3 +143,13 @@ fi
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
 alias privip="hostname -i"
 
+# Config files
+config[i3]="~/.config/i3/config"
+config[polybar]="~/.config/polybar/config"
+config[dunst]="~/.config/dunst/dunstrc"
+config[alacritty]="~/.config/alacritty/alacritty.yml"
+config[latex]="~/.latexmkrc"
+config[ssh]="~/.ssh/config"
+config[tmux]="~/.tmux.conf"
+config[zathura]="~/.config/zathura/zathurarc"
+config[zsh]="~/.zshrc ~/.zshenv"
