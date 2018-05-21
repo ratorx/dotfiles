@@ -1,3 +1,4 @@
+#! /usr/bin/zsh
 if command -v nvim >/dev/null; then
     export editor=nvim
     export EDITOR=nvim

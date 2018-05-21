@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#! /usr/bin/zsh
 export ANTIBODYPLUGINS="$HOME/.antibody/plugins"
 export HISTFILE="$HOME/.zhistory"
 export HISTSIZE=10000
@@ -10,8 +10,8 @@ KEYTIMEOUT=1
 
 function zle-line-init zle-keymap-select {
     case ${KEYMAP} in
-        (vicmd)     echo -ne '\e[1 q' ;;
-        (*)         echo -ne '\e[5 q' ;;
+        (vicmd) echo -ne '\e[1 q' ;;
+        (*)     echo -ne '\e[5 q' ;;
     esac
     zle reset-prompt
 }
@@ -78,11 +78,8 @@ if command -v pacman >/dev/null; then
         for var in "$@"
         do
             case $var in
-                -*)
-                    flags="$var"
-                    ;;
-                *)
-                    hostnames+=$var
+                -*) flags="$var" ;;
+                *) hostnames+=$var ;;
             esac
         done
 
@@ -91,7 +88,7 @@ if command -v pacman >/dev/null; then
         elif [[ ${#hostnames[@]} -eq 2 ]]; then
             icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
         else
-            echo "usage: pkgdiff [flags] <hostname 1> [hostname 2]"
+            echo "usage: pkgdiff [flags] <host 1> [host 2]"
             return 1
         fi
     }
@@ -105,7 +102,7 @@ command -v google-chrome-stable >/dev/null && alias chrome="google-chrome-stable
 command -v exa >/dev/null && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && alias als="exa"
 alias la="ls -a"
 alias lh="ls -d .*"
-alias ll="als -lF"
+alias ll="als -lF --git"
 
 # filesystem operations
 alias mv="mv -v"
