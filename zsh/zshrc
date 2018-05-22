@@ -1,6 +1,6 @@
 #! /usr/bin/zsh
-export ANTIBODYPLUGINS="$HOME/.antibody/plugins"
-export HISTFILE="$HOME/.zhistory"
+export ANTIBODYHOME="$HOME/.antibody"
+export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
@@ -31,6 +31,7 @@ bindkey "^[[4~" end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^A' kill-whole-line
 bindkey '^X' sudo-command-line
+bindkey '^[.' insert-last-word
 
 # options
 setopt HIST_IGNORE_ALL_DUPS
@@ -40,16 +41,20 @@ setopt AUTO_LIST
 setopt NO_NOMATCH
 setopt AUTO_CD
 
-# associative array for config function
+# helper functions
+function exists() { command -v "$1" >/dev/null }
+
+# config function
 typeset -A config
 function cfg() { eval nvim ${config[$1]} }
 
 # antibody
-source "$HOME/.antibody/load.zsh"
-antibody bundle < "$ANTIBODYPLUGINS"
-config[antibody]="~/.antibody/plugins"
+source "$ANTIBODYHOME/load.zsh"
+antibody bundle < "$ANTIBODYHOME/plugins"
+config[antibody]="$ANTIBODYHOME/plugins"
 
 # completions
+export fpath=($HOME/.local/share/zsh/completions $fpath)
 autoload -U compinit && compinit -d
 
 # git
@@ -57,7 +62,7 @@ alias g=git
 config[git]="~/.gitconfig"
 
 # fzf
-if command -v fzf >/dev/null; then
+if exists fzf; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND='fd -I --type d'
@@ -68,24 +73,23 @@ fi
 
 # editor
 alias edit='$EDITOR'
-if command -v nvim >/dev/null; then
+if exists nvim; then
     function nvimbench() {
-        bench=$(mktemp) && /usr/bin/nvim --startuptime $bench $@ && tail -1 $bench && rm -f $bench
+        bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"
     }
     config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
 fi
 
 # package manager
-if command -v pacman >/dev/null; then
+if exists pacman; then
     function pkgdiff() {
         flags="-Qqe"
         hostnames=()
 
-        for var in "$@"
-        do
-            case $var in
-                -*) flags="$var" ;;
-                *) hostnames+=$var ;;
+        for var in "$@"; do
+            case "$var" in
+                (-*) flags="$var" ;;
+                (*) hostnames+="$var" ;;
             esac
         done
 
@@ -98,14 +102,14 @@ if command -v pacman >/dev/null; then
             return 1
         fi
     }
-    alias remove-orphans='sudo pacman -Rns $(pacman -Qtdq)'
+    function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
 fi
 
 # chrome
-command -v google-chrome-stable >/dev/null && alias chrome="google-chrome-stable"
+exists google-chrome-stable && alias chrome="google-chrome-stable"
 
 # file listing
-command -v exa >/dev/null && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && alias als="exa"
+exists exa && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && alias als="ls"
 alias la="ls -a"
 alias lh="ls -d .*"
 alias ll="als -lF --git"
@@ -118,22 +122,16 @@ alias df="df -hl"
 alias du="du -h"
 
 # python
-if command -v bpython >/dev/null; then
-    function python() {
-        if [ "$#" -eq 0 ]; then
-            bpython
-        else
-            /usr/bin/python $@
-        fi
-    }
+if exists bpython; then
+    function python() { [ "$#" -eq 0 ] && bpython || /usr/bin/python "$@" }
 fi
 
 # SSH public key
-alias pub="cat $HOME/.ssh/id_ecdsa.pub"
+function pub() { [ "$#" -eq 0 ] && cat "$HOME/.ssh/id_ecdsa.pub" || cat "$HOME/.ssh/id_$1.pub" }
 
 # clipboard
-if command -v xclip >/dev/null; then
-    alias c="perl -pe 'chomp if eof' | xclip -sel clip"
+if exists xclip; then
+    function c() { perl -pe 'chomp if eof' | xclip -sel clip }
     function copy() { cat $1 | c }
     alias v="xclip -o -sel clip"
     alias cpub="pub | c | echo 'RSA public key copied.'"
@@ -142,6 +140,8 @@ fi
 # IP
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
 alias privip="hostname -i"
+
+unset exists
 
 # Config files
 config[i3]="~/.config/i3/config"
