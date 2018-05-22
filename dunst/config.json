@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "dunstrc": ".config/dunst/dunstrc"
+    },
+    "dependencies": {
+        "required": ["dunst"],
+        "optional": []
+    }
+}
