@@ -5,7 +5,8 @@
         "zshrc": ".zshrc",
         "zprofile": ".zprofile",
         "zshenv": ".zshenv",
-        "antibody": ".antibody"
+        "antibody": ".antibody",
+        "fzf": ".local/share/fzf"
     },
     "dependencies": {
         "required": ["zsh", "antibody", "fzf", "exa", "ripgrep", "fd", "xclip", "icdiff"],

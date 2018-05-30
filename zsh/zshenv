@@ -8,6 +8,7 @@ else
 fi
 
 export LESSHISTFILE=/dev/null
+export LESS=-Frix4
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
@@ -30,7 +31,7 @@ fi
 if command -v rustc >/dev/null; then
     export CARGO_HOME="$HOME/.cache/cargo"
     export RUSTUP_HOME="$HOME/.cache/rustup"
-    export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+    export RUST_SRC_PATH="$HOME/.cache/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     export path=($CARGO_HOME/bin $path)
 fi
 
