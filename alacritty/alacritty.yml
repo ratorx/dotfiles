@@ -4,7 +4,7 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
-env:
+# env:
   # TERM env customization.
   #
   # If this property is not set, alacritty will set it to xterm-256color.
@@ -78,7 +78,7 @@ font:
     # style: Italic
 
   # Point size of the font
-  size: 15.0
+  size: 9.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -114,7 +114,8 @@ colors:
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x222430'
+    text: '0x2f343f'
+    cursor: '0x97979b'
 
   # Normal colors
   normal:
@@ -137,17 +138,6 @@ colors:
     magenta: '0xff6ac1'
     cyan:    '0x9aedfe'
     white:   '0xeff0eb'
-
-  # Dim colors (Optional)
-  # dim:
-  #   black:   '0x333333'
-  #   red:     '0xf2777a'
-  #   green:   '0x99cc99'
-  #   yellow:  '0xffcc66'
-  #   blue:    '0x6699cc'
-  #   magenta: '0xcc99cc'
-  #   cyan:    '0x66cccc'
-  #   white:   '0xdddddd'
 
 # Visual Bell
 #
