@@ -1,5 +1,0 @@
-#! /bin/bash
-
-if ! pgrep redshift >/dev/null; then
-    exec redshift
-fi

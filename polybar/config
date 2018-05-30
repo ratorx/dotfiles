@@ -26,10 +26,10 @@ height = 25
 background = ${colours.background}
 foreground = ${colours.foreground}
 
-underline-size = 3
+underline-size = 0
 
-module-margin = 0
-padding-right = 3
+module-margin = 2
+padding-right = 4
 
 font-0 = Ubuntu:size=13;2
 font-1 = Font Awesome 5 Free:size=12;2
@@ -57,34 +57,29 @@ type = internal/xwindow
 
 [module/i3]
 type = internal/i3
-
 pin-workspaces = true
-
 strip-wsnumbers = true
-
-index-sort = false
-
+index-sort = true
 enable-click = true
-
+enable-scroll = false
 fuzzy-match = false
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
-ws-icon-2 = messenger;
-ws-icon-3 = email;
+ws-icon-2 = 98;
+ws-icon-3 = 99;
 ws-icon-default = 
 
-format = <label-mode> <label-state>
+format = <label-state> <label-mode>
 
 label-mode = %mode%
-label-mode-padding = 2
-label-mode-background = ${colours.magenta}
-label-mode-foreground = ${colours.foreground}
+label-mode-background = ${colours.background}
+label-mode-foreground = ${colours.magenta}
+label-mode-padding = 0
 
 label-focused = %icon%
 label-focused-foreground = ${colours.foreground}
 label-focused-background = ${colours.blue}
-; label-focused-underline = ${colours.blue}
 label-focused-padding = 3
 
 label-unfocused = %icon%
@@ -100,7 +95,6 @@ label-visible-padding = 3
 label-urgent = %icon%
 label-urgent-foreground = ${colours.foreground}
 label-urgent-background = ${colours.magenta}
-; label-urgent-underline = ${colours.magenta}
 label-urgent-padding = 3
 
 [module/battery]
@@ -108,16 +102,17 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 full-at = 99
-
 polling = 1
 
-format-charging = "<label-charging>  "
+format-charging =   <label-charging>
+format-charging-foreground = ${colours.green}
 
-label-charging = ""
-label-charging-foreground = ${colours.green}
+label-charging = %percentage%%
+label-charging-foreground = ${colours.foreground}
 
-format-discharging = "<ramp-capacity>  "
+format-discharging = <ramp-capacity>  <label-discharging>
 format-discharging-foreground = ${colours.foreground}
+label-discharging = "%percentage%%"
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -125,7 +120,8 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-label-full = "  "
+format-full = <label-full>
+label-full = 
 label-full-foreground = ${colours.green}
 
 [module/date]
@@ -133,75 +129,65 @@ type = internal/date
 
 interval = 1.0
 
-time = %H:%M
-time-alt = %A, %d %B %Y
+time =   %H:%M
+time-alt =   %A, %d %B %Y
 
 label = "%time%"
 label-font = 3
 label-foreground = ${colours.foreground}
 
+[network]
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+[wired]
+inherit = network
+label-connected =  
+label-connected-foreground = ${colours.green}
+label-disconnected = 
+label-disconnected-foreground = ${colours.red}
+
+[wireless]
+inherit = network
+label-connected = "  %{F#eff0eb}%essid%%{F-}"
+label-connected-foreground = ${colours.green}
+label-disconnected = "  "
+label-disconnected-foreground = ${colours.red}
+
 [module/wired-laptop]
+inherit = wired
 type = internal/network
 interface = enp57s0u1u4
 
-format-connected = <label-connected>
-label-connected = "    " 
-label-connected-foreground = ${colours.green}
-
-format-disconnected = <label-disconnected>
-label-disconnected = "    " 
-label-disconnected-foreground = ${colours.red}
-
 [module/wired-desktop]
+inherit = wired
 type = internal/network
 interface = enp6s0
 
-format-connected = <label-connected>
-label-connected = "    " 
-label-connected-foreground = ${colours.green}
-
-format-disconnected = <label-disconnected>
-label-disconnected = "    " 
-label-disconnected-foreground = ${colours.red}
-
 [module/wireless-laptop]
+inherit = wireless
 type = internal/network
 interface = wlp58s0
 
-format-connected = <label-connected>
-label-connected = "    %{F#eff0eb}%essid%%{F-}   " 
-label-connected-foreground = ${colours.green}
-
-format-disconnected = <label-disconnected>
-label-disconnected = "      " 
-label-disconnected-foreground = ${colours.red}
-
 [module/wireless-desktop]
+inherit = wireless
 type = internal/network
 interface = wlp3s0
-
-format-connected = <label-connected>
-label-connected = "    %{F#eff0eb}%essid%%{F-}   " 
-label-connected-foreground = ${colours.green}
-
-format-disconnected = <label-disconnected>
-label-disconnected = "      " 
-label-disconnected-foreground = ${colours.red}
 
 [module/volume]
 type = internal/volume
 master-mixer = Master
 
-format-volume = "<ramp-volume>   "
+format-volume = "<ramp-volume>  <label-volume>"
 
 label-volume = %percentage%%
 label-volume-foreground = ${colours.foreground}
 
-label-muted = "     "
+label-muted = " "
 label-muted-foreground = ${colours.red}
 
-ramp-volume-0 = " "
-ramp-volume-1 = ""
+ramp-volume-0 = 
+ramp-volume-1 = 
 
 reverse-scroll = true
 
@@ -211,7 +197,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/updates
 exec-if = ping -c 1 1.1.1.1
 tail = false
-interval = 600
+interval = 120
 
 click-left = ~/.config/polybar/scripts/updates
 click-right = alacritty -e yay
