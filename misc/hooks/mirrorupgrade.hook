@@ -10,4 +10,4 @@ When = PostTransaction
 Depends = bash
 Depends = coreutils
 Depends = reflector
-Exec = /bin/bash -c "reflector -c 'United Kingdom' -c 'Germany' -c 'France' -c 'Ireland' --score 30 --sort rate --save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi"
+Exec = /bin/bash -c "reflector -c --score 30 --fastest 10 --sort rate --save /etc/pacman.d/mirrorlist; if [[ -f /etc/pacman.d/mirrorlist.pacnew ]]; then rm /etc/pacman.d/mirrorlist.pacnew; fi"
