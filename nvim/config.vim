@@ -84,7 +84,8 @@ let g:ale_linters={
 \                    'go': ['gometalinter'],
 \                    'python': ['flake8'],
 \                    'java': [],
-\                    'tex': ['chktex']
+\                    'tex': ['chktex'],
+\                    'rust': ['rls'],
 \                 }
 let g:ale_fixers={
 \                    'c': ['clang-format'],
@@ -92,6 +93,7 @@ let g:ale_fixers={
 \                    'go': ['goimports'],
 \                    'python': ['yapf'],
 \                    'java': [],
+\                    'rust': ['rustfmt'],
 \                }
 
 " ale options
