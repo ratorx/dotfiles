@@ -12,6 +12,7 @@ call dein#add('jiangmiao/auto-pairs') " Auto-brackets
 call dein#add('tpope/vim-commentary') " Auto comments
 call dein#add('tpope/vim-surround')   " Surround text
 call dein#add('tpope/vim-repeat')     " . support for plugins
+call dein#add('lambdalisue/suda.vim') " . save with sudo
 
 " Git integration
 call dein#add('airblade/vim-gitgutter')
