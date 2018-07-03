@@ -1,0 +1,28 @@
+#! /bin/bash
+
+case $1 in
+    start)
+        shift
+        ssh zeus "VBoxManage startvm $1 --type headless"
+        ;;
+    stop)
+        shift
+        ssh zeus "VBoxManage controlvm $1 acpipowerbutton"
+        ;;
+    list)
+        shift
+        args=$1
+        if [ -z "$1" ]; then
+            args=vms
+        fi
+        ssh zeus "VBoxManage list $args" | sed 's/\"\([A-Za-z ]\+\)\" .*/\1/'
+        ;;
+    *)
+        echo "usage: vm start VM | stop VM | list [command]"
+        echo
+        echo "commands:"
+        echo "  start - Start VM"
+        echo "  stop  - Stop VM"
+        echo "  list  - List available VMs"
+        ;;
+esac
