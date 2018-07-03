@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "Xresources": ".Xresources"
+    },
+    "dependencies": {
+        "required": ["xorg-xrdb"],
+        "optional": []
+    }
+}
