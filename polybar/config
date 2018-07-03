@@ -38,7 +38,7 @@ font-3 = Font Awesome 5 Brands:size=12;2
 
 modules-left = i3
 modules-center = title
-modules-right = updates wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
+modules-right = wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
 
 enable-ipc = true
 
@@ -190,17 +190,6 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 
 reverse-scroll = true
-
-[module/updates]
-type = custom/script
-
-exec = ~/.config/polybar/scripts/updates
-exec-if = ping -c 1 1.1.1.1
-tail = false
-interval = 120
-
-click-left = ~/.config/polybar/scripts/updates
-click-right = alacritty -e yay
 
 [settings]
 format-foreground = ${colours.foreground}
