@@ -1,0 +1,19 @@
+#! /bin/bash
+
+main="${1:-eDP1}"
+res="${2:-1920x1080}"
+rotate="${3:-normal}"
+
+readarray -t devices <<< "$(xrandr | grep "connected" | awk '{print $1}')"
+
+cmd="xrandr "
+for device in "${devices[@]}"; do
+    cmd+="--output $device "
+    if [ "$device" = "$main" ]; then
+        cmd+="--primary --mode $res --pos 0x0 --rotate $rotate "
+    else
+        cmd+="--off "
+    fi
+done
+
+$cmd
