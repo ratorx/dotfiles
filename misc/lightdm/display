@@ -4,16 +4,24 @@ main="${1:-eDP1}"
 res="${2:-1920x1080}"
 rotate="${3:-normal}"
 
-readarray -t devices <<< "$(xrandr | grep "connected" | awk '{print $1}')"
+readarray -t connected <<< "$(xrandr | grep " connected" | awk '{print $1}')"
 
 cmd="xrandr "
-for device in "${devices[@]}"; do
+member=false
+for device in "${connected[@]}"; do
     cmd+="--output $device "
     if [ "$device" = "$main" ]; then
+        member=true
         cmd+="--primary --mode $res --pos 0x0 --rotate $rotate "
     else
         cmd+="--off "
     fi
 done
 
-$cmd
+if [ "$member" = false ]; then
+    echo "$main is invalid or not connected"
+    exit 1
+else
+    $cmd
+fi
+
