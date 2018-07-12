@@ -1,27 +1,34 @@
 #! /bin/bash
 
-main="${1:-eDP1}"
-res="${2:-1920x1080}"
-rotate="${3:-normal}"
+# Use specified display or auto-configure based on primary
+main="${1:-$(xrandr | grep primary | awk '{print $1}')}"
 
-readarray -t connected <<< "$(xrandr | grep " connected" | awk '{print $1}')"
+# Get connected screens
+readarray -t connected <<< "$(xrandr | grep ' connected' | awk '{print $1}')"
 
 cmd="xrandr "
-member=false
+found=false
 for device in "${connected[@]}"; do
     cmd+="--output $device "
     if [ "$device" = "$main" ]; then
-        member=true
-        cmd+="--primary --mode $res --pos 0x0 --rotate $rotate "
+        found=true
+        cmd+="--auto"
     else
         cmd+="--off "
     fi
 done
 
-if [ "$member" = false ]; then
+# Make sure atleast 1 display is configured
+if [[ $found = false ]]; then
     echo "$main is invalid or not connected"
     exit 1
 else
     $cmd
 fi
 
+# Get random colour from Xresources
+color=$(xgetres color$((1 + RANDOM % 6)))
+color=${color:-#f1f1f0}
+
+# In-place replace border-color
+sed -i -e "s/\\(border-color = \\).*/\\1\"$color\"/" /etc/lightdm/lightdm-mini-greeter.conf
