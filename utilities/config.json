@@ -1,0 +1,13 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "vm": ".local/bin/vm",
+        "wallpaper": ".local/bin/wallpaper",
+        "wallpaper.desktop": ".local/share/applications/wallpaper.desktop"
+    },
+    "dependencies": {
+        "required": [],
+        "optional": []
+    }
+}
