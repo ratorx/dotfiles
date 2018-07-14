@@ -31,4 +31,4 @@ color=$(xgetres color$((1 + RANDOM % 6)))
 color=${color:-#f1f1f0}
 
 # In-place replace border-color
-sed -i -e "s/\\(border-color = \\).*/\\1\"$color\"/" /etc/lightdm/lightdm-mini-greeter.conf
+sed -i -e "s/\\(border-color = \\).*/\\1\"$color\"/" -e "s/\\(window-color = \\).*/\\1\"$color\"/" /etc/lightdm/lightdm-mini-greeter.conf
