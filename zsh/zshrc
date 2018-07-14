@@ -69,6 +69,10 @@ if exists fzf; then
 
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
+
+    if exists lpass; then
+        alias cpass='lpass show -c --password $(lpass ls --format "%an (%au) %ai" | grep -v -e "^ " -e "()" | fzf --with-nth "..-2" | awk "{print \$NF}")'
+    fi
 fi
 
 # editor
