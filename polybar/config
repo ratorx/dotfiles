@@ -162,7 +162,7 @@ interface = enp57s0u1u4
 [module/wired-desktop]
 inherit = wired
 type = internal/network
-interface = enp6s0
+interface = enp0s31f6
 
 [module/wireless-laptop]
 inherit = wireless
