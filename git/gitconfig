@@ -26,26 +26,36 @@
 	required = true
 [alias]
 	root = !pwd
-    pl = pull
-    ps = push
-    co = checkout
+    # status
     df = diff
-    cl = clone
-    f = fetch
-    mg = merge
-    su = submodule update
-    rs = reset
-    lg = !~/.local/share/git/log
-    # Status
     s = status -s
     st = status
-    # Commit
+    lg = !~/.local/share/git/log
+    lgs = log --oneline --decorate -no-merges -n 20
+    # repository
+    i = init
+    cl = clone
+    f = fetch
+    pl = pull
+    su = submodule update
+    ps = push
+    # branch
+    co = checkout
+    b = branch
+    rb = rebase
+    mg = merge
     c = commit
     cm = commit -m
     cam = commit -a -m
-    # Add
+    # file
     a = add
     aa = add .
+    rs = reset
+    sts = stash save
+    stp = stash pop
+    std = stash drop
+    stl = stash list
+
 [url "git@github.com:"]
     insteadOf = gh:
     pushInsteadOf = gh:
