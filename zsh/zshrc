@@ -148,11 +148,11 @@ alias privip="hostname -i"
 unset exists
 
 # Config files
-config[i3]="~/.config/i3/config"
-config[polybar]="~/.config/polybar/config"
-config[dunst]="~/.config/dunst/dunstrc"
 config[alacritty]="~/.config/alacritty/alacritty.yml"
+config[dunst]="~/.config/dunst/dunstrc"
+config[i3]="~/.config/i3/config"
 config[latex]="~/.latexmkrc"
+config[polybar]="~/.config/polybar/config"
 config[ssh]="~/.ssh/config"
 config[tmux]="~/.tmux.conf"
 config[zathura]="~/.config/zathura/zathurarc"
