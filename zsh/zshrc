@@ -144,7 +144,7 @@ function pub() { [ "$#" -eq 0 ] && cat "$HOME/.ssh/id_ecdsa.pub" || cat "$HOME/.
 
 # clipboard
 if exists xclip; then
-    function c() { perl -pe 'chomp if eof' | xclip -sel clip }
+    function c() { tr -d '\n' | xclip -sel clip }
     function copy() { cat $1 | c }
     alias v="xclip -o -sel clip"
     alias cpub="pub | c | echo 'RSA public key copied.'"
