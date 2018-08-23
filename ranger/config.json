@@ -1,0 +1,13 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "commands.py": ".config/ranger/commands.py",
+        "rc.conf": ".config/ranger/rc.conf",
+        "rifle.conf": ".config/ranger/rifle.conf",
+    },
+    "dependencies": {
+        "required": ["ranger"],
+        "optional": ["imv", "atool", "elinks", "ffmpegthumbnailer", "highlight", "libcaca", "odt2txt", "python-chardet", "sudo"]
+    }
+}
