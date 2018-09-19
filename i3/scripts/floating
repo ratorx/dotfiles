@@ -1,0 +1,89 @@
+#! /bin/bash
+
+# Constants
+numerator=3
+denominator=8
+border=20
+
+# Get active workspace from i3
+workspace=$(i3-msg -t get_workspaces | jq ".[] | select(.focused==true).name")
+# Use active workspace to get active monitor dimensions
+read -r monitor_width monitor_height <<<$(i3-msg -t get_outputs | jq -r ".[] | select( .current_workspace == $workspace) | .rect | \"\\(.width) \\(.height)\"")
+
+window_width=$(((monitor_width * numerator) / denominator))
+window_height=$(((monitor_height * numerator) / denominator))
+
+resize=false
+move=false
+mode_res=false
+move_pos=""
+
+while [ "$#" -gt 0 ]; do
+    case $1 in
+        numerator)
+            numerator=$2
+            shift 2
+            ;;
+        denominator)
+            denominator=$2
+            shift 2
+            ;;
+        border)
+            border=$2
+            shift 2
+            ;;
+        resize)
+            resize=true
+            shift
+            ;;
+        move)
+            move=true
+            move_pos=$2
+            shift 2
+            ;;
+        reset)
+            mode_res=true
+            shift
+            ;;
+        *)
+            echo "unknown command"
+            exit 1
+            ;;
+    esac
+done
+
+cmd=()
+
+if [ "$resize" = true ]; then
+    cmd+=("resize set $window_width px $window_height px")
+fi
+
+if [ "$move" = true ]; then
+    x=0; y=0
+    case $move_pos in
+        left)
+            x=$((x + border))
+            y=$((monitor_height - border - window_height))
+            ;;
+        right)
+            x=$((monitor_width - border - window_width))
+            y=$((monitor_height - border - window_height))
+            ;;
+        center)
+            x=$(((monitor_width - window_width) / 2))
+            y=$(((monitor_height - window_height) / 2))
+            ;;
+        *)
+            echo "unknown position"
+            exit 1
+            ;;
+    esac
+    cmd+=("move position $x px $y px")
+fi
+
+if [ "$mode_res" = true ]; then
+    cmd+=("focus tiling" "mode \"default\"")
+fi
+
+i3-msg "$(IFS=';'; echo "${cmd[*]}")"
+

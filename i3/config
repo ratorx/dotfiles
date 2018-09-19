@@ -16,6 +16,8 @@ set $messenger "99"
 
 set $scripts ~/.config/i3/scripts
 
+set $border 20
+
 # startup applications
 exec_always --no-startup-id ~/.local/bin/wallpaper
 exec_always --no-startup-id ~/.config/polybar/launch.sh
@@ -93,8 +95,6 @@ bindsym $mod+m fullscreen toggle
 bindsym $mod+a sticky toggle
 bindsym $mod+f floating toggle
 
-## movies
-bindsym $mod+b fullscreen disable; sticky enable; move to scratchpad; scratchpad show
 bindsym $mod+Shift+q kill
 
 ## scratchpad
@@ -149,7 +149,17 @@ bindsym Shift+Print exec --no-startup-id $scripts/screenshot clipboard-interacti
 bindsym $mod+Print exec --no-startup-id $scripts/screenshot
 bindsym $mod+Shift+Print exec --no-startup-id $scripts/screenshot interactive
 
-## mode
+## modes
+mode "video" {
+    bindsym Left exec --no-startup-id $scripts/floating border $border move left reset
+    bindsym Right exec --no-startup-id $scripts/floating border $border move right reset
+
+    bindsym $mod+b focus tiling; mode "default"
+    bindsym Return focus tiling; mode "default"
+    bindsym Escape focus tiling; mode "default"
+}
+bindsym $mod+b fullscreen disable; sticky enable; move to scratchpad; scratchpad show; mode "video"; exec --no-startup-id $scripts/floating border $border resize
+
 mode "window" {
     bindsym Left move left 10 px
     bindsym Down move down 10 px
@@ -187,8 +197,7 @@ font pango:Ubuntu 13
 
 default_border none
 default_floating_border none
-gaps inner 20
-gaps outer 0
+gaps inner $border
 
 focus_follows_mouse no
 
