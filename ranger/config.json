@@ -4,7 +4,7 @@
     "resources": {
         "commands.py": ".config/ranger/commands.py",
         "rc.conf": ".config/ranger/rc.conf",
-        "rifle.conf": ".config/ranger/rifle.conf",
+        "rifle.conf": ".config/ranger/rifle.conf"
     },
     "dependencies": {
         "required": ["ranger"],
