@@ -47,6 +47,7 @@
     c = commit
     cm = commit -m
     cam = commit -a -m
+    amd = commit --amend --no-edit
     # file
     a = add
     aa = add .
