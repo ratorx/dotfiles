@@ -122,10 +122,18 @@ fi
 exists google-chrome-stable && alias chrome="google-chrome-stable"
 
 # file listing
-exists exa && alias ls="exa -xF" && alias als="ls" || alias ls="ls -xF" && alias als="ls"
+if exists exa; then
+    alias ls="exa -xF"
+    alias actualls="exa"
+else
+    alias ls="ls -xF"
+    alias actualls="ls"
+fi
+
 alias la="ls -a"
 alias lh="ls -d .*"
-alias ll="als -lF --git"
+alias ll="actualls -lF --git"
+alias lla="ll -a"
 
 # filesystem operations
 alias mv="mv -v"
