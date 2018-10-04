@@ -55,7 +55,7 @@ config[antibody]="$ANTIBODYHOME/plugins"
 
 # completions
 export fpath=($HOME/.local/share/zsh/completions $fpath)
-autoload -U compinit && compinit -d
+autoload -U compinit && compinit
 
 # git
 alias g=git
