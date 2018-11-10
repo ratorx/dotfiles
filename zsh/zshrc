@@ -45,6 +45,20 @@ setopt AUTO_CD
 # helper functions
 function exists() { command -v "$1" >/dev/null }
 
+# completions
+export fpath=($HOME/.local/share/zsh/completions $fpath)
+autoload -U compinit && compinit
+
+## aws
+if exists aws; then
+    source /usr/bin/aws_zsh_completer.sh
+fi
+
+## travis
+if exists travis; then
+    source $HOME/.travis/travis.sh
+fi
+
 # config function
 typeset -A config
 function cfg() { eval nvim ${config[$1]} }
@@ -53,10 +67,6 @@ function cfg() { eval nvim ${config[$1]} }
 source "$ANTIBODYHOME/load.zsh"
 antibody bundle < "$ANTIBODYHOME/plugins"
 config[antibody]="$ANTIBODYHOME/plugins"
-
-# completions
-export fpath=($HOME/.local/share/zsh/completions $fpath)
-autoload -U compinit && compinit
 
 # git
 alias g=git
