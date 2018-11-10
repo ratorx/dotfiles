@@ -62,6 +62,10 @@ fi
 # config function
 typeset -A config
 function cfg() { eval nvim ${config[$1]} }
+function _cfg() {
+    _arguments "1:module:(${(k)config})"
+}
+compdef _cfg cfg
 
 # antibody
 source "$ANTIBODYHOME/load.zsh"
