@@ -34,6 +34,7 @@ bindkey '^X' sudo-command-line
 bindkey '^[.' insert-last-word
 
 # options
+setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
