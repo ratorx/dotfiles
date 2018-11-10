@@ -39,5 +39,7 @@ fi
 command -v http >/dev/null && export HTTPIE_CONFIG_DIR="$HOME/.config/httpie"
 
 # Local executables
-export path=(. $HOME/.local/bin $path)
+# Add local bin before system bin
+# Add current folder after everything to prevent local files in unknown folders overwriting system scripts
+export path=($HOME/.local/bin $path .)
 typeset -U path
