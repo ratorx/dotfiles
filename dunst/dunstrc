@@ -29,6 +29,9 @@ frame_color = "#f1f1f0"
 #  * anything else will be interpreted as a X color.
 separator_color = '#2f343f'
 
+mouse_left_click = do_action
+mouse_middle_click = none
+mouse_right_click = close_all
 
 ### Text ###
 font = Ubuntu 12
