@@ -33,6 +33,9 @@ if command -v rustc >/dev/null; then
     export RUSTUP_HOME="$HOME/.cache/rustup"
     export RUST_SRC_PATH="$HOME/.cache/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     export path=($CARGO_HOME/bin $path)
+    if command -v sccache >/dev/null; then
+        RUSTC_WRAPPER=sccache
+    fi
 fi
 
 # HTTPie setup
