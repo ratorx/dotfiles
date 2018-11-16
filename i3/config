@@ -11,8 +11,8 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-set $email "98"
-set $messenger "99"
+set $email "91"
+set $messenger "92"
 
 set $scripts ~/.config/i3/scripts
 
@@ -34,16 +34,8 @@ exec --no-startup-id mailspring --background
 
 # workspace assignments
 ## window
-assign [class="Google-chrome"] $ws1
-for_window [class="Google-chrome"] focus
-assign [class="Geary"] $email
-for_window [class="Geary"] focus
 assign [class="Mailspring"] $email
 for_window [class="Mailspring"] focus
-assign [class="code"] $ws2
-for_window [class="code"] focus
-assign [class="jetbrains-*"] $ws2
-for_window [class="jetbrains-*" title="Welcome to .*"] focus
 
 ## floating
 for_window [title="Settings — Albert"] floating enable
@@ -113,10 +105,10 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-bindsym $mod+comma workspace $email
+bindsym $mod+comma workspace $email; exec $scripts/mailspring
 bindsym $mod+period workspace $messenger
 
-bindsym $mod+Tab workspace next
+bindsym $mod+Tab workspace back_and_forth
 
 ## container -> workspace
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
