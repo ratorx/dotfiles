@@ -91,7 +91,7 @@ let g:ale_fixers={
 \                    'c': ['clang-format'],
 \                    'cpp': ['clang-format'],
 \                    'go': ['goimports'],
-\                    'python': ['yapf'],
+\                    'python': ['black'],
 \                    'java': [],
 \                    'rust': ['rustfmt'],
 \                }
@@ -100,6 +100,8 @@ let g:ale_fixers={
 let g:ale_go_gometalinter_executable='gometalinter.v2'
 let g:ale_go_gometalinter_options='--fast'
 let g:ale_c_clangformat_options='-style=Google'
+let g:ale_python_flake8_options='--ignore=E203,E501,W503'
+let g:ale_type_map = {'flake8': {'ES': 'WS'}}
 
 " vim-polyglot
 let g:polyglot_disabled=['latex']
