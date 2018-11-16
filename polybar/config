@@ -31,11 +31,10 @@ underline-size = 0
 module-margin = 2
 padding-right = 4
 
-font-0 = Ubuntu:size=13;2
+font-0 = Ubuntu:size=13;3
 font-1 = Font Awesome 5 Free:size=12;2
 font-2 = Font Awesome 5 Free:style=Solid:size=12;2
 font-3 = Font Awesome 5 Brands:size=12;2
-font-4 = DejaVu Serif Book:style=Bold:size=14;2
 
 modules-left = i3
 modules-center = title
@@ -65,20 +64,21 @@ enable-click = true
 enable-scroll = false
 fuzzy-match = false
 
-ws-icon-0 = 1;Ⅰ
-ws-icon-1 = 2;Ⅱ
-ws-icon-2 = 3;Ⅲ
-ws-icon-3 = 4;Ⅳ
-ws-icon-4 = 5;Ⅴ
-ws-icon-5 = 6;Ⅵ
-ws-icon-6 = 7;Ⅶ
-ws-icon-7 = 8;Ⅷ
-ws-icon-8 = 9;Ⅸ
-ws-icon-9 = 10;Ⅹ
+ws-icon-0 = 1;I
+ws-icon-1 = 2;II
+ws-icon-2 = 3;III
+ws-icon-3 = 4;IV
+ws-icon-4 = 5;V
+ws-icon-5 = 6;VI
+ws-icon-6 = 7;VII
+ws-icon-7 = 8;VIII
+ws-icon-8 = 9;IX
+ws-icon-9 = 10;X
 ws-icon-10 = 91;
 ws-icon-11 = 92;
 ws-icon-12 = 93;
 ws-icon-default = 
+
 
 format = <label-state> <label-mode>
 
