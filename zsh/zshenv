@@ -20,14 +20,14 @@ if [ -f /usr/lib/modprobe.d/nvidia-dkms.conf ]; then
     export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nvidia
 fi
 
-# Go setup
+# Go
 if command -v go >/dev/null; then
     export GOPATH="$HOME/.go"
     export GOBIN="$HOME/.go/bin"
     export path=($GOBIN $path)
 fi
 
-# Rust setup
+# Rust
 if command -v rustc >/dev/null; then
     export CARGO_HOME="$HOME/.cache/cargo"
     export RUSTUP_HOME="$HOME/.cache/rustup"

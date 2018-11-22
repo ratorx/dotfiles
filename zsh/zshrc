@@ -19,7 +19,7 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# key bindings
+# Key bindings
 bindkey '^[[A' up-line-or-history
 bindkey '^[[B' down-line-or-history
 bindkey '^[[1;5D' backward-word
@@ -33,7 +33,7 @@ bindkey '^A' kill-whole-line
 bindkey '^X' sudo-command-line
 bindkey '^[.' insert-last-word
 
-# options
+# Options
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
@@ -42,24 +42,24 @@ setopt AUTO_LIST
 setopt NO_NOMATCH
 setopt AUTO_CD
 
-# helper functions
+# Helper functions
 function exists() { command -v "$1" >/dev/null }
 
-# completions
+# Completions
 export fpath=($HOME/.local/share/zsh/completions $fpath)
 autoload -U compinit && compinit
 
-## aws
+## AWS
 if exists aws; then
     source /usr/bin/aws_zsh_completer.sh
 fi
 
-## travis
+## Travis
 if exists travis; then
     source $HOME/.travis/travis.sh
 fi
 
-# config function
+# Config function
 typeset -A config
 function cfg() { eval nvim ${config[$1]} }
 function _cfg() {
@@ -67,16 +67,16 @@ function _cfg() {
 }
 compdef _cfg cfg
 
-# antibody
+# Antibody
 source "$ANTIBODYHOME/load.zsh"
 antibody bundle < "$ANTIBODYHOME/plugins"
 config[antibody]="$ANTIBODYHOME/plugins"
 
-# git
+# Git
 alias g=git
 config[git]="~/.gitconfig"
 
-# fzf
+# FZF
 if exists fzf; then
     export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -118,7 +118,7 @@ if exists fzf; then
     bindkey '^R' fzf-history-widget-customised
 fi
 
-# editor
+# Editor
 alias edit='$EDITOR'
 if exists nvim; then
     function nvimbench() {
@@ -127,7 +127,7 @@ if exists nvim; then
     config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
 fi
 
-# package manager
+# Package manager
 if exists pacman; then
     function pkgdiff() {
         flags="-Qqe"
@@ -152,10 +152,10 @@ if exists pacman; then
     function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
 fi
 
-# chrome
+# Chrome
 exists google-chrome-stable && alias chrome="google-chrome-stable"
 
-# file listing
+# File listing
 if exists exa; then
     alias ls="exa -xF"
     alias actualls="exa"
@@ -169,14 +169,14 @@ alias lh="ls -d .*"
 alias ll="actualls -lF --git"
 alias lla="ll -a"
 
-# filesystem operations
+# Filesystem operations
 alias mv="mv -v"
 alias rm="rm -iv"
 alias cp="cp -v"
 alias df="df -hl"
 alias du="du -h"
 
-# python
+# Python
 if exists bpython; then
     function python() { [ "$#" -eq 0 ] && bpython || /usr/bin/python "$@" }
 fi
@@ -184,7 +184,7 @@ fi
 # SSH public key
 function pub() { [ "$#" -eq 0 ] && cat "$HOME/.ssh/id_ecdsa.pub" || cat "$HOME/.ssh/id_$1.pub" }
 
-# clipboard
+# Clipboard
 if exists xclip; then
     function c() { tr -d '\n' | xclip -sel clip }
     function copy() { cat $1 | c }
