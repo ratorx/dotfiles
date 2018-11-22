@@ -14,11 +14,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
 
 export XDG_CONFIG_HOME=$HOME/.config
-
-# Nvidia
-if [ -f /usr/lib/modprobe.d/nvidia-dkms.conf ]; then
-    export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nvidia
-fi
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
 
 # Go
 if command -v go >/dev/null; then
@@ -29,17 +26,35 @@ fi
 
 # Rust
 if command -v rustc >/dev/null; then
-    export CARGO_HOME="$HOME/.cache/cargo"
-    export RUSTUP_HOME="$HOME/.cache/rustup"
-    export RUST_SRC_PATH="$HOME/.cache/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+    export CARGO_HOME="$XDG_CACHE_DIR/cargo"
+    export RUSTUP_HOME="$XDG_CACHE_DIR/rustup"
+    export RUST_SRC_PATH="$XDG_CACHE_DIR/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     export path=($CARGO_HOME/bin $path)
     if command -v sccache >/dev/null; then
         RUSTC_WRAPPER=sccache
     fi
 fi
 
-# HTTPie setup
-command -v http >/dev/null && export HTTPIE_CONFIG_DIR="$HOME/.config/httpie"
+# Android
+command -v adb >/dev/null && export ANDROID_SDK_HOME=$XDG_CONFIG_DIR/android
+
+# Docker
+command -v docker >/dev/null && export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+
+# HTTPie
+command -v http >/dev/null && export HTTPIE_CONFIG_DIR=$XDG_CONFIG_DIR/httpie
+
+# Elinks
+command -v elinks >/dev/null && export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
+
+# GnuPG
+command -v gpg2 >/dev/null && export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+
+# Pylint
+command -v pylint >/dev/null && export PYLINTHOME=$XDG_CACHE_HOME/pylint
+
+# Nvidia
+[ -f /usr/lib/modprobe.d/nvidia-dkms.conf ] && export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nvidia
 
 # Local executables
 # Add local bin before system bin

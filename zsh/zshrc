@@ -155,6 +155,9 @@ fi
 # Chrome
 exists google-chrome-stable && alias chrome="google-chrome-stable"
 
+# Irssi
+alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/config --home=$XDG_DATA_HOME/irssi"
+
 # File listing
 if exists exa; then
     alias ls="exa -xF"
@@ -175,6 +178,10 @@ alias rm="rm -iv"
 alias cp="cp -v"
 alias df="df -hl"
 alias du="du -h"
+
+# $HOME directory cleaning
+HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
+alias check_homedir="fd -H --type d --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS "\." >> $HOMEDIR_ALLOWS && $EDITOR $HOMEDIR_ALLOWS"
 
 # Python
 if exists bpython; then
