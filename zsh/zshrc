@@ -32,6 +32,7 @@ bindkey '^[[3~' delete-char
 bindkey '^A' kill-whole-line
 bindkey '^X' sudo-command-line
 bindkey '^[.' insert-last-word
+bindkey "^?" backward-delete-char
 
 # Options
 setopt SHARE_HISTORY
