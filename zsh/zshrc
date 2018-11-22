@@ -13,7 +13,7 @@ function zle-line-init zle-keymap-select {
         (vicmd) echo -ne '\e[1 q' ;;
         (*)     echo -ne '\e[5 q' ;;
     esac
-    zle reset-prompt
+    zle .reset-prompt
 }
 
 zle -N zle-line-init
@@ -110,7 +110,7 @@ if exists fzf; then
               [[ $accept = 1 ]] && zle accept-line
           fi
       fi
-      zle reset-prompt
+      zle .reset-prompt
       return $ret
     }
 
