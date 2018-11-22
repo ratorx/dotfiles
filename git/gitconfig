@@ -51,6 +51,7 @@
     # file
     a = add
     aa = add .
+    ap = add -p
     rs = reset
     sts = stash save
     stp = stash pop
