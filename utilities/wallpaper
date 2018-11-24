@@ -1,2 +1,2 @@
 #!/bin/bash
-feh --bg-fill --randomize $(xgetres *.wallpapers)
+feh --no-fehbg --bg-fill --randomize "$(xgetres *.wallpapers)"
