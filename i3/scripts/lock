@@ -1,0 +1,7 @@
+#!/bin/bash
+TMPBG=/tmp/screen.png
+maim -u $TMPBG && convert $TMPBG -scale 20% -scale 500% $TMPBG
+
+i3lock -i $TMPBG
+
+rm $TMPBG
