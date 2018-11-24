@@ -8,10 +8,10 @@ glog() {
     fzf --no-sort --reverse --tiebreak=index --no-multi --ansi --exit-0 --preview "$_viewGitLogLine" | 
     grep -o '[a-f0-9]\{7\}' | 
     tr -d '\n' | 
-    xclip -i -sel clip
-   
+    xclip -i -sel clip >/dev/null 2>&1
+
     # Send through exit code
-    e=$? && [ $e -eq 130 ] || return $e
+    e=$? && [ $e -eq 130 ] || [ $e -eq 1 ] || return $e
 }
 
 glog "$@"
