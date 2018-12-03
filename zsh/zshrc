@@ -19,9 +19,25 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+function up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+
+function down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+
+zle -N up-line-or-local-history
+zle -N down-line-or-local-history
+
+
 # Key bindings
-bindkey '^[[A' up-line-or-history
-bindkey '^[[B' down-line-or-history
+bindkey '^[[A' up-line-or-local-history
+bindkey '^[[B' down-line-or-local-history
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 bindkey "^[[H" beginning-of-line
