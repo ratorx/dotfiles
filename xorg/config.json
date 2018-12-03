@@ -1,0 +1,12 @@
+{
+    "init": true,
+    "cleanup": true,
+    "resources": {
+        "Xresources": ".Xresources",
+        "xinitrc": ".xinitrc"
+    },
+    "dependencies": {
+        "required": ["xorg-xrdb", "xorg-xinit"],
+        "optional": []
+    }
+}
