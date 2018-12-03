@@ -28,10 +28,11 @@
 	root = !pwd
     # status
     df = diff
-    s = status -s
+    dfs = diff --staged
+    s = status --short
     st = status
     lg = !~/.local/share/git/log
-    lgs = log --oneline --decorate -no-merges -n 20
+    lgs = log --oneline --decorate --no-merges --max-count=20
     # repository
     i = init
     cl = clone
@@ -45,13 +46,13 @@
     rb = rebase
     mg = merge
     c = commit
-    cm = commit -m
-    cam = commit -a -m
+    cm = commit --message
+    cam = commit --all --message
     amd = commit --amend --no-edit
     # file
     a = add
     aa = add .
-    ap = add -p
+    ap = add --patch
     rs = reset
     sts = stash save
     stp = stash pop
