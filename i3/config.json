@@ -1,6 +1,6 @@
 {
-    "init": false,
-    "cleanup": false,
+    "init": true,
+    "cleanup": true,
     "resources": {
         "config": ".config/i3/config",
         "scripts": ".config/i3/scripts"
