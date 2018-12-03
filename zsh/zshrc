@@ -64,7 +64,17 @@ function exists() { command -v "$1" >/dev/null }
 
 # Completions
 export fpath=($HOME/.local/share/zsh/completions $fpath)
-autoload -U compinit && compinit
+
+autoload -Uz compinit
+setopt EXTENDEDGLOB
+for dump in $HOME/.zcompdump(#qN.m1); do
+    compinit
+    if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+        zcompile "$dump"
+    fi
+done
+unsetopt EXTENDEDGLOB
+compinit -C
 
 ## AWS
 if exists aws; then
