@@ -1,7 +1,14 @@
 #!/bin/bash
-TMPBG=/tmp/screen.png
-maim -u $TMPBG && convert $TMPBG -scale 20% -scale 500% $TMPBG
+case "$1" in
+    wallpaper)
+        i3lock -i "$(cat "$HOME/.config/wallpaper")"
+        ;;
+    *)
+        TMPBG=/tmp/screen.png
+        maim -u $TMPBG && convert $TMPBG -scale 20% -scale 500% $TMPBG
 
-i3lock -i $TMPBG
+        i3lock -i $TMPBG
 
-rm $TMPBG
+        rm $TMPBG
+        ;;
+esac
