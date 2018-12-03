@@ -190,6 +190,7 @@ type = internal/alsa
 master-mixer = Master
 
 format-volume = "<ramp-volume>  <label-volume>"
+format-volume-foreground = ${colours.green}
 
 label-volume = %percentage%%
 label-volume-foreground = ${colours.foreground}
