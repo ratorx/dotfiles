@@ -112,10 +112,6 @@ if exists fzf; then
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
 
-    if exists lpass; then
-        alias cpass='lpass show -c --password $(lpass ls --format "%an (%au) %ai" | grep -v -e "^ " -e "()" | fzf --exit-0 --with-nth "..-2" | awk "{print \$NF}")'
-    fi
-
     # Override default FZF Ctrl+R
     # Enter to execute command
     #
@@ -224,6 +220,27 @@ if exists xclip; then
     function copy() { cat $1 | c }
     alias v="xclip -o -sel clip"
     alias cpub="pub | c | echo 'RSA public key copied.'"
+fi
+
+# BitWarden
+if exists bw; then
+    function bw() {
+        case $1 in
+            unlock)
+                export BW_SESSION="$(/usr/bin/bw unlock --raw)"
+                ;;
+            *)
+                /usr/bin/bw $@
+        esac
+    }
+    if exists fzf; then
+        function cpass() {
+            if [ -z $BW_SESSION ]; then
+                bw unlock
+            fi
+            bw list items | jq -r '.[] | "\(.name) (\(.login.username)) \(.login.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
+        }
+    fi
 fi
 
 # IP
