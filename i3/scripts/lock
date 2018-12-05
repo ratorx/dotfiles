@@ -1,7 +1,10 @@
 #!/bin/bash
 case "$1" in
     wallpaper)
-        i3lock -i "$(cat "$HOME/.config/wallpaper")"
+        DISPLAY_SIZE="$(xrandr | grep \* | head -n 1 | cut -d' ' -f4)"
+        TMPBG=/tmp/screen.png
+        convert -scale "$DISPLAY_SIZE" "$(cat "$HOME/.config/wallpaper")" "$TMPBG"
+        i3lock -i "$TMPBG"
         ;;
     *)
         TMPBG=/tmp/screen.png
