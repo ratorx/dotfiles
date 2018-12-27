@@ -25,11 +25,11 @@ class Module:  # Requires program to be in dotfile directory
             self.resources = dict()
             for k, v in data.get("resources", {}).items():
                 self.resources["{}/{}".format(self.name, k)] = "{}/{}".format(
-                    os.environ["HOME"], v)
-            self.dependencies = data.get("dependencies", {
-                "required": [],
-                "optional": []
-            })
+                    os.environ["HOME"], v
+                )
+            self.dependencies = data.get(
+                "dependencies", {"required": [], "optional": []}
+            )
 
     @staticmethod
     def install_packages(manager, packages, flags="-yu"):
@@ -40,20 +40,22 @@ class Module:  # Requires program to be in dotfile directory
 
     def install_dependencies(self, manager=PACKAGE_MANAGER):
         if len(self.dependencies["required"]) != 0 or len(
-                self.dependencies["optional"]):
+            self.dependencies["optional"]
+        ):
             print("Installing packages")
             self.install_packages(manager, self.dependencies["required"])
             self.install_packages(
-                manager, self.dependencies["optional"], flags="-yu --asdeps")
+                manager, self.dependencies["optional"], flags="-yu --asdeps"
+            )
 
     def uninstall_dependencies(self, manager=PACKAGE_MANAGER):
         if len(self.dependencies["required"]) != 0 or len(
-                self.dependencies["optional"]):
+            self.dependencies["optional"]
+        ):
             print("Uninstalling packages")
 
         args = [manager, "-Rns"]
-        args.extend(
-            self.dependencies["required"] + self.dependencies["optional"])
+        args.extend(self.dependencies["required"] + self.dependencies["optional"])
         if len(args) > 2:  # There are dependencies to uninstall
             subprocess.run(args)
 
@@ -105,23 +107,24 @@ class Module:  # Requires program to be in dotfile directory
 
 def get_module_names(base):
     return [
-        d for d in os.listdir(base) if os.path.isdir(os.path.join(base, d))
+        d
+        for d in os.listdir(base)
+        if os.path.isdir(os.path.join(base, d))
         and os.path.isfile(os.path.join(base, d, "config.json"))
     ]
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="modman - dotfiles module manager")
+    parser = argparse.ArgumentParser(description="modman - dotfiles module manager")
     subparsers = parser.add_subparsers(dest="command", metavar="command")
     subparsers.required = True
 
     list_parser = subparsers.add_parser("list", help="list available modules")
 
-    install_parser = subparsers.add_parser(
-        "install", help="install specified modules")
+    install_parser = subparsers.add_parser("install", help="install specified modules")
     uninstall_parser = subparsers.add_parser(
-        "uninstall", help="uninstall specified modules")
+        "uninstall", help="uninstall specified modules"
+    )
 
     for p in [install_parser, uninstall_parser]:
         g = p.add_mutually_exclusive_group(required=True)
@@ -130,20 +133,23 @@ if __name__ == "__main__":
             "--all",
             action="store_true",
             default=False,
-            help="Select all available packages")
+            help="Select all available packages",
+        )
         g.add_argument("modules", action="store", nargs="*", default=[])
 
         p.add_argument(
             "--deps",
             action="store_true",
             default=False,
-            help="Perform package operations".format(PACKAGE_MANAGER))
+            help="Perform package operations".format(PACKAGE_MANAGER),
+        )
         p.add_argument(
             "-m",
             "--manager",
             action="store",
             default=PACKAGE_MANAGER,
-            help="Specify a pacman wrapper")
+            help="Specify a pacman wrapper",
+        )
 
     args = parser.parse_args()
     dotfile_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
