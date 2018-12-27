@@ -42,7 +42,7 @@ font-4 = Ubuntu:style=Bold:size=14;3
 
 modules-left = i3 layout
 modules-center = title
-modules-right = wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
+modules-right = device wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
 
 enable-ipc = true
 
@@ -153,6 +153,13 @@ tail = true
 format-foreground = ${colours.background}
 format-background = ${colours.blue}
 format-padding = ${params.padding}
+
+[module/device]
+type = custom/text
+content = ${env:DEVICE:}
+content-padding = ${params.padding}
+content-background = ${colours.blue}
+content-foreground = ${colours.background}
 
 [module/date]
 type = internal/date
