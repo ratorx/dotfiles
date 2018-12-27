@@ -211,10 +211,10 @@ set_from_resource $darkgray i3wm.color8 #000000
 set_from_resource $gray i3wm.color15 #000000
 
 ### class               border    backgr.    text    indicator child_border
-client.focused          $blue     $blue      $black  $black    $black
+client.focused          $magenta  $magenta   $black  $black    $black
 client.focused_inactive $darkgray $darkgray  $gray   $black    $black
 client.unfocused        $black    $black     $gray   $black    $black
-client.urgent           $magenta  $magenta   $gray   $black    $black
+client.urgent           $red      $red       $gray   $black    $black
 client.placeholder      $black    $black     $white  $black    $black
 
 client.background       $black
