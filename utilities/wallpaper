@@ -1,4 +1,24 @@
 #!/bin/bash
-wallpaper="$(find "$(xgetres "*.wallpapers")" -maxdepth 1 -type f | shuf -n 1)"
-echo -n "$wallpaper" > "$HOME/.config/wallpaper"
-feh --bg-fill --no-fehbg "$wallpaper"
+
+function _export() {
+    wallpaper="$(find "$(xgetres "*.wallpapers")" -maxdepth 1 -type f | shuf -n 1)"
+    echo -n "$wallpaper" > "$HOME/.config/wallpaper"
+}
+
+function _set() {
+    feh --bg-fill --no-fehbg "$1"
+}
+
+case "$1" in
+    export)
+        _export
+        ;;
+    set)
+        shift
+        _set "$1"
+        ;;
+    *)
+        _export
+        _set "$wallpaper"
+        ;;
+esac
