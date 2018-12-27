@@ -1,25 +1,39 @@
 ! ANSI Colours
-*.foreground:    #eff0eb
-*.background:    #2F343F
-*.cursorColor:   #97979b
-*.highlightColor:#3A3A3A
+*.foreground:   #ABB2BF
+*.background:   #282C34
+*.cursorColor:  #ABB2BF
 
-*.color0:        #2F343F
-*.color1:        #ff5c57
-*.color2:        #5af78e
-*.color3:        #f3f99d
-*.color4:        #57c7ff
-*.color5:        #ff6ac1
-*.color6:        #9aedfe
-*.color7:        #f1f1f0
-*.color8:        #686868
-*.color9:        #ff5c57
-*.color10:       #5af78e
-*.color11:       #f3f99d
-*.color12:       #57c7ff
-*.color13:       #ff6ac1
-*.color14:       #9aedfe
-*.color15:       #eff0eb
+! black
+*.color0:       #282C34
+*.color8:       #3E4452
+
+! red
+*.color1:       #E06C75
+*.color9:       #BE5046
+
+! green
+*.color2:       #98C379
+*.color10:      #98C379
+
+! yellow
+*.color3:       #E5C07B
+*.color11:      #D19A66
+
+! blue
+*.color4:       #61AFEF
+*.color12:      #61AFEF
+
+! magenta
+*.color5:       #C678DD
+*.color13:      #C678DD
+
+! cyan
+*.color6:       #56B6C2
+*.color14:      #56B6C2
+
+! white
+*.color7:       #ABB2BF
+*.color15:      #5C6370
 
 *.wallpapers:    /home/reeto/Dropbox/Misc/Wallpapers/nature
 Xcursor.size:    24

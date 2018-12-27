@@ -122,39 +122,34 @@ font:
 # Should display the render timer
 render_timer: false
 
-# Colors (Tomorrow Night Bright)
+# Colors (One Dark)
 colors:
   # Default colors
   primary:
-    background: '0x2f343f'
-    foreground: '0xeff0eb'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x2f343f'
-    cursor: '0x97979b'
+    background: '0x282c34'
+    foreground: '0xabb2bf'
 
   # Normal colors
   normal:
-    black:   '0x2f343f'
-    red:     '0xff5c57'
-    green:   '0x5af78e'
-    yellow:  '0xf3f99d'
-    blue:    '0x57c7ff'
-    magenta: '0xff6ac1'
-    cyan:    '0x9aedfe'
-    white:   '0xf1f1f0'
+    black:   '0x131613'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
 
   # Bright colors
   bright:
-    black:   '0x686868'
-    red:     '0xff5c57'
-    green:   '0x5af78e'
-    yellow:  '0xf3f99d'
-    blue:    '0x57c7ff'
-    magenta: '0xff6ac1'
-    cyan:    '0x9aedfe'
-    white:   '0xeff0eb'
+    black:   '0x5c6370'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xffffff'
 
 # Visual Bell
 #
