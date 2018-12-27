@@ -1,18 +1,18 @@
 [colours]
-background = ${xrdb:background:#2f343f}
-background-alt = ${xrdb:color8:#686868}
-foreground = ${xrdb:foreground:#eff0eb}
-foreground-alt = ${xrdb:cursorColor:#97979b}
+black = ${xrdb:color0:#000000}
+red = ${xrdb:color1:#ff0000}
+green = ${xrdb:color2:#00ff00}
+yellow = ${xrdb:color3:#ffff00}
+blue = ${xrdb:color4:#0000ff}
+magenta = ${xrdb:color5:#ff00ff}
+cyan = ${xrdb:color6:#00ffff}
+white = ${xrdb:color7:#ffffff}
 
-; ANSI Colours
-black = ${colours.background-alt}
-red = ${xrdb:color1:#ff5c57}
-green = ${xrdb:color2:#5af78e}
-yellow = ${xrdb:color3:#f3f99d}
-blue = ${xrdb:color4:#57c7ff}
-magenta = ${xrdb:color5:#ff6ac1}
-cyan = ${xrdb:color6:#9aedfe}
-white = ${xrdb:color7:#f1f1f0}
+background = ${xrdb:background:#000000}
+background-alt = ${xrdb:color8:#444444}
+foreground = ${xrdb:foreground:#ffffff}
+foreground-alt = ${xrdb:cursorColor:#999999}
+
 
 [params]
 padding = 3
