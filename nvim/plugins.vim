@@ -18,7 +18,7 @@ call dein#add('lambdalisue/suda.vim') " . save with sudo
 call dein#add('airblade/vim-gitgutter')
 
 " Color scheme
-call dein#add('joshdick/onedark.vim')
+call dein#add('rakr/vim-one')
 
 " Modeline
 call dein#add('itchyny/lightline.vim')

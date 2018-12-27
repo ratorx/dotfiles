@@ -51,12 +51,13 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 syntax enable 
-color onedark
+color one
+set background=dark
 
 let g:python3_host_prog='/usr/bin/python'
 
 " lightline
-let g:lightline={'colorscheme': 'onedark',
+let g:lightline={'colorscheme': 'one',
     \            'active': {'right': [[ 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['fileformat', 'fileencoding', 'filetype']]},
     \            'tabline': {'left': [['buffers']]},
     \            'component_expand': {'buffers': 'lightline#bufferline#buffers', 'linter_warnings': 'lightline#ale#warnings', 'linter_errors': 'lightline#ale#errors', 'linter_ok': 'lightline#ale#ok'},
