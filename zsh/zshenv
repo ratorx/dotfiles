@@ -26,9 +26,9 @@ fi
 
 # Rust
 if command -v rustc >/dev/null; then
-    export CARGO_HOME="$XDG_CACHE_HOME/cargo"
-    export RUSTUP_HOME="$XDG_CACHE_HOME/rustup"
-    export RUST_SRC_PATH="$XDG_CACHE_HOME/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+    export CARGO_HOME="$XDG_DATA_HOME/cargo"
+    export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+    export RUST_SRC_PATH="$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     export path=($CARGO_HOME/bin $path)
     if command -v sccache >/dev/null; then
         RUSTC_WRAPPER=sccache
