@@ -31,12 +31,9 @@ exec --no-startup-id redshift
 
 ## desktop apps
 exec --no-startup-id dropbox
-exec --no-startup-id mailspring --background
 
 # workspace assignments
 ## window
-assign [class="Mailspring"] $email
-for_window [class="Mailspring"] focus
 assign [title="^Stardew Valley$"] $game
 for_window [title="^Stardew Valley$"] fullscreen enable
 
@@ -108,7 +105,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-bindsym $mod+comma workspace $email; exec $scripts/mailspring
+bindsym $mod+comma workspace $email
 bindsym $mod+period workspace $messenger
 bindsym $mod+slash workspace $game
 

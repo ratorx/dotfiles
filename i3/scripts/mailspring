@@ -1,6 +1,0 @@
-#! /bin/bash
-if wmctrl -l | grep "Mailspring" >/dev/null; then
-    exit 0
-elif command -v "mailspring" >/dev/null; then
-    exec mailspring
-fi
