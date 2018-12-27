@@ -111,7 +111,7 @@ label-visible-padding = ${params.padding}
 
 label-urgent = %icon%
 label-urgent-foreground = ${colours.background}
-label-urgent-background = ${colours.magenta}
+label-urgent-background = ${colours.red}
 label-urgent-padding = ${params.padding}
 
 [module/battery]
