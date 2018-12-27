@@ -14,6 +14,10 @@ magenta = ${xrdb:color5:#ff6ac1}
 cyan = ${xrdb:color6:#9aedfe}
 white = ${xrdb:color7:#f1f1f0}
 
+[params]
+padding = 3
+margin = 1
+
 [bar/top]
 monitor = ${env:MONITOR:}
 
@@ -28,8 +32,7 @@ foreground = ${colours.foreground}
 
 underline-size = 0
 
-module-margin = 2
-padding-right = 4
+module-margin = ${params.margin}
 
 font-0 = Ubuntu:size=13;3
 font-1 = Font Awesome 5 Free:size=12;2
@@ -49,7 +52,9 @@ tray-detached = false
 tray-position = right
 
 ; Tray icon max size
-tray-maxsize = 20
+tray-maxsize = 22
+
+tray-padding = ${params.padding}
 
 tray-background = ${colours.background}
 
@@ -84,29 +89,30 @@ ws-icon-default = 
 format = <label-state> <label-mode>
 
 label-mode = %mode%
-label-mode-background = ${colours.background}
-label-mode-foreground = ${colours.magenta}
-label-mode-padding = 0
+label-mode-background = ${colours.blue}
+label-mode-foreground = ${colours.background}
+label-mode-padding = ${params.padding}
+label-mode-margin-left = ${params.margin}
 
 label-focused = %icon%
-label-focused-foreground = ${colours.foreground}
-label-focused-background = ${colours.blue}
-label-focused-padding = 3
+label-focused-foreground = ${colours.background}
+label-focused-background = ${colours.magenta}
+label-focused-padding = ${params.padding}
 
 label-unfocused = %icon%
 label-unfocused-foreground = ${colours.foreground}
 label-unfocused-background = ${colours.background}
-label-unfocused-padding = 3
+label-unfocused-padding = ${params.padding}
 
 label-visible = %icon%
 label-visible-foreground = ${colours.foreground}
 label-visible-background = ${colours.background-alt}
-label-visible-padding = 3
+label-visible-padding = ${params.padding}
 
 label-urgent = %icon%
-label-urgent-foreground = ${colours.foreground}
+label-urgent-foreground = ${colours.background}
 label-urgent-background = ${colours.magenta}
-label-urgent-padding = 3
+label-urgent-padding = ${params.padding}
 
 [module/battery]
 type = internal/battery
@@ -116,14 +122,22 @@ full-at = 99
 polling = 1
 
 format-charging =   <label-charging>
-format-charging-foreground = ${colours.green}
-
+format-charging-padding = ${params.padding}
+format-charging-background = ${colours.green}
+format-charging-foreground = ${colours.background}
 label-charging = %percentage%%
-label-charging-foreground = ${colours.foreground}
 
 format-discharging = <ramp-capacity>  <label-discharging>
-format-discharging-foreground = ${colours.foreground}
-label-discharging = "%percentage%%"
+format-discharging-padding = ${params.padding}
+format-discharging-background = ${colours.red}
+format-discharging-foreground = ${colours.background}
+label-discharging = %percentage%%
+
+format-full =   <label-full>
+format-full-padding = ${params.padding}
+format-full-background = ${colours.green}
+format-full-foreground = ${colours.background}
+label-full = %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -131,9 +145,6 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-format-full = <label-full>
-label-full = 
-label-full-foreground = ${colours.green}
 
 [module/date]
 type = internal/date
@@ -141,11 +152,12 @@ type = internal/date
 interval = 1.0
 
 time =   %H:%M
-time-alt =   %A, %d %B %Y
+time-alt =   %a %d %b
 
-label = "%time%"
-label-font = 3
-label-foreground = ${colours.foreground}
+label = %time%
+label-padding = ${params.padding}
+label-background = ${colours.blue}
+label-foreground = ${colours.background}
 
 [network]
 format-connected = <label-connected>
@@ -154,16 +166,25 @@ format-disconnected = <label-disconnected>
 [wired]
 inherit = network
 label-connected =  
-label-connected-foreground = ${colours.green}
+label-connected-background = ${colours.green}
+label-connected-foreground = ${colours.background}
+label-connected-padding = ${params.padding}
 label-disconnected = 
-label-disconnected-foreground = ${colours.red}
+label-disconnected-background = ${colours.red}
+label-disconnected-foreground = ${colours.background}
+label-disconnected-padding = ${params.padding}
 
 [wireless]
 inherit = network
-label-connected = "  %{F#eff0eb}%essid%%{F-}"
-label-connected-foreground = ${colours.green}
-label-disconnected = "  "
-label-disconnected-foreground = ${colours.red}
+label-connected =   %essid:0:20:...%
+label-connected-background = ${colours.green}
+label-connected-foreground = ${colours.background}
+label-connected-padding = ${params.padding}
+
+label-disconnected = 
+label-disconnected-background = ${colours.red}
+label-disconnected-foreground = ${colours.background}
+label-disconnected-padding = ${params.padding}
 
 [module/wired-laptop]
 inherit = wired
@@ -189,14 +210,17 @@ interface = wlp3s0
 type = internal/alsa
 master-mixer = Master
 
-format-volume = "<ramp-volume>  <label-volume>"
-format-volume-foreground = ${colours.green}
+format-volume = <ramp-volume>  <label-volume>
+format-volume-padding = ${params.padding}
+format-volume-background = ${colours.green}
+format-volume-foreground = ${colours.background}
 
 label-volume = %percentage%%
-label-volume-foreground = ${colours.foreground}
 
-label-muted = " "
-label-muted-foreground = ${colours.red}
+label-muted = 
+label-muted-padding = ${params.padding}
+label-muted-background = ${colours.red}
+label-muted-foreground = ${colours.background}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
