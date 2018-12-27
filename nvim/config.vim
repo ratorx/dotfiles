@@ -66,6 +66,9 @@ let g:lightline={'colorscheme': 'one',
 let g:lightline.component={'lineinfo': '%2l/%2L:%2v'}
 set laststatus=2
 
+" gitgutter
+set updatetime=100
+
 " dein
 command PlugInstall call dein#install()
 command PlugReinstall call dein#recache_runtimepath()
