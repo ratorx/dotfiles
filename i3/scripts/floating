@@ -1,18 +1,8 @@
 #! /bin/bash
 
-# Constants
 numerator=3
 denominator=8
 border=20
-
-# Get active workspace from i3
-workspace=$(i3-msg -t get_workspaces | jq ".[] | select(.focused==true).name")
-# Use active workspace to get active monitor dimensions
-read -r monitor_width monitor_height <<<$(i3-msg -t get_outputs | jq -r ".[] | select( .current_workspace == $workspace) | .rect | \"\\(.width) \\(.height)\"")
-
-window_width=$(((monitor_width * numerator) / denominator))
-window_height=$(((monitor_height * numerator) / denominator))
-
 resize=false
 move=false
 mode_res=false
@@ -51,6 +41,14 @@ while [ "$#" -gt 0 ]; do
             ;;
     esac
 done
+
+# Get active workspace from i3
+workspace=$(i3-msg -t get_workspaces | jq ".[] | select(.focused==true).name")
+# Use active workspace to get active monitor dimensions
+read -r monitor_width monitor_height <<<$(i3-msg -t get_outputs | jq -r ".[] | select( .current_workspace == $workspace) | .rect | \"\\(.width) \\(.height)\"")
+
+window_width=$(((monitor_width * numerator) / denominator))
+window_height=$(((monitor_height * numerator) / denominator))
 
 cmd=()
 
