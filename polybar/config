@@ -40,9 +40,9 @@ font-2 = Font Awesome 5 Free:style=Solid:size=12;2
 font-3 = Font Awesome 5 Brands:size=12;2
 font-4 = Ubuntu:style=Bold:size=14;3
 
-modules-left = i3 layout
+modules-left = workspaces layout
 modules-center = title
-modules-right = device wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
+modules-right = device laptop-wired desktop-wired laptop-wireless volume battery date
 
 enable-ipc = true
 
@@ -55,192 +55,17 @@ tray-position = right
 tray-maxsize = 22
 
 tray-padding = ${params.padding}
+tray-margin = 10
 
-tray-background = ${colours.background}
+tray-background = ${colours.blue}
 
-[module/title]
-type = internal/xwindow
-
-[module/i3]
-type = internal/i3
-pin-workspaces = true
-strip-wsnumbers = true
-index-sort = true
-enable-click = true
-enable-scroll = false
-fuzzy-match = false
-
-ws-icon-0 = 1;%{T5}I%{T-}
-ws-icon-1 = 2;%{T5}II%{T-}
-ws-icon-2 = 3;%{T5}III%{T-}
-ws-icon-3 = 4;%{T5}IV%{T-}
-ws-icon-4 = 5;%{T5}V%{T-}
-ws-icon-5 = 6;%{T5}VI%{T-}
-ws-icon-6 = 7;%{T5}VII%{T-}
-ws-icon-7 = 8;%{T5}VIII%{T-}
-ws-icon-8 = 9;%{T5}IX%{T-}
-ws-icon-9 = 10;%{T5}X%{T-}
-ws-icon-10 = 91;
-ws-icon-11 = 92;
-ws-icon-12 = 93;
-ws-icon-default = 
-
-
-format = <label-state> <label-mode>
-
-label-mode = %mode%
-label-mode-background = ${colours.blue}
-label-mode-foreground = ${colours.background}
-label-mode-padding = ${params.padding}
-label-mode-margin-left = ${params.margin}
-
-label-focused = %icon%
-label-focused-foreground = ${colours.background}
-label-focused-background = ${colours.magenta}
-label-focused-padding = ${params.padding}
-
-label-unfocused = %icon%
-label-unfocused-foreground = ${colours.foreground}
-label-unfocused-background = ${colours.background}
-label-unfocused-padding = ${params.padding}
-
-label-visible = %icon%
-label-visible-foreground = ${colours.foreground}
-label-visible-background = ${colours.background-alt}
-label-visible-padding = ${params.padding}
-
-label-urgent = %icon%
-label-urgent-foreground = ${colours.background}
-label-urgent-background = ${colours.red}
-label-urgent-padding = ${params.padding}
-
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 99
-polling = 1
-
-format-charging =   <label-charging>
-format-charging-padding = ${params.padding}
-format-charging-background = ${colours.green}
-format-charging-foreground = ${colours.background}
-label-charging = %percentage%%
-
-format-discharging = <ramp-capacity>  <label-discharging>
-format-discharging-padding = ${params.padding}
-format-discharging-background = ${colours.red}
-format-discharging-foreground = ${colours.background}
-label-discharging = %percentage%%
-
-format-full =   <label-full>
-format-full-padding = ${params.padding}
-format-full-background = ${colours.green}
-format-full-foreground = ${colours.background}
-label-full = %percentage%%
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-
-[module/layout]
-type = custom/script
-exec = $POLYBAR_SCRIPTS/i3_layout
-tail = true
-
-format-foreground = ${colours.background}
-format-background = ${colours.blue}
-format-padding = ${params.padding}
-
-[module/device]
-type = custom/text
-content = ${env:DEVICE:}
-content-padding = ${params.padding}
-content-background = ${colours.blue}
-content-foreground = ${colours.background}
-
-[module/date]
-type = internal/date
-
-interval = 1.0
-
-time =   %H:%M
-time-alt =   %a %d %b
-
-label = %time%
-label-padding = ${params.padding}
-label-background = ${colours.blue}
-label-foreground = ${colours.background}
-
-[network]
-format-connected = <label-connected>
-format-disconnected = <label-disconnected>
-
-[wired]
-inherit = network
-label-connected =  
-label-connected-background = ${colours.green}
-label-connected-foreground = ${colours.background}
-label-connected-padding = ${params.padding}
-label-disconnected = 
-label-disconnected-background = ${colours.red}
-label-disconnected-foreground = ${colours.background}
-label-disconnected-padding = ${params.padding}
-
-[wireless]
-inherit = network
-label-connected =   %essid:0:20:...%
-label-connected-background = ${colours.green}
-label-connected-foreground = ${colours.background}
-label-connected-padding = ${params.padding}
-
-label-disconnected = 
-label-disconnected-background = ${colours.red}
-label-disconnected-foreground = ${colours.background}
-label-disconnected-padding = ${params.padding}
-
-[module/wired-laptop]
-inherit = wired
-type = internal/network
-interface = enp57s0u1u4
-
-[module/wired-desktop]
-inherit = wired
-type = internal/network
-interface = enp0s31f6
-
-[module/wireless-laptop]
-inherit = wireless
-type = internal/network
-interface = wlp58s0
-
-[module/wireless-desktop]
-inherit = wireless
-type = internal/network
-interface = wlp3s0
-
-[module/volume]
-type = internal/alsa
-master-mixer = Master
-
-format-volume = <ramp-volume>  <label-volume>
-format-volume-padding = ${params.padding}
-format-volume-background = ${colours.green}
-format-volume-foreground = ${colours.background}
-
-label-volume = %percentage%%
-
-label-muted = 
-label-muted-padding = ${params.padding}
-label-muted-background = ${colours.red}
-label-muted-foreground = ${colours.background}
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-
-reverse-scroll = true
+include-file = $POLYBAR_MODULES/battery
+include-file = $POLYBAR_MODULES/device
+include-file = $POLYBAR_MODULES/date
+include-file = $POLYBAR_MODULES/i3
+include-file = $POLYBAR_MODULES/network
+include-file = $POLYBAR_MODULES/title
+include-file = $POLYBAR_MODULES/volume
 
 [settings]
 format-foreground = ${colours.foreground}

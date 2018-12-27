@@ -1,0 +1,44 @@
+
+[network-base]
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+[wired-base]
+inherit = network-base
+label-connected =  
+label-connected-background = ${colours.green}
+label-connected-foreground = ${colours.background}
+label-connected-padding = ${params.padding}
+label-disconnected = 
+label-disconnected-background = ${colours.red}
+label-disconnected-foreground = ${colours.background}
+label-disconnected-padding = ${params.padding}
+
+[wireless-base]
+inherit = network-base
+label-connected =   %essid:0:20:...%
+label-connected-background = ${colours.green}
+label-connected-foreground = ${colours.background}
+label-connected-padding = ${params.padding}
+
+label-disconnected = 
+label-disconnected-background = ${colours.red}
+label-disconnected-foreground = ${colours.background}
+label-disconnected-padding = ${params.padding}
+
+[module/destop-wired]
+inherit = wired-base
+type = internal/network
+interface = enp57s0u1u4
+
+[module/laptop-wired]
+inherit = wired-base
+type = internal/network
+interface = enp0s31f6
+
+[module/laptop-wireless]
+inherit = wireless-base
+type = internal/network
+interface = wlp58s0
+
+; vim:ft=dosini

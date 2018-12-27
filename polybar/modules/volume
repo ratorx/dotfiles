@@ -1,0 +1,22 @@
+[module/volume]
+type = internal/alsa
+master-mixer = Master
+
+format-volume = <ramp-volume>  <label-volume>
+format-volume-padding = ${params.padding}
+format-volume-background = ${colours.green}
+format-volume-foreground = ${colours.background}
+
+label-volume = %percentage%%
+
+label-muted = 
+label-muted-padding = ${params.padding}
+label-muted-background = ${colours.red}
+label-muted-foreground = ${colours.background}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+
+reverse-scroll = true
+
+; vim:ft=dosini

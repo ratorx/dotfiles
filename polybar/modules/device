@@ -1,0 +1,8 @@
+[module/device]
+type = custom/text
+content = ${env:DEVICE:}
+content-padding = ${params.padding}
+content-background = ${colours.blue}
+content-foreground = ${colours.background}
+
+; vim:ft=dosini

@@ -1,0 +1,63 @@
+[module/workspaces]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+fuzzy-match = false
+
+ws-icon-0 = 1;%{T5}I%{T-}
+ws-icon-1 = 2;%{T5}II%{T-}
+ws-icon-2 = 3;%{T5}III%{T-}
+ws-icon-3 = 4;%{T5}IV%{T-}
+ws-icon-4 = 5;%{T5}V%{T-}
+ws-icon-5 = 6;%{T5}VI%{T-}
+ws-icon-6 = 7;%{T5}VII%{T-}
+ws-icon-7 = 8;%{T5}VIII%{T-}
+ws-icon-8 = 9;%{T5}IX%{T-}
+ws-icon-9 = 10;%{T5}X%{T-}
+ws-icon-10 = 91;
+ws-icon-11 = 92;
+ws-icon-12 = 93;
+ws-icon-default = 
+
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-background = ${colours.blue}
+label-mode-foreground = ${colours.background}
+label-mode-padding = ${params.padding}
+label-mode-margin-left = ${params.margin}
+
+label-focused = %icon%
+label-focused-foreground = ${colours.background}
+label-focused-background = ${colours.magenta}
+label-focused-padding = ${params.padding}
+
+label-unfocused = %icon%
+label-unfocused-foreground = ${colours.foreground}
+label-unfocused-background = ${colours.background}
+label-unfocused-padding = ${params.padding}
+
+label-visible = %icon%
+label-visible-foreground = ${colours.foreground}
+label-visible-background = ${colours.background-alt}
+label-visible-padding = ${params.padding}
+
+label-urgent = %icon%
+label-urgent-foreground = ${colours.background}
+label-urgent-background = ${colours.red}
+label-urgent-padding = ${params.padding}
+
+[module/layout]
+type = custom/script
+exec = $POLYBAR_SCRIPTS/i3_layout
+tail = true
+
+format-foreground = ${colours.background}
+format-background = ${colours.blue}
+format-padding = ${params.padding}
+
+; vim:ft=dosini

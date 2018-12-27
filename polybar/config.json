@@ -3,7 +3,9 @@
     "cleanup": false,
     "resources": {
         "config": ".config/polybar/config",
-        "launch": ".config/polybar/launch.sh"
+        "launch": ".config/polybar/launch.sh",
+        "scripts": ".config/polybar/scripts",
+        "modules": ".config/polybar/modules"
     },
     "dependencies": {
         "required": ["aur/polybar"],

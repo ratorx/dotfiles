@@ -1,0 +1,4 @@
+[module/title]
+type = internal/xwindow
+
+; vim:ft=dosini
