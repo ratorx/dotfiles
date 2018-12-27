@@ -3,6 +3,7 @@
     "cleanup": false,
     "resources": {
         "vm": ".local/bin/vm",
+        "filebrowser": ".local/bin/filebrowser",
         "wallpaper": ".local/bin/wallpaper",
         "wallpaper.desktop": ".local/share/applications/wallpaper.desktop"
     },
