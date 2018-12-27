@@ -56,6 +56,9 @@ command -v pylint >/dev/null && export PYLINTHOME=$XDG_CACHE_HOME/pylint
 # Nvidia
 [ -f /usr/lib/modprobe.d/nvidia-dkms.conf ] && export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nvidia
 
+# Intel
+export LIBVA_DRIVER_NAME=iHD
+
 # Local executables
 # Add local bin before system bin
 # Add current folder after everything to prevent local files in unknown folders overwriting system scripts
