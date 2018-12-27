@@ -64,7 +64,7 @@ browser = /usr/bin/xdg-open
 always_run_script = true
 title = Dunst
 class = Dunst
-startup_notification = true
+startup_notification = false
 
 [experimental]
 per_monitor_dpi = false
