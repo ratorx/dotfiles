@@ -3,10 +3,8 @@ Description=Lock the screen when suspended
 Before=sleep.target suspend.target
 
 [Service]
-User=reeto
-Type=forking
-Environment=DISPLAY=:0
-ExecStart=/home/reeto/.config/i3/scripts/lock
+Type=simple
+ExecStart=/usr/bin/backlight
 
 [Install]
 WantedBy=sleep.target suspend.target
