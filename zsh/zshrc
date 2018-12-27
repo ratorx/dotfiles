@@ -173,6 +173,9 @@ if exists pacman; then
         fi
     }
     function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
+    function pkgsize() (
+        pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"
+    )
 fi
 
 # Chrome
