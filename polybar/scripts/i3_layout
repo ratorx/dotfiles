@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+import i3ipc
+import sys
+
+outputs = {"splitv": "", "splith": "", "tabbed": "", "stacked": ""}
+
+
+i3 = i3ipc.Connection()
+
+
+def set_layout(*_):
+    parent = i3.get_tree().find_focused().parent
+    print(outputs.get(parent.layout, parent.layout))
+    sys.stdout.flush()
+
+
+# Subscribe to events
+i3.on("window", set_layout)
+i3.on("binding", set_layout)
+
+set_layout()
+
+i3.main()

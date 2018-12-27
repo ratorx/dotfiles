@@ -40,7 +40,7 @@ font-2 = Font Awesome 5 Free:style=Solid:size=12;2
 font-3 = Font Awesome 5 Brands:size=12;2
 font-4 = Ubuntu:style=Bold:size=14;3
 
-modules-left = i3
+modules-left = i3 layout
 modules-center = title
 modules-right = wired-laptop wired-desktop wireless-laptop wireless-desktop volume battery date
 
@@ -145,6 +145,14 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
+[module/layout]
+type = custom/script
+exec = $POLYBAR_SCRIPTS/i3_layout
+tail = true
+
+format-foreground = ${colours.background}
+format-background = ${colours.blue}
+format-padding = ${params.padding}
 
 [module/date]
 type = internal/date
