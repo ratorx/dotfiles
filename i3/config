@@ -19,7 +19,7 @@ set $scripts ~/.config/i3/scripts
 
 set $border 20
 
-# startup applications
+# desktop utilities
 ## panel
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 ## lockscreen on startup
@@ -35,7 +35,7 @@ exec --no-startup-id dunst
 ## disk automounter
 exec --no-startup-id udiskie -ant2 -f filebrowser
 
-## desktop apps
+## applications
 exec --no-startup-id dropbox
 
 # workspace assignments
