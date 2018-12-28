@@ -5,14 +5,14 @@ case "$1" in
         shift
         $script export
         wallpaper="$(cat "$HOME/.config/wallpaper")"
-        i3lock -i "$wallpaper"
+        i3lock -t -i "$wallpaper"
         $script set "$wallpaper" &
         ;;
     *)
         TMPBG=/tmp/screen.png
         maim -u $TMPBG && convert $TMPBG -scale 20% -scale 500% $TMPBG
 
-        i3lock -i $TMPBG
+        i3lock -t -i $TMPBG
 
         rm $TMPBG
         ;;
