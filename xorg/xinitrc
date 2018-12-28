@@ -1,2 +1,3 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+autorandr --change
 exec i3
