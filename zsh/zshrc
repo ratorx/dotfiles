@@ -187,6 +187,7 @@ alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/config --home=$XDG_DATA_HOME/
 # File listing
 if exists exa; then
     alias ls="exa -xF"
+    alias lt="ls -T --group-directories-first"
     alias actualls="exa"
 else
     alias ls="ls -xF"
