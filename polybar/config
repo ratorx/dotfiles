@@ -46,10 +46,8 @@ modules-right = device laptop-wired desktop-wired laptop-wireless volume battery
 
 enable-ipc = true
 
-; If true, the bar will not shift its
-; contents when the tray changes
+tray-position = ${env:TRAY_POSITION:none}
 tray-detached = false
-tray-position = right
 
 ; Tray icon max size
 tray-maxsize = 22

@@ -13,4 +13,21 @@ export POLYBAR_MODULES="$POLYBAR_DIR/modules"
 export DEVICE="$("$POLYBAR_SCRIPTS/device")"
 
 # Launch polybar on all monitors
-for i in $(polybar -m | awk -F: '{print $1}'); do MONITOR=$i polybar top & done
+declare -A monitors
+for i in $(polybar -m | awk -F: '{print $1}'); do 
+    monitors[$i]="MONITOR='$i' polybar top &" 
+done
+
+primary="$(xrandr | awk '/connected primary/ {print $1}')"
+
+# Start on polybar on primary monitor first
+echo "$primary"
+eval "TRAY_POSITION=right TRAY_MARGIN=2 ${monitors[$primary]}"
+
+# Start on other monitors
+for i in "${!monitors[@]}"; do
+    if [ "$i" = "$primary" ]; then
+        continue
+    fi
+    eval "${monitors[$i]}"
+done
