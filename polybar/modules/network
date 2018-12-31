@@ -5,11 +5,11 @@ format-disconnected = <label-disconnected>
 
 [wired-base]
 inherit = network-base
-label-connected =  
+label-connected =  
 label-connected-background = ${colours.green}
 label-connected-foreground = ${colours.background}
 label-connected-padding = ${params.padding}
-label-disconnected = 
+label-disconnected = 
 label-disconnected-background = ${colours.red}
 label-disconnected-foreground = ${colours.background}
 label-disconnected-padding = ${params.padding}
