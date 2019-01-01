@@ -7,6 +7,6 @@
     },
     "dependencies": {
         "required": ["xorg-xrdb", "xorg-xinit"],
-        "optional": []
+        "optional": ["xcape", "xorg-setxkbmap"]
     }
 }
