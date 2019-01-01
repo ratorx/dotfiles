@@ -34,8 +34,7 @@ exec --no-startup-id redshift
 exec --no-startup-id dunst
 ## disk automounter
 exec --no-startup-id udiskie -ant2 -f filebrowser
-
-## applications
+## cloud storage sync
 exec --no-startup-id dropbox
 
 # workspace assignments
