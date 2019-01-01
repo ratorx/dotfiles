@@ -48,6 +48,8 @@ for_window [title="Settings — Albert"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="imv"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Connman-gtk"] floating enable
 
 ## scratchpad
 for_window [class="Spotify"] move to scratchpad, focus
