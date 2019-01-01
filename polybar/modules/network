@@ -1,4 +1,3 @@
-
 [network-base]
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
@@ -39,6 +38,14 @@ interface = enp0s31f6
 [module/laptop-wireless]
 inherit = wireless-base
 type = internal/network
-interface = wlp58s0
+interface = wlan0
+
+[module/vpn]
+type = custom/script
+exec = $POLYBAR_SCRIPTS/vpn
+
+format-padding = ${params.padding}
+format-background = ${colours.blue}
+format-foreground = ${colours.background}
 
 ; vim:ft=dosini

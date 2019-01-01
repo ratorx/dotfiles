@@ -42,7 +42,7 @@ font-4 = Ubuntu:style=Bold:size=14;3
 
 modules-left = workspaces layout
 modules-center = title
-modules-right = device laptop-wired desktop-wired laptop-wireless volume battery date
+modules-right = vpn laptop-wired desktop-wired laptop-wireless volume battery date
 
 enable-ipc = true
 
@@ -58,7 +58,6 @@ tray-margin = 10
 tray-background = ${colours.blue}
 
 include-file = $POLYBAR_MODULES/battery
-include-file = $POLYBAR_MODULES/device
 include-file = $POLYBAR_MODULES/date
 include-file = $POLYBAR_MODULES/i3
 include-file = $POLYBAR_MODULES/network
