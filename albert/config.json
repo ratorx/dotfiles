@@ -1,0 +1,12 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "albert.conf": ".config/albert/albert.conf",
+        "scripts": ".local/share/albert/org.albert.extension.python/modules"
+    },
+    "dependencies": {
+        "required": ["albert-lite"],
+        "optional": ["wmctrl", "networkmanager", "networkmanager-openvpn"]
+    }
+}
