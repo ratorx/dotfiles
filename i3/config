@@ -17,17 +17,20 @@ set $game "93"
 
 set $scripts ~/.config/i3/scripts
 
+## long scripts
+set $albert QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1 QT_QPA_PLATFORMTHEME=gtk2 /usr/bin/zsh -c albert
+
 set $border 20
 
 # desktop utilities
 ## panel
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+## application launcher
+exec_always --no-startup-id $albert
 ## lockscreen on startup
 exec --no-startup-id $scripts/lock wallpaper change
 ## compositor
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
-## application launcher
-exec --no-startup-id QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1 QT_QPA_PLATFORMTHEME=gtk2 /usr/bin/zsh -c albert
 ## screen colour adjuster
 exec --no-startup-id redshift
 ## notification daemon
@@ -35,7 +38,7 @@ exec --no-startup-id dunst
 ## disk automounter
 exec --no-startup-id udiskie -ant2 -f filebrowser
 ## cloud storage sync
-exec --no-startup-id dropbox
+exec --no-startup-id syncthing-gtk -sm
 
 # workspace assignments
 ## window
@@ -49,6 +52,7 @@ for_window [class="feh"] floating enable
 for_window [class="imv"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Connman-gtk"] floating enable
+for_window [class="Syncthing GTK"] floating enable
 
 ## scratchpad
 for_window [class="Spotify"] move to scratchpad, focus
