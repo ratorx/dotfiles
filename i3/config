@@ -46,13 +46,13 @@ assign [title="^Stardew Valley$"] $game
 for_window [title="^Stardew Valley$"] fullscreen enable
 
 ## floating
-for_window [title="Settings — Albert"] floating enable
-for_window [class="mpv"] floating enable
-for_window [class="feh"] floating enable
-for_window [class="imv"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Connman-gtk"] floating enable
-for_window [class="Syncthing GTK"] floating enable
+for_window [title="Settings — Albert"] floating enable, border none
+for_window [class="mpv"] floating enable, border none
+for_window [class="feh"] floating enable, border none
+for_window [class="imv"] floating enable, border none
+for_window [class="Pavucontrol"] floating enable, border none
+for_window [class="Connman-gtk"] floating enable, border none
+for_window [class="Syncthing GTK"] floating enable, border none
 
 ## scratchpad
 for_window [class="Spotify"] move to scratchpad, focus
@@ -63,7 +63,6 @@ floating_modifier $mod
 
 ## application
 bindsym $mod+d exec --no-startup-id albert toggle
-bindsym $mod+l exec --no-startup-id $scripts/lock wallpaper
 bindsym $mod+Return exec --no-startup-id alacritty -e tmux
 
 ## i3 session management
@@ -81,21 +80,55 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
 ## window move
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+mode "window" {
+    bindsym Left move left 10 px
+    bindsym Down move down 10 px
+    bindsym Up move up 10 px
+    bindsym Right move right 10 px
+
+    bindsym Shift+Left resize shrink width 20 px or 10 ppt
+    bindsym Shift+Down resize grow height 20 px or 10 ppt
+    bindsym Shift+Up resize shrink height 20 px or 10 ppt
+    bindsym Shift+Right resize grow width 20 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+e mode "default"
+}
+bindsym $mod+e mode "window"
+
 ## window state
-bindsym $mod+h split h
-bindsym $mod+v split v
+mode "state" {
+    bindsym j split v; mode "default"
+    bindsym Down split v; mode "default"
 
-bindsym $mod+t layout tabbed
-bindsym $mod+Shift+t layout default
+    bindsym l split h; mode "default"
+    bindsym Right split h; mode "default"
 
+    bindsym Escape mode "default"
+    bindsym Return layout default; mode "default"
+}
+bindsym $mod+a mode "state"
+
+bindsym $mod+t layout toggle tabbed split; mode "default"
 bindsym $mod+m fullscreen toggle
-bindsym $mod+a sticky toggle
+bindsym $mod+n floating enable; sticky toggle
 bindsym $mod+f floating toggle
 
 bindsym $mod+Shift+q kill
@@ -103,6 +136,22 @@ bindsym $mod+Shift+q kill
 ## scratchpad
 bindsym $mod+s scratchpad show
 bindsym $mod+Shift+s move to scratchpad
+
+## marks
+bindsym $mod+y [con_mark="y"] focus
+bindsym $mod+u [con_mark="u"] focus
+bindsym $mod+i [con_mark="i"] focus
+bindsym $mod+o [con_mark="o"] focus
+
+mode "marks" {
+    bindsym y unmark y; mark --replace y; mode "default"
+    bindsym u unmark u; mark --replace u; mode "default"
+    bindsym i unmark i; mark --replace i; mode "default"
+    bindsym o unmark o; mark --replace o; mode "default"
+    
+    bindsym Escape mode "default"
+}
+bindsym $mod+apostrophe mode "marks"
 
 ## workspace focus
 bindsym $mod+1 workspace $ws1
@@ -140,11 +189,21 @@ bindsym $mod+Ctrl+Down move workspace to output down
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Right move workspace to output right
 
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+j move workspace to output down
+bindsym $mod+Ctrl+k move workspace to output up
+bindsym $mod+Ctrl+l move workspace to output right
+
 ## container -> output
 bindsym $mod+Shift+Ctrl+Left move container to output left
 bindsym $mod+Shift+Ctrl+Down move container to output down
 bindsym $mod+Shift+Ctrl+Up move container to output up
 bindsym $mod+Shift+Ctrl+Right move container to output right
+
+bindsym $mod+Shift+Ctrl+h move container to output left
+bindsym $mod+Shift+Ctrl+j move container to output down
+bindsym $mod+Shift+Ctrl+k move container to output up
+bindsym $mod+Shift+Ctrl+l move container to output right
 
 ## utilities
 bindsym Print exec --no-startup-id $scripts/screenshot clipboard
@@ -155,31 +214,26 @@ bindsym $mod+Shift+Print exec --no-startup-id $scripts/screenshot interactive
 
 ## modes
 mode "video" {
-    bindsym Left exec --no-startup-id $scripts/floating border $border move left reset
-    bindsym Right exec --no-startup-id $scripts/floating border $border move right reset
+    bindsym Left exec --no-startup-id $scripts/video border $border move left reset
+    bindsym Down exec --no-startup-id $scripts/video border $border decrement 1 16 reset
+    bindsym Up exec --no-startup-id $scripts/video border $border increment 1 16 reset
+    bindsym Right exec --no-startup-id $scripts/video border $border move right reset
+
+    bindsym h exec --no-startup-id $scripts/video border $border move left reset
+    bindsym j exec --no-startup-id $scripts/video border $border decrement 1 16 reset
+    bindsym k exec --no-startup-id $scripts/video border $border increment 1 16 reset
+    bindsym l exec --no-startup-id $scripts/video border $border move right reset
+
+    bindsym s exec --no-startup-id $scripts/video hide reset
+
+    # Reset bind
+    bindsym r exec --no-startup-id $scripts/video resize
 
     bindsym $mod+b focus tiling; mode "default"
     bindsym Return focus tiling; mode "default"
     bindsym Escape focus tiling; mode "default"
 }
-bindsym $mod+b fullscreen disable; sticky enable; move to scratchpad; scratchpad show; mode "video"; exec --no-startup-id $scripts/floating border $border resize
-
-mode "window" {
-    bindsym Left move left 10 px
-    bindsym Down move down 10 px
-    bindsym Up move up 10 px
-    bindsym Right move right 10 px
-
-    bindsym Shift+Left resize shrink width 20 px or 10 ppt
-    bindsym Shift+Down resize grow height 20 px or 10 ppt
-    bindsym Shift+Up resize shrink height 20 px or 10 ppt
-    bindsym Shift+Right resize grow width 20 px or 10 ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+e mode "default"
-}
-bindsym $mod+e mode "window"
+bindsym $mod+b exec --no-startup-id $scripts/video setup resize
 
 ## function keys
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -199,7 +253,8 @@ bindsym XF86Search exec --no-startup-id albert toggle
 # settings
 font pango:Ubuntu 13
 
-default_border none
+default_border pixel 2
+smart_borders on
 default_floating_border none
 gaps inner $border
 
@@ -218,10 +273,10 @@ set_from_resource $darkgray i3wm.color8 #000000
 set_from_resource $gray i3wm.color15 #000000
 
 ### class               border    backgr.    text    indicator child_border
-client.focused          $magenta  $magenta   $black  $black    $black
-client.focused_inactive $darkgray $darkgray  $gray   $black    $black
+client.focused          $magenta  $magenta   $black  $magenta  $magenta
+client.focused_inactive $darkgray $darkgray  $gray   $gray     $gray
 client.unfocused        $black    $black     $gray   $black    $black
-client.urgent           $red      $red       $gray   $black    $black
+client.urgent           $red      $red       $gray   $red      $red
 client.placeholder      $black    $black     $white  $black    $black
 
 client.background       $black
