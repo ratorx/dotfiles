@@ -38,7 +38,7 @@ exec --no-startup-id dunst
 ## disk automounter
 exec --no-startup-id udiskie -ant2 -f filebrowser
 ## cloud storage sync
-exec --no-startup-id syncthing-gtk -sm
+exec --no-startup-id "XDG_CURRENT_DESKTOP=i3 syncthing-gtk -m"
 
 # workspace assignments
 ## window
@@ -225,4 +225,3 @@ client.urgent           $red      $red       $gray   $black    $black
 client.placeholder      $black    $black     $white  $black    $black
 
 client.background       $black
-
