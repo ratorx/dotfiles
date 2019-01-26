@@ -38,7 +38,7 @@ interface = enp0s31f6
 [module/laptop-wireless]
 inherit = wireless-base
 type = internal/network
-interface = wlan0
+interface = wlp58s0
 
 [module/vpn]
 type = custom/script
