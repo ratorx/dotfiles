@@ -21,5 +21,5 @@ service_install i3lock
 
 if is_laptop; then
     service_install backlight
-    sudo -s ln -s "$MODULE_DIR/udev/backlight.rules" /etc/udev/rules.d
+    sudo -s ln -s "$MODULE_DIR/udev/powersave.rules" /etc/udev/rules.d
 fi
