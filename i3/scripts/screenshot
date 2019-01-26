@@ -1,7 +1,8 @@
 #! /bin/bash
 
-BASEDIR="$HOME/Pictures/Screenshots"
-NAME="$BASEDIR/Screenshot from $(date '+%Y-%m-%d %H:%M:%S').png"
+BASEDIR="$HOME/pictures/screenshots"
+mkdir -p "$BASEDIR"
+NAME="$BASEDIR/screenshot from $(date '+%Y-%m-%d %H:%M:%S').png"
 
 case "$1" in
     clipboard-interactive) maim -us | xclip -sel clip -t image/png ;;
