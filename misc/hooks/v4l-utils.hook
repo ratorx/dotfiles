@@ -8,4 +8,4 @@ Target = v4l-utils
 Description = Remove qv4l2 desktop file
 When = PostTransaction
 Depends = coreutils
-Exec = /usr/bin/rm /usr/share/applications/qv4l2.desktop
+Exec = /usr/bin/rm /usr/share/applications/qv4l2.desktop /usr/share/applications/qvidcap.desktop
