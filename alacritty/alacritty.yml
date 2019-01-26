@@ -31,7 +31,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: none
+  decorations: full
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
