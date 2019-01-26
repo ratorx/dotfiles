@@ -15,7 +15,7 @@ __prettyname__ = "Network Manager VPN"
 __version__ = "0.1"
 __trigger__ = "@"
 __author__ = "Reetobrata Chatterjee"
-__dependencies__ = ["networkmanager"]
+__dependencies__ = ["networkmanager", "networkmanager-openvpn"]
 
 if which("nmcli") is None:
     raise Exception("'nmcli' is not in $PATH.")
@@ -84,3 +84,5 @@ def handleQuery(query):
             result.append((make_vpn_item(vpn), score))
 
         return [item[0] for item in sorted(result, key=lambda x: x[1])]
+
+    return []
