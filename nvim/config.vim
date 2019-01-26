@@ -32,6 +32,16 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+" Undodir
+if !isdirectory($HOME."/.cache")
+    call mkdir($HOME."/.cache", "", "0755")
+endif
+if !isdirectory($HOME."/.cache/nvim")
+    call mkdir($HOME."/.cache/nvim", "", "0700")
+endif
+set undodir=~/.cache/nvim
+set undofile
+
 set mouse=a
 let mapleader="\<SPACE>"
 nnoremap <A-S-j> :m .+1<CR>==
