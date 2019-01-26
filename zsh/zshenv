@@ -47,9 +47,6 @@ command -v http >/dev/null && export HTTPIE_CONFIG_DIR=$XDG_CONFIG_HOME/httpie
 # Elinks
 command -v elinks >/dev/null && export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
 
-# GnuPG
-command -v gpg2 >/dev/null && export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-
 # Pylint
 command -v pylint >/dev/null && export PYLINTHOME=$XDG_CACHE_HOME/pylint
 
