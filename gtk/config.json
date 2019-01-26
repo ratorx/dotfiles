@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "gtk3.ini": ".config/gtk-3.0/settings.ini"
+    },
+    "dependencies": {
+        "required": [],
+        "optional": []
+    }
+}
