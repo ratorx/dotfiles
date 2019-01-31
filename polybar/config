@@ -42,7 +42,7 @@ font-4 = Ubuntu:style=Bold:size=14;3
 
 modules-left = workspaces layout
 modules-center = title
-modules-right = vpn laptop-wired desktop-wired laptop-wireless volume battery date
+modules-right = vpn laptop-wired desktop-wired laptop-wireless pa-volume battery date
 
 enable-ipc = true
 
