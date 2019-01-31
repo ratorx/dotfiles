@@ -215,6 +215,13 @@ bindsym $mod+Print exec --no-startup-id $scripts/screenshot
 bindsym $mod+Shift+Print exec --no-startup-id $scripts/screenshot interactive
 
 ## modes
+
+# Convenience mode for testing things
+mode "unbind" {
+    bindsym $mod+Enter mode "default"
+}
+bindsym $mod+BackSpace mode "unbind"
+
 mode "video" {
     bindsym Left exec --no-startup-id $scripts/video border $border move left reset
     bindsym Down exec --no-startup-id $scripts/video border $border decrement 1 16 reset
