@@ -20,5 +20,6 @@ service_uninstall i3lock
 
 if is_laptop; then
     service_uninstall backlight
-    sudo rm /etc/udev/rules.d/backlight.rules
+    sudo rm /etc/udev/rules.d/90-powersave.rules
+    sudo rm /usr/bin/backlight
 fi
