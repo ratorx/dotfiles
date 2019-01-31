@@ -25,17 +25,12 @@ label-disconnected-background = ${colours.red}
 label-disconnected-foreground = ${colours.background}
 label-disconnected-padding = ${params.padding}
 
-[module/laptop-wired]
-inherit = wired-base
-type = internal/network
-interface = enp57s0u1u4
-
-[module/desktop-wired]
+[module/wired]
 inherit = wired-base
 type = internal/network
 interface = enp0s31f6
 
-[module/laptop-wireless]
+[module/wireless]
 inherit = wireless-base
 type = internal/network
 interface = wlp2s0
