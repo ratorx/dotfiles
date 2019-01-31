@@ -98,6 +98,17 @@ function _cfg() {
 }
 compdef _cfg cfg
 
+typeset -A bookmarks
+function j() { cd "${bookmarks[$1]}" }
+function _j() {
+    _arguments "1:bookmark:(${(k)bookmarks})"
+}
+compdef _j j
+
+bookmarks[uni]="$HOME/projects/cambridge/ii"
+bookmarks[web]="$HOME/projects/ree.to"
+bookmarks[cfg]="$HOME/.dotfiles"
+
 # Antibody
 source "$ANTIBODYHOME/load.zsh"
 antibody bundle < "$ANTIBODYHOME/plugins"
