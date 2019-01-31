@@ -291,3 +291,4 @@ client.urgent           $red      $red       $gray   $red      $red
 client.placeholder      $black    $black     $white  $black    $black
 
 client.background       $black
+# vim: set ft=i3config:tabstop=4:shiftwidth=4:
