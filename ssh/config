@@ -6,11 +6,14 @@ Host hades
 Host zeus
   HostName zeus.ree.to
   ForwardX11Trusted yes
+  ForwardX11 yes
   User reeto
   CheckHostIP no
 
 Host poseidon
   HostName poseidon.ree.to
+  ForwardX11Trusted yes
+  ForwardX11 yes
   User reeto
   CheckHostIP no
 
