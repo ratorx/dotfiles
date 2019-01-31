@@ -4,6 +4,23 @@ export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=50000
 export SAVEHIST=50000
 
+# Terminal title
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+	print -Pn '\e]2;%~\a'
+}
+
+function xterm_title_preexec () {
+	print -Pn '\e]2;'
+	print -n "${(q)1}\a"
+}
+
+if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+
 # Vim Keys
 bindkey -v
 KEYTIMEOUT=1
