@@ -9,6 +9,7 @@ fi
 
 export LESSHISTFILE=/dev/null
 export LESS=-Frix4
+export SYSTEMD_LESS="$LESS"
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
