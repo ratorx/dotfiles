@@ -59,9 +59,6 @@ setopt AUTO_LIST
 setopt NO_NOMATCH
 setopt AUTO_CD
 
-# Helper functions
-function exists() { command -v "$1" >/dev/null }
-
 # Completions
 export fpath=($HOME/.local/share/zsh/completions $fpath)
 
@@ -76,16 +73,6 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
-## AWS
-if exists aws; then
-    source /usr/bin/aws_zsh_completer.sh
-fi
-
-## Travis
-if exists travis; then
-    source $HOME/.travis/travis.sh
-fi
-
 # Config function
 typeset -A config
 function cfg() { eval nvim ${config[$1]} }
@@ -98,6 +85,16 @@ compdef _cfg cfg
 source "$ANTIBODYHOME/load.zsh"
 antibody bundle < "$ANTIBODYHOME/plugins"
 config[antibody]="$ANTIBODYHOME/plugins"
+
+## AWS
+if spaceship::exists aws; then
+    source /usr/bin/aws_zsh_completer.sh
+fi
+
+## Travis
+if spaceship::exists travis; then
+    source $HOME/.travis/travis.sh
+fi
 
 # Prompt Config
 SPACESHIP_PROMPT_ORDER=(
@@ -146,7 +143,7 @@ alias g=git
 config[git]="~/.gitconfig"
 
 # FZF
-if exists fzf; then
+if spaceship::exists fzf; then
     export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND='fd --type d --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
@@ -185,7 +182,7 @@ fi
 
 # Editor
 alias edit='$EDITOR'
-if exists nvim; then
+if spaceship::exists nvim; then
     function nvimbench() {
         bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"
     }
@@ -193,7 +190,7 @@ if exists nvim; then
 fi
 
 # Package manager
-if exists pacman; then
+if spaceship::exists pacman; then
     function pkgdiff() {
         flags="-Qqe"
         hostnames=()
@@ -218,16 +215,19 @@ if exists pacman; then
     function pkgsize() (
         pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"
     )
+    function pkgs() {
+        comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column
+    }
 fi
 
 # Chrome
-exists google-chrome-stable && alias chrome="google-chrome-stable"
+spaceship::exists google-chrome-stable && alias chrome="google-chrome-stable"
 
 # Irssi
-alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/config --home=$XDG_DATA_HOME/irssi"
+spaceship::exists irssi && alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/config --home=$XDG_DATA_HOME/irssi"
 
 # File listing
-if exists exa; then
+if spaceship::exists exa; then
     alias ls="exa -xF"
     alias lt="ls -T --group-directories-first"
     alias actualls="exa"
@@ -253,7 +253,7 @@ HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
 alias check_homedir="fd -H --type d --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS "\." >> $HOMEDIR_ALLOWS && $EDITOR $HOMEDIR_ALLOWS"
 
 # Python
-if exists bpython; then
+if spaceship::exists bpython; then
     function python() { [ "$#" -eq 0 ] && bpython || /usr/bin/python "$@" }
 fi
 
@@ -261,7 +261,7 @@ fi
 function pub() { [ "$#" -eq 0 ] && cat "$HOME/.ssh/id_ecdsa.pub" || cat "$HOME/.ssh/id_$1.pub" }
 
 # Clipboard
-if exists xclip; then
+if spaceship::exists xclip; then
     function c() { tr -d '\n' | xclip -sel clip }
     function copy() { cat $1 | c }
     alias v="xclip -o -sel clip"
@@ -269,7 +269,7 @@ if exists xclip; then
 fi
 
 # BitWarden
-if exists bw; then
+if spaceship::exists bw; then
     function bw() {
         case $1 in
             unlock)
@@ -279,7 +279,7 @@ if exists bw; then
                 /usr/bin/bw $@
         esac
     }
-    if exists fzf; then
+    if spaceship::exists fzf; then
         function cpass() {
             if [ -z $BW_SESSION ]; then
                 bw unlock
@@ -292,8 +292,6 @@ fi
 # IP
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
 alias privip="hostname -i"
-
-unset exists
 
 # Config files
 config[alacritty]="~/.config/alacritty/alacritty.yml"
