@@ -39,6 +39,8 @@ exec --no-startup-id dunst
 exec --no-startup-id udiskie -ant2 -f filebrowser
 ## cloud storage sync
 exec --no-startup-id "XDG_CURRENT_DESKTOP=i3 syncthing-gtk -m"
+## clipboard manager
+exec --no-startup-id copyq
 
 # workspace assignments
 ## window
@@ -50,6 +52,7 @@ for_window [title="Settings — Albert"] floating enable, border none
 for_window [class="mpv"] floating enable, border none
 for_window [class="feh"] floating enable, border none
 for_window [class="imv"] floating enable, border none
+for_window [class="copyq"] floating enable, border none
 for_window [class="Pavucontrol"] floating enable, border none
 for_window [class="Connman-gtk"] floating enable, border none
 for_window [class="Syncthing GTK"] floating enable, border none
