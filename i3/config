@@ -244,6 +244,21 @@ mode "video" {
 }
 bindsym $mod+b exec --no-startup-id $scripts/video setup resize
 
+mode "media" {
+    bindsym j exec --no-startup-id playerctl play-pause; mode default;
+    bindsym k exec --no-startup-id playerctl play-pause; mode default;
+    bindsym l exec --no-startup-id playerctl next; mode default;
+    bindsym h exec --no-startup-id playerctl previous; mode default;
+
+    bindsym Down exec --no-startup-id playerctl play-pause; mode default;
+    bindsym Up exec --no-startup-id playerctl play-pause; mode default;
+    bindsym Right exec --no-startup-id playerctl next; mode default;
+    bindsym Left exec --no-startup-id playerctl previous; mode default;
+
+    bindsym Escape mode "default"
+}
+bindsym $mod+z mode "media"
+
 ## function keys
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
