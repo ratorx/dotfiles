@@ -1,6 +1,6 @@
 #! /bin/bash
 
-BASEDIR="$HOME/pictures/screenshots"
+BASEDIR="$HOME/public/pictures/screenshots/$(hostname)"
 mkdir -p "$BASEDIR"
 NAME="$BASEDIR/screenshot from $(date '+%Y-%m-%d %H:%M:%S').png"
 
