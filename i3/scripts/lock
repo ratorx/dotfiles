@@ -1,5 +1,6 @@
 #!/bin/bash
 script="$HOME/.local/bin/wallpaper"
+lock="$HOME/public/pictures/utilities/lock.png"
 case "$1" in
     wallpaper)
         shift
@@ -10,9 +11,9 @@ case "$1" in
         ;;
     *)
         TMPBG=/tmp/screen.png
-        maim -u $TMPBG && convert $TMPBG -scale 20% -scale 500% $TMPBG
+        maim -u | convert - -scale 20% -scale 500% "$lock" -gravity center -composite -matte "$TMPBG"
 
-        i3lock -t -i $TMPBG
+        i3lock -tui "$TMPBG"
 
         rm $TMPBG
         ;;
