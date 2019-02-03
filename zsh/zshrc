@@ -177,15 +177,15 @@ systemd_user_commands=(
 systemd_sudo_commands=(
     start stop reload restart disable mask unmask edit daemon-reload)
 
-function service() {
+function sc() {
     if [[ "${systemd_sudo_commands[(r)$1]}" == "$1" ]]; then
         sudo systemctl "$@"
     else
         systemctl "$@"
     fi
 }
-compdef service=systemctl
-alias user="systemctl --user"
+compdef sc=systemctl
+alias scu="systemctl --user"
 
 # FZF
 if spaceship::exists fzf; then
