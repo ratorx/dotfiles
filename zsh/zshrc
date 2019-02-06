@@ -309,25 +309,11 @@ if spaceship::exists xclip; then
     alias cpub="pub | c | echo 'RSA public key copied.'"
 fi
 
-# BitWarden
-if spaceship::exists bw; then
-    function bw() {
-        case $1 in
-            unlock)
-                export BW_SESSION="$(/usr/bin/bw unlock --raw)"
-                ;;
-            *)
-                /usr/bin/bw $@
-        esac
+# Lastpass
+if spaceship::exists lpass && spaceship::exists fzf; then
+    function cpass() {
+        lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
     }
-    if spaceship::exists fzf; then
-        function cpass() {
-            if [ -z $BW_SESSION ]; then
-                bw unlock
-            fi
-            bw list items | jq -r '.[] | "\(.name) (\(.login.username)) \(.login.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
-        }
-    fi
 fi
 
 # IP
