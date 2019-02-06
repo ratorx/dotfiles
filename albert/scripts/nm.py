@@ -13,7 +13,7 @@ from albertv0 import Item, iconLookup, ProcAction
 __iid__ = "PythonInterface/v0.1"
 __prettyname__ = "Network Manager VPN"
 __version__ = "0.1"
-__trigger__ = "@"
+__trigger__ = "vpn "
 __author__ = "Reetobrata Chatterjee"
 __dependencies__ = ["networkmanager", "networkmanager-openvpn"]
 
