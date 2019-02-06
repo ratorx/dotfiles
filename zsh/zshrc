@@ -170,11 +170,8 @@ alias g=git
 config[git]="~/.gitconfig"
 
 # Systemd
-systemd_user_commands=(
-    list-units is-active status show help list-unit-files
-    is-enabled list-jobs show-environment cat list-timers)
 systemd_sudo_commands=(
-    start stop reload restart disable mask unmask edit daemon-reload)
+    start stop reload restart enable disable mask unmask edit daemon-reload)
 
 function sc() {
     if [[ "${systemd_sudo_commands[(r)$1]}" == "$1" ]]; then
