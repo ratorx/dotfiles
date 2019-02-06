@@ -132,7 +132,6 @@ SPACESHIP_PROMPT_ORDER=(
   venv          # virtualenv section
   # kubecontext   # Kubectl context section
   # terraform     # Terraform workspace section
-  package
   exec_time     # Execution time
   line_sep      # Line break
   jobs          # Background jobs indicator
