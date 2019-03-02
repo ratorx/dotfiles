@@ -319,6 +319,10 @@ if spaceship::exists lpass && spaceship::exists fzf; then
     }
 fi
 
+# GPG
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 # IP
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
 alias privip="hostname -i"
