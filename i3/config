@@ -288,7 +288,7 @@ smart_borders on
 default_floating_border none
 gaps inner $border
 
-focus_follows_mouse no
+focus_follows_mouse yes
 
 ## colours
 set_from_resource $black i3wm.color0 #000000
