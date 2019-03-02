@@ -1,9 +1,0 @@
-#! /bin/bash
-# OUTPUT="$(pgrep -a openvpn$ | head -n 1 | sed "s/.*--config [/a-z]*\/\(.*\)\.conf.*/\1/; s/.*[ _\-]//g")"
-VPN="$(pgrep openvpn$)"
-if [ -z "$VPN" ]; then
-    echo "$DEVICE"
-else
-    echo ""
-fi
-

@@ -36,11 +36,20 @@ type = internal/network
 interface = wlp2s0
 
 [module/vpn]
-type = custom/script
-exec = $POLYBAR_SCRIPTS/vpn
+type = custom/ipc
+
+# VPN Up Hook
+# This detects VPN name to deal with polybar restart
+hook-0 = nmcli --terse con show --active | awk -F ":" '/vpn/ {print " ", $1}'
+
+# VPN Down Hook
+hook-1 = echo ""
+
+initial = 1
 
 format-padding = ${params.padding}
-format-background = ${colours.blue}
+format-background = ${colours.green}
 format-foreground = ${colours.background}
+
 
 ; vim:ft=dosini
