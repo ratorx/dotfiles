@@ -272,15 +272,14 @@ spaceship::exists irssi && alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/co
 if spaceship::exists exa; then
     alias ls="exa -xF"
     alias lt="ls -T --group-directories-first"
-    alias actualls="exa"
+    alias ll="exa -lF --git"
 else
     alias ls="ls -xF"
-    alias actualls="ls"
+    alias ll="\\ls -lF --git"
 fi
 
 alias la="ls -a"
 alias lh="ls -d .*"
-alias ll="actualls -lF --git"
 alias lla="ll -a"
 
 # Filesystem operations
