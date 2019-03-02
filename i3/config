@@ -58,7 +58,8 @@ for_window [class="Connman-gtk"] floating enable, border none
 for_window [class="Syncthing GTK"] floating enable, border none
 
 ## scratchpad
-for_window [class="Spotify"] move to scratchpad, border none
+for_window [class="Spotify"] move to scratchpad, border none, scratchpad show
+for_window [class="Tk"] floating enable, border none
 
 # key binds
 ## general
