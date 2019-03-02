@@ -2,7 +2,6 @@ set linebreak breakindent
 set scrolloff=1 sidescrolloff=5
 set undolevels=10000
 set conceallevel=2
-set nohlsearch
 set backspace=2 " backspace wrapping
 set number relativenumber
 autocmd InsertEnter * :setlocal norelativenumber
@@ -68,16 +67,13 @@ let g:python3_host_prog='/usr/bin/python'
 
 " lightline
 let g:lightline={'colorscheme': 'one',
+    \            'enable': { 'statusline': 1, 'tabline': 1 },
     \            'active': {'right': [[ 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['fileformat', 'fileencoding', 'filetype']]},
-    \            'tabline': {'left': [['buffers']]},
     \            'component_expand': {'buffers': 'lightline#bufferline#buffers', 'linter_warnings': 'lightline#ale#warnings', 'linter_errors': 'lightline#ale#errors', 'linter_ok': 'lightline#ale#ok'},
     \            'component_type': {'buffers': 'tabsel', 'linter_warnings': 'warning', 'linter_errors': 'error'},
     \           }
 let g:lightline.component={'lineinfo': '%2l/%2L:%2v'}
 set laststatus=2
-
-let g:lightline#bufferline#show_number  = 1
-let g:lightline#bufferline#unnamed      = '[No Name]'
 
 " gitgutter
 set updatetime=100
@@ -100,11 +96,11 @@ let g:ale_lint_on_insert_leave=1
 let g:ale_fix_on_save=1
 let g:ale_linters={
 \                    'sh': ['shellcheck'],
-\                    'bash': ['shllcheck'],
-\                    'c': ['clang'],
-\                    'cpp': ['clang'],
-\                    'go': ['gometalinter'],
-\                    'python': ['flake8'],
+\                    'bash': ['shellcheck'],
+\                    'c': ['clangd'],
+\                    'cpp': ['clangd'],
+\                    'go': ['bingo'],
+\                    'python': ['pyls'],
 \                    'java': [],
 \                    'tex': ['chktex'],
 \                    'rust': ['rls'],
