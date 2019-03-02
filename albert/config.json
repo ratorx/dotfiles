@@ -3,7 +3,8 @@
     "cleanup": false,
     "resources": {
         "albert.conf": ".config/albert/albert.conf",
-        "scripts": ".local/share/albert/org.albert.extension.python/modules"
+        "scripts": ".local/share/albert/org.albert.extension.python/modules",
+        "websearch.json": ".config/albert/websearch/engines.json"
     },
     "dependencies": {
         "required": ["albert-lite"],
