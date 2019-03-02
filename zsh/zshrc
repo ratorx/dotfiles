@@ -194,7 +194,6 @@ if spaceship::exists fzf; then
 
     # Override default FZF Ctrl+R
     # Enter to execute command
-    #
     function fzf-history-widget-customised() {
         local selected num
         setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
@@ -288,6 +287,9 @@ alias rm="rm -iv"
 alias cp="cp -v"
 alias df="df -hl"
 alias du="du -h"
+
+# Alias for going back directories
+alias up=bd
 
 # $HOME directory cleaning
 HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
