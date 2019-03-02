@@ -4,6 +4,8 @@ export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=50000
 export SAVEHIST=50000
 
+typeset -U fpath
+
 # Terminal title
 autoload -Uz add-zsh-hook
 
