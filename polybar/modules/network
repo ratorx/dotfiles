@@ -2,13 +2,15 @@
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
+ping-interval = 3
+
 [wired-base]
 inherit = network-base
-label-connected =  
+label-connected = 
 label-connected-background = ${colours.green}
 label-connected-foreground = ${colours.background}
 label-connected-padding = ${params.padding}
-label-disconnected = 
+label-disconnected = ${env:WIRED_DISCONNECTED_ICON:}
 label-disconnected-background = ${colours.red}
 label-disconnected-foreground = ${colours.background}
 label-disconnected-padding = ${params.padding}

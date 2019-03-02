@@ -11,6 +11,7 @@ POLYBAR_DIR="$HOME/.config/polybar"
 export POLYBAR_SCRIPTS="$POLYBAR_DIR/scripts"
 export POLYBAR_MODULES="$POLYBAR_DIR/modules"
 export DEVICE="$("$POLYBAR_SCRIPTS/device")"
+[ "$(hostname)" = "zeus" ] && export WIRED_DISCONNECTED_ICON=""
 
 # Launch polybar on all monitors
 declare -A monitors
