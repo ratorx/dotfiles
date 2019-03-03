@@ -223,7 +223,7 @@ if spaceship::exists fzf; then
 fi
 
 # Editor
-alias edit='$EDITOR'
+alias vi='$EDITOR'
 if spaceship::exists nvim; then
     function nvimbench() {
         bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"
