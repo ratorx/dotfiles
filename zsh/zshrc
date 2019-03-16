@@ -8,16 +8,8 @@ typeset -U fpath
 
 # Terminal title
 autoload -Uz add-zsh-hook
-
-function xterm_title_precmd () {
-	print -Pn '\e]2;%~\a'
-}
-
-function xterm_title_preexec () {
-	print -Pn '\e]2;'
-	print -n "${(q)1}\a"
-}
-
+function xterm_title_precmd () { print -Pn '\e]2;%~\a' }
+function xterm_title_preexec () { print -Pn '\e]2;'; print -n "${(q)1}\a" }
 if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
 	add-zsh-hook -Uz precmd xterm_title_precmd
 	add-zsh-hook -Uz preexec xterm_title_preexec
@@ -34,7 +26,6 @@ function zle-line-init zle-keymap-select {
     esac
     zle .reset-prompt
 }
-
 zle -N zle-line-init
 zle -N zle-keymap-select
 
@@ -43,13 +34,11 @@ function up-line-or-local-history() {
     zle up-line-or-history
     zle set-local-history 0
 }
-
 function down-line-or-local-history() {
     zle set-local-history 1
     zle down-line-or-history
     zle set-local-history 0
 }
-
 zle -N up-line-or-local-history
 zle -N down-line-or-local-history
 
@@ -85,26 +74,20 @@ autoload -Uz compinit
 setopt EXTENDEDGLOB
 for dump in $HOME/.zcompdump(#qN.m1); do
     compinit
-    if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
-        zcompile "$dump"
-    fi
+    [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]] && zcompile "$dump"
 done
 unsetopt EXTENDEDGLOB
 compinit -C
 
 # Config function
 typeset -A config
-function cfg() { eval nvim ${config[$1]} }
-function _cfg() {
-    _arguments "1:module:(${(k)config})"
-}
+function cfg() { eval nvim -c "\"cd ~/.dotfiles\"" ${config[$1]} }
+function _cfg() { _arguments "1:module:(${(k)config})" }
 compdef _cfg cfg
 
 typeset -A bookmarks
 function j() { cd "${bookmarks[$1]}" }
-function _j() {
-    _arguments "1:bookmark:(${(k)bookmarks})"
-}
+function _j() { _arguments "1:bookmark:(${(k)bookmarks})" }
 compdef _j j
 
 bookmarks[uni]="$HOME/projects/cambridge/ii"
@@ -132,8 +115,6 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   aws           # Amazon Web Services section
   venv          # virtualenv section
-  # kubecontext   # Kubectl context section
-  # terraform     # Terraform workspace section
   exec_time     # Execution time
   line_sep      # Line break
   jobs          # Background jobs indicator
@@ -172,8 +153,7 @@ alias g=git
 config[git]="~/.gitconfig"
 
 # Systemd
-systemd_sudo_commands=(
-    start stop reload restart enable disable mask unmask edit daemon-reload)
+systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload)
 
 function sc() {
     if [[ "${systemd_sudo_commands[(r)$1]}" == "$1" ]]; then
@@ -225,10 +205,8 @@ fi
 # Editor
 alias vi='$EDITOR'
 if spaceship::exists nvim; then
-    function nvimbench() {
-        bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"
-    }
-    config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/plugins.vim"
+    function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench" }
+    config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/mappings.vim ~/.config/nvim/plugins.vim"
 fi
 
 # Package manager
@@ -254,12 +232,8 @@ if spaceship::exists pacman; then
         fi
     }
     function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
-    function pkgsize() (
-        pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"
-    )
-    function pkgs() {
-        comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column
-    }
+    function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f" }
+    function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column }
 fi
 
 # Chrome
