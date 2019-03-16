@@ -13,28 +13,28 @@ set selection-clipboard 'clipboard'
 
 " colors
 "" foreground
-set default-fg '#2f343f'
-set inputbar-fg '#eff0eb'
-set statusbar-fg '#eff0eb'
+set default-fg '#282C34'
+set inputbar-fg '#ABB2BF'
+set statusbar-fg '#ABB2BF'
 
-set completion-fg '#2f343f'
-set completion-group-fg '#eff0eb'
-set completion-highlight-fg '#eff0eb'
+set completion-fg '#282C34'
+set completion-group-fg '#ABB2BF'
+set completion-highlight-fg '#ABB2BF'
 
-set notification-fg '#eff0eb'
-set notification-warning-fg '#ff6ac1'
-set notification-error-fg '#ff5c57'
+set notification-fg '#ABB2BF'
+set notification-warning-fg '#C678DD'
+set notification-error-fg '#E06C75'
 "" background
-set default-bg '#f1f1f0'
-set inputbar-bg '#686868'
-set statusbar-bg '#686868'
+set default-bg '#ABB2BF'
+set inputbar-bg '#5C6370'
+set statusbar-bg '#5C6370'
 
-set completion-bg '#f1f1f0'
-set completion-group-bg '#686868'
-set completion-highlight-bg '#686868'
+set completion-bg '#ABB2BF'
+set completion-group-bg '#5C6370'
+set completion-highlight-bg '#5C6370'
 
-set notification-bg '#686868'
-set notification-warning-bg '#686868'
-set notification-error-bg '#686868'
+set notification-bg '#5C6370'
+set notification-warning-bg '#5C6370'
+set notification-error-bg '#5C6370'
 
 " vim: ft=vim
