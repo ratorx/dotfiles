@@ -4,6 +4,7 @@
     "resources": {
         "init.vim": ".config/nvim/init.vim",
         "config.vim": ".config/nvim/config.vim",
+        "mappings.vim": ".config/nvim/mappings.vim",
         "plugins.vim": ".config/nvim/plugins.vim"
     },
     "dependencies": {
