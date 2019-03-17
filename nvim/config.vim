@@ -81,7 +81,6 @@ let g:ale_fix_on_save=0
 let g:ale_linters={}
 let g:ale_linters.sh=['shellcheck']
 let g:ale_linters.bash=['shellcheck']
-let g:ale_linters.zsh=['shellcheck']
 let g:ale_linters.c=['clangd']
 let g:ale_linters.cpp=['clangd']
 let g:ale_linters.go=['bingo']
