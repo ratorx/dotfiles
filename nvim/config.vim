@@ -133,3 +133,17 @@ augroup vimtex " cleanup on exit
   au!
   au User VimtexEventQuit call vimtex#compiler#clean(0)
 augroup END
+
+" Goyo.vim
+function! s:goyo_enter()
+  augroup relnum
+    au!
+  augroup END
+  set noautoindent nosmartindent
+endfunction
+
+augroup goyo_custom
+  au!
+  au User GoyoEnter nested call <SID>goyo_enter()
+  au User GoyoLeave execute 'wq'
+augroup END
