@@ -32,3 +32,6 @@ for i in "${!monitors[@]}"; do
     fi
     eval "${monitors[$i]}"
 done
+
+# Reset wallpaper
+wallpaper reset
