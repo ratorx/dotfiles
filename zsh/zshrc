@@ -81,7 +81,13 @@ compinit -C
 
 # Config function
 typeset -A config
-function cfg() { eval nvim -c "\"cd ~/.dotfiles\"" ${config[$1]} }
+function cfg() {
+  local old
+  old="$(pwd)"
+  cd ~/.dotfiles
+  eval $EDITOR ${config[$1]}
+  cd "$old"
+}
 function _cfg() { _arguments "1:module:(${(k)config})" }
 compdef _cfg cfg
 
