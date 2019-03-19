@@ -27,6 +27,7 @@ set splitbelow splitright " better splits
 set cursorline
 set ignorecase smartcase
 set wildmode=longest:full,full
+set foldmethod=indent foldlevel=99
 
 augroup ftdetect_prolog " prefer prolog
   autocmd!
@@ -121,8 +122,14 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 let g:vimtex_view_method='zathura'
 let g:vimtex_compiler_progname='nvr'
 
+let g:vimtex_quickfix_latexlog = {
+      \ 'overfull' : 0,
+      \ 'underfull' : 0,
+      \ 'packages' : {
+      \   'default' : 0 }
+      \ }
+
 augroup vimtex " cleanup on exit
   au!
-  au FileType tex setlocal foldmethod=indent foldlevelstart=99
   au User VimtexEventQuit call vimtex#compiler#clean(0)
 augroup END
