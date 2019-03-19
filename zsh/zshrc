@@ -265,10 +265,11 @@ alias lla="ll -a"
 
 # Filesystem operations
 alias mv="mv -v"
-alias rm="rm -iv"
+alias rm="rm -Iv"
 alias cp="cp -v"
 alias df="df -hl"
 alias du="du -h"
+alias ncdu="ncdu -x"
 
 # Alias for going back directories
 alias up=bd
