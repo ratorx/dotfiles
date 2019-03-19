@@ -11,8 +11,8 @@ autoload -Uz add-zsh-hook
 function xterm_title_precmd () { print -Pn '\e]2;%~\a' }
 function xterm_title_preexec () { print -Pn '\e]2;'; print -n "${(q)1}\a" }
 if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
-	add-zsh-hook -Uz precmd xterm_title_precmd
-	add-zsh-hook -Uz preexec xterm_title_preexec
+  add-zsh-hook -Uz precmd xterm_title_precmd
+  add-zsh-hook -Uz preexec xterm_title_preexec
 fi
 
 # Vim Keys
@@ -20,24 +20,24 @@ bindkey -v
 KEYTIMEOUT=1
 
 function zle-line-init zle-keymap-select {
-    case ${KEYMAP} in
-        (vicmd) echo -ne '\e[1 q' ;;
-        (*)     echo -ne '\e[5 q' ;;
-    esac
-    zle .reset-prompt
+  case ${KEYMAP} in
+    (vicmd) echo -ne '\e[1 q' ;;
+    (*)     echo -ne '\e[5 q' ;;
+  esac
+  zle .reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-function up-line-or-local-history() {
+  function up-line-or-local-history() {
     zle set-local-history 1
     zle up-line-or-history
     zle set-local-history 0
-}
+  }
 function down-line-or-local-history() {
-    zle set-local-history 1
-    zle down-line-or-history
-    zle set-local-history 0
+  zle set-local-history 1
+  zle down-line-or-history
+  zle set-local-history 0
 }
 zle -N up-line-or-local-history
 zle -N down-line-or-local-history
@@ -73,8 +73,8 @@ export fpath=($HOME/.local/share/zsh/completions $fpath)
 autoload -Uz compinit
 setopt EXTENDEDGLOB
 for dump in $HOME/.zcompdump(#qN.m1); do
-    compinit
-    [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]] && zcompile "$dump"
+  compinit
+  [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]] && zcompile "$dump"
 done
 unsetopt EXTENDEDGLOB
 compinit -C
@@ -101,30 +101,30 @@ config[antibody]="$ANTIBODYHOME/plugins"
 
 ## AWS
 if spaceship::exists aws; then
-    source /usr/bin/aws_zsh_completer.sh
+  source /usr/bin/aws_zsh_completer.sh
 fi
 
 ## Travis
 if spaceship::exists travis; then
-    source $HOME/.travis/travis.sh
+  source $HOME/.travis/travis.sh
 fi
 
 # Prompt Config
 SPACESHIP_PROMPT_ORDER=(
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  exec_time     # Execution time
-  line_sep      # Line break
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
+dir           # Current directory section
+git           # Git section (git_branch + git_status)
+aws           # Amazon Web Services section
+venv          # virtualenv section
+exec_time     # Execution time
+line_sep      # Line break
+jobs          # Background jobs indicator
+exit_code     # Exit code section
+char          # Prompt character
 )
 
 SPACESHIP_RPROMPT_ORDER=(
-  user
-  host
+user
+host
 )
 
 SPACESHIP_CHAR_SYMBOL=""
@@ -157,84 +157,84 @@ config[git]="~/.gitconfig"
 systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload)
 
 function sc() {
-    if [[ "${systemd_sudo_commands[(r)$1]}" == "$1" ]]; then
-        sudo systemctl "$@"
-    else
-        systemctl "$@"
-    fi
+  if [[ "${systemd_sudo_commands[(r)$1]}" == "$1" ]]; then
+    sudo systemctl "$@"
+  else
+    systemctl "$@"
+  fi
 }
 compdef sc=systemctl
 alias scu="systemctl --user"
 
 # FZF
 if spaceship::exists fzf; then
-    export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_ALT_C_COMMAND='fd --type d --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
+  export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND='fd --type d --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
 
-    source /usr/share/fzf/completion.zsh
-    source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
 
-    # Override default FZF Ctrl+R
-    # Enter to execute command
-    function fzf-history-widget-customised() {
-        local selected num
-        setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
-        selected=( $(fc -rl 1 | 
-            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort --expect=ctrl-e $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-        local ret=$?
-        if [ -n "$selected" ]; then
-            local accept=1
-            if [[ $selected[1] = ctrl-e ]]; then
-                accept=0
-                shift selected
-            fi
-            num=$selected[1]
-            if [ -n "$num" ]; then
-                zle vi-fetch-history -n $num
-                [[ $accept = 1 ]] && zle accept-line
-            fi
-        fi
-        zle .reset-prompt
-        return $ret
-    }
+  # Override default FZF Ctrl+R
+  # Enter to execute command
+  function fzf-history-widget-customised() {
+    local selected num
+    setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
+    selected=( $(fc -rl 1 | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort --expect=ctrl-e $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+    local ret=$?
+    if [ -n "$selected" ]; then
+      local accept=1
+      if [[ $selected[1] = ctrl-e ]]; then
+        accept=0
+        shift selected
+      fi
+      num=$selected[1]
+      if [ -n "$num" ]; then
+        zle vi-fetch-history -n $num
+        [[ $accept = 1 ]] && zle accept-line
+      fi
+    fi
+    zle .reset-prompt
+    return $ret
+  }
 
-    zle -N fzf-history-widget-customised
-    bindkey '^R' fzf-history-widget-customised
+  zle -N fzf-history-widget-customised
+  bindkey '^R' fzf-history-widget-customised
 fi
 
 # Editor
 alias vi='$EDITOR'
 if spaceship::exists nvim; then
-    function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench" }
-    config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/mappings.vim ~/.config/nvim/plugins.vim"
+  alias todo="nvim +Goyo $XDG_DATA_HOME/TODO.md"
+  function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench" }
+  config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/mappings.vim ~/.config/nvim/plugins.vim"
 fi
 
 # Package manager
 if spaceship::exists pacman; then
-    function pkgdiff() {
-        flags="-Qqe"
-        hostnames=()
+  function pkgdiff() {
+    flags="-Qqe"
+    hostnames=()
 
-        for var in "$@"; do
-            case "$var" in
-                (-*) flags="$var" ;;
-                (*) hostnames+="$var" ;;
-            esac
-        done
+    for var in "$@"; do
+      case "$var" in
+        (-*) flags="$var" ;;
+        (*) hostnames+="$var" ;;
+      esac
+    done
 
-        if [[ ${#hostnames[@]} -eq 1 ]]; then
-            icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman $flags) <(ssh "${hostnames[1]}" "pacman $flags")
-        elif [[ ${#hostnames[@]} -eq 2 ]]; then
-            icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
-        else
-            echo "usage: pkgdiff [flags] <host 1> [host 2]"
-            return 1
-        fi
-    }
-    function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
-    function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f" }
-    function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column }
+    if [[ ${#hostnames[@]} -eq 1 ]]; then
+      icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman $flags) <(ssh "${hostnames[1]}" "pacman $flags")
+    elif [[ ${#hostnames[@]} -eq 2 ]]; then
+      icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
+    else
+      echo "usage: pkgdiff [flags] <host 1> [host 2]"
+      return 1
+    fi
+  }
+  function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
+  function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f" }
+  function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column }
 fi
 
 # Chrome
@@ -245,12 +245,12 @@ spaceship::exists irssi && alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/co
 
 # File listing
 if spaceship::exists exa; then
-    alias ls="exa -xF"
-    alias lt="ls -T --group-directories-first"
-    alias ll="exa -lF --git"
+  alias ls="exa -xF"
+  alias lt="ls -T --group-directories-first"
+  alias ll="exa -lF --git"
 else
-    alias ls="ls -xF"
-    alias ll="\\ls -lF --git"
+  alias ls="ls -xF"
+  alias ll="\\ls -lF --git"
 fi
 
 alias la="ls -a"
@@ -273,7 +273,7 @@ alias check_homedir="fd -H --type d --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS "
 
 # Python
 if spaceship::exists bpython; then
-    function python() { [ "$#" -eq 0 ] && bpython || /usr/bin/python "$@" }
+  function python() { [ "$#" -eq 0 ] && bpython || /usr/bin/python "$@" }
 fi
 
 # SSH public key
@@ -281,17 +281,17 @@ function pub() { [ "$#" -eq 0 ] && cat "$HOME/.ssh/id_ecdsa.pub" || cat "$HOME/.
 
 # Clipboard
 if spaceship::exists xclip; then
-    function c() { tr -d '\n' | xclip -sel clip }
-    function copy() { cat $1 | c }
-    alias v="xclip -o -sel clip"
-    alias cpub="pub | c | echo 'RSA public key copied.'"
+  function c() { tr -d '\n' | xclip -sel clip }
+  function copy() { cat $1 | c }
+  alias v="xclip -o -sel clip"
+  alias cpub="pub | c | echo 'RSA public key copied.'"
 fi
 
 # Lastpass
 if spaceship::exists lpass && spaceship::exists fzf; then
-    function cpass() {
-        lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
-    }
+  function cpass() {
+    lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
+  }
 fi
 
 # GPG
