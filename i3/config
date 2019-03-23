@@ -13,7 +13,6 @@ set $ws9 "9"
 set $ws10 "10"
 set $email "91"
 set $messenger "92"
-set $game "93"
 
 set $scripts ~/.config/i3/scripts
 
@@ -43,10 +42,6 @@ exec --no-startup-id "XDG_CURRENT_DESKTOP=i3 syncthing-gtk -m"
 exec --no-startup-id copyq
 
 # workspace assignments
-## window
-assign [title="^Stardew Valley$"] $game
-for_window [title="^Stardew Valley$"] fullscreen enable
-
 ## floating
 for_window [title="Settings — Albert"] floating enable, border none
 for_window [class="mpv"] floating enable, border none
@@ -171,7 +166,6 @@ bindsym $mod+0 workspace $ws10
 
 bindsym $mod+comma workspace $email
 bindsym $mod+period workspace $messenger
-bindsym $mod+slash workspace $game
 
 bindsym $mod+Tab workspace back_and_forth
 
