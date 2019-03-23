@@ -311,6 +311,7 @@ alias privip="hostname -i"
 
 # Config files
 config[alacritty]="~/.config/alacritty/alacritty.yml"
+config[compton]="~/.config/compton/compton.conf"
 config[dunst]="~/.config/dunst/dunstrc"
 config[i3]="~/.config/i3/config"
 config[latex]="~/.latexmkrc"

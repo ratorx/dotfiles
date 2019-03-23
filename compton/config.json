@@ -1,0 +1,11 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "compton.conf": ".config/compton/compton.conf"
+    },
+    "dependencies": {
+        "required": [],
+        "optional": []
+    }
+}
