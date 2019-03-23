@@ -193,8 +193,8 @@ def move(args, state):
     )
 
 
-def hide(_1, _2):
-    command_with_log("scratchpad show")
+def hide(_, state):
+    command_with_log(f'[con_mark="video"] scratchpad show', False)
 
 
 def reset(_1, _2):
@@ -215,7 +215,7 @@ def setup(args, state):
                 "sticky enable",
                 f"mark {state.mark}",
                 "move to scratchpad",
-                "scratchpad show",
+                f'[con_mark="video"] scratchpad show',
                 "border none",
             ]
         ),

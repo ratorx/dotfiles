@@ -47,7 +47,7 @@ for_window [title="Settings — Albert"] floating enable, border none
 for_window [class="mpv|feh|imv|copyq|Pavucontrol|Connman-gtk|Syncthing GTK"] floating enable, border none
 
 ## scratchpad
-for_window [class="Spotify"] move to scratchpad, border none, scratchpad show
+for_window [class="Spotify"] mark music, move to scratchpad, border none, scratchpad show
 for_window [class="Tk"] floating enable, border none
 
 # key binds
@@ -127,8 +127,10 @@ bindsym $mod+f floating toggle
 bindsym $mod+Shift+q kill
 
 ## scratchpad
-bindsym $mod+s scratchpad show
-bindsym $mod+Shift+s move to scratchpad
+bindsym $mod+s [con_mark="^music$"] scratchpad show; focus tiling
+bindsym $mod+v [con_mark="^video$"] scratchpad show; focus tiling
+bindsym $mod+c scratchpad show
+bindsym $mod+Shift+c move to scratchpad
 
 ## marks
 bindsym $mod+y [con_mark="y"] focus
