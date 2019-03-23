@@ -5,7 +5,4 @@ autorandr --change
 setxkbmap -option "ctrl:nocaps"
 xcape -e "Control_L=Escape"
 
-# Disable LCtrl
-xmodmap -e "keycode 37 = "
-
 exec i3
