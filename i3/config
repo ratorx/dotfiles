@@ -44,13 +44,7 @@ exec --no-startup-id copyq
 # workspace assignments
 ## floating
 for_window [title="Settings — Albert"] floating enable, border none
-for_window [class="mpv"] floating enable, border none
-for_window [class="feh"] floating enable, border none
-for_window [class="imv"] floating enable, border none
-for_window [class="copyq"] floating enable, border none
-for_window [class="Pavucontrol"] floating enable, border none
-for_window [class="Connman-gtk"] floating enable, border none
-for_window [class="Syncthing GTK"] floating enable, border none
+for_window [class="mpv|feh|imv|copyq|Pavucontrol|Connman-gtk|Syncthing GTK"] floating enable, border none
 
 ## scratchpad
 for_window [class="Spotify"] move to scratchpad, border none, scratchpad show
