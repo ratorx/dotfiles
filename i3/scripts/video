@@ -161,12 +161,12 @@ def decrement(args, state):
     if not check_size(window.rect, window.window):
         return
 
-    command_with_log(f"resize shrink down {height} px, resize shrink right {width} px")
+    command_with_log(f"resize shrink up {height} px, resize shrink right {width} px")
 
 
 def increment(args, state):
     width, height = dynamic_resize_base(args, state)
-    command_with_log(f"resize grow down {height} px, resize grow right {width} px")
+    command_with_log(f"resize grow up {height} px, resize grow right {width} px")
 
 
 def move(args, state):
