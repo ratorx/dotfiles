@@ -1,31 +1,31 @@
 [user]
-	email = reetobratachatterjee@gmail.com
-	name = Reeto Chatterjee
+    email = reetobratachatterjee@gmail.com
+    name = Reeto Chatterjee
 [core]
-	excludesfile = ~/.local/share/git/gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
-	autocrlf = input
+    excludesfile = ~/.local/share/git/gitignore_global
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = input
 [color]
-	ui = true
+    ui = true
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [color "diff"]
-	meta = 227
-	frag = magenta bold
-	commit = 227 bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = 227
+    frag = magenta bold
+    commit = 227 bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [alias]
-	root = !pwd
+    root = !pwd
     # status
     df = diff
     dfs = diff --staged
@@ -58,7 +58,6 @@
     stp = stash pop
     std = stash drop
     stl = stash list
-
 [url "git@github.com:"]
     insteadOf = gh:
     pushInsteadOf = gh:
