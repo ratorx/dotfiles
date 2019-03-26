@@ -5,6 +5,13 @@
     excludesfile = ~/.local/share/git/gitignore_global
     pager = diff-so-fancy | less --tabs=4 -RFX
     autocrlf = input
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+[apply]
+    whitespace = fix
+[rebase]
+    autostash = true
+[pull]
+    rebase = true
 [color]
     ui = true
 [color "diff-highlight"]
