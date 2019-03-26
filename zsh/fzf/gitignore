@@ -20,6 +20,7 @@ vendor/
 Downloads/
 .cache/
 .config/
+.archive/
 .local/share/
 .dropbox/
 .dropbox-dist/
