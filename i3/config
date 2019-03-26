@@ -227,12 +227,7 @@ mode "video" {
     bindsym k exec --no-startup-id $scripts/video border $border increment 1 16 reset
     bindsym l exec --no-startup-id $scripts/video border $border move right reset
 
-    bindsym s exec --no-startup-id $scripts/video hide reset
-
-    # Reset bind
-    bindsym r exec --no-startup-id $scripts/video resize
-
-    bindsym $mod+b focus tiling; mode "default"
+    bindsym $mod+b exec --no-startup-id $scripts/video resize reset
     bindsym Return focus tiling; mode "default"
     bindsym Escape focus tiling; mode "default"
 }
