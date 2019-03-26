@@ -54,6 +54,8 @@ command -v pylint >/dev/null && export PYLINTHOME=$XDG_CACHE_HOME/pylint
 if [ -f /usr/lib/modprobe.d/nvidia.conf ]; then # Nvidia
     export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nvidia
     export LIBVA_DRIVER_NAME=vdpau
+    export VDPAU_DRIVER=nvidia
+    export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 else # Intel
     export LIBVA_DRIVER_NAME=iHD
     export VDPAU_DRIVER=va_gl
