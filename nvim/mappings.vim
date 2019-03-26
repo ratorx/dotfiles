@@ -27,6 +27,7 @@ nnoremap <C-g> :BLines<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-S-o> :BTags<CR>
 nnoremap <C-f> :Rg 
+nnoremap <C-e> <Plug>(fzf-quickfix)
 
 " deoplete.nvim
 inoremap <silent><expr> <TAB>
