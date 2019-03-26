@@ -59,7 +59,7 @@ bindsym $mod+d exec --no-startup-id albert toggle
 bindsym $mod+Return exec --no-startup-id alacritty -e tmux
 
 ## i3 session management
-bindsym $mod+Shift+c reload
+bindsym $mod+r reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exit
 
