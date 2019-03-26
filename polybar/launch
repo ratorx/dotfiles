@@ -3,9 +3,6 @@
 # Terminate already running bar instances
 killall -q polybar
 
-# Wait until the processes have been shut down
-while pgrep -u "$UID" -x polybar >/dev/null; do sleep 1; done
-
 # Set device
 POLYBAR_DIR="$HOME/.config/polybar"
 export POLYBAR_SCRIPTS="$POLYBAR_DIR/scripts"
@@ -14,15 +11,18 @@ export DEVICE="$("$POLYBAR_SCRIPTS/device")"
 [ "$(hostname)" = "zeus" ] && export WIRED_DISCONNECTED_ICON=""
 
 # Launch polybar on all monitors
+MONITORS=${MONITORS:-$(xrandr | awk '/ connected/ { print $1 }')}
 declare -A monitors
-for i in $(polybar -m | awk -F: '{print $1}'); do 
+for i in $MONITORS; do 
     monitors[$i]="MONITOR='$i' polybar top &" 
 done
 
 primary="$(xrandr | awk '/connected primary/ {print $1}')"
 
+# wait after all setup has been completed; minimises script execution time
+while pgrep -u "$UID" -x polybar >/dev/null; do sleep 0.1; done
+
 # Start on polybar on primary monitor first
-echo "$primary"
 eval "TRAY_POSITION=right TRAY_MARGIN=2 ${monitors[$primary]}"
 
 # Start on other monitors
@@ -32,6 +32,3 @@ for i in "${!monitors[@]}"; do
     fi
     eval "${monitors[$i]}"
 done
-
-# Reset wallpaper
-wallpaper reset
