@@ -97,6 +97,8 @@ function _j() { _arguments "1:bookmark:(${(k)bookmarks})" }
 compdef _j j
 
 bookmarks[uni]="$HOME/projects/cambridge/ii"
+bookmarks[diss]="$HOME/projects/cambridge/ii/project/dissertation"
+bookmarks[continuity]="$HOME/projects/cambridge/ii/project/continuity"
 bookmarks[web]="$HOME/projects/ree.to"
 bookmarks[cfg]="$HOME/.dotfiles"
 
