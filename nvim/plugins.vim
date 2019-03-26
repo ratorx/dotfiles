@@ -28,6 +28,9 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('matze/vim-move')       " Move lines around
   call dein#add('airblade/vim-rooter')  " Auto cd to project root
 
+  " Tree Browser
+  call dein#add('scrooloose/nerdtree', {'on_cmd': ['NERDTree', 'NERDTreeToggle']})
+
   " Distraction free writing
   call dein#add('junegunn/goyo.vim', {'on_cmd': 'Goyo'})
 
