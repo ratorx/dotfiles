@@ -1,5 +1,5 @@
+typeset -U path
+
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 && -f $HOME/.xinitrc ]]; then
     startx
 fi
-
-typeset -U path
