@@ -1,0 +1,2 @@
+#! /bin/bash
+killall -q polybar # Kill polybar as early as possible

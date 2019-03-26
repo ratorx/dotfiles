@@ -1,0 +1,13 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "preswitch": ".config/autorandr/preswitch",
+        "postswitch": ".config/autorandr/postswitch",
+        "settings.ini": ".config/autorandr/settings.ini"
+    },
+    "dependencies": {
+        "required": [],
+        "optional": []
+    }
+}

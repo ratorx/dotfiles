@@ -1,0 +1,4 @@
+#! /bin/bash
+wallpaper reset
+export MONITORS="$(echo -n "$AUTORANDR_MONITORS" | tr ":" "\n")"
+/home/reeto/.config/polybar/launch.sh
