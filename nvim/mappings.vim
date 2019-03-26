@@ -26,7 +26,7 @@ let g:fzf_action = {
 nnoremap <C-g> :BLines<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-S-o> :BTags<CR>
-nnoremap <C-f> :Rg 
+nnoremap <C-f> :Rg<Space>
 nnoremap <C-e> <Plug>(fzf-quickfix)
 
 " deoplete.nvim
