@@ -1,0 +1,8 @@
+[Unit]
+Description=Remotely control %I using x2x
+After=network.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/ssh -X %I "x2x -north -to :0.0"
+

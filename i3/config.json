@@ -3,7 +3,8 @@
     "cleanup": true,
     "resources": {
         "config": ".config/i3/config",
-        "scripts": ".config/i3/scripts"
+        "scripts": ".config/i3/scripts",
+        "services/remote@.service": ".config/systemd/user/remote@.service"
     },
     "dependencies": {
         "required": ["i3-gaps", "alacritty-git"],
