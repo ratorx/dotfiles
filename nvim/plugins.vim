@@ -24,7 +24,7 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('jiangmiao/auto-pairs') " Auto-brackets
   call dein#add('tpope/vim-surround')   " Surround textreload vim config binding
   call dein#add('tpope/vim-repeat', {'on_map': '.'})     " . support for plugins
-  call dein#add('lambdalisue/suda.vim', {'on_cmd': 'w!!'}) " Save with sudo
+  call dein#add('lambdalisue/suda.vim') " Save with sudo
   call dein#add('haya14busa/is.vim', {'on_map': '/'})    " Better incsearch
   call dein#add('matze/vim-move')       " Move lines around
   call dein#add('airblade/vim-rooter')  " Auto cd to project root
