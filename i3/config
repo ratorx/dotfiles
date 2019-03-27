@@ -56,7 +56,7 @@ floating_modifier $mod
 
 ## application
 bindsym $mod+d exec --no-startup-id albert toggle
-bindsym $mod+Return exec --no-startup-id alacritty -e tmux
+bindsym $mod+Return exec --no-startup-id alacritty
 
 ## i3 session management
 bindsym $mod+r reload
