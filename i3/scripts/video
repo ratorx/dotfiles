@@ -2,6 +2,8 @@
 
 import sys
 import i3ipc
+import time
+import math
 from collections import namedtuple, deque
 from fractions import Fraction
 from math import floor
@@ -161,15 +163,47 @@ def decrement(args, state):
     if not check_size(window.rect, window.window):
         return
 
-    command_with_log(f"resize shrink up {height} px, resize shrink right {width} px")
+    if "left" in window.marks:
+        command_with_log(
+            f"resize shrink up {height} px, resize shrink right {width} px"
+        )
+    else:
+        command_with_log(f"resize shrink up {height} px, resize shrink left {width} px")
 
 
 def increment(args, state):
     width, height = dynamic_resize_base(args, state)
-    command_with_log(f"resize grow up {height} px, resize grow right {width} px")
+    window = get_video_window()
+    if "left" in window.marks:
+        command_with_log(f"resize grow up {height} px, resize grow right {width} px")
+    else:
+        command_with_log(f"resize grow up {height} px, resize grow left {width} px")
 
 
-def move(args, state):
+def move(args, state, animate_move=True):
+    def animate(direction, total, duration, refresh_rate=60):
+        interval = 1 / refresh_rate
+        num_pixels = min(2 * math.ceil(total / (duration / interval)), 150)
+        print(total, num_pixels)
+        orig_total = total
+        orig_num_pixels = num_pixels
+        while True:
+            assert total >= 0
+            if total == 0:
+                break
+            elif total < num_pixels:
+                num_pixels = total
+            else:
+                num_pixels = math.ceil(orig_num_pixels / (orig_total / total))
+            print(total)
+            start = time.time()
+            command_with_log(f"move {direction} {num_pixels}px")
+            total -= num_pixels
+            end = time.time()
+            remain = start + interval - end
+            if remain > 0:
+                time.sleep(remain)
+
     move_pos = args.popleft()
     if move_pos not in ["left", "center", "right"]:
         raise ValueError(f"invalid movement position {move_pos}")
@@ -189,8 +223,12 @@ def move(args, state):
         y = state.monitor.height - state.border - window.height
 
     command_with_log(
-        f"unmark left, unmark right, unmark center, move position {x} px {y} px, mark --add {move_pos}"
+        f'unmark left, unmark right, unmark center, mark --add {move_pos}; mode "default"'
     )
+    if not animate_move or window.y != y:
+        command_with_log(f"move position {x}px {y}px")
+    else:
+        animate(move_pos, abs(x - window.x), 0.2)
 
 
 def hide(_, state):
