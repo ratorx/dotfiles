@@ -11,7 +11,8 @@ if dein#load_state('~/.local/share/dein')
 
   " Interface
   call dein#add('itchyny/lightline.vim') " Modeline
-  call dein#add('maximbaz/lightline-ale', {'depends': ['lightline.vim', 'ale']}) " ALE Integration
+  " call dein#add('maximbaz/lightline-ale', {'depends': ['lightline.vim', 'ale']}) " ALE Integration
+  call dein#add('Palpatineli/lightline-lsc-nvim', {'depends': ['lightline.vim', 'LanguageClient-neovim']})
   call dein#add('rakr/vim-one') " Color Scheme
   call dein#add('majutsushi/tagbar', {'on_cmd': ['TagbarOpen', 'TagbarClose', 'TagbarToggle', 'TagbarOpenAutoClose']}) " Tag Browser
 
@@ -43,7 +44,8 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('tpope/vim-commentary', {'on_map': 'gc'}) " Comments
   call dein#add('w0rp/ale') " Linting
   call dein#add('tpope/vim-sleuth') " Automatic file indent
-  call dein#add('Shougo/deoplete.nvim', {'lazy': 1}) " Completions
+  call dein#add('Shougo/deoplete.nvim', {'lazy': 1, 'on_ft': 'rust'}) " Completions
+  call dein#add('autozimu/LanguageClient-neovim', {'branch': 'next', 'build': 'bash install.sh', 'on_ft': 'rust'})
   if !has('nvim')
       call dein#add('roxma/nvim-yarp')
       call dein#add('roxma/vim-hug-neovim-rpc')

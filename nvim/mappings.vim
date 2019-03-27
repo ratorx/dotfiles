@@ -29,6 +29,18 @@ nnoremap <C-S-o> :BTags<CR>
 nnoremap <C-f> :Rg<Space>
 nnoremap <C-e> <Plug>(fzf-quickfix)
 
+" Language Client
+function! s:language_client_enter()
+  nnoremap <buffer> <F2> :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <buffer> gd :call LanguageClient_textDocument_definition()<CR>
+endfunction
+
+augroup languageclient
+  au!
+  au FileType rust call <SID>language_client_enter()
+augroup END
+
+
 " deoplete.nvim
 inoremap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :

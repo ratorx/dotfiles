@@ -56,11 +56,26 @@ let g:python3_host_prog='/usr/bin/python3'
 let g:lightline={}
 let g:lightline.colorscheme='one'
 let g:lightline.enable={'statusline': 1, 'tabline': 1}
-let g:lightline.active={'right': [[ 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['fileformat', 'fileencoding', 'filetype']]}
+let g:lightline.active={'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['fileformat', 'fileencoding', 'filetype']]}
 let g:lightline.component={'lineinfo': '%2l/%2L:%2v'}
-let g:lightline.component_expand={'buffers': 'lightline#bufferline#buffers', 'linter_warnings': 'lightline#ale#warnings', 'linter_errors': 'lightline#ale#errors', 'linter_ok': 'lightline#ale#ok'}
-let g:lightline.component_type={'buffers': 'tabsel', 'linter_warnings': 'warning', 'linter_errors': 'error'}
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#lsc#checking',
+      \  'linter_warnings': 'lightline#lsc#warnings',
+      \  'linter_errors': 'lightline#lsc#errors',
+      \  'linter_ok': 'lightline#lsc#ok',
+      \ }
+let g:lightline.component_type = {
+      \  'buffers': 'tabsel', 
+      \  'linter_checking': 'left',
+      \  'linter_warnings': 'warning',
+      \  'linter_errors': 'error',
+      \  'linter_ok': 'left',
+      \ }
+let g:lightline.component_type={'linter_warnings': 'warning', 'linter_errors': 'error'}
 set laststatus=2
+
+" vim-rooter
+let g:rooter_patterns = ['Cargo.toml', '.project_base', '.git/']
 
 " signify
 let g:signify_sign_show_count=0
@@ -77,18 +92,18 @@ let g:ale_sign_warning='!'
 let g:ale_rust_check_all_targets=0
 let g:ale_lint_on_text_changed='never'
 let g:ale_lint_on_insert_leave=1
-let g:ale_fix_on_save=0
+let g:ale_fix_on_save=1
 
 let g:ale_linters={}
 let g:ale_linters.sh=['shellcheck']
 let g:ale_linters.bash=['shellcheck']
-let g:ale_linters.c=['clangd']
-let g:ale_linters.cpp=['clangd']
+let g:ale_linters.c=[]
+let g:ale_linters.cpp=[]
 let g:ale_linters.go=['bingo']
 let g:ale_linters.python=['flake8']
 let g:ale_linters.java=[]
 let g:ale_linters.tex=['chktex']
-let g:ale_linters.rust=['rls']
+let g:ale_linters.rust=[]
 
 let g:ale_fixers={}
 let g:ale_fixers.c=['clang-format']
@@ -101,6 +116,7 @@ let g:ale_fixers.rust=['rustfmt']
 " ale options
 let g:ale_c_clangformat_options='-style=Google'
 let g:ale_python_flake8_options='--ignore=E203,E501,W503'
+let g:ale_rust_cargo_use_clippy=executable('cargo-clippy')
 let g:ale_type_map={'flake8': {'ES': 'WS'}}
 
 " vim-polyglot
@@ -108,7 +124,11 @@ let g:polyglot_disabled=['latex']
 
 " deoplete
 let g:deoplete#enable_at_startup=1
-let g:deoplete#max_list=5
+let g:deoplete#max_list=10
+let g:deoplete#ignore_sources={}
+let g:deoplete#ignore_sources.rust=['around', 'buffer', 'dictionary', 'member']
+let g:deoplete#ignore_sources.python=['around', 'buffer', 'dictionary', 'member']
+let g:deoplete#ignore_sources.go=['around', 'buffer', 'dictionary', 'member']
 set completeopt-=preview
 
 " C/C++
@@ -117,6 +137,42 @@ let g:deoplete#sources#clang#clang_header='/usr/lib/clang'
 " Go
 let g:deoplete#sources#go#gocode_binary=$GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
+" LanguageClient-neovim
+set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+let g:LanguageClient_useVirtualText=0
+let g:LanguageClient_serverCommands={}
+let g:LanguageClient_serverCommands.rust=['rustup', 'run', 'stable', 'rls']
+
+let g:LanguageClient_diagnosticsDisplay={}
+let g:LanguageClient_diagnosticsDisplay.1={
+      \  'name': 'Error',
+      \  'texthl': 'ALEError',
+      \  'signText': '‼',
+      \  'signTexthl': 'ALEErrorSign',
+      \  'virtualTexthl': 'Error',
+      \ }
+let g:LanguageClient_diagnosticsDisplay.2={
+      \  'name': 'Warning',
+      \  'texthl': 'ALEWarning',
+      \  'signText': '!',
+      \  'signTexthl': 'ALEWarningSign',
+      \  'virtualTexthl': 'Todo',
+      \ }
+let g:LanguageClient_diagnosticsDisplay.3={
+      \  'name': 'Information',
+      \  'texthl': 'ALEInfo',
+      \  'signText': '!',
+      \  'signTexthl': 'ALEInfoSign',
+      \  'virtualTexthl': 'Todo',
+      \ }
+let g:LanguageClient_diagnosticsDisplay.4={
+      \  'name': 'Hint',
+      \  'texthl': 'ALEInfo',
+      \  'signText': '!',
+      \  'signTexthl': 'ALEInfoSign',
+      \  'virtualTexthl': 'Todo',
+      \ }
 
 " vimtex
 let g:vimtex_view_method='zathura'
