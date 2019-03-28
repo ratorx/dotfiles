@@ -84,7 +84,7 @@ typeset -A config
 function cfg() {
   local old
   old="$(pwd)"
-  cd ~/.dotfiles
+  cd "$HOME/.dotfiles"
   eval $EDITOR ${config[$1]}
   cd "$old"
 }
@@ -215,7 +215,7 @@ alias vi='$EDITOR'
 if spaceship::exists nvim; then
   alias todo="nvim +Goyo $XDG_DATA_HOME/TODO.md"
   function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench" }
-  config[nvim]="~/.config/nvim/config.vim ~/.config/nvim/mappings.vim ~/.config/nvim/plugins.vim"
+  config[nvim]="~/.config/nvim/*.vim"
 fi
 
 # Package manager
@@ -318,10 +318,11 @@ config[compton]="~/.config/compton/compton.conf"
 config[dunst]="~/.config/dunst/dunstrc"
 config[i3]="~/.config/i3/config.d/**/*.conf"
 config[latex]="~/.latexmkrc"
-config[polybar]="~/.config/polybar/config"
-config[ranger]="~/.config/ranger/rc.conf ~/.config/ranger/rifle.conf ~/.config/ranger/commands.py ~/.config/ranger/scope.sh"
+config[polybar]="~/.config/polybar/{config, modules/*}"
+config[ranger]="~/.config/ranger/*.conf ~/.config/ranger/commands.py ~/.config/ranger/scope.sh"
 config[ssh]="~/.ssh/config"
+config[termite]="~/.config/termite/config"
 config[tmux]="~/.tmux.conf"
 config[xorg]="~/.Xresources ~/.xinitrc"
 config[zathura]="~/.config/zathura/zathurarc"
-config[zsh]="~/.zshrc ~/.zshenv"
+config[zsh]="~/.zshrc ~/.zshenv ~/.zprofile"
