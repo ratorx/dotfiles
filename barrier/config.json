@@ -1,0 +1,13 @@
+{
+    "init": false,
+    "cleanup": false,
+    "resources": {
+        "barriers.service": ".config/systemd/user/barriers.service",
+        "remote@.service": ".config/systemd/user/remote@.service",
+        "remote": ".local/bin/remote"
+    },
+    "dependencies": {
+        "required": [],
+        "optional": []
+    }
+}

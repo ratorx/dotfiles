@@ -1,0 +1,9 @@
+[Unit]
+Description=Remotely control %I using barrier
+Requires=barriers.service
+After=barriers.service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ssh -R 24800:127.0.0.1:24800 %I "DISPLAY=:0 barrierc --no-daemon --no-restart --debug NOTE localhost:24800"
+
