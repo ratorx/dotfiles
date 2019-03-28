@@ -51,7 +51,7 @@ show_indicators = yes
 ### Icons ###
 icon_position = left
 max_icon_size = 48
-icon_path = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/
+icon_path = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/:/usr/share/icons/Numix-Circle/48/apps
 
 ### History ###
 
