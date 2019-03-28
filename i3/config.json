@@ -2,7 +2,8 @@
     "init": true,
     "cleanup": true,
     "resources": {
-        "config": ".config/i3/config",
+        "config.d": ".config/i3/config.d",
+        "Makefile": ".config/i3/Makefile",
         "scripts": ".config/i3/scripts"
     },
     "dependencies": {
