@@ -240,7 +240,8 @@ if spaceship::exists pacman; then
       return 1
     fi
   }
-  function binaries() { pacman -Qql $1 | grep /usr/bin | sed '1d; s/\/usr\/bin\///' }
+
+  function binaries() { pacman -Qql $1 | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p' }
   function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f" }
   function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column }
 fi
