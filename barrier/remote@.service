@@ -3,6 +3,7 @@ Description=Remotely control %I using barrier
 Requires=barriers.service
 After=barriers.service
 After=network.target
+After=gpg-agent-ssh.socket
 
 [Service]
 Environment=DISPLAY=:0
