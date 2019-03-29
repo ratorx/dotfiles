@@ -2,8 +2,7 @@
     "init": false,
     "cleanup": false,
     "resources": {
-        "vm": ".local/bin/vm",
-        "filebrowser": ".local/bin/filebrowser"
+        "vm": ".local/bin/vm"
     },
     "dependencies": {
         "required": [],
