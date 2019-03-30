@@ -3,7 +3,8 @@
         "name": "Google",
         "icon": "google",
         "search": "https://www.google.com/search?q={}",
-        "shortcut": "g"
+        "shortcut": "g",
+        "default": true
     },
     {
         "name": "Computer Lab",
