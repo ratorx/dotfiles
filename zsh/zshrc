@@ -213,7 +213,7 @@ fi
 # Editor
 alias vi='$EDITOR'
 if spaceship::exists nvim; then
-  alias todo="nvim +Goyo $XDG_DATA_HOME/TODO.md"
+  alias todo="nvim +Goyo ~/public/TODO.md"
   function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench" }
   config[nvim]="~/.config/nvim/*.vim"
 fi
