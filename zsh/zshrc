@@ -259,7 +259,7 @@ if spaceship::exists exa; then
   alias ll="exa -lF --git"
 else
   alias ls="ls -xF"
-  alias ll="\\ls -lF --git"
+  alias ll="\\ls -lF"
 fi
 
 alias la="ls -a"
