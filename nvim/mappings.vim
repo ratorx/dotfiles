@@ -27,7 +27,7 @@ nnoremap <C-g> :BLines<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-S-o> :BTags<CR>
 nnoremap <C-f> :Rg<Space>
-nnoremap <C-e> <Plug>(fzf-quickfix)
+nmap <C-q> <Plug>(fzf-quickfix)
 
 " Language Client
 function! s:language_client_enter()
