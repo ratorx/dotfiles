@@ -2,7 +2,7 @@
 WALLPAPER_CONFIG_FILE="$HOME/.config/wallpaper"
 
 function _export() {
-  wallpaper="$(find "$(xgetres "wallpapers")" -maxdepth 1 -type f | shuf -n 1)"
+  wallpaper="$(find "$(xgetres "i3wm.wallpapers")" -maxdepth 1 -type f | shuf -n 1)"
   echo -n "$wallpaper" > "$WALLPAPER_CONFIG_FILE"
 }
 
