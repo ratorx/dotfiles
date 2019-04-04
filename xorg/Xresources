@@ -45,6 +45,12 @@
 *.color14:      LIGHTCYAN
 *.color15:      LIGHTGREY
 
+! i3wm
+i3wm.mod:       Mod4
+i3wm.scripts:   $HOME/.config/i3/scripts
+i3wm.gaps:      30
+i3wm.border:    3
+
 ! Misc
 Xcursor.size:   24
 wallpapers:     $HOME/public/pictures/wallpapers/nature
