@@ -11,6 +11,12 @@ noremap <Right> <NOP>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
 
+" Navigate splits
+nnoremap <A-h> <C-w><C-h>
+nnoremap <A-j> <C-w><C-j>
+nnoremap <A-k> <C-w><C-k>
+nnoremap <A-l> <C-w><C-l>
+
 " vim-move
 let g:move_key_modifier = 'C'
 
