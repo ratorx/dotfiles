@@ -72,6 +72,19 @@ def multipleIconLookup(identifiers):
     return icon
 
 
+def fuzzy_match(query, text):
+    i, j = 0, 0
+    while i != len(query) and j != len(text):
+        if query[i] == text[j]:
+            i += 1
+        j += 1
+
+    if i == len(query):
+        return j - i
+    else:
+        return -1
+
+
 def handleQuery(query):
     if query.isTriggered:
         stripped = query.string
@@ -84,25 +97,30 @@ def handleQuery(query):
                 return []
             win = Window(*[token.decode() for token in line.split(None, 4)])
             wm_class = win.wm_class.split(".")
-            if (
-                win.desktop != "-1"
-                and stripped in wm_class[0].lower()
-                and wm_class[0] != "albert"
-            ):
-                results.append(
-                    Item(
-                        id="%s%s" % (__prettyname__, win.wm_class),
-                        icon=windowIconLookup(win, wm_class),
-                        text="%s  - <i>Workspace %s</i>"
-                        % (
-                            titlecase(wm_class[-1].replace("-", " ")),
-                            int(win.desktop) + 1,
-                        ),
-                        subtext=win.wm_name,
-                        actions=[
-                            ProcAction("Focus Window", ["wmctrl", "-ia", win.wid]),
-                            ProcAction("Close Window", ["wmctrl", "-ic", win.wid]),
-                        ],
+            if win.desktop != "-1" and wm_class[0] != "albert":
+                score = fuzzy_match(stripped, " ".join(wm_class).lower())
+                if score >= 0:
+                    results.append(
+                        (
+                            Item(
+                                id="%s%s" % (__prettyname__, win.wm_class),
+                                icon=windowIconLookup(win, wm_class),
+                                text="%s  - <i>Workspace %s</i>"
+                                % (
+                                    titlecase(wm_class[-1].replace("-", " ")),
+                                    int(win.desktop) + 1,
+                                ),
+                                subtext=win.wm_name,
+                                actions=[
+                                    ProcAction(
+                                        "Focus Window", ["wmctrl", "-ia", win.wid]
+                                    ),
+                                    ProcAction(
+                                        "Close Window", ["wmctrl", "-ic", win.wid]
+                                    ),
+                                ],
+                            ),
+                            score,
+                        )
                     )
-                )
-        return results
+        return [item[0] for item in sorted(results, key=lambda x: x[1])]

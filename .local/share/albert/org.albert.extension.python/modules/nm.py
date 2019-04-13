@@ -51,14 +51,11 @@ def make_vpn_item(vpn):
 
 
 def fuzzy_match(query, text):
-    i = 0
-    j = 0
+    i, j = 0, 0
     while i != len(query) and j != len(text):
         if query[i] == text[j]:
             i += 1
-            j += 1
-        else:
-            j += 1
+        j += 1
 
     if i == len(query):
         return j - i
