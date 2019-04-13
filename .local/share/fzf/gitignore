@@ -7,6 +7,7 @@
 # Build Files
 __pycache__/
 bin/
+!.local/bin
 build/
 cmake-build-debug/
 obj/
@@ -19,9 +20,9 @@ vendor/
 # System Files
 Downloads/
 .cache/
-.config/
 .archive/
 .local/share/
+!.local/share/albert
 .dropbox/
 .dropbox-dist/
 .gnupg/
