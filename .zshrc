@@ -87,7 +87,7 @@ typeset -A config
 function cfg() {
   local old
   old="$(pwd)"
-  cd "$HOME/.yadm/repo.git"
+  cd "$HOME"
   eval $EDITOR ${config[$1]}
   cd "$old"
 }

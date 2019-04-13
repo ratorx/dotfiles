@@ -6,6 +6,7 @@
 # Python venv
 __pycache__/
 bin/
+!.local/bin
 include/
 lib/
 lib64
