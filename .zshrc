@@ -29,11 +29,12 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-  function up-line-or-local-history() {
-    zle set-local-history 1
-    zle up-line-or-history
-    zle set-local-history 0
-  }
+function up-line-or-local-history() {
+  zle set-local-history 1
+  zle up-line-or-history
+  zle set-local-history 0
+}
+
 function down-line-or-local-history() {
   zle set-local-history 1
   zle down-line-or-history
@@ -41,7 +42,6 @@ function down-line-or-local-history() {
 }
 zle -N up-line-or-local-history
 zle -N down-line-or-local-history
-
 
 # Key bindings
 bindkey '^[[A' up-line-or-local-history
@@ -79,12 +79,15 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
+# Dotfiles
+alias d=yadm
+
 # Config function
 typeset -A config
 function cfg() {
   local old
   old="$(pwd)"
-  cd "$HOME/.dotfiles"
+  cd "$HOME/.yadm/repo.git"
   eval $EDITOR ${config[$1]}
   cd "$old"
 }
@@ -100,7 +103,6 @@ bookmarks[uni]="$HOME/projects/cambridge/ii"
 bookmarks[diss]="$HOME/projects/cambridge/ii/project/dissertation"
 bookmarks[continuity]="$HOME/projects/cambridge/ii/project/continuity"
 bookmarks[web]="$HOME/projects/ree.to"
-bookmarks[cfg]="$HOME/.dotfiles"
 
 # Antibody
 source "$ANTIBODYHOME/load.zsh"
