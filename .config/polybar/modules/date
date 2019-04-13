@@ -1,0 +1,18 @@
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+time =   %H:%M
+time-alt =   %a %d %b
+
+label = %time%
+# Extra space being added somewhere, need to set this to ${params.padding} - 1
+label-padding-right = 2
+label-padding-left = ${params.padding}
+label-background = ${colours.blue}
+label-foreground = ${colours.background}
+; Set to 2 * ${params.margin} because tray does not have margin
+label-margin-right = ${env:TRAY_MARGIN:0}
+
+; vim:ft=dosini

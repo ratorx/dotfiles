@@ -1,0 +1,20 @@
+#!/bin/bash
+script="$HOME/.local/bin/wallpaper"
+lock="$HOME/public/pictures/utilities/lock.png"
+case "$1" in
+    wallpaper)
+        shift
+        $script export
+        wallpaper="$(cat "$HOME/.config/wallpaper")"
+        i3lock -t -i "$wallpaper"
+        $script set "$wallpaper" &
+        ;;
+    *)
+        TMPBG=/tmp/screen.png
+        maim -u | convert - -scale 20% -scale 500% "$lock" -gravity center -composite -matte "$TMPBG"
+
+        i3lock -tui "$TMPBG"
+
+        rm $TMPBG
+        ;;
+esac

@@ -1,0 +1,28 @@
+[volume-base]
+format-volume = <ramp-volume>  <label-volume>
+format-volume-padding = ${params.padding}
+format-volume-background = ${colours.green}
+format-volume-foreground = ${colours.background}
+
+label-volume = %percentage%%
+
+label-muted = 
+label-muted-padding = ${params.padding}
+label-muted-background = ${colours.red}
+label-muted-foreground = ${colours.background}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+
+[module/volume]
+inherit = volume-base
+type = internal/alsa
+master-mixer = Master
+reverse-scroll = true
+
+[module/pa-volume]
+inherit = volume-base
+type = internal/pulseaudio
+use-ui-max = false
+
+; vim:ft=dosini

@@ -1,0 +1,73 @@
+[user]
+    email = reetobratachatterjee@gmail.com
+    name = Reeto Chatterjee
+[core]
+    excludesfile = ~/.local/share/git/gitignore_global
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = input
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+[apply]
+    whitespace = fix
+[rebase]
+    autostash = true
+[pull]
+    rebase = true
+[color]
+    ui = true
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[color "diff"]
+    meta = 227
+    frag = magenta bold
+    commit = 227 bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[alias]
+    root = !pwd
+    # status
+    df = diff
+    dfs = diff --staged
+    s = status --short
+    st = status
+    lg = !~/.local/share/git/log
+    lgs = log --oneline --decorate --no-merges --max-count=20
+    # repository
+    i = init
+    cl = clone
+    f = fetch
+    pl = pull
+    su = submodule update
+    ps = push
+    # branch
+    co = checkout
+    b = branch
+    rb = rebase
+    mg = merge
+    c = commit
+    cm = commit --message
+    cam = commit --all --message
+    amd = commit --amend --no-edit
+    # file
+    a = add
+    aa = add .
+    ap = add --patch
+    rs = reset
+    sts = stash save
+    stp = stash pop
+    std = stash drop
+    stl = stash list
+[url "git@github.com:"]
+    insteadOf = gh:
+    pushInsteadOf = gh:
+[url "git@bitbucket.org:"]
+    insteadOf = bb:
+    pushInsteadOf = bb:

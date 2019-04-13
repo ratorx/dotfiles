@@ -1,0 +1,37 @@
+#! /bin/sh
+
+pathtoname() {
+    udevadm info -p /sys/"$1" | awk -v FS== '/DEVNAME/ {print $2}'
+}
+
+pathtouuid() {
+    udevadm info -p /sys/"$1" | sed -n 's/S: disk\/by-uuid\/\(.\+\)/\1/p'
+}
+
+stdbuf -oL -- udevadm monitor --udev -s block | while read -r -- _ _ event devpath _; do
+        if [ "$event" = add ]; then
+            devname=$(pathtoname "$devpath")
+            uuid=$(pathtouuid "$devpath")
+            if grep "UUID=$uuid" /etc/fstab; then
+                udisksctl mount --block-device "$devname" --no-user-interaction
+            fi
+        fi
+done
+
+case $1 in
+    loop)
+        stdbuf -oL -- udevadm monitor --udev -s block | while read -r -- _ _ event devpath _; do
+            if [ "$event" = add ]; then
+                devname=$(pathtoname "$devpath")
+                uuid=$(pathtouuid "$devpath")
+                if grep "UUID=$uuid" /etc/fstab; then
+                    udisksctl mount --block-device "$devname" --no-user-interaction
+                fi
+            fi
+        done
+        ;;
+    *)
+        echo "asdf"
+        ;;
+esac
+

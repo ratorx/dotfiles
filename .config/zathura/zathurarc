@@ -1,0 +1,40 @@
+set incremental-search true
+set abort-clear-search true
+
+set guioptions ''
+set scroll-step 60
+set smooth-scroll true
+set show-scrollbars false
+set font 'Ubuntu 13'
+set window-icon '/usr/share/icons/Numix-Circle/48/apps/zathura.svg'
+set window-title-home-tilde true
+set statusbar-home-tilde true
+set selection-clipboard 'clipboard'
+
+" colors
+"" foreground
+set default-fg '#282C34'
+set inputbar-fg '#ABB2BF'
+set statusbar-fg '#ABB2BF'
+
+set completion-fg '#282C34'
+set completion-group-fg '#ABB2BF'
+set completion-highlight-fg '#ABB2BF'
+
+set notification-fg '#ABB2BF'
+set notification-warning-fg '#C678DD'
+set notification-error-fg '#E06C75'
+"" background
+set default-bg '#ABB2BF'
+set inputbar-bg '#5C6370'
+set statusbar-bg '#5C6370'
+
+set completion-bg '#ABB2BF'
+set completion-group-bg '#5C6370'
+set completion-highlight-bg '#5C6370'
+
+set notification-bg '#5C6370'
+set notification-warning-bg '#5C6370'
+set notification-error-bg '#5C6370'
+
+" vim: ft=vim

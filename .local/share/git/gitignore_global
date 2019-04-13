@@ -1,0 +1,15 @@
+# VS Code
+.vscode/
+.vscode/*
+*.code-workspace
+
+# Python venv
+__pycache__/
+bin/
+include/
+lib/
+lib64
+pip-selfcheck.json
+
+# C temp files
+obj/

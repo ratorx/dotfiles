@@ -1,0 +1,29 @@
+# VCS
+.git/
+
+# Project Files
+.idea/
+
+# Build Files
+__pycache__/
+bin/
+build/
+cmake-build-debug/
+obj/
+target/
+
+# Vendored Dependencies
+node_modules/
+vendor/
+
+# System Files
+Downloads/
+.cache/
+.config/
+.archive/
+.local/share/
+.dropbox/
+.dropbox-dist/
+.gnupg/
+.pki/
+

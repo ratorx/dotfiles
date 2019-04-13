@@ -1,0 +1,12 @@
+#! /usr/bin/env python3
+
+import i3ipc
+import sys
+
+i3 = i3ipc.Connection()
+
+con = i3.get_tree().find_focused()
+if con.floating in ["auto_on", "user_on"]:
+    con.command(f"floating toggle, border pixel {sys.argv[1]}")
+else:
+    con.command("floating toggle, border none")

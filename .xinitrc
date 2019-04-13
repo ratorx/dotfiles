@@ -1,0 +1,9 @@
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+autorandr --change
+
+# Caps Lock -> Ctrl/Escape
+setxkbmap -option "ctrl:nocaps"
+xcape -e "Control_L=Escape"
+
+bash -c "cd ~/.config/i3 && make"
+exec i3

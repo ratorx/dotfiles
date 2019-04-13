@@ -1,0 +1,98 @@
+#! /usr/bin/env python3
+
+from enum import Enum, unique
+import json
+import os
+import subprocess
+from pathlib import Path
+
+STORE_PATH = Path("/etc/backlight.json")
+
+
+@unique
+class State(Enum):
+    AC = 0
+    BATTERY = 1
+
+    @staticmethod
+    def get():
+        power_supplies = "/sys/class/power_supply"
+        for power_supply in os.listdir(power_supplies):
+            with open(os.path.join(power_supplies, power_supply, "type")) as f:
+                t = f.read().strip("\n")
+                if t != "Mains":
+                    continue
+
+            with open(os.path.join(power_supplies, power_supply, "online")) as f:
+                o = f.read().strip("\n")
+                if o == "1":
+                    return State.AC
+
+        return State.BATTERY
+
+
+class Backlight:
+    @staticmethod
+    def get():
+        return float(subprocess.check_output(["brillo", "-G"]))
+
+    @staticmethod
+    def set(value):
+        if value == 0:
+            return
+
+        subprocess.check_call(["brillo", "-S", str(value)])
+        subprocess.check_call(["brillo", "-O"])
+
+
+class Store:
+    def __init__(self, store_file):
+        self.store_file = store_file
+
+    def __enter__(self):
+        self.current_backlight = Backlight.get()
+        self.current_status = State.get()
+
+        store = None
+        try:
+            with open(self.store_file) as f:
+                store = json.load(f)
+        except FileNotFoundError:
+            store = {}
+
+        self.backlights = {
+            State.AC: float(store.get(State.AC.name, 0)),
+            State.BATTERY: float(store.get(State.BATTERY.name, 0)),
+        }
+        self.last_status = State[store.get("last", self.current_status.name)]
+        return self
+
+    def __exit__(self, *args):
+        store = {
+            State.AC.name: self.backlights[State.AC],
+            State.BATTERY.name: self.backlights[State.BATTERY],
+            "last": self.last_status.name,
+        }
+
+        with open(self.store_file, "w") as f:
+            json.dump(store, f)
+
+
+def main():
+    with Store(STORE_PATH) as s:
+        if s.current_status == s.last_status:
+            s.backlights[s.current_status] = s.current_backlight
+        else:
+            # Called AFTER state change; set value for old status
+            s.backlights[s.last_status] = s.current_backlight
+
+            # Set saved backlight value if it's not the same
+            if s.backlights[s.current_status] != s.current_backlight:
+                Backlight.set(s.backlights[s.current_status])
+
+            # Update the last_status
+            s.last_status = s.current_status
+
+
+if __name__ == "__main__":
+    main()

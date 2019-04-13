@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Wallpaper
+Comment=Randomly change the desktop wallpaper
+Keywords=Wallpaper;Screen;Desktop
+Exec=/bin/bash -c "~/.local/bin/wallpaper"
+Icon=wallpaper
+Type=Application
+Categories=GTK;System;

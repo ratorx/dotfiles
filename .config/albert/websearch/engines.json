@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Google",
+        "icon": "google",
+        "search": "https://www.google.com/search?q={}",
+        "shortcut": "g",
+        "default": true
+    },
+    {
+        "name": "Computer Lab",
+        "icon": "computer",
+        "search": "https://www.cl.cam.ac.uk/teaching/1819/{}",
+        "shortcut": "cl"
+    },
+    {
+        "name": "CRSid Lookup",
+        "icon": "stock_addressbook",
+        "search": "https://www.lookup.cam.ac.uk/search?type=all&query={}",
+        "shortcut": "id"
+    }
+]

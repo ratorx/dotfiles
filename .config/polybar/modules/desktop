@@ -1,0 +1,14 @@
+[module/barrier]
+type = custom/ipc
+
+hook-0 = systemctl --user list-units | sed -n '/remote@/s/remote@\(.\+\)\.service.*/  \1/p'
+hook-1 = echo ""
+initial = 1
+
+click-left = remote zeus
+
+format-padding = ${params.padding}
+format-background = ${colours.green}
+format-foreground = ${colours.background}
+
+; vim:ft=dosini

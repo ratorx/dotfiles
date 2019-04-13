@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/etc/systemd/system'
+let g:netrw_dirhist_2='/home/reeto/.dotfiles/tmux'
+let g:netrw_dirhist_3='/home/reeto/projects/ros/src/exercises/part0/python'
+let g:netrw_dirhist_4='/home/reeto/projects/ros/src/exercises/part0'
+let g:netrw_dirhist_5='/home/reeto/projects/ros/src/exercises'
+let g:netrw_dirhist_6='/home/reeto/projects/ros/src/exercises/part1'
+let g:netrw_dirhist_7='/home/reeto/projects/ros/src/exercises/part1/python'
+let g:netrw_dirhist_8='/home/reeto/projects/ros/src/exercises/part0/python'
