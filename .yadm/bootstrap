@@ -1,0 +1,71 @@
+#! /bin/bash
+function service() {
+    case "$1" in
+	install)
+	    [ ! -f "/etc/systemd/system/$(basename "$2")" ] && sudo -s ln -s "$2" /etc/systemd/system
+	    sudo systemctl enable "$(basename "$2")"
+	    ;;
+	uninstall)
+	    sudo systemctl disable "$2"
+	    [ -f "/etc/systemd/system/$2" ] && sudo rm "/etc/systemd/system/$2"
+	    ;;
+    esac
+}
+
+function exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+function is_laptop() {
+    for filename in /sys/class/power_supply/*/type; do
+        [ "$(cat "$filename")" = "Battery" ] && return 0
+    done
+    return 1
+}
+
+function msg() {
+    echo -e "\n\t" "$@" "\n"
+}
+
+function root_install {
+    mkdir -p "$3"
+    if [ ! -f "$3/$(basename "$2")" ]; then
+	echo "$@"
+	case "$1" in
+	    cp) sudo -s cp "$2" "$3" ;;
+	    ln) sudo -s ln -s "$2" "$3" ;;
+	esac
+    fi
+}
+
+# Neovim plugin manager
+DEIN="$HOME/.local/share/dein"
+if (exists nvim || exists vim) && [ ! -d "$DEIN" ]; then
+    tmp="$(mktemp)"
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > "$tmp"
+    sh "$tmp" "$DEIN"
+    rm "$tmp"
+    exists nvim && nvim "+qall"
+    exists vim && vim "+qall"
+fi
+
+# Backlight
+if is_laptop; then
+    service install "$HOME/.yadm/backlight/backlight.service"
+    root_install ln "$HOME/.yadm/backlight/backlight" "/usr/bin"
+    root_install cp "$HOME/.yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
+fi
+
+# Polybar VPN hook
+if exists polybar && exists nmcli; then
+    root_install cp "$HOME/.config/polybar/scripts/polybar-vpn" "/etc/NetworkManager/dispatcher.d"
+fi
+
+# GUI Setup
+if exists startx; then
+    root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
+    if exists i3lock && exists i3; then
+	service install "$HOME/.yadm/i3lock.service"
+    fi
+fi
+

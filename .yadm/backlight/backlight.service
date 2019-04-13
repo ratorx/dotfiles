@@ -1,0 +1,10 @@
+[Unit]
+Description=Lock the screen when suspended
+Before=sleep.target suspend.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/backlight
+
+[Install]
+WantedBy=sleep.target suspend.target
