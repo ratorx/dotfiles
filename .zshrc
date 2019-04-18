@@ -322,7 +322,7 @@ alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/'
 alias privip="hostname -i"
 
 # Config files
-config[alacritty]="~/.config/alacritty/alacritty.yml"
+config[alacritty]="~/.config/alacritty/alacritty.yml##yadm.j2"
 config[compton]="~/.config/compton/compton.conf"
 config[dunst]="~/.config/dunst/dunstrc"
 config[i3]="~/.config/i3/config.d/**/*.conf"
