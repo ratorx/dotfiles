@@ -1,7 +1,7 @@
 #define $HOME /home/reeto
 
 ! ANSI Colours
-#define BLACK #282C34
+#define BLACK #2F343F
 #define WHITE #ABB2BF
 
 #define RED #E06C75
