@@ -32,39 +32,56 @@
     process = git-lfs filter-process
     required = true
 [alias]
-    root = !pwd
-    # status
-    df = diff
-    dfs = diff --staged
-    s = status --short
-    st = status
-    lg = !~/.local/share/git/log
-    lgs = log --oneline --decorate --no-merges --max-count=20
-    # repository
-    i = init
-    cl = clone
-    f = fetch
-    pl = pull
-    su = submodule update
-    ps = push
-    # branch
-    co = checkout
-    b = branch
-    rb = rebase
-    mg = merge
-    c = commit
-    cm = commit --message
-    cam = commit --all --message
-    amd = commit --amend --no-edit
-    # file
+    # add
     a = add
     aa = add .
     ap = add --patch
+    # checkout
+    co = checkout
+    cop = checkout --patch
+    # clone
+    cl = clone
+    clr = clone --recursive
+    su = submodule update
+    # commit
+    c = commit
+    ca = commit --all
+    cm = commit --message
+    cam = commit --all --message
+    amd = commit --amend --no-edit
+    # diff
+    df = diff
+    dfs = diff --staged
+    # log
+    lg = !~/.local/share/git/log
+    lgs = log --oneline --decorate --no-merges --max-count=20
+    # pull
+    pl = pull
+    plf = pull --force
+    # push
+    ps = push
+    psf = push --force
+    # rebase
+    rb = rebase
+    rbi = rebase --interactive
+    fx = rebase --autosquash --interactive
+    # reset
     rs = reset
+    rsh = reset --hard
+    # stash
     sts = stash save
     stp = stash pop
     std = stash drop
     stl = stash list
+    # status
+    s = status --short
+    st = status
+    # other
+    b = branch
+    f = fetch
+    i = init
+    mg = merge
+    root = !pwd
 [url "git@github.com:"]
     insteadOf = gh:
     pushInsteadOf = gh:
