@@ -39,9 +39,9 @@ font-2 = Font Awesome 5 Free:style=Solid:size=12;2
 font-3 = Font Awesome 5 Brands:size=12;2
 font-4 = Ubuntu:style=Bold:size=14;3
 
-modules-left = workspaces layout
+modules-left = device workspaces layout barrier
 modules-center = title
-modules-right = barrier vpn wired wireless pa-volume battery date
+modules-right = vpn wired wireless pa-volume battery date
 
 enable-ipc = true
 
