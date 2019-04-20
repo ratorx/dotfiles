@@ -20,7 +20,7 @@ ws-icon-9 = 10;%{T5}X%{T-}
 ws-icon-10 = 91;
 ws-icon-11 = 92;
 ws-icon-12 = 93;
-ws-icon-default = 
+ws-icon-default = 
 
 
 format = <label-state> <label-mode>
