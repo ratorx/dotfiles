@@ -57,15 +57,11 @@ if is_laptop; then
 fi
 
 # Polybar VPN hook
-if exists polybar && exists nmcli; then
-    root_install cp "$HOME/.config/polybar/scripts/polybar-vpn" "/etc/NetworkManager/dispatcher.d"
-fi
+exists polybar && exists nmcli && root_install cp "$HOME/.config/polybar/scripts/polybar-vpn" "/etc/NetworkManager/dispatcher.d"
 
 # GUI Setup
 if exists startx; then
     root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
-    if exists i3lock && exists i3; then
-	service install "$HOME/.yadm/i3lock.service"
-    fi
+    exists i3lock && exists i3 && service install "$HOME/.yadm/i3lock.service"
 fi
 
