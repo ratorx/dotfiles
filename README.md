@@ -2,6 +2,8 @@
 
 Configuration files for a fair amount of applications.
 
+The old configuration which used `modman` can be found on the other branch.
+
 ## Terminal
 * git - vcs
 * neovim - editor
