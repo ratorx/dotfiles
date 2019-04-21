@@ -38,6 +38,9 @@ function root_install {
     fi
 }
 
+# Trash-cli
+exists trash-empty && systemctl --user enable --now trash-empty@2.timer
+
 # Neovim plugin manager
 DEIN="$HOME/.local/share/dein"
 if (exists nvim || exists vim) && [ ! -d "$DEIN" ]; then

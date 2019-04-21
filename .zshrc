@@ -283,6 +283,12 @@ alias df="df -hl"
 alias du="du -h"
 alias ncdu="ncdu -x"
 
+# Use trash-put if available
+# Not recommended, but very useful if used sparingly (and not relied on)
+spaceship::exists trash-put && alias rm=trash-put || alias rm="rm -Iv"
+spaceship::exists trash-list && alias tls=trash-list
+spaceship::exists trash-restore && alias tres=trash-restore
+
 # Alias for going back directories
 alias up=bd
 

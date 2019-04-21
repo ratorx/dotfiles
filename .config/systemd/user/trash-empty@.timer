@@ -1,0 +1,10 @@
+[Unit]
+Description=Clear trash older than %I days automatically
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=trash-clear@%I.service
+
+[Install]
+WantedBy=timers.target
