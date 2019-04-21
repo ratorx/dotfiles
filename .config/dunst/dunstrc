@@ -71,10 +71,10 @@ per_monitor_dpi = false
 
 [shortcuts]
 
-close = ctrl+k
-close_all = ctrl+shift+k
-history = ctrl+period
-context = ctrl+shift+period
+close = mod4+shift+b
+close_all = mod4+b
+history = mod4+n
+context = mod4+shift+n
 
 [urgency_low]
 background = "#f1f1f0"
