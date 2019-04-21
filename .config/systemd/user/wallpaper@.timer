@@ -1,0 +1,10 @@
+[Unit]
+Description=Change the wallpaper %I
+
+[Timer]
+OnCalendar=%I
+Persistent=true
+Unit=wallpaper.service
+
+[Install]
+WantedBy=timers.target
