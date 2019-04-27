@@ -245,6 +245,7 @@ def setup(args, state):
         args.clear()
         return
 
+    args.append("center")
     command_with_log(
         ";".join(
             [
@@ -261,8 +262,13 @@ def setup(args, state):
     )
 
 
+def center(args, state):
+    command_with_log("move position center", True)
+
+
 argparsers = {
     "border": border,
+    "center": center,
     "decrement": decrement,
     "hide": hide,
     "increment": increment,
