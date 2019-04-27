@@ -38,10 +38,10 @@ function root_install {
     fi
 }
 
-# Trash-cli
+# trash-cli
 exists trash-empty && systemctl --user enable --now trash-empty@2.timer
 
-# Neovim plugin manager
+# neovim plugin manager
 DEIN="$HOME/.local/share/dein"
 if (exists nvim || exists vim) && [ ! -d "$DEIN" ]; then
     tmp="$(mktemp)"
@@ -52,20 +52,27 @@ if (exists nvim || exists vim) && [ ! -d "$DEIN" ]; then
     exists vim && vim "+qall"
 fi
 
-# Backlight
+# backlight
 if is_laptop; then
     service install "$HOME/.yadm/backlight/backlight.service"
     root_install ln "$HOME/.yadm/backlight/backlight" "/usr/bin"
     root_install cp "$HOME/.yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
 fi
 
-# Polybar VPN hook
+# polybar vpn hook
 exists polybar && exists nmcli && root_install cp "$HOME/.config/polybar/scripts/polybar-vpn" "/etc/NetworkManager/dispatcher.d"
 
-# GUI Setup
+# gui setup
 if exists startx; then
     root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
     exists i3lock && exists i3 && service install "$HOME/.yadm/i3lock.service"
     exists xgetres && systemctl --user enable --now wallpaper@daily.timer
 fi
 
+# yadm
+case "$(hostname)" in
+    poseidon) yadm config local.class laptop ;;
+    zeus) yadm config local.class desktop ;;
+esac
+
+yadm alt
