@@ -7,9 +7,11 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Navigate buffers with TAB
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprev<CR>
+" MRU buffer
+nnoremap <Tab> :b#<CR>
+" Sequential
+nnoremap <A-]> :bnext<CR>
+nnoremap <A-[> :bprev<CR>
 
 " Navigate splits
 nnoremap <A-h> <C-w><C-h>
@@ -29,11 +31,12 @@ let g:fzf_action = {
       \ 'ctrl-j': 'split',
       \ 'ctrl-l': 'vsplit' }
 
+nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :BLines<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-S-o> :BTags<CR>
 nnoremap <C-f> :Rg<Space>
-nmap <C-q> <Plug>(fzf-quickfix)
+nmap <C-e> <Plug>(fzf-quickfix)
 
 " Language Client
 function! s:language_client_enter()

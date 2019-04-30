@@ -14,7 +14,7 @@ if dein#load_state('~/.local/share/dein')
 
   " Fuzzy Finding
   call dein#add('junegunn/fzf', {'merged': 0, 'lazy': 1})
-  call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'on_cmd': ['BLines', 'Files', 'BTags', 'Rg']})
+  call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'on_cmd': ['BLines', 'Files', 'BTags', 'Rg', 'Maps', 'Buffers']})
   call dein#add('fszymanski/fzf-quickfix', {'depends': 'fzf', 'on_map': '<Plug>(fzf-quickfix)'})
 
   " Improvements
