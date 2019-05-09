@@ -17,3 +17,7 @@ push @generated_exts, "xdv";
 push @generated_exts, "run.xml";
 
 $pdf_mode = 1;
+
+$latex = 'latex  %O  --shell-escape %S';
+$pdflatex = 'pdflatex  %O  --shell-escape %S';
+$xelatex = 'xelatex  %O  --shell-escape %S';
