@@ -217,7 +217,7 @@ config[ranger]="$HOME/.config/ranger/*.conf $HOME/.config/ranger/commands.py $HO
 config[ssh]="$HOME/.ssh/config"
 config[termite]="$HOME/.config/termite/config"
 config[tmux]="$HOME/.tmux.conf"
-config[xorg]="$HOME/.Xresources $HOME/.xinitrc"
+config[xorg]="$HOME/.config/X11/*"
 config[zathura]="$HOME/.config/zathura/zathurarc"
 config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile"
 
