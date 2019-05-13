@@ -1,8 +1,8 @@
 #! /usr/bin/zsh
 export ANTIBODYHOME="$HOME/.antibody"
 export HISTFILE="$HOME/.bash_history"
-export HISTSIZE=50000
-export SAVEHIST=50000
+export HISTSIZE=500000
+export SAVEHIST=500000
 
 typeset -U fpath
 
