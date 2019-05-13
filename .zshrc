@@ -305,14 +305,16 @@ if spaceship::exists bpython; then
 fi
 
 # SSH public key
-function pub() { [ "$#" -eq 0 ] && cat "$HOME/.ssh/id_ecdsa.pub" || cat "$HOME/.ssh/id_$1.pub" }
+function pub() {
+  ssh-add -L | sed -n "0,/(none)/s//$USER@$HOST/p"
+}
 
 # Clipboard
 if spaceship::exists xclip; then
   function c() { tr -d '\n' | xclip -sel clip }
   function copy() { cat $1 | c }
   alias v="xclip -o -sel clip"
-  alias cpub="pub | c | echo 'RSA public key copied.'"
+  alias cpub="pub | tee >(c)"
 fi
 
 # Lastpass
