@@ -59,13 +59,7 @@ bindkey '^[.' insert-last-word
 bindkey "^?" backward-delete-char
 
 # Options
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt AUTO_LIST
-setopt NO_NOMATCH
-setopt AUTO_CD
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_EXPIRE_DUPS_FIRST AUTO_LIST NO_NOMATCH AUTO_CD
 
 # Completions
 export fpath=($HOME/.local/share/zsh/completions $fpath)
@@ -79,45 +73,13 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
-# Dotfiles
-alias d=yadm
-
-# Config function
-typeset -A config
-function cfg() {
-  local old
-  old="$(pwd)"
-  cd "$HOME"
-  eval $EDITOR ${config[$1]}
-  cd "$old"
-}
-function _cfg() { _arguments "1:module:(${(k)config})" }
-compdef _cfg cfg
-
-typeset -A bookmarks
-function j() { cd "${bookmarks[$1]}" }
-function _j() { _arguments "1:bookmark:(${(k)bookmarks})" }
-compdef _j j
-
-bookmarks[uni]="$HOME/projects/cambridge/ii"
-bookmarks[diss]="$HOME/projects/cambridge/ii/project/dissertation"
-bookmarks[continuity]="$HOME/projects/cambridge/ii/project/continuity"
-bookmarks[web]="$HOME/projects/ree.to"
+# Load common aliases and functions
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
 # Antibody
 source "$ANTIBODYHOME/load.zsh"
 antibody bundle < "$ANTIBODYHOME/plugins"
 config[antibody]="$ANTIBODYHOME/plugins"
-
-## AWS
-if spaceship::exists aws; then
-  source /usr/bin/aws_zsh_completer.sh
-fi
-
-## Travis
-if spaceship::exists travis; then
-  source $HOME/.travis/travis.sh
-fi
 
 # Prompt Config
 SPACESHIP_PROMPT_ORDER=(
@@ -159,29 +121,8 @@ SPACESHIP_GIT_STATUS_SHOW="false"
 SPACESHIP_EXEC_TIME_PREFIX=""
 SPACESHIP_EXEC_TIME_ELAPSED="5"
 
-# Git
-alias g=git
-config[git]="~/.gitconfig"
-
-# Systemd
-systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload)
-
-function sc() {
-  if [ "$#" -ne 0 ] && [ "${systemd_sudo_commands[(r)$1]}" == "$1" ]; then
-    sudo systemctl "$@"
-  else
-    systemctl "$@"
-  fi
-}
-compdef sc=systemctl
-alias scu="systemctl --user"
-
 # FZF
 if spaceship::exists fzf; then
-  export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_ALT_C_COMMAND='fd --type d --follow --no-ignore-vcs --hidden --ignore-file /home/reeto/.local/share/fzf/gitignore 2>/dev/null'
-
   source /usr/share/fzf/completion.zsh
   source /usr/share/fzf/key-bindings.zsh
 
@@ -212,137 +153,3 @@ if spaceship::exists fzf; then
   bindkey '^R' fzf-history-widget-customised
 fi
 
-# Editor
-alias vi='$EDITOR'
-if spaceship::exists nvim; then
-  alias todo="nvim +Goyo ~/public/TODO.md"
-  function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench" }
-  config[nvim]="~/.config/nvim/*.vim"
-fi
-
-# Package manager
-if spaceship::exists pacman; then
-  function pkgdiff() {
-    flags="-Qqe"
-    hostnames=()
-
-    for var in "$@"; do
-      case "$var" in
-        (-*) flags="$var" ;;
-        (*) hostnames+="$var" ;;
-      esac
-    done
-
-    if [[ ${#hostnames[@]} -eq 1 ]]; then
-      icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman $flags) <(ssh "${hostnames[1]}" "pacman $flags")
-    elif [[ ${#hostnames[@]} -eq 2 ]]; then
-      icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
-    else
-      echo "usage: pkgdiff [flags] <host 1> [host 2]"
-      return 1
-    fi
-  }
-
-  _pkgs() {
-    local -a cmd packages packages_long
-    packages_long=(/var/lib/pacman/local/*(/))
-    packages=( ${${packages_long#/var/lib/pacman/local/}%-*-*} )
-    compadd "$@" -a packages
-  }
-  function binaries() { pacman -Qql $1 | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p' }
-  function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$1") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f" }
-  compdef _pkgs binaries pkgsize
-  function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman ${1:--Qqe} | sort -u) | column }
-fi
-
-# Chrome
-spaceship::exists google-chrome-stable && alias chrome="google-chrome-stable"
-
-# Irssi
-spaceship::exists irssi && alias irssi="irssi --config=$XDG_CONFIG_HOME/irssi/config --home=$XDG_DATA_HOME/irssi"
-
-# File listing
-if spaceship::exists exa; then
-  alias ls="exa -xF"
-  alias lt="ls -T --group-directories-first"
-  alias ll="exa -lF --git"
-else
-  alias ls="ls -xF"
-  alias ll="\\ls -lF"
-fi
-
-alias la="ls -a"
-alias lh="ls -d .*"
-alias lla="ll -a"
-
-# Filesystem operations
-alias mv="mv -v"
-alias rm="rm -Iv"
-alias cp="cp -v"
-alias df="df -hl"
-alias du="du -h"
-alias ncdu="ncdu -x"
-
-spaceship::exists udiskie-mount && alias mount=udiskie-mount
-spaceship::exists udiskie-umount && alias umount=udiskie-umount
-
-# Use trash-put if available
-# Not recommended, but very useful if used sparingly (and not relied on)
-spaceship::exists trash-put && alias rm=trash-put || alias rm="rm -Iv"
-spaceship::exists trash-list && alias tls=trash-list
-spaceship::exists trash-restore && alias tres=trash-restore
-
-# Alias for going back directories
-alias up=bd
-
-# $HOME directory cleaning
-HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
-alias check_homedir="fd -H --type d --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS "\." >> $HOMEDIR_ALLOWS && $EDITOR $HOMEDIR_ALLOWS"
-
-# Python
-if spaceship::exists bpython; then
-  function python() { [ "$#" -eq 0 ] && bpython || /usr/bin/python "$@" }
-fi
-
-# SSH public key
-function pub() {
-  ssh-add -L | sed -n "0,/(none)/s//$USER@$HOST/p"
-}
-
-# Clipboard
-if spaceship::exists xclip; then
-  function c() { tr -d '\n' | xclip -sel clip }
-  function copy() { cat $1 | c }
-  alias v="xclip -o -sel clip"
-  alias cpub="pub | tee >(c)"
-fi
-
-# Lastpass
-if spaceship::exists lpass && spaceship::exists fzf; then
-  function cpass() {
-    lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
-  }
-fi
-
-# GPG
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
-
-# IP
-alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
-alias privip="hostname -i"
-
-# Config files
-config[alacritty]="~/.config/alacritty/alacritty.yml##yadm.j2"
-config[compton]="~/.config/compton/compton.conf"
-config[dunst]="~/.config/dunst/dunstrc"
-config[i3]="~/.config/i3/config.d/**/*.conf"
-config[latex]="~/.latexmkrc"
-config[polybar]="~/.config/polybar/config ~/.config/polybar/modules/*"
-config[ranger]="~/.config/ranger/*.conf ~/.config/ranger/commands.py ~/.config/ranger/scope.sh"
-config[ssh]="~/.ssh/config"
-config[termite]="~/.config/termite/config"
-config[tmux]="~/.tmux.conf"
-config[xorg]="~/.Xresources ~/.xinitrc"
-config[zathura]="~/.config/zathura/zathurarc"
-config[zsh]="~/.zshrc ~/.zshenv ~/.zprofile"

@@ -1,0 +1,224 @@
+function is_zsh() {
+  [ -n "$ZSH_NAME" ]
+}
+
+function exists() {
+  command -v "$1" >/dev/null
+}
+
+# Bookmarks
+typeset -A bookmarks
+function j() { cd "${bookmarks[$1]}" || return; }
+if is_zsh; then
+  # shellcheck disable=SC2154
+  function _j() { _arguments "1:bookmark:(${(k)bookmarks})"; } 
+  compdef _j j
+fi
+
+bookmarks[uni]="$HOME/projects/cambridge/ii"
+bookmarks[diss]="$HOME/projects/cambridge/ii/project/dissertation"
+bookmarks[continuity]="$HOME/projects/cambridge/ii/project/continuity"
+bookmarks[web]="$HOME/projects/ree.to"
+
+# Dotfiles
+alias d=yadm
+
+# AWS
+if exists aws; then
+  # shellcheck disable=SC2015,SC1091
+  is_zsh && source /usr/bin/aws_zsh_completer.sh || source /usr/bin/aws_completer
+fi
+
+# Config function
+typeset -A config
+function cfg() {
+  local old
+  old="$(pwd)"
+  cd "$HOME" || exit
+  eval "$EDITOR" "${config[$1]}"
+  cd "$old" || exit
+}
+if is_zsh; then
+  # shellcheck disable=SC2154
+  function _cfg() { _arguments "1:module:(${(k)config})"; }
+  compdef _cfg cfg
+fi
+
+# Systemd
+systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload)
+
+if is_zsh; then
+  function sc() {
+    if [ "$#" -ne 0 ] && [ "${systemd_sudo_commands[(r)$1]}" == "$1" ]; then
+      sudo systemctl "$@"
+    else
+      systemctl "$@"
+    fi
+  }
+else
+  function sc() {
+    if [ "$#" -ne 0 ] && [[ " ${systemd_sudo_commands[*]} " = *" $1 "* ]]; then
+      sudo systemctl "$@"
+    else
+      systemctl "$@"
+    fi
+  }
+fi
+is_zsh && compdef sc=systemctl
+alias scu="systemctl --user"
+
+# Git
+alias g=git
+config[git]="$HOME/.gitconfig"
+
+# Editor
+alias vi='$EDITOR'
+if exists nvim; then
+  alias todo="nvim +Goyo ~/public/TODO.md"
+  function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"; }
+  config[nvim]="$HOME/.config/nvim/*.vim"
+fi
+
+# Package Manager
+if exists pacman; then
+  function pkgdiff() {
+    flags="-Qqe"
+    hostnames=()
+
+    for var in "$@"; do
+      case "$var" in
+        (-*) flags="$var" ;;
+        (*) hostnames+=("$var") ;;
+      esac
+    done
+
+    if [[ ${#hostnames[@]} -eq 1 ]]; then
+      # shellcheck disable=SC2029
+      icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman "$flags") <(ssh "${hostnames[1]}" "pacman $flags")
+    elif [[ ${#hostnames[@]} -eq 2 ]]; then
+      # shellcheck disable=SC2029
+      icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
+    else
+      echo "usage: pkgdiff [flags] <host 1> [host 2]"
+      return 1
+    fi
+  }
+  function binaries() { pacman -Qql "$@" | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p'; }
+  # shellcheck disable=SC2046
+  function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$@") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"; }
+
+  if is_zsh; then
+    _pkgs() {
+      local -a packages packages_long
+      packages_long=(/var/lib/pacman/local/*(/))
+      # shellcheck disable=SC2034
+      packages=( ${${packages_long#/var/lib/pacman/local/}%-*-*} )
+      compadd "$@" -a packages
+    }
+    compdef _pkgs binaries pkgsize
+  fi
+  function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman "${1:--Qqe}" | sort -u) | column; }
+fi
+
+# Chrome
+exists google-chrome-stable && alias chrome="google-chrome-stable"
+
+# Irssi
+exists irssi && alias irssi='irssi --config=$XDG_CONFIG_HOME/irssi/config --home=$XDG_DATA_HOME/irssi'
+
+# File listing
+if exists exa; then
+  alias ls="exa -xF"
+  alias lt="ls -T --group-directories-first"
+  alias ll="exa -lF --git"
+else
+  alias ls="ls -xF"
+  alias ll="\\ls -lF"
+fi
+
+alias la="ls -a"
+alias lh="ls -d .*"
+alias lla="ll -a"
+
+# Filesystem operations
+alias mv="mv -v"
+alias rm="rm -Iv"
+alias cp="cp -v"
+alias df="df -hl"
+alias du="du -h"
+alias ncdu="ncdu -x"
+
+exists udiskie-mount && alias mount=udiskie-mount
+exists udiskie-umount && alias umount=udiskie-umount
+
+# Use trash-put if available
+# Not recommended, but very useful if used sparingly (and not relied on)
+# shellcheck disable=SC2015
+exists trash-put && alias rm=trash-put || alias rm="rm -Iv"
+exists trash-list && alias tls=trash-list
+exists trash-restore && alias tres=trash-restore
+
+# Alias for going back directories
+alias up=bd
+
+# $HOME directory cleaning
+HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
+# shellcheck disable=SC2139
+alias check_homedir="fd -H --type d --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS >> $HOMEDIR_ALLOWS && '$EDITOR' $HOMEDIR_ALLOWS"
+
+# Python
+if exists bpython; then
+  function python() {
+    if [ "$#" -eq 0 ]; then
+      bpython
+    else
+      /usr/bin/python "$@"
+    fi
+  }
+fi
+
+# SSH public key
+function pub() {
+  ssh-add -L | sed -n "0,/(none)/s//$USER@$HOST/p"
+}
+
+# Clipboard
+if exists xclip; then
+  function c() { tr -d '\n' | xclip -sel clip; }
+  function copy() { c < "$1"; }
+  alias v="xclip -o -sel clip"
+  alias cpub="pub | tee >(c)"
+fi
+
+# Lastpass
+if exists lpass && exists fzf; then
+  function cpass() {
+    lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
+  }
+fi
+
+# GPG
+# shellcheck disable=SC2155
+export GPG_TTY="$(tty)"
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
+# IP
+alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
+alias privip="hostname -i"
+
+# Config files
+config[alacritty]="$HOME/.config/alacritty/alacritty.yml##yadm.j2"
+config[compton]="$HOME/.config/compton/compton.conf"
+config[dunst]="$HOME/.config/dunst/dunstrc"
+config[i3]="$HOME/.config/i3/config.d/**/*.conf"
+config[latex]="$HOME/.latexmkrc"
+config[polybar]="$HOME/.config/polybar/config $HOME/.config/polybar/modules/*"
+config[ranger]="$HOME/.config/ranger/*.conf $HOME/.config/ranger/commands.py $HOME/.config/ranger/scope.sh"
+config[ssh]="$HOME/.ssh/config"
+config[termite]="$HOME/.config/termite/config"
+config[tmux]="$HOME/.tmux.conf"
+config[xorg]="$HOME/.Xresources $HOME/.xinitrc"
+config[zathura]="$HOME/.config/zathura/zathurarc"
+config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile"
+
+# vim: set ft=sh:sw=2:
