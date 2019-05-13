@@ -283,6 +283,9 @@ alias df="df -hl"
 alias du="du -h"
 alias ncdu="ncdu -x"
 
+spaceship::exists udiskie-mount && alias mount=udiskie-mount
+spaceship::exists udiskie-umount && alias umount=udiskie-umount
+
 # Use trash-put if available
 # Not recommended, but very useful if used sparingly (and not relied on)
 spaceship::exists trash-put && alias rm=trash-put || alias rm="rm -Iv"
