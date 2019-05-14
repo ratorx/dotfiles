@@ -107,16 +107,6 @@ if exists pacman; then
   # shellcheck disable=SC2046
   function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$@") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"; }
 
-  if is_zsh; then
-    _pkgs() {
-      local -a packages packages_long
-      packages_long=(/var/lib/pacman/local/*(/))
-      # shellcheck disable=SC2034
-      packages=( ${${packages_long#/var/lib/pacman/local/}%-*-*} )
-      compadd "$@" -a packages
-    }
-    compdef _pkgs binaries pkgsize
-  fi
   function pkgs() { comm -13 <(pacman -Qgq base base-devel | sort -u) <(pacman "${1:--Qqe}" | sort -u) | column; }
 fi
 
