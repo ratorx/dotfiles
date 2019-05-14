@@ -21,6 +21,9 @@ export XDG_DATA_HOME=$HOME/.local/share
 # GTK 2
 command -v gtk-demo >/dev/null && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 
+# Pass
+command -v pass && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+
 # Go
 if command -v go >/dev/null; then
     export GOPATH="$XDG_DATA_HOME/go"
