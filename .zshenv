@@ -23,8 +23,8 @@ command -v gtk-demo >/dev/null && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0
 
 # Go
 if command -v go >/dev/null; then
-    export GOPATH="$HOME/.go"
-    export GOBIN="$HOME/.go/bin"
+    export GOPATH="$XDG_DATA_HOME/go"
+    export GOBIN="$GOPATH/bin"
     export path=($GOBIN $path)
 fi
 
