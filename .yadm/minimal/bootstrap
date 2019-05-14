@@ -1,0 +1,21 @@
+#! /bin/sh
+
+# This minimal setup sets up bash and git
+# Requires curl
+# Bash (as opposed to Zsh) is used because of ubiquity
+# Git is bootstrapped because it needs to be configured BEFORE yadm
+
+REPO="https://raw.githubusercontent.com/ratorx/dotfiles/master"
+
+# Setup bash
+curl "$REPO/.bashrc" --output "$HOME/.bashrc"
+curl "$REPO/.zshenv" --output "$HOME/.bash_profile"
+
+SHELL_DIR="$HOME/.shell"
+mkdir -p "$SHELL_DIR"
+curl "$REPO/.shell/aliases" --output "$SHELL_DIR/aliases"
+
+# Setup git
+GIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/git"
+mkdir -p "$GIT_DIR"
+curl "$REPO/.config/git/config" --output "$GIT_DIR/config"
