@@ -1,0 +1,3 @@
+[general]
+hist_duplicates = False
+hist_file = ~/.local/share/bpython/history
