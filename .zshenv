@@ -24,6 +24,9 @@ command -v gtk-demo >/dev/null && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0
 # Pass
 command -v pass && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
+# Xauth
+command -v xauth >/dev/null && export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
 # Go
 if command -v go >/dev/null; then
     export GOPATH="$XDG_DATA_HOME/go"
