@@ -164,7 +164,7 @@ alias up=bd
 # $HOME directory cleaning
 HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
 # shellcheck disable=SC2139
-alias check_homedir="fd -H --type d --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS >> $HOMEDIR_ALLOWS && '$EDITOR' $HOMEDIR_ALLOWS"
+alias check_homedir="fd -H --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS >> $HOMEDIR_ALLOWS && '$EDITOR' $HOMEDIR_ALLOWS"
 
 # Python
 if exists bpython; then

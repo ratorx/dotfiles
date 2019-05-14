@@ -1,5 +1,5 @@
 #! /usr/bin/zsh
-export ANTIBODYHOME="$HOME/.antibody"
+export ANTIBODYHOME="$HOME/.shell/antibody"
 export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=500000
 export SAVEHIST=500000
@@ -74,7 +74,7 @@ unsetopt EXTENDEDGLOB
 compinit -C
 
 # Load common aliases and functions
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+[ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
 
 # Antibody
 source "$ANTIBODYHOME/load.zsh"

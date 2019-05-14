@@ -5,7 +5,7 @@
 
 PS1='[\u@\h \W]\$ '
 
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+[ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
 
 function exists() {
   command -v "$1" >/dev/null
