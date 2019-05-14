@@ -3,7 +3,6 @@
     name = Reeto Chatterjee
 [core]
     excludesfile = ~/.local/share/git/gitignore_global
-    pager = diff-so-fancy | less --tabs=4 -RFX
     autocrlf = input
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [apply]
@@ -14,15 +13,10 @@
     rebase = true
 [color]
     ui = true
-[color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
 [color "diff"]
-    meta = 227
+    meta = yellow
     frag = magenta bold
-    commit = 227 bold
+    commit = yellow bold
     old = red bold
     new = green bold
     whitespace = red reverse
@@ -88,3 +82,5 @@
 [url "git@bitbucket.org:"]
     insteadOf = bb:
     pushInsteadOf = bb:
+[include]
+    path = diff.inc
