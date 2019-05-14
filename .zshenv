@@ -14,15 +14,15 @@ export SYSTEMD_LESS="$LESS"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
 
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 # GTK 2
 command -v gtk-demo >/dev/null && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 
 # Pass
-command -v pass && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+command -v pass >/dev/null && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
 # Xauth
 command -v xauth >/dev/null && export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
@@ -46,22 +46,22 @@ if command -v rustc >/dev/null; then
 fi
 
 # Android
-command -v adb >/dev/null && export ANDROID_SDK_HOME=$XDG_CONFIG_HOME/android
+command -v adb >/dev/null && export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 
 # Docker
-command -v docker >/dev/null && export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+command -v docker >/dev/null && export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 
 # HTTPie
-command -v http >/dev/null && export HTTPIE_CONFIG_DIR=$XDG_CONFIG_HOME/httpie
+command -v http >/dev/null && export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
 
 # Elinks
-command -v elinks >/dev/null && export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
+command -v elinks >/dev/null && export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 
 # Pylint
-command -v pylint >/dev/null && export PYLINTHOME=$XDG_CACHE_HOME/pylint
+command -v pylint >/dev/null && export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 
 if [ -f /usr/lib/modprobe.d/nvidia.conf ]; then # Nvidia
-    export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nvidia
+    export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nvidia"
     export LIBVA_DRIVER_NAME=vdpau
     export VDPAU_DRIVER=nvidia
     export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
