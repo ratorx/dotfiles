@@ -189,8 +189,10 @@ fi
 
 # GPG
 # shellcheck disable=SC2155
-export GPG_TTY="$(tty)"
-gpg-connect-agent updatestartuptty /bye >/dev/null
+if exists gpg; then
+  export GPG_TTY="$(tty)"
+  gpg-connect-agent updatestartuptty /bye >/dev/null
+fi
 
 # IP
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
