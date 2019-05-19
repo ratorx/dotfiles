@@ -123,8 +123,11 @@ SPACESHIP_EXEC_TIME_ELAPSED="5"
 
 # FZF
 if spaceship::exists fzf; then
-  source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
+  [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+  [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+  
+  [ -f "$HOME"/.fzf/bin/completion.zsh ] && source "$HOME"/.fzf/bin/completion.zsh
+  [ -f "$HOME"/.fzf/bin/completion.zsh ] && source "$HOME"/.fzf/bin/completion.zsh
 
   # Override default FZF Ctrl+R
   # Enter to execute command

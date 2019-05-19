@@ -2,9 +2,29 @@ function is_zsh() {
   [ -n "$ZSH_NAME" ]
 }
 
+# Bootstrap functions
+if ! exists yadm; then
+  function quick_yadm() {
+    local yadm
+    yadm="$HOME/.local/bin/yadm_once"
+    curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
+    "$yadm" clone "https://github.com/ratorx/dotfiles.git"
+    "$yadm" alt
+    rm "$yadm"
+  }
+fi
+
 function exists() {
   command -v "$1" >/dev/null
 }
+if [[ $(command -v fzf) != "$HOME/.fzf/bin/fzf" && -d "$HOME/.fzf" ]]; then
+  rm -r "$HOME/.fzf"
+else
+  function fzf_install() {
+    git clone --depth 1 "https://github.com/junegunn/fzf.git" "$HOME"/.fzf
+    "$HOME"/.fzf/install
+  }
+fi
 
 # Bookmarks
 typeset -A bookmarks
