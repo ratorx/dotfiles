@@ -12,5 +12,9 @@ lib/
 lib64
 pip-selfcheck.json
 
+# LaTeX
+_minted-main/
+svg-inkscape/
+
 # C temp files
 obj/
