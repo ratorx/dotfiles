@@ -1,6 +1,6 @@
-function is_zsh() {
-  [ -n "$ZSH_NAME" ]
-}
+function is_zsh() { [ -n "$ZSH_NAME" ]; }
+
+function exists() { command -v "$1" >/dev/null; }
 
 # Bootstrap functions
 if ! exists yadm; then
@@ -14,9 +14,6 @@ if ! exists yadm; then
   }
 fi
 
-function exists() {
-  command -v "$1" >/dev/null
-}
 if [[ $(command -v fzf) != "$HOME/.fzf/bin/fzf" && -d "$HOME/.fzf" ]]; then
   rm -r "$HOME/.fzf"
 else
