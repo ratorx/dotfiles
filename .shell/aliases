@@ -21,7 +21,8 @@ bookmarks[continuity]="$HOME/projects/cambridge/ii/project/continuity"
 bookmarks[web]="$HOME/projects/ree.to"
 
 # Dotfiles
-alias d=yadm
+# shellcheck disable=SC2015
+is_zsh && alias d='noglob yadm' || alias d='yadm'
 
 # AWS
 if exists aws; then
@@ -68,6 +69,9 @@ is_zsh && compdef sc=systemctl
 alias scu="systemctl --user"
 
 # Git
+
+# shellcheck disable=SC2015
+is_zsh && alias g='noglob git' || alias g='git'
 alias g=git
 config[git]="$HOME/.gitconfig"
 
