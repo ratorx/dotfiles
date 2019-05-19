@@ -70,7 +70,6 @@ startup_notification = false
 per_monitor_dpi = false
 
 [shortcuts]
-
 close = mod4+shift+b
 close_all = mod4+b
 history = mod4+n
@@ -125,6 +124,13 @@ timeout = 0
 #    # This notification will not be displayed
 #    summary = "foobar"
 #    format = ""
+
+[barrier]
+appname = notify-send
+summary = "*onnected to *"
+body = ""
+history_ignore = yes
+history_length = 1
 
 [spotify]
 # This notification will not be saved in history
