@@ -5,36 +5,52 @@ set guioptions ''
 set scroll-step 60
 set smooth-scroll true
 set show-scrollbars false
-set font 'Ubuntu 13'
+set font 'Ubuntu Bold 14'
 set window-icon '/usr/share/icons/Numix-Circle/48/apps/zathura.svg'
 set window-title-home-tilde true
 set statusbar-home-tilde true
 set selection-clipboard 'clipboard'
+set window-title-basename true
+set smooth-scroll true
 
 " colors
-"" foreground
-set default-fg '#282C34'
-set inputbar-fg '#ABB2BF'
-set statusbar-fg '#ABB2BF'
+set default-fg '#ABB2BF'
+set default-bg '#2F343F'
 
-set completion-fg '#282C34'
-set completion-group-fg '#ABB2BF'
-set completion-highlight-fg '#ABB2BF'
+set inputbar-fg '#2F343F'
+set inputbar-bg '#C678DD'
 
-set notification-fg '#ABB2BF'
-set notification-warning-fg '#C678DD'
-set notification-error-fg '#E06C75'
-"" background
-set default-bg '#ABB2BF'
-set inputbar-bg '#5C6370'
-set statusbar-bg '#5C6370'
+set statusbar-fg '#2F343F'
+set statusbar-bg '#C678DD'
 
+" Completion
+set completion-fg '#2F343F'
 set completion-bg '#ABB2BF'
-set completion-group-bg '#5C6370'
-set completion-highlight-bg '#5C6370'
 
-set notification-bg '#5C6370'
-set notification-warning-bg '#5C6370'
-set notification-error-bg '#5C6370'
+set completion-group-fg '#ABB2BF'
+set completion-group-bg '#3E4452'
 
-" vim: ft=vim
+set completion-highlight-fg '#2F343F'
+set completion-highlight-bg '#C678DD'
+
+" Notification
+set notification-fg '#2F343F'
+set notification-bg '#ABB2BF'
+
+set notification-warning-fg '#2F343F'
+set notification-warning-bg '#C678DD'
+
+set notification-error-fg '#2F343F'
+set notification-error-bg '#E06C75'
+
+" Index
+set index-fg '#ABB2BF'
+set index-bg '#2F343F"'
+
+set index-active-fg '#2F343F'
+set index-active-bg '#C678DD'
+
+" Recolor
+set recolor-darkcolor '#BFC5CE'
+set recolor-lightcolor '#232623'
+" vim: ft=vim:set sw=4:set ts=4:
