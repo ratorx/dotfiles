@@ -10,12 +10,19 @@ if ! exists yadm; then
     fi
     local yadm
     yadm="$HOME/.local/bin/yadm_once"
-    mkdir "$(dirname "$yadm")"
+    mkdir -p "$(dirname "$yadm")"
     curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
     chmod +x "$yadm"
+    local authkeys
+    if [ -f "$HOME/.ssh/authorized_keys" ]; then
+      authkeys="$(cat "$HOME/.ssh/authorized_keys")"
+    fi
+
     "$yadm" clone "https://github.com/ratorx/dotfiles.git"
     "$yadm" alt
     rm "$yadm"
+
+    [[ -n "$authkeys" ]] && echo "$authkeys" >> "$HOME/.ssh/authorized_keys"
   }
 fi
 
