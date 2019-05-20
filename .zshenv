@@ -1,5 +1,8 @@
 #! /usr/bin/zsh
-if command -v nvim >/dev/null; then
+function is_zsh() { [ -n "$ZSH_NAME" ]; }
+function exists() { exists "$1"; }
+
+if exists nvim; then
     export editor=nvim
     export EDITOR=nvim
 else
@@ -19,43 +22,43 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # GTK 2
-command -v gtk-demo >/dev/null && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+exists gtk-demo && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 
 # Pass
-command -v pass >/dev/null && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+exists pass && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
 # Go
-if command -v go >/dev/null; then
+if exists go; then
     export GOPATH="$XDG_DATA_HOME/go"
     export GOBIN="$GOPATH/bin"
     export path=($GOBIN $path)
 fi
 
 # Rust
-if command -v rustc >/dev/null; then
+if exists rustc; then
     export CARGO_HOME="$XDG_DATA_HOME/cargo"
     export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
     export RUST_SRC_PATH="$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     export path=($CARGO_HOME/bin $path)
-    if command -v sccache >/dev/null; then
+    if exists sccache; then
         RUSTC_WRAPPER=sccache
     fi
 fi
 
 # Android
-command -v adb >/dev/null && export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+exists adb && export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 
 # Docker
-command -v docker >/dev/null && export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+exists docker && export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 
 # HTTPie
-command -v http >/dev/null && export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
+exists http && export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
 
 # Elinks
-command -v elinks >/dev/null && export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
+exists elinks && export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 
 # Pylint
-command -v pylint >/dev/null && export PYLINTHOME="$XDG_CACHE_HOME/pylint"
+exists pylint && export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 
 if [ -f /usr/lib/modprobe.d/nvidia.conf ]; then # Nvidia
     export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nvidia"
@@ -70,4 +73,7 @@ fi
 # Local executables
 # Add local bin before system bin
 export path=($HOME/.local/bin $path)
-typeset -U path
+is_zsh && typeset -U path
+
+unset -f exists
+unset -f is_zsh
