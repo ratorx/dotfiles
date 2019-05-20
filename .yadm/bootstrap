@@ -75,4 +75,4 @@ case "$(hostname)" in
     zeus) yadm config local.class desktop ;;
 esac
 
-yadm alt
+exists yadm && yadm alt
