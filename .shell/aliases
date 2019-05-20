@@ -4,9 +4,15 @@ function exists() { command -v "$1" >/dev/null; }
 # Bootstrap functions
 if ! exists yadm; then
   function quick_yadm() {
+    if ! exists git; then
+      echo "Install git before yadm"
+      return 1
+    fi
     local yadm
     yadm="$HOME/.local/bin/yadm_once"
+    mkdir "$(dirname "$yadm")"
     curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
+    chmod +x "$yadm"
     "$yadm" clone "https://github.com/ratorx/dotfiles.git"
     "$yadm" alt
     rm "$yadm"
