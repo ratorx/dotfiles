@@ -1,5 +1,4 @@
 function is_zsh() { [ -n "$ZSH_NAME" ]; }
-
 function exists() { command -v "$1" >/dev/null; }
 
 # Bootstrap functions
@@ -234,4 +233,6 @@ config[xorg]="$HOME/.config/X11/*"
 config[zathura]="$HOME/.config/zathura/zathurarc"
 config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile"
 
+unset -f exists
+unset -f is_zsh
 # vim: set ft=sh:sw=2:

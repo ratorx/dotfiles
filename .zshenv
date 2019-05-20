@@ -1,6 +1,5 @@
-#! /usr/bin/zsh
 function is_zsh() { [ -n "$ZSH_NAME" ]; }
-function exists() { exists "$1"; }
+function exists() { command -v "$1" >/dev/null; }
 
 if exists nvim; then
     export editor=nvim

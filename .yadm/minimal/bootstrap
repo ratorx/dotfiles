@@ -9,7 +9,8 @@ REPO="https://raw.githubusercontent.com/ratorx/dotfiles/master"
 
 # Setup bash
 curl "$REPO/.bashrc" --output "$HOME/.bashrc"
-curl "$REPO/.zshenv" --output "$HOME/.bash_profile"
+curl "$REPO/.bash_profile" --output "$HOME/.bash_profile"
+curl "$REPO/.zshenv" --output "$HOME/.zshenv"
 
 SHELL_DIR="$HOME/.shell"
 mkdir -p "$SHELL_DIR"
