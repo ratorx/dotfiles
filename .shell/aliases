@@ -19,15 +19,6 @@ if ! exists yadm; then
   }
 fi
 
-if [[ $(command -v fzf) != "$HOME/.fzf/bin/fzf" && -d "$HOME/.fzf" ]]; then
-  rm -r "$HOME/.fzf"
-else
-  function fzf_install() {
-    git clone --depth 1 "https://github.com/junegunn/fzf.git" "$HOME"/.fzf
-    "$HOME"/.fzf/install
-  }
-fi
-
 # Bookmarks
 typeset -A bookmarks
 function j() { cd "${bookmarks[$1]}" || return; }
