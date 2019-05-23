@@ -19,6 +19,9 @@ nnoremap <A-j> <C-w><C-j>
 nnoremap <A-k> <C-w><C-k>
 nnoremap <A-l> <C-w><C-l>
 
+nnoremap zz :wq<CR>
+nnoremap zx :q!<CR>
+
 " vim-move
 let g:move_key_modifier = 'C'
 
@@ -34,7 +37,7 @@ let g:fzf_action = {
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :BLines<CR>
 nnoremap <C-p> :Files<CR>
-nnoremap <C-S-o> :BTags<CR>
+nnoremap <C-n> :BTags<CR>
 nnoremap <C-f> :Rg<Space>
 nmap <C-e> <Plug>(fzf-quickfix)
 
