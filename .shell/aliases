@@ -53,6 +53,11 @@ if exists aws; then
   is_zsh && source /usr/bin/aws_zsh_completer.sh || source /usr/bin/aws_completer
 fi
 
+if exists gcloud && is_zsh; then
+  source /opt/google-cloud-sdk/path.zsh.inc
+  source /opt/google-cloud-sdk/completion.zsh.inc
+fi
+
 # Config function
 typeset -A config
 function cfg() {
