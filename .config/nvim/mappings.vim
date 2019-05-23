@@ -34,12 +34,13 @@ let g:fzf_action = {
       \ 'ctrl-j': 'split',
       \ 'ctrl-l': 'vsplit' }
 
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-g> :BLines<CR>
-nnoremap <C-p> :Files<CR>
-nnoremap <C-n> :BTags<CR>
-nnoremap <C-f> :Rg<Space>
-nmap <C-e> <Plug>(fzf-quickfix)
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :BLines<CR>
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>n :BTags<CR>
+nnoremap <leader>f :Rg<Space>
+nmap <leader>e <Plug>(fzf-quickfix)
+nnoremap _ :TagbarOpenAutoClose<CR>
 
 " Language Client
 function! s:language_client_enter()
