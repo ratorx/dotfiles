@@ -34,6 +34,12 @@ augroup ftdetect_prolog " prefer prolog
   autocmd BufRead,BufNewFile *.pl set filetype=prolog
 augroup END
 
+" auto directory creation
+augroup autodir
+  autocmd!
+  autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
+
 " undodir
 if !isdirectory($HOME.'/.cache')
     call mkdir($HOME.'/.cache', '', '0755')
