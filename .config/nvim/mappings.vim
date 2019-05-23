@@ -70,9 +70,6 @@ let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~? '\s'
 endfunction"}}}
 
-" NERDTree
-map <A-0> :NERDTreeToggle<CR>
-
 " neosnippet
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
 smap <C-e> <Plug>(neosnippet_expand_or_jump)
