@@ -79,6 +79,9 @@
 [url "git@github.com:"]
     insteadOf = gh:
     pushInsteadOf = gh:
+[url "git@github.com:ratorx/dotfiles"]
+    insteadOf = dots:
+    pushInsteadOf = dots:
 [url "git@bitbucket.org:"]
     insteadOf = bb:
     pushInsteadOf = bb:
