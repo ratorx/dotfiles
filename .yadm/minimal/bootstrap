@@ -8,15 +8,15 @@
 REPO="https://dots.ree.to"
 
 # Setup bash
-curl "$REPO/.bashrc" --output "$HOME/.bashrc"
-curl "$REPO/.bash_profile" --output "$HOME/.bash_profile"
-curl "$REPO/.zshenv" --output "$HOME/.zshenv"
+curl -L "$REPO/.bashrc" --output "$HOME/.bashrc"
+curl -L  "$REPO/.bash_profile" --output "$HOME/.bash_profile"
+curl -L "$REPO/.zshenv" --output "$HOME/.zshenv"
 
 SHELL_DIR="$HOME/.shell"
 mkdir -p "$SHELL_DIR"
-curl "$REPO/.shell/aliases" --output "$SHELL_DIR/aliases"
+curl -L "$REPO/.shell/aliases" --output "$SHELL_DIR/aliases"
 
 # Setup git
 GIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/git"
 mkdir -p "$GIT_DIR"
-curl "$REPO/.config/git/config" --output "$GIT_DIR/config"
+curl -L "$REPO/.config/git/config" --output "$GIT_DIR/config"
