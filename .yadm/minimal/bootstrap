@@ -5,7 +5,7 @@
 # Bash (as opposed to Zsh) is used because of ubiquity
 # Git is bootstrapped because it needs to be configured BEFORE yadm
 
-REPO="https://raw.githubusercontent.com/ratorx/dotfiles/master"
+REPO="https://dots.ree.to"
 
 # Setup bash
 curl "$REPO/.bashrc" --output "$HOME/.bashrc"

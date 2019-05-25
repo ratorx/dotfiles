@@ -18,7 +18,7 @@ if ! exists yadm; then
       authkeys="$(cat "$HOME/.ssh/authorized_keys")"
     fi
 
-    "$yadm" clone "https://github.com/ratorx/dotfiles.git"
+    "$yadm" clone "https://dots.ree.to/repo.git"
     "$yadm" alt
     rm "$yadm"
 
