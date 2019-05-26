@@ -75,7 +75,8 @@ case "$(hostname)" in
     zeus) yadm config local.class desktop ;;
 esac
 
-# Ignore SSH config to allow gcloud changes to be ignored
-yadm update-index --assume-unchanged "$HOME/.ssh/config"
-
-exists yadm && yadm alt
+if exists yadm; then
+    # Ignore SSH config to allow gcloud changes to be ignored
+    yadm update-index --assume-unchanged "$HOME/.ssh/config"
+    exists yadm && yadm alt
+fi
