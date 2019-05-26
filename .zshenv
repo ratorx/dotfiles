@@ -1,5 +1,6 @@
 function is_zsh() { [ -n "$ZSH_NAME" ]; }
 function exists() { command -v "$1" >/dev/null; }
+function path_add() { is_zsh && export path=("$1" $path) || export PATH="$1:$PATH" }
 
 if exists nvim; then
     export editor=nvim
@@ -30,7 +31,7 @@ exists pass && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 if exists go; then
     export GOPATH="$XDG_DATA_HOME/go"
     export GOBIN="$GOPATH/bin"
-    export path=($GOBIN $path)
+    path_add "$GOBIN"
 fi
 
 # Rust
@@ -38,7 +39,7 @@ if exists rustc; then
     export CARGO_HOME="$XDG_DATA_HOME/cargo"
     export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
     export RUST_SRC_PATH="$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-    export path=($CARGO_HOME/bin $path)
+    path_add "$CARGO_HOME/bin"
     if exists sccache; then
         RUSTC_WRAPPER=sccache
     fi
@@ -71,8 +72,9 @@ fi
 
 # Local executables
 # Add local bin before system bin
-export path=($HOME/.local/bin $path)
+path_add "$HOME/.local/bin"
 is_zsh && typeset -U path
 
 unset -f exists
 unset -f is_zsh
+unset -f path_add
