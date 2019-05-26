@@ -1,6 +1,6 @@
 function is_zsh() { [ -n "$ZSH_NAME" ]; }
 function exists() { command -v "$1" >/dev/null; }
-function path_add() { is_zsh && export path=("$1" $path) || export PATH="$1:$PATH" }
+function path_add() { is_zsh && export path=("$1" $path) || export PATH="$1:$PATH"; }
 
 if exists nvim; then
     export editor=nvim
