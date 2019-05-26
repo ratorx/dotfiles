@@ -13,6 +13,7 @@ if ! exists yadm; then
     mkdir -p "$(dirname "$yadm")"
     curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
     chmod +x "$yadm"
+    unset -f yadm
   }
 fi
 
