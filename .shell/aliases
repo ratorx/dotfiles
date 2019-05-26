@@ -3,16 +3,20 @@ function exists() { command -v "$1" >/dev/null; }
 
 # Bootstrap functions
 if ! exists yadm; then
-  function quick_yadm() {
+  function yadm() {
     if ! exists git; then
-      echo "Install git before yadm"
+      echo "Install git"
       return 1
     fi
     local yadm
-    yadm="$HOME/.local/bin/yadm_once"
+    yadm="$HOME/.local/bin/yadm"
     mkdir -p "$(dirname "$yadm")"
     curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
     chmod +x "$yadm"
+  }
+fi
+
+function yadm_setup() {
     local authkeys
     if [ -f "$HOME/.ssh/authorized_keys" ]; then
       authkeys="$(cat "$HOME/.ssh/authorized_keys")"
@@ -23,8 +27,7 @@ if ! exists yadm; then
     rm "$yadm"
 
     [[ -n "$authkeys" ]] && echo "$authkeys" >> "$HOME/.ssh/authorized_keys"
-  }
-fi
+}
 
 # Bookmarks
 typeset -A bookmarks
@@ -43,6 +46,7 @@ bookmarks[web]="$HOME/projects/ree.to"
 # Dotfiles
 # shellcheck disable=SC2015
 is_zsh && alias d='noglob yadm' || alias d='yadm'
+exists git && [ -f "$HOME/.config/git/diff.inc" ] && ! exists diff-so-fancy && rm "$HOME/.config/git/diff.inc"
 
 # AWS
 if exists aws; then
