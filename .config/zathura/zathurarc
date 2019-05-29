@@ -45,7 +45,7 @@ set notification-error-bg '#E06C75'
 
 " Index
 set index-fg '#ABB2BF'
-set index-bg '#2F343F"'
+set index-bg '#2F343F'
 
 set index-active-fg '#2F343F'
 set index-active-bg '#C678DD'
