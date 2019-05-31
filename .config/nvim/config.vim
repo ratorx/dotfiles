@@ -29,6 +29,11 @@ set ignorecase smartcase
 set wildmode=longest:full,full
 set foldmethod=indent foldlevel=99
 
+augroup cursor_fix
+  autocmd!
+  autocmd VimLeave * set guicursor=a:ver25
+augroup END
+
 augroup ftdetect_prolog " prefer prolog
   autocmd!
   autocmd BufRead,BufNewFile *.pl set filetype=prolog
