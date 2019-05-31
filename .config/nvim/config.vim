@@ -212,7 +212,6 @@ endfunction
 augroup goyo_custom
   au!
   au User GoyoEnter nested call <SID>goyo_enter()
-  au User GoyoLeave execute 'wq'
 augroup END
 
 " Tagbar

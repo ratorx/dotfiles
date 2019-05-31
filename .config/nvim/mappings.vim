@@ -19,8 +19,8 @@ nnoremap <A-j> <C-w><C-j>
 nnoremap <A-k> <C-w><C-k>
 nnoremap <A-l> <C-w><C-l>
 
-nnoremap zz :wq<CR>
-nnoremap zx :q!<CR>
+nnoremap zz :wqall<CR>
+nnoremap zx :qall!<CR>
 
 " vim-move
 let g:move_key_modifier = 'C'
