@@ -2,7 +2,8 @@
 function service() {
     case "$1" in
 	install)
-	    [ ! -f "/etc/systemd/system/$(basename "$2")" ] && sudo -s ln -s "$2" /etc/systemd/system
+	    # ownership transfer to prevent hijack
+	    [ ! -f "/etc/systemd/system/$(basename "$2")" ] && sudo chown -R root:root "$2" && sudo -s ln -s "$2" /etc/systemd/system
 	    sudo systemctl enable "$(basename "$2")"
 	    ;;
 	uninstall)
@@ -17,6 +18,7 @@ function exists() {
 }
 
 function is_laptop() {
+    [ ! -d /sys/class/power_supply ] && return 1;
     for filename in /sys/class/power_supply/*/type; do
         [ "$(cat "$filename")" = "Battery" ] && return 0
     done
@@ -33,7 +35,11 @@ function root_install {
 	echo "$@"
 	case "$1" in
 	    cp) sudo -s cp "$2" "$3" ;;
-	    ln) sudo -s ln -s "$2" "$3" ;;
+	    ln)
+		# ownership transfer to prevent hijack
+		sudo chown -R root:root "$2"
+		sudo -s ln -s "$2" "$3"
+		;;
 	esac
     fi
 }
@@ -85,3 +91,4 @@ if exists yadm; then
     yadm update-index --assume-unchanged "$HOME/.ssh/config"
     exists yadm && yadm alt
 fi
+
