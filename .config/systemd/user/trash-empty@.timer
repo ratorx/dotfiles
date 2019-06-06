@@ -4,7 +4,7 @@ Description=Clear trash older than %I days automatically
 [Timer]
 OnCalendar=daily
 Persistent=true
-Unit=trash-clear@%I.service
+Unit=trash-empty@%I.service
 
 [Install]
 WantedBy=timers.target
