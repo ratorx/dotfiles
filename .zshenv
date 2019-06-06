@@ -70,6 +70,9 @@ else # Intel
     export VDPAU_DRIVER=va_gl
 fi
 
+# GPG
+[ -f "${GNUPGHOME:-$HOME/.gnupg}/sshcontrol" ] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh" && unset SSH_AGENT_PID
+
 # Local executables
 # Add local bin before system bin
 path_add "$HOME/.local/bin"
