@@ -16,6 +16,7 @@ export SYSTEMD_LESS="$LESS"
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
+export QT_QPA_PLATFORMTHEME=gtk2
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
