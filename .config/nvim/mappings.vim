@@ -50,9 +50,8 @@ endfunction
 
 augroup languageclient
   au!
-  au FileType rust call <SID>language_client_enter()
+  au FileType rust,python,go call <SID>language_client_enter()
 augroup END
-
 
 " deoplete.nvim
 inoremap <silent><expr> <TAB>
