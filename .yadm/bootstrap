@@ -89,6 +89,8 @@ esac
 if exists yadm; then
     # Ignore SSH config to allow gcloud changes to be ignored
     yadm update-index --assume-unchanged "$HOME/.ssh/config"
+    yadm update-index --assume-unchanged "$HOME/README.md"
+    rm "$HOME/README.md"
     exists yadm && yadm alt
 fi
 
