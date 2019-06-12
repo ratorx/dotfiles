@@ -73,6 +73,10 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
+# Bash Completions
+autoload -Uz bashcompinit
+bashcompinit
+
 # Load common aliases and functions
 [ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
 
@@ -84,13 +88,11 @@ config[antibody]="$ANTIBODYHOME/plugins"
 # Prompt Config
 SPACESHIP_PROMPT_ORDER=(
 dir           # Current directory section
-git           # Git section (git_branch + git_status)
-aws           # Amazon Web Services section
-venv          # virtualenv section
+git_branch    # Git section (git_branch + git_status)
 exec_time     # Execution time
 line_sep      # Line break
 jobs          # Background jobs indicator
-exit_code     # Exit code section
+venv          # virtualenv section
 char          # Prompt character
 )
 
@@ -115,11 +117,19 @@ SPACESHIP_USER_SUFFIX=""
 SPACESHIP_HOST_SHOW="true"
 SPACESHIP_HOST_PREFIX="@"
 
-SPACESHIP_GIT_BRANCH_PREFIX=" "
-SPACESHIP_GIT_STATUS_SHOW="false"
+SPACESHIP_GIT_BRANCH_SYMBOL=""
+SPACESHIP_GIT_BRANCH_PREFIX=""
+SPACESHIP_GIT_BRANCH_COLOR="242"
+SPACESHIP_GIT_STATUS_MODIFIED="*"
+SPACESHIP_GIT_STATUS_AHEAD="↑"
+SPACESHIP_GIT_STATUS_BEHIND="↓"
+SPACESHIP_GIT_STATUS_DIVERGED="⇅"
 
 SPACESHIP_EXEC_TIME_PREFIX=""
 SPACESHIP_EXEC_TIME_ELAPSED="5"
+
+SPACESHIP_VENV_PREFIX=""
+SPACESHIP_VENV_COLOR="242"
 
 # FZF
 if spaceship::exists fzf; then
