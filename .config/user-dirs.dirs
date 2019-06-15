@@ -6,7 +6,7 @@
 # absolute path. No other format is supported.
 # 
 XDG_DOWNLOAD_DIR="$HOME/downloads"
-XDG_PUBLICSHARE_DIR="$HOME/public"
+XDG_PUBLICSHARE_DIR="$HOME/shared"
 XDG_DOCUMENTS_DIR="$HOME/projects"
 XDG_PICTURES_DIR="$HOME/pictures"
 XDG_DESKTOP_DIR="$HOME/"
