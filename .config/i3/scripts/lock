@@ -1,6 +1,6 @@
 #!/bin/bash
 script="$HOME/.local/bin/wallpaper"
-lock="$HOME/public/pictures/utilities/lock.png"
+lock="$HOME/shared/pictures/utilities/lock.png"
 case "$1" in
     wallpaper)
         shift
