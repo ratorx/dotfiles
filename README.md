@@ -10,7 +10,7 @@ The old configuration which used `modman` can be found on the other branch.
 * ranger - file browser
 * ssh - servers
 * tmux - multiplexer (not used anymore)
-* zsh - shell
+* zsh & bash - shell (zsh is default; config refactored to work with bash)
 
 ## GUI
 * alacritty - terminal emulator
