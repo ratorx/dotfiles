@@ -106,7 +106,7 @@ config[git]="$HOME/.gitconfig"
 # Editor
 alias vi='$EDITOR'
 if exists nvim; then
-  alias todo="nvim +Goyo ~/public/TODO.md"
+  alias todo="nvim +Goyo ~/shared/TODO.md"
   function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"; }
   config[nvim]="$HOME/.config/nvim/*.vim"
 fi
