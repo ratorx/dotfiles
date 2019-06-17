@@ -101,7 +101,7 @@ alias scu="systemctl --user"
 # shellcheck disable=SC2015
 is_zsh && alias g='noglob git' || alias g='git'
 alias g=git
-config[git]="$HOME/.gitconfig"
+config[git]="$HOME/.config/git/*"
 
 # Editor
 alias vi='$EDITOR'
