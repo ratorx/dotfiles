@@ -31,17 +31,18 @@ function msg() {
 
 function root_install {
     sudo -s mkdir -p "$3"
-    if [ ! -f "$3/$(basename "$2")" ]; then
-	echo "$@"
-	case "$1" in
-	    cp) sudo -s cp "$2" "$3" ;;
-	    ln)
-		# ownership transfer to prevent hijack
-		sudo chown -R root:root "$2"
-		sudo -s ln -s "$2" "$3"
-		;;
-	esac
+    if [ -f "$3/$(basename "$2")" ]; then
+	sudo rm "$3/$(basename "$2")"
     fi
+    echo "$@"
+    case "$1" in
+	cp) sudo -s cp "$2" "$3" ;;
+	ln)
+	    # ownership transfer to prevent hijack
+	    sudo chown -R root:root "$2"
+	    sudo -s ln -s "$2" "$3"
+	    ;;
+    esac
 }
 
 # trash-cli
@@ -60,7 +61,7 @@ fi
 
 # pacman hooks
 if exists pacman; then
-    root_install ln "$HOME/.yadm/hooks" "/etc/pacman.d"
+    root_install ln "$HOME/.yadm/pacman/hooks" "/etc/pacman.d"
 fi
 
 # backlight
