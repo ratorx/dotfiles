@@ -18,7 +18,9 @@ function exists() {
 }
 
 function is_laptop() {
+    # Directory does not exist or is empty
     [ ! -d /sys/class/power_supply ] && return 1;
+    [ -z "$(ls -A /sys/class/power_supply)" ] && return 1;
     for filename in /sys/class/power_supply/*/type; do
         [ "$(cat "$filename")" = "Battery" ] && return 0
     done
@@ -31,8 +33,14 @@ function msg() {
 
 function root_install {
     sudo -s mkdir -p "$3"
-    if [ -f "$3/$(basename "$2")" ]; then
-	sudo rm "$3/$(basename "$2")"
+    local dest_file
+    dest_file="$3/$(basename "$2")"
+    if [ -f "$dest_file" ] || [ -h "$dest_file" ]; then
+	sudo rm "$dest_file"
+    elif [ -e "$dest_file" ]; then
+	# Don't handle directory to minimise damage if script is called incorrectly
+	echo "Directory or special file at $dest_file: delete before bootstrap"
+	exit 1
     fi
     echo "$@"
     case "$1" in
