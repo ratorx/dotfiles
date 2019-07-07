@@ -1,4 +1,6 @@
 #! /bin/bash
+# This script is run on every pull; this synchronises the system between multiple users on state not managed by yadm (such as /etc configuration).
+# The effects of this script should be idempotent and take a system in any state (including an old version of the bootstrapped state) and configure it to the most up-to-date bootstrap state.
 function service() {
     case "$1" in
 	install)
@@ -59,6 +61,10 @@ exists trash-empty && systemctl --user enable --now trash-empty@2.timer
 # pacman hooks
 if exists pacman; then
     root_install ln "$HOME/.yadm/pacman/hooks" "/etc/pacman.d"
+    sudo sed -ibak \
+	-e "s/^#Color$/Color/" \
+	-e "s/^#VerbosePkgLists$/VerbosePkgLists/" \
+	/etc/pacman.conf
 fi
 
 # backlight
