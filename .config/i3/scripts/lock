@@ -8,7 +8,8 @@ export XSECURELOCK_AUTH_FOREGROUND_COLOR="$(xgetres lock.foreground)"
 export XSECURELOCK_AUTH_WARNING_COLOR="$(xgetres lock.color1)"
 export XSECURELOCK_FONT="Ubuntu Mono-18"
 export XSECURELOCK_WALLPAPER_SCRIPT="$HOME/.local/bin/wallpaper"
+export XSECURELOCK_BLUR_SCALE=20
 
-maim -u | convert - -scale 5% -scale 2000% -strip "$XSECURELOCK_WALLPAPER"
+maim -u | convert - -scale $((100 / XSECURELOCK_BLUR_SCALE))% -scale $((100 * XSECURELOCK_BLUR_SCALE))% -strip "$XSECURELOCK_WALLPAPER"
 
 env XSECURELOCK_SAVER_TYPE="$1" xsecurelock &
