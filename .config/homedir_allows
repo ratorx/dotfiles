@@ -1,0 +1,41 @@
+# Allowed
+downloads
+pictures
+projects
+shared
+usb
+
+.cache
+.config
+.local
+.shell
+.yadm
+
+# Grudging Allows
+# Bash
+.bash_history
+.bash_profile
+.bashrc
+# PulseAudio
+.esd_auth
+# GPG
+.gnupg
+# Latex
+.latexmkrc
+# Firefox
+.mozilla
+# NSS
+.pki
+# OpenSSH
+.ssh
+# Xauthority
+.Xauthority
+# ZSH
+.zcompdump
+.zcompdump.zwc
+.zprofile
+.zshenv
+.zshrc
+
+# Other
+.icons
