@@ -75,7 +75,7 @@ fi
 # backlight
 if is_laptop; then
     service install "$HOME/.yadm/backlight/backlight.service"
-    root_install ln "$HOME/.yadm/backlight/backlight" "/usr/bin"
+    root_install cp "$HOME/.yadm/backlight/backlight" "/usr/bin"
     root_install cp "$HOME/.yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
 fi
 
