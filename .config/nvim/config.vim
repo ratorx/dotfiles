@@ -60,7 +60,7 @@ set completeopt-=preview
 set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 let g:LanguageClient_useVirtualText=0
 let g:LanguageClient_serverCommands={}
-let g:LanguageClient_serverCommands.go=['bingo']
+let g:LanguageClient_serverCommands.go=['gopls']
 let g:LanguageClient_serverCommands.python=['pyls']
 let g:LanguageClient_serverCommands.rust=['rustup', 'run', 'stable', 'rls']
 
