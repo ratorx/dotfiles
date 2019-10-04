@@ -18,5 +18,5 @@ paint_image
 trap paint_image SIGUSR1
 
 while true; do
-  sleep 86400
+  sleep inf
 done
