@@ -1,5 +1,5 @@
 [core]
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | less
 [color "diff-highlight"]
     oldNormal = red bold
     oldHighlight = red bold 52
