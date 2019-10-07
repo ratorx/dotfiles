@@ -1,11 +1,8 @@
-" Plugin load
-source ~/.config/nvim/plugins.vim
+" base editor
+source ~/.config/nvim/options.vim
 
-" Key bindings
+" mappings
 source ~/.config/nvim/mappings.vim
 
-" Editor config
-source ~/.config/nvim/editor.vim
-
-" Plugin config
-source ~/.config/nvim/config.vim
+" load plugins
+source ~/.config/nvim/dein.vim

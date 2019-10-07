@@ -56,17 +56,6 @@ function root_install {
 # trash-cli
 exists trash-empty && systemctl --user enable --now trash-empty@2.timer
 
-# neovim plugin manager
-DEIN="$HOME/.local/share/dein"
-if (exists nvim || exists vim) && [ ! -d "$DEIN" ]; then
-    tmp="$(mktemp)"
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > "$tmp"
-    sh "$tmp" "$DEIN"
-    rm "$tmp"
-    exists nvim && nvim "+qall"
-    exists vim && vim "+qall"
-fi
-
 # pacman hooks
 if exists pacman; then
     root_install ln "$HOME/.yadm/pacman/hooks" "/etc/pacman.d"

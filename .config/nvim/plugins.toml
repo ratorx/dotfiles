@@ -1,0 +1,350 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'DeinUpdate'
+
+[[plugins]]
+repo = 'haya14busa/dein-command.vim'
+on_cmd = 'Dein'
+
+# Interface
+[[plugins]]
+repo = 'rakr/vim-one'
+hook_source = '''
+syntax on
+color one
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline={}
+let g:lightline.colorscheme='one'
+let g:lightline.enable={'statusline': 1, 'tabline': 1}
+let g:lightline.component={'lineinfo': '%2l/%2L:%2v'}
+let g:lightline.active={}
+let g:lightline.active.right=[['lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
+let g:lightline.active.left=[['mode', 'paste'], ['readonly', 'relativepath', 'modified']]
+'''
+
+# Fuzzy Finder
+[[plugins]]
+repo = 'junegunn/fzf'
+merged = 0
+lazy = 1
+on_cmd = ['FZF', 'FZF!']
+hook_add = '''
+let g:fzf_action={
+	\'ctrl-t': 'tab split',
+	\'ctrl-j': 'split',
+	\'ctrl-l': 'vsplit'
+\}
+let g:fzf_layout = {'window': '15new'}
+augroup fzf_statuslist
+	au!
+	au FileType fzf set laststatus=0 noruler
+				\| au BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+on_cmd = ['Buffers', 'Files', 'Rg', 'Lines', 'BTags', 'Maps']
+hook_add = '''
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>f :Rg<Space>
+nnoremap <leader>/ :Lines<CR>
+nnoremap <leader>n :BTags<CR>
+'''
+
+# Utils
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = {n = '<Plug>'}
+hook_add = '''
+nmap R <Plug>(operator-replace)
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+on_map = '.'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_map = 'gc'
+
+[[plugins]]
+repo = 'lambdalisue/suda.vim'
+on_event = 'BufRead'
+hook_add = '''
+let g:suda_smart_edit=1
+'''
+
+[[plugins]]
+repo = 'haya14busa/is.vim'
+on_map = '/'
+hook_add = '''
+let g:is#do_default_mappings = 1
+'''
+
+[[plugins]]
+repo = 'matze/vim-move'
+on_map = ['C-h', 'C-j', 'C-k', 'C-l']
+hook_add = '''
+let g:move_key_modifier = 'C'
+'''
+
+# Syntax Highlighting
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+build = './build'
+hook_add = '''
+let g:polyglot_disabled = ['latex']
+'''
+
+# IDE
+[[plugins]]
+repo = 'airblade/vim-rooter'
+hook_add = '''
+let g:rooter_patterns = ['Cargo.toml', '.project_base', '.git/', 'README.md', 'Makefile']
+'''
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+on_cmd = ['TagbarOpen', 'TagbarClose', 'TagbarToggle', 'TagbarOpenAutoClose']
+hook_add = '''
+let g:tagbar_left = 1
+let g:rust_use_custom_ctags_defs = 1
+let g:tagbar_type_rust = {
+  \ 'ctagsbin' : '/usr/bin/ctags',
+  \ 'ctagstype' : 'rust',
+  \ 'kinds' : [
+      \ 'n:modules',
+      \ 's:structures:1',
+      \ 'i:interfaces',
+      \ 'c:implementations',
+      \ 'f:functions:1',
+      \ 'g:enumerations:1',
+      \ 't:type aliases:1:0',
+      \ 'v:constants:1:0',
+      \ 'M:macros:1',
+      \ 'm:fields:1:0',
+      \ 'e:enum variants:1:0',
+      \ 'P:methods:1',
+  \ ],
+  \ 'sro': '::',
+  \ 'kind2scope' : {
+      \ 'n': 'module',
+      \ 's': 'struct',
+      \ 'i': 'interface',
+      \ 'c': 'implementation',
+      \ 'f': 'function',
+      \ 'g': 'enum',
+      \ 't': 'typedef',
+      \ 'v': 'variable',
+      \ 'M': 'macro',
+      \ 'm': 'field',
+      \ 'e': 'enumerator',
+      \ 'P': 'method',
+  \ },
+\ }
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
+
+nnoremap _ :TagbarOpenAutoClose<CR>
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+on_ft = ['rust', 'python', 'go', 'sh', 'tex', 'vim']
+hook_add = '''
+let g:ale_set_loclist=0
+let g:ale_set_quickfix=1
+let g:ale_sign_error='‼'
+let g:ale_sign_warning='!'
+let g:ale_fix_on_save=1
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_save=1
+let g:ale_lint_on_enter=1
+" TODO: Change after ale is fixed
+let g:ale_lint_on_text_changed=1
+
+let g:ale_linters={}
+let g:ale_linters.sh=['shellcheck']
+let g:ale_linters.go=['gopls']
+let g:ale_linters.python=['pyls']
+let g:ale_linters.tex=['chktex']
+let g:ale_linters.rust=['rls']
+let g:ale_linters.vim=['vint']
+
+let g:ale_fixers={}
+let g:ale_fixers.go=['goimports']
+let g:ale_fixers.python=['black', 'isort']
+let g:ale_fixers.rust=['rustfmt']
+
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap g* :ALEFindReferences<CR>
+nnoremap gs :ALESymbolSearch<CR>
+
+nnoremap <F2> :ALERename<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_event = 'InsertEnter'
+depends = ['neco-syntax']
+hook_source = '''
+let g:deoplete#max_list=5
+call deoplete#custom#source('ale', 'filetypes', ['go', 'python', 'rust'])
+call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer'],})
+call deoplete#custom#option('ignore_sources', {'go': ['syntax']})
+call deoplete#custom#option('ignore_sources', {'python': ['syntax']})
+call deoplete#custom#option('ignore_sources', {'rust': ['syntax']})
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~? '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+			\ pumvisible() ? '<C-n>' :
+			\ <SID>check_back_space() ? '<TAB>' :
+			\ deoplete#mappings#manual_complete()
+inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
+
+call deoplete#enable()
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+lazy = 1
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+on_event = 'InsertCharPre'
+depends = ['neosnippet-snippets']
+hook_source = '''
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+lazy = 1
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_source = '''
+call echodoc#enable()
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
+
+[[plugins]]
+repo = 'mhinz/vim-signify'
+hook_add = '''
+let g:signify_sign_show_count=0
+let g:signify_sign_delete='—'
+let g:signify_sign_change='~'
+'''
+
+[[plugins]]
+repo = 'fszymanski/fzf-quickfix'
+depends = 'fzf'
+on_cmd = 'Quickfix'
+
+# Writing
+[[plugins]]
+repo = 'junegunn/goyo.vim'
+on_cmd = 'Goyo'
+hook_source = '''
+function! s:goyo_enter()
+	autocmd! relnum
+	set noautoindent nosmartindent
+	let b:quitting = 0
+	let b:quitting_bang = 0
+	augroup goyo_custom_exit
+		autocmd QuitPre <buffer> let b:quitting = 1
+	augroup END
+	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+	" Quit Vim if this is the only remaining buffer
+	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+		if b:quitting_bang
+			qa!
+		else
+			qa
+		endif
+	endif
+endfunction
+
+augroup goyo_custom
+	autocmd!
+	autocmd User GoyoEnter nested call <SID>goyo_enter()
+	autocmd User GoyoLeave call <SID>goyo_leave()
+augroup END
+'''
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = 'tex'
+hook_add = '''
+let g:vimtex_view_method='zathura'
+let g:vimtex_compiler_method='tectonic'
+let g:vimtex_compiler_progname='nvr'
+
+let g:vimtex_quickfix_latexlog = {
+      \ 'overfull' : 0,
+      \ 'underfull' : 0,
+      \ 'packages' : {
+      \   'default' : 0 }
+      \ }
+'''
