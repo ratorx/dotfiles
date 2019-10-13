@@ -8,17 +8,29 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " buffers
-nnoremap <Tab> :b#<CR>
-nnoremap <A-]> :bnext<CR>
-nnoremap <A-[> :bprev<CR>
+noremap <Tab> :b#<CR>
+noremap <A-]> :bnext<CR>
+noremap <A-[> :bprev<CR>
 
 " splits
-nnoremap <A-h> <C-w><C-h>
-nnoremap <A-j> <C-w><C-j>
-nnoremap <A-k> <C-w><C-k>
-nnoremap <A-l> <C-w><C-l>
+noremap <A-h> <C-w><C-h>
+noremap <A-j> <C-w><C-j>
+noremap <A-k> <C-w><C-k>
+noremap <A-l> <C-w><C-l>
 
-" exit
-nnoremap zz :wqall<CR>
-nnoremap zx :qall!<CR>
+" save & exit
+noremap <leader>w :w<CR>
+noremap zz :wqall<CR>
+noremap zx :qall!<CR>
+
+" more movement
+noremap H ^
+noremap L $
+
+ " copy paste
+nnoremap Y y$
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 
