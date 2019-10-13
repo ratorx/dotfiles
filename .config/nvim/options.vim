@@ -57,4 +57,3 @@ augroup END
 " misc
 set conceallevel=2
 set hidden
-filetype plugin indent on
