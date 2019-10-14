@@ -2,6 +2,7 @@ function is_zsh() { [ -n "$ZSH_NAME" ]; }
 function exists() { command -v "$1" >/dev/null; }
 function path_add() { is_zsh && export path=("$1" $path) || export PATH="$1:$PATH"; }
 
+# Neovim
 if exists nvim; then
     export editor=nvim
     export EDITOR=nvim
@@ -39,7 +40,6 @@ fi
 if exists rustc; then
     export CARGO_HOME="$XDG_DATA_HOME/cargo"
     export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-    export RUST_SRC_PATH="$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     path_add "$CARGO_HOME/bin"
     if exists sccache; then
         RUSTC_WRAPPER=sccache
