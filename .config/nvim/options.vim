@@ -42,11 +42,11 @@ augroup notermnum
 augroup END
 
 " persistent undo
-let s:undodir=$XDG_CACHE_HOME.'/nvim'
+let s:undodir=$XDG_CACHE_HOME . '/nvim'
 if !isdirectory(s:undodir)
 	call mkdir(s:undodir, 'p', '0700')
 endif
-exe 'set undodir='.s:undodir.' undofile'
+exe 'set undodir=' . s:undodir . ' undofile'
 
 " fix cursor when leaving Vim
 augroup cursorfix
