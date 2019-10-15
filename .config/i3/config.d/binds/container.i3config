@@ -86,4 +86,4 @@ bindsym $mod+Shift+f exec --no-startup-id $scripts/floating $border
 bindsym $mod+Shift+m sticky toggle
 bindsym $mod+m fullscreen toggle
 
-bindsym $mod+Shift+q exec --no-startup-id $scripts/kill
+bindsym $mod+Shift+q kill
