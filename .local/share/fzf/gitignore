@@ -1,30 +1,59 @@
-# VCS
-.git/
-
-# Project Files
-.idea/
-
-# Build Files
+# python
 __pycache__/
 bin/
-!.local/bin
-build/
-cmake-build-debug/
-obj/
-target/
-
-# Vendored Dependencies
-node_modules/
+include/
+lib/
+lib64
+# go
 vendor/
-
-# System Files
-Downloads/
-.cache/
-.archive/
-.local/share/
-!.local/share/albert
+# rust
+target/
+# node.js
+node_modules/
+# cmake
+cmake-build-debug/
+CMakeFiles/
+# c/c++
+obj/
+# git
+.git/
+# jetbrains
+.idea/
+# yadm
+.yadm/repo.git/
+# dropbox
 .dropbox/
 .dropbox-dist/
+# gpg
 .gnupg/
+# meson
+build/
+# nss
 .pki/
+# firefox
+.mozilla/
+# libreoffice
+.config/libreoffice/
+# google-chrome
+.config/google-chrome/
+# syncthing
+.stfolder/
+.config/syncthing/index*
+# spotify
+.config/spotify/
+# simplenote
+.config/Simplenote/
+# copyq
+.config/copyq/
 
+# system
+downloads/
+!.local/bin
+.archive/
+.local/share/*
+!.local/share/albert/
+.cache/
+
+# user
+shared/apps/*/*
+projects/public/*/*
