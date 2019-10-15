@@ -225,6 +225,15 @@ if exists lpass && exists fzf; then
 	}
 fi
 
+# FZF
+if exists fzf; then
+	# shellcheck disable=SC2016
+	exists rg && export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-file $XDG_DATA_HOME/fzf/gitignore 2>/dev/null'
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+	# shellcheck disable=SC2016
+	exists fd && export FZF_ALT_C_COMMAND='fd --type d --follow --no-ignore-vcs --hidden --ignore-file $XDG_DATA_HOME/fzf/gitignore 2>/dev/null'
+fi
+
 # GPG
 # shellcheck disable=SC2155
 if exists gpg; then
