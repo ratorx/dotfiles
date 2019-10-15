@@ -112,34 +112,40 @@ if exists nvim; then
 fi
 
 # Package Manager
+PKGLIST='cat <(pacman -Qqe) <(pacman -Qqdtt)'
 if exists pacman; then
 	function pkgdiff() {
-		flags="-Qqe"
-		hostnames=()
-
+		local -a hostnames
 		for var in "$@"; do
-			case "$var" in
-				(-*) flags="$var" ;;
-				(*) hostnames+=("$var") ;;
-			esac
+			hostnames+=("$var")
 		done
 
 		if [[ ${#hostnames[@]} -eq 1 ]]; then
 			# shellcheck disable=SC2029
-			icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman "$flags") <(ssh "${hostnames[1]}" "pacman $flags")
+			icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(eval "$PKGLIST") <(ssh "${hostnames[1]}" "$PKGLIST")
 		elif [[ ${#hostnames[@]} -eq 2 ]]; then
 			# shellcheck disable=SC2029
-			icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
+			icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "$PKGLIST") <(ssh "${hostnames[2]}" "$PKGLIST")
 		else
-			echo "usage: pkgdiff [flags] <host 1> [host 2]"
+			echo "usage: pkgdiff <host 1> [host 2]"
 			return 1
 		fi
 	}
+
+	function pkgs() {
+		local pkglist
+		pkglist="$PKGLIST"
+
+		case "$1" in
+			explicit) pkglist="pacman -Qqe" ;;
+			optional) pkglist="pacman -Qqdtt" ;;
+		esac
+		comm -13 <(pacman -Qgq base-devel | sort -u) <(eval "$pkglist" | grep -v ^base$ | sort -u) | column
+	}
+
 	function binaries() { pacman -Qql "$@" | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p'; }
 	# shellcheck disable=SC2046
 	function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$@") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"; }
-
-	function pkgs() { comm -13 <(pacman -Qgq base-devel | sort -u) <(pacman "${1:--Qqe}" | grep -v ^base$ | sort -u) | column; }
 fi
 
 # Chrome
