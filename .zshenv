@@ -2,6 +2,14 @@ function is_zsh() { [ -n "$ZSH_NAME" ]; }
 function exists() { command -v "$1" >/dev/null; }
 function path_add() { is_zsh && export path=("$1" $path) || export PATH="$1:$PATH"; }
 
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=1
+export QT_QPA_PLATFORMTHEME=gtk2
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
 # Neovim
 if exists nvim; then
 	export editor=nvim
@@ -11,17 +19,15 @@ else
 	export EDITOR=vi
 fi
 
-export LESSHISTFILE=/dev/null
-export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2"
-export SYSTEMD_LESS="$LESS"
+# Less
+if exists less; then
+	export LESSHISTFILE=/dev/null
+	export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2"
+	export SYSTEMD_LESS="$LESS"
+fi
 
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_SCALE_FACTOR=1
-export QT_QPA_PLATFORMTHEME=gtk2
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
+# FZF
+exists fzf && export FZF_DEFAULT_OPTS="--tabstop=2"
 
 # GTK 2
 exists gtk-demo && export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
