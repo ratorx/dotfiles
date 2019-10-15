@@ -12,7 +12,7 @@ else
 fi
 
 export LESSHISTFILE=/dev/null
-export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=4"
+export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2"
 export SYSTEMD_LESS="$LESS"
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
