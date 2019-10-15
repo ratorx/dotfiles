@@ -4,11 +4,11 @@ function path_add() { is_zsh && export path=("$1" $path) || export PATH="$1:$PAT
 
 # Neovim
 if exists nvim; then
-    export editor=nvim
-    export EDITOR=nvim
+	export editor=nvim
+	export EDITOR=nvim
 else
-    export editor=vi
-    export EDITOR=vi
+	export editor=vi
+	export EDITOR=vi
 fi
 
 export LESSHISTFILE=/dev/null
@@ -31,19 +31,19 @@ exists pass && export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
 # Go
 if exists go; then
-    export GOPATH="$XDG_DATA_HOME/go"
-    export GOBIN="$GOPATH/bin"
-    path_add "$GOBIN"
+	export GOPATH="$XDG_DATA_HOME/go"
+	export GOBIN="$GOPATH/bin"
+	path_add "$GOBIN"
 fi
 
 # Rust
 if exists rustc; then
-    export CARGO_HOME="$XDG_DATA_HOME/cargo"
-    export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-    path_add "$CARGO_HOME/bin"
-    if exists sccache; then
-        RUSTC_WRAPPER=sccache
-    fi
+	export CARGO_HOME="$XDG_DATA_HOME/cargo"
+	export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+	path_add "$CARGO_HOME/bin"
+	if exists sccache; then
+		RUSTC_WRAPPER=sccache
+	fi
 fi
 
 # Android
@@ -62,13 +62,13 @@ exists elinks && export ELINKS_CONFDIR="$XDG_CONFIG_HOME/elinks"
 exists pylint && export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 
 if [ -f /usr/lib/modprobe.d/nvidia.conf ]; then # Nvidia
-    export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nvidia"
-    export LIBVA_DRIVER_NAME=vdpau
-    export VDPAU_DRIVER=nvidia
-    export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+	export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nvidia"
+	export LIBVA_DRIVER_NAME=vdpau
+	export VDPAU_DRIVER=nvidia
+	export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 else # Intel
-    export LIBVA_DRIVER_NAME=iHD
-    export VDPAU_DRIVER=va_gl
+	export LIBVA_DRIVER_NAME=iHD
+	export VDPAU_DRIVER=va_gl
 fi
 
 # GPG

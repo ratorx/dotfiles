@@ -10,3 +10,5 @@ Target = nvidia-lts
 Depends = mkinitcpio
 When = PostTransaction
 Exec = /usr/bin/mkinitcpio -P
+
+# vim: ft=cfg

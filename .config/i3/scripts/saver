@@ -1,16 +1,14 @@
 #! /bin/bash
 function paint_image() {
-  xloadimage -windowid "$(printf "0x%x" "$XSCREENSAVER_WINDOW")" "$XSECURELOCK_WALLPAPER"
+	xloadimage -windowid "$(printf "0x%x" "$XSCREENSAVER_WINDOW")" "$XSECURELOCK_WALLPAPER"
 }
 
 case "$XSECURELOCK_SAVER_TYPE" in
-  wallpaper)
-    $XSECURELOCK_WALLPAPER_SCRIPT export
-    XSECURELOCK_WALLPAPER="$(cat "$HOME/.config/wallpaper")"
-    $XSECURELOCK_WALLPAPER_SCRIPT set "$XSECURELOCK_WALLPAPER"
-    ;;
-  *)
-    ;;
+	wallpaper)
+		$XSECURELOCK_WALLPAPER_SCRIPT export
+		XSECURELOCK_WALLPAPER="$(cat "$HOME/.config/wallpaper")"
+		$XSECURELOCK_WALLPAPER_SCRIPT set "$XSECURELOCK_WALLPAPER"
+		;;
 esac
 
 paint_image
@@ -18,5 +16,5 @@ paint_image
 trap paint_image SIGUSR1
 
 while true; do
-  sleep inf
+	sleep inf
 done

@@ -1,89 +1,89 @@
 [user]
-    email = reetobratachatterjee@gmail.com
-    name = Reeto Chatterjee
+	email = reetobratachatterjee@gmail.com
+	name = Reeto Chatterjee
 [core]
-    excludesfile = ~/.local/share/git/gitignore_global
-    autocrlf = input
-    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	excludesfile = ~/.local/share/git/gitignore_global
+	autocrlf = input
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [apply]
-    whitespace = fix
+	whitespace = fix
 [rebase]
-    autostash = true
+	autostash = true
 [pull]
-    rebase = true
+	rebase = true
 [color]
-    ui = true
+	ui = true
 [color "diff"]
-    meta = yellow
-    frag = magenta bold
-    commit = yellow bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [alias]
-    # add
-    a = add
-    aa = add .
-    ap = add --patch
-    # checkout
-    co = checkout
-    cop = checkout --patch
-    # clone
-    cl = clone
-    clr = clone --recursive
-    su = submodule update
-    # commit
-    c = commit
-    ca = commit --all
-    cm = commit --message
-    cam = commit --all --message
-    amd = commit --amend --no-edit
-    # diff
-    df = diff
-    dfs = diff --staged
-    # log
-    lg = !~/.local/share/git/log
-    lgs = log --oneline --decorate --no-merges --max-count=20
-    # pull
-    pl = pull
-    plf = pull --force
-    # push
-    ps = push
-    psf = push --force
-    # rebase
-    rb = rebase
-    rbi = rebase --interactive
-    fx = rebase --autosquash --interactive
-    # reset
-    rs = reset
-    rsh = reset --hard
-    # stash
-    sts = stash save
-    stp = stash pop
-    std = stash drop
-    stl = stash list
-    # status
-    s = status --short
-    st = status
-    # other
-    b = branch
-    f = fetch
-    i = init
-    mg = merge
-    root = !pwd
+	# add
+	a = add
+	aa = add .
+	ap = add --patch
+	# checkout
+	co = checkout
+	cop = checkout --patch
+	# clone
+	cl = clone
+	clr = clone --recursive
+	su = submodule update
+	# commit
+	c = commit
+	ca = commit --all
+	cm = commit --message
+	cam = commit --all --message
+	amd = commit --amend --no-edit
+	# diff
+	df = diff
+	dfs = diff --staged
+	# log
+	lg = !~/.local/share/git/log
+	lgs = log --oneline --decorate --no-merges --max-count=20
+	# pull
+	pl = pull
+	plf = pull --force
+	# push
+	ps = push
+	psf = push --force
+	# rebase
+	rb = rebase
+	rbi = rebase --interactive
+	fx = rebase --autosquash --interactive
+	# reset
+	rs = reset
+	rsh = reset --hard
+	# stash
+	sts = stash save
+	stp = stash pop
+	std = stash drop
+	stl = stash list
+	# status
+	s = status --short
+	st = status
+	# other
+	b = branch
+	f = fetch
+	i = init
+	mg = merge
+	root = !pwd
 [url "git@github.com:"]
-    insteadOf = gh:
-    pushInsteadOf = gh:
+	insteadOf = gh:
+	pushInsteadOf = gh:
 [url "git@github.com:ratorx/dotfiles"]
-    insteadOf = dots:
-    pushInsteadOf = dots:
+	insteadOf = dots:
+	pushInsteadOf = dots:
 [url "git@bitbucket.org:"]
-    insteadOf = bb:
-    pushInsteadOf = bb:
+	insteadOf = bb:
+	pushInsteadOf = bb:
 [include]
-    path = diff.inc
+	path = diff.inc

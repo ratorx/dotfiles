@@ -1,8 +1,8 @@
 #! /bin/bash
 
 case "$2" in
-    vpn-up) polybar-msg hook vpn 1 ;;
-    vpn-down) polybar-msg hook vpn 2 ;;
+	vpn-up) polybar-msg hook vpn 1 ;;
+	vpn-down) polybar-msg hook vpn 2 ;;
 esac
 
 

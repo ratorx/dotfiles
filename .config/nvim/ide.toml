@@ -11,65 +11,65 @@ hook_add = '''
 let g:tagbar_left = 1
 let g:rust_use_custom_ctags_defs = 1
 let g:tagbar_type_rust = {
-  \ 'ctagsbin' : '/usr/bin/ctags',
-  \ 'ctagstype' : 'rust',
-  \ 'kinds' : [
-      \ 'n:modules',
-      \ 's:structures:1',
-      \ 'i:interfaces',
-      \ 'c:implementations',
-      \ 'f:functions:1',
-      \ 'g:enumerations:1',
-      \ 't:type aliases:1:0',
-      \ 'v:constants:1:0',
-      \ 'M:macros:1',
-      \ 'm:fields:1:0',
-      \ 'e:enum variants:1:0',
-      \ 'P:methods:1',
-  \ ],
-  \ 'sro': '::',
-  \ 'kind2scope' : {
-      \ 'n': 'module',
-      \ 's': 'struct',
-      \ 'i': 'interface',
-      \ 'c': 'implementation',
-      \ 'f': 'function',
-      \ 'g': 'enum',
-      \ 't': 'typedef',
-      \ 'v': 'variable',
-      \ 'M': 'macro',
-      \ 'm': 'field',
-      \ 'e': 'enumerator',
-      \ 'P': 'method',
-  \ },
-\ }
+			\ 'ctagsbin' : '/usr/bin/ctags',
+			\ 'ctagstype' : 'rust',
+			\ 'kinds' : [
+			\ 'n:modules',
+			\ 's:structures:1',
+			\ 'i:interfaces',
+			\ 'c:implementations',
+			\ 'f:functions:1',
+			\ 'g:enumerations:1',
+			\ 't:type aliases:1:0',
+			\ 'v:constants:1:0',
+			\ 'M:macros:1',
+			\ 'm:fields:1:0',
+			\ 'e:enum variants:1:0',
+			\ 'P:methods:1',
+			\ ],
+			\ 'sro': '::',
+			\ 'kind2scope' : {
+			\ 'n': 'module',
+			\ 's': 'struct',
+			\ 'i': 'interface',
+			\ 'c': 'implementation',
+			\ 'f': 'function',
+			\ 'g': 'enum',
+			\ 't': 'typedef',
+			\ 'v': 'variable',
+			\ 'M': 'macro',
+			\ 'm': 'field',
+			\ 'e': 'enumerator',
+			\ 'P': 'method',
+			\ },
+			\ }
 let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-\ }
+			\ 'ctagstype' : 'go',
+			\ 'kinds'			: [
+			\ 'p:package',
+			\ 'i:imports:1',
+			\ 'c:constants',
+			\ 'v:variables',
+			\ 't:types',
+			\ 'n:interfaces',
+			\ 'w:fields',
+			\ 'e:embedded',
+			\ 'm:methods',
+			\ 'r:constructor',
+			\ 'f:functions'
+			\ ],
+			\ 'sro' : '.',
+			\ 'kind2scope' : {
+			\ 't' : 'ctype',
+			\ 'n' : 'ntype'
+			\ },
+			\ 'scope2kind' : {
+			\ 'ctype' : 't',
+			\ 'ntype' : 'n'
+			\ },
+			\ 'ctagsbin'  : 'gotags',
+			\ 'ctagsargs' : '-sort -silent'
+			\ }
 
 nnoremap _ :TagbarOpenAutoClose<CR>
 '''
@@ -123,13 +123,13 @@ call deoplete#custom#option('ignore_sources', {'rust': ['syntax']})
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~? '\s'
+	return !col || getline('.')[col - 1] =~? '\s'
 endfunction
 inoremap <silent><expr> <TAB>
 			\ pumvisible() ? '<C-n>' :
 			\ <SID>check_back_space() ? '<TAB>' :
 			\ deoplete#mappings#manual_complete()
-inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
+inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
 
 call deoplete#enable()
 '''
@@ -226,9 +226,8 @@ let g:vimtex_compiler_method='tectonic'
 let g:vimtex_compiler_progname='nvr'
 
 let g:vimtex_quickfix_latexlog = {
-      \ 'overfull' : 0,
-      \ 'underfull' : 0,
-      \ 'packages' : {
-      \   'default' : 0 }
-      \ }
+			\ 'overfull' : 0,
+			\ 'underfull' : 0,
+			\ 'packages' : {'default' : 0}
+			\ }
 '''

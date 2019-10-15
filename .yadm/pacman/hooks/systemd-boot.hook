@@ -7,3 +7,5 @@ Target = systemd
 Description = Updating systemd-boot
 When = PostTransaction
 Exec = /usr/bin/bootctl update
+
+# vim: ft=cfg

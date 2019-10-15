@@ -14,7 +14,7 @@ export DEVICE="$("$POLYBAR_SCRIPTS/device")"
 MONITORS=${MONITORS:-$(xrandr | awk '/ connected/ { print $1 }')}
 declare -A monitors
 for i in $MONITORS; do 
-    monitors[$i]="MONITOR='$i' polybar top &" 
+	monitors[$i]="MONITOR='$i' polybar top &" 
 done
 
 primary="$(xrandr | awk '/connected primary/ {print $1}')"
@@ -27,8 +27,8 @@ eval "TRAY_POSITION=right TRAY_MARGIN=2 ${monitors[$primary]}"
 
 # Start on other monitors
 for i in "${!monitors[@]}"; do
-    if [ "$i" = "$primary" ]; then
-        continue
-    fi
-    eval "${monitors[$i]}"
+	if [ "$i" = "$primary" ]; then
+		continue
+	fi
+	eval "${monitors[$i]}"
 done

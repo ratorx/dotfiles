@@ -3,38 +3,38 @@ function exists() { command -v "$1" >/dev/null; }
 
 # Bootstrap functions
 if ! exists yadm; then
-  function yadm() {
-    if ! exists git; then
-      echo "Install git"
-      return 1
-    fi
-    local yadm
-    yadm="$HOME/.local/bin/yadm"
-    mkdir -p "$(dirname "$yadm")"
-    curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
-    chmod +x "$yadm"
-    unset -f yadm
-  }
+	function yadm() {
+		if ! exists git; then
+			echo "Install git"
+			return 1
+		fi
+		local yadm
+		yadm="$HOME/.local/bin/yadm"
+		mkdir -p "$(dirname "$yadm")"
+		curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
+		chmod +x "$yadm"
+		unset -f yadm
+	}
 fi
 
 function yadm_setup() {
-    local authkeys
-    if [ -f "$HOME/.ssh/authorized_keys" ]; then
-      authkeys="$(cat "$HOME/.ssh/authorized_keys")"
-    fi
+	local authkeys
+	if [ -f "$HOME/.ssh/authorized_keys" ]; then
+		authkeys="$(cat "$HOME/.ssh/authorized_keys")"
+	fi
 
-    yadm clone "https://dots.ree.to/repo"
+	yadm clone "https://dots.ree.to/repo"
 
-    [[ -n "$authkeys" ]] && echo "$authkeys" >> "$HOME/.ssh/authorized_keys"
+	[[ -n "$authkeys" ]] && echo "$authkeys" >> "$HOME/.ssh/authorized_keys"
 }
 
 # Bookmarks
 typeset -A bookmarks
 function j() { cd "${bookmarks[$1]}" || return; }
 if is_zsh; then
-  # shellcheck disable=SC2154
-  function _j() { _arguments "1:bookmark:(${(k)bookmarks})"; } 
-  compdef _j j
+	# shellcheck disable=SC2154
+	function _j() { _arguments "1:bookmark:(${(k)bookmarks})"; }
+	compdef _j j
 fi
 
 bookmarks[uni]="$HOME/projects/cambridge/ii"
@@ -49,49 +49,49 @@ exists git && [ -f "$HOME/.config/git/diff.inc" ] && ! exists diff-so-fancy && r
 
 # AWS
 if exists aws; then
-  # shellcheck disable=SC2015,SC1091
-  is_zsh && source /usr/bin/aws_zsh_completer.sh || source /usr/bin/aws_completer
+	# shellcheck disable=SC2015,SC1091
+	is_zsh && source /usr/bin/aws_zsh_completer.sh || source /usr/bin/aws_completer
 fi
 
 if exists gcloud && is_zsh; then
-  source /opt/google-cloud-sdk/path.zsh.inc
-  source /opt/google-cloud-sdk/completion.zsh.inc
+	source /opt/google-cloud-sdk/path.zsh.inc
+	source /opt/google-cloud-sdk/completion.zsh.inc
 fi
 
 # Config function
 typeset -A config
 function cfg() {
-  local old
-  old="$(pwd)"
-  cd "$HOME" || exit
-  eval "$EDITOR" "${config[$1]}"
-  cd "$old" || exit
+	local old
+	old="$(pwd)"
+	cd "$HOME" || exit
+	eval "$EDITOR" "${config[$1]}"
+	cd "$old" || exit
 }
 if is_zsh; then
-  # shellcheck disable=SC2154
-  function _cfg() { _arguments "1:module:(${(k)config})"; }
-  compdef _cfg cfg
+	# shellcheck disable=SC2154
+	function _cfg() { _arguments "1:module:(${(k)config})"; }
+	compdef _cfg cfg
 fi
 
 # Systemd
 systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload)
 
 if is_zsh; then
-  function sc() {
-    if [ "$#" -ne 0 ] && [ "${systemd_sudo_commands[(r)$1]}" == "$1" ]; then
-      sudo systemctl "$@"
-    else
-      systemctl "$@"
-    fi
-  }
+	function sc() {
+		if [ "$#" -ne 0 ] && [ "${systemd_sudo_commands[(r)$1]}" == "$1" ]; then
+			sudo systemctl "$@"
+		else
+			systemctl "$@"
+		fi
+	}
 else
-  function sc() {
-    if [ "$#" -ne 0 ] && [[ " ${systemd_sudo_commands[*]} " = *" $1 "* ]]; then
-      sudo systemctl "$@"
-    else
-      systemctl "$@"
-    fi
-  }
+	function sc() {
+		if [ "$#" -ne 0 ] && [[ " ${systemd_sudo_commands[*]} " = *" $1 "* ]]; then
+			sudo systemctl "$@"
+		else
+			systemctl "$@"
+		fi
+	}
 fi
 is_zsh && compdef sc=systemctl
 alias scu="systemctl --user"
@@ -106,40 +106,40 @@ config[git]="$HOME/.config/git/*"
 # Editor
 alias vi='$EDITOR'
 if exists nvim; then
-  alias todo="nvim +Goyo ~/shared/TODO.md"
-  function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"; }
-  config[nvim]="$HOME/.config/nvim/*.{vim,toml}"
+	alias todo="nvim +Goyo ~/shared/TODO.md"
+	function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"; }
+	config[nvim]="$HOME/.config/nvim/*.{vim,toml}"
 fi
 
 # Package Manager
 if exists pacman; then
-  function pkgdiff() {
-    flags="-Qqe"
-    hostnames=()
+	function pkgdiff() {
+		flags="-Qqe"
+		hostnames=()
 
-    for var in "$@"; do
-      case "$var" in
-        (-*) flags="$var" ;;
-        (*) hostnames+=("$var") ;;
-      esac
-    done
+		for var in "$@"; do
+			case "$var" in
+				(-*) flags="$var" ;;
+				(*) hostnames+=("$var") ;;
+			esac
+		done
 
-    if [[ ${#hostnames[@]} -eq 1 ]]; then
-      # shellcheck disable=SC2029
-      icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman "$flags") <(ssh "${hostnames[1]}" "pacman $flags")
-    elif [[ ${#hostnames[@]} -eq 2 ]]; then
-      # shellcheck disable=SC2029
-      icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
-    else
-      echo "usage: pkgdiff [flags] <host 1> [host 2]"
-      return 1
-    fi
-  }
-  function binaries() { pacman -Qql "$@" | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p'; }
-  # shellcheck disable=SC2046
-  function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$@") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"; }
+		if [[ ${#hostnames[@]} -eq 1 ]]; then
+			# shellcheck disable=SC2029
+			icdiff -U 0 -L "$(hostname)" -L "${hostnames[1]}"  <(pacman "$flags") <(ssh "${hostnames[1]}" "pacman $flags")
+		elif [[ ${#hostnames[@]} -eq 2 ]]; then
+			# shellcheck disable=SC2029
+			icdiff -U 0 -L "${hostnames[1]}" -L "${hostnames[2]}"  <(ssh "${hostnames[1]}" "pacman $flags") <(ssh "${hostnames[2]}" "pacman $flags")
+		else
+			echo "usage: pkgdiff [flags] <host 1> [host 2]"
+			return 1
+		fi
+	}
+	function binaries() { pacman -Qql "$@" | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p'; }
+	# shellcheck disable=SC2046
+	function pkgsize() { pacman --config /dev/null -Rdd --print-format '%s' $(pactree -u "$@") | awk '{size+=$1} END { print size }' | numfmt --round=nearest --to=iec-i --suffix=B --format="%.1f"; }
 
-  function pkgs() { comm -13 <(pacman -Qgq base-devel | sort -u) <(pacman "${1:--Qqe}" | grep -v ^base$ | sort -u) | column; }
+	function pkgs() { comm -13 <(pacman -Qgq base-devel | sort -u) <(pacman "${1:--Qqe}" | grep -v ^base$ | sort -u) | column; }
 fi
 
 # Chrome
@@ -150,12 +150,12 @@ exists irssi && alias irssi='irssi --config=$XDG_CONFIG_HOME/irssi/config --home
 
 # File listing
 if exists exa; then
-  alias ls="exa -xF"
-  alias lt="ls -T --group-directories-first"
-  alias ll="exa -lF --git"
+	alias ls="exa -xF"
+	alias lt="ls -T --group-directories-first"
+	alias ll="exa -lF --git"
 else
-  alias ls="ls -xF"
-  alias ll="\\ls -lF"
+	alias ls="ls -xF"
+	alias ll="\\ls -lF"
 fi
 
 alias la="ls -a"
@@ -190,44 +190,44 @@ alias check_homedir="fd -H --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS >> $HOMEDI
 
 # Python
 if exists bpython; then
-  function python() {
-    if [ "$#" -eq 0 ]; then
-      bpython
-    else
-      /usr/bin/python "$@"
-    fi
-  }
+	function python() {
+		if [ "$#" -eq 0 ]; then
+			bpython
+		else
+			/usr/bin/python "$@"
+		fi
+	}
 fi
 
 # SSH public key
 function pub() {
-  ssh-add -L | sed -n "0,/(none)/s//$USER@$HOST/p"
+	ssh-add -L | sed -n "0,/(none)/s//$USER@$HOST/p"
 }
 
 # Clipboard
 if exists xclip; then
-  function c() { tr -d '\n' | xclip -sel clip; }
-  function copy() { c < "$1"; }
-  alias v="xclip -o -sel clip"
-  alias cpub="pub | tee >(c)"
+	function c() { tr -d '\n' | xclip -sel clip; }
+	function copy() { c < "$1"; }
+	alias v="xclip -o -sel clip"
+	alias cpub="pub | tee >(c)"
 fi
 
 # Lastpass
 if exists lpass && exists fzf; then
-  function cpass() {
-    lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
-  }
+	function cpass() {
+		lpass show -xjG "" | jq -r '.[] | "\(.name) (\(.username)) \(.password)"' | fzf --exit-0 --with-nth "..-2" | awk '{print $NF}' | c
+	}
 fi
 
 # GPG
 # shellcheck disable=SC2155
 if exists gpg; then
-  export GPG_TTY="$(tty)"
-  gpg-connect-agent updatestartuptty /bye >/dev/null
+	export GPG_TTY="$(tty)"
+	gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
 # IP
-alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF  }'"
+alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF	}'"
 alias privip="hostname -i"
 
 # Config files
@@ -250,4 +250,4 @@ config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile"
 
 unset -f exists
 unset -f is_zsh
-# vim: set ft=sh:sw=2:
+# vim: set ft=sh:

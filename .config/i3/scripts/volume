@@ -5,19 +5,19 @@ NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( SINK + 1 )) |
 MUTE=$( pacmd list-sinks | awk '/muted/ {print $2}' )
 
 case $1 in
-    up|down) { [[ "$MUTE" = "yes" ]] || [[ -z "$2" ]]; } && exit ;;
+	up|down) { [[ "$MUTE" = "yes" ]] || [[ -z "$2" ]]; } && exit ;;
 esac
 
 case $1 in
-    up)
-        if (( NOW + $2 <= 100 )); then
-            pactl set-sink-volume "$SINK" "+$2%"
-        else
-            pactl set-sink-volume "$SINK" "100%"
-        fi
-        ;;
-    down) pactl set-sink-volume "$SINK" "-$2%" ;;
-    mute) pactl set-sink-mute "$SINK" toggle ;;
-    mic-mute) pactl set-source-mute "$SOURCE" toggle ;;
-    *) echo "$SINK" "$NOW";;
+	up)
+		if (( NOW + $2 <= 100 )); then
+			pactl set-sink-volume "$SINK" "+$2%"
+		else
+			pactl set-sink-volume "$SINK" "100%"
+		fi
+		;;
+	down) pactl set-sink-volume "$SINK" "-$2%" ;;
+	mute) pactl set-sink-mute "$SINK" toggle ;;
+	mic-mute) pactl set-source-mute "$SOURCE" toggle ;;
+	*) echo "$SINK" "$NOW";;
 esac

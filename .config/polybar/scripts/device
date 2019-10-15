@@ -2,17 +2,17 @@
 
 laptop=false
 for filename in /sys/class/power_supply/*/type; do
-    if [ "$(cat "$filename")" = "Battery" ]; then
-        laptop=true
-        break
-    fi
+	if [ "$(cat "$filename")" = "Battery" ]; then
+		laptop=true
+		break
+	fi
 done
 
 case $laptop in
-    true) echo -n "" ;;
-    *) echo -n "" ;;
+	true) echo -n "" ;;
+	*) echo -n "" ;;
 esac
 
 case $1 in
-    long) echo -n "  $(hostname)" ;;
+	long) echo -n "  $(hostname)" ;;
 esac

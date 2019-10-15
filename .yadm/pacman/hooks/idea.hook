@@ -10,3 +10,5 @@ When = PostTransaction
 Depends = sed
 Depends = bash
 Exec = /bin/bash -c "/etc/pacman.d/hooks/jetbrains intellij-idea-ce"
+
+# vim: ft=cfg

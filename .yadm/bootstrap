@@ -2,57 +2,57 @@
 # This script is run on every pull; this synchronises the system between multiple users on state not managed by yadm (such as /etc configuration).
 # The effects of this script should be idempotent and take a system in any state (including an old version of the bootstrapped state) and configure it to the most up-to-date bootstrap state.
 function service() {
-    case "$1" in
-	install)
-	    # ownership transfer to prevent hijack
-	    [ ! -f "/etc/systemd/system/$(basename "$2")" ] && sudo chown -R root:root "$2" && sudo -s ln -s "$2" /etc/systemd/system
-	    sudo systemctl enable "$(basename "$2")"
-	    ;;
-	uninstall)
-	    sudo systemctl disable "$2"
-	    [ -f "/etc/systemd/system/$2" ] && sudo rm "/etc/systemd/system/$2"
-	    ;;
-    esac
+	case "$1" in
+		install)
+			# ownership transfer to prevent hijack
+			[ ! -f "/etc/systemd/system/$(basename "$2")" ] && sudo chown -R root:root "$2" && sudo -s ln -s "$2" /etc/systemd/system
+			sudo systemctl enable "$(basename "$2")"
+			;;
+		uninstall)
+			sudo systemctl disable "$2"
+			[ -f "/etc/systemd/system/$2" ] && sudo rm "/etc/systemd/system/$2"
+			;;
+	esac
 }
 
 function exists() {
-    command -v "$1" >/dev/null 2>&1
+	command -v "$1" >/dev/null 2>&1
 }
 
 function is_laptop() {
-    # Directory does not exist or is empty
-    [ ! -d /sys/class/power_supply ] && return 1;
-    [ -z "$(ls -A /sys/class/power_supply)" ] && return 1;
-    for filename in /sys/class/power_supply/*/type; do
-        [ "$(cat "$filename")" = "Battery" ] && return 0
-    done
-    return 1
+	# Directory does not exist or is empty
+	[ ! -d /sys/class/power_supply ] && return 1;
+	[ -z "$(ls -A /sys/class/power_supply)" ] && return 1;
+	for filename in /sys/class/power_supply/*/type; do
+		[ "$(cat "$filename")" = "Battery" ] && return 0
+	done
+	return 1
 }
 
 function msg() {
-    echo -e "\n\t" "$@" "\n"
+	echo -e "\n\t" "$@" "\n"
 }
 
 function root_install {
-    sudo -s mkdir -p "$3"
-    local dest_file
-    dest_file="$3/$(basename "$2")"
-    if [ -f "$dest_file" ] || [ -h "$dest_file" ]; then
-	sudo rm "$dest_file"
-    elif [ -e "$dest_file" ]; then
-	# Don't handle directory to minimise damage if script is called incorrectly
-	echo "Directory or special file at $dest_file: delete before bootstrap"
-	exit 1
-    fi
-    echo "$@"
-    case "$1" in
-	cp) sudo -s cp "$2" "$3" ;;
-	ln)
-	    # ownership transfer to prevent hijack
-	    sudo chown -R root:root "$2"
-	    sudo -s ln -s "$2" "$3"
-	    ;;
-    esac
+	sudo -s mkdir -p "$3"
+	local dest_file
+	dest_file="$3/$(basename "$2")"
+	if [ -f "$dest_file" ] || [ -h "$dest_file" ]; then
+		sudo rm "$dest_file"
+	elif [ -e "$dest_file" ]; then
+		# Don't handle directory to minimise damage if script is called incorrectly
+		echo "Directory or special file at $dest_file: delete before bootstrap"
+		exit 1
+	fi
+	echo "$@"
+	case "$1" in
+		cp) sudo -s cp "$2" "$3" ;;
+		ln)
+			# ownership transfer to prevent hijack
+			sudo chown -R root:root "$2"
+			sudo -s ln -s "$2" "$3"
+			;;
+	esac
 }
 
 # trash-cli
@@ -60,18 +60,18 @@ exists trash-empty && systemctl --user enable --now trash-empty@2.timer
 
 # pacman hooks
 if exists pacman; then
-    root_install ln "$HOME/.yadm/pacman/hooks" "/etc/pacman.d"
-    sudo sed -ibak \
-	-e "s/^#Color$/Color/" \
-	-e "s/^#VerbosePkgLists$/VerbosePkgLists/" \
-	/etc/pacman.conf
+	root_install ln "$HOME/.yadm/pacman/hooks" "/etc/pacman.d"
+	sudo sed -ibak \
+		-e "s/^#Color$/Color/" \
+		-e "s/^#VerbosePkgLists$/VerbosePkgLists/" \
+		/etc/pacman.conf
 fi
 
 # backlight
 if is_laptop; then
-    service install "$HOME/.yadm/backlight/backlight.service"
-    root_install cp "$HOME/.yadm/backlight/backlight" "/usr/bin"
-    root_install cp "$HOME/.yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
+	service install "$HOME/.yadm/backlight/backlight.service"
+	root_install cp "$HOME/.yadm/backlight/backlight" "/usr/bin"
+	root_install cp "$HOME/.yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
 fi
 
 # polybar vpn hook
@@ -79,26 +79,26 @@ exists polybar && exists nmcli && root_install cp "$HOME/.config/polybar/scripts
 
 # gui setup
 if exists startx; then
-    root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
-    exists i3lock && exists i3 && service install "$HOME/.yadm/i3lock.service"
-    exists xgetres && systemctl --user enable --now wallpaper@daily.timer
+	root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
+	exists i3lock && exists i3 && service install "$HOME/.yadm/i3lock.service"
+	exists xgetres && systemctl --user enable --now wallpaper@daily.timer
 fi
 
 # yadm
 case "$(hostname)" in
-    poseidon) yadm config local.class laptop ;;
-    zeus) yadm config local.class desktop ;;
+	poseidon) yadm config local.class laptop ;;
+	zeus) yadm config local.class desktop ;;
 esac
 
 if exists yadm; then
-    # Ignore SSH config to allow gcloud changes to be ignored
-    yadm update-index --assume-unchanged "$HOME/.ssh/config"
-    # Remove README (edit on GitHub)
-    yadm update-index --assume-unchanged "$HOME/README.md"
-    [ -f "$HOME/README.md" ] && rm "$HOME/README.md"
-    # Generate templated files
-    yadm alt
-    # Alias a to ignore untracked files
-    yadm gitconfig alias.a "add -u"
+	# Ignore SSH config to allow gcloud changes to be ignored
+	yadm update-index --assume-unchanged "$HOME/.ssh/config"
+	# Remove README (edit on GitHub)
+	yadm update-index --assume-unchanged "$HOME/README.md"
+	[ -f "$HOME/README.md" ] && rm "$HOME/README.md"
+	# Generate templated files
+	yadm alt
+	# Alias a to ignore untracked files
+	yadm gitconfig alias.a "add -u"
 fi
 

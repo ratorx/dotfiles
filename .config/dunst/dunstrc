@@ -104,7 +104,7 @@ timeout = 0
 # You can specify a script that gets run when the rule matches by
 # setting the "script" option.
 # The script will be called as follows:
-#   script appname summary body icon urgency
+#		script appname summary body icon urgency
 # where urgency can be "LOW", "NORMAL" or "CRITICAL".
 #
 # NOTE: if you don't want a notification to be displayed, set the format
@@ -112,18 +112,18 @@ timeout = 0
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
+# [espeak]
+# summary = "*"
+# script = dunst_espeak.sh
 
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
+# [script-test]
+# summary = "*script*"
+# script = dunst_test.sh
 
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
+# [ignore]
+# # This notification will not be displayed
+# summary = "foobar"
+# format = ""
 
 [barrier]
 appname = notify-send
@@ -142,24 +142,24 @@ appname = dunst
 summary = startup
 history_ignore = yes
 
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
+# [signed_on]
+# appname = Pidgin
+# summary = "*signed on*"
+# urgency = low
+
+# [signed_off]
+# appname = Pidgin
+# summary = *signed off*
+# urgency = low
+
+# [says]
+# appname = Pidgin
+# summary = *says*
+# urgency = critical
+
+# [twitter]
+# appname = Pidgin
+# summary = *twitter.com*
+# urgency = normal
+
 # vim: ft=cfg

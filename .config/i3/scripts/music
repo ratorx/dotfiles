@@ -4,10 +4,10 @@ MUSIC_APP=spotify
 MUSIC_MARK=""
 
 if pgrep -x "$MUSIC_APP" >/dev/null 2>&1; then
-    i3-msg "[con_mark=\"^$MUSIC_MARK$\"] scratchpad show"
+	i3-msg "[con_mark=\"^$MUSIC_MARK$\"] scratchpad show"
 else
-    "$MUSIC_APP" &
-    # Wait for Spotify to start
-    sleep 1
-    exec i3-msg "[con_mark=\"^$MUSIC_MARK$\"] scratchpad show"
+	"$MUSIC_APP" &
+	# Wait for Spotify to start
+	sleep 1
+	exec i3-msg "[con_mark=\"^$MUSIC_MARK$\"] scratchpad show"
 fi

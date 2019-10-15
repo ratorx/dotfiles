@@ -2,7 +2,7 @@
 # text="$(systemctl --user list-units | sed -n '/remote@/s/remote@\(.\+\)\.service.*/  \1/p')"
 text="$(systemctl --user list-units --state=running | sed -n '/remote@.\+running/s/remote@\(.\+\)\.service.*/  \1/p')"
 if [ -z "$text" ]; then
-    echo "   $DEVICE   "
+	echo "   $DEVICE   "
 else
-    echo "%{B$(xgetres polybar.color2)}   $text   %{B-}"
+	echo "%{B$(xgetres polybar.color2)}   $text   %{B-}"
 fi

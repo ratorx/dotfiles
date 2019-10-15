@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import i3ipc
 import sys
+
+import i3ipc
 
 outputs = {"splitv": "", "splith": "", "tabbed": "", "stacked": ""}
 

@@ -53,4 +53,4 @@ set index-active-bg '#C678DD'
 " Recolor
 set recolor-darkcolor '#BFC5CE'
 set recolor-lightcolor '#232623'
-" vim: ft=vim:set sw=4:set ts=4:
+" vim: ft=vim:
