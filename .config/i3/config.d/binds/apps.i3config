@@ -47,5 +47,3 @@ mode "" {
 }
 bindsym $mod+c mode ""
 bindsym $mod+q exec --no-startup-id $scripts/music
-
-# vim: set ft=i3config:tabstop=4:shiftwidth=4:

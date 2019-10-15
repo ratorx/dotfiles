@@ -87,5 +87,3 @@ bindsym $mod+Shift+m sticky toggle
 bindsym $mod+m fullscreen toggle
 
 bindsym $mod+Shift+q exec --no-startup-id $scripts/kill
-
-# vim: set ft=i3config:tabstop=4:shiftwidth=4:

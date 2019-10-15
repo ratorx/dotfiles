@@ -39,5 +39,3 @@ bindsym XF86MonBrightnessDown exec --no-startup-id $scripts/bl down
 bindsym XF86Search exec --no-startup-id albert toggle
 bindsym XF86Display exec --no-startup-id arandr
 bindsym XF86Tools exec --no-startup-id xfce4-power-manager-settings
-
-# vim: set ft=i3config:tabstop=4:shiftwidth=4:
