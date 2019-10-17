@@ -13,7 +13,7 @@ function exists() {
 	command -v "$1" >/dev/null
 }
 
-alias history='history | grep -av "[[:digit:]]\+	: "'
+alias history='history | grep -av "[[:digit:]]\+  : "'
 
 # FZF for bash
 if exists fzf; then
