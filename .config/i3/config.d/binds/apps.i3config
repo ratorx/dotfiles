@@ -4,7 +4,7 @@ bindsym $mod+d exec --no-startup-id albert toggle
 bindsym $mod+numbersign exec --no-startup-id albert show \#
 
 # terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id termite
 
 # wallpaper
 bindsym $mod+Shift+minus exec --no-startup-id wallpaper
