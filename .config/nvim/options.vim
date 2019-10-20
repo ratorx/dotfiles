@@ -54,6 +54,20 @@ augroup cursorfix
 	autocmd VimLeave * set guicursor=a:ver25
 augroup END
 
+" auto create non-existent directories
+function s:MkNonExDir(file, buf)
+	if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+		let dir=fnamemodify(a:file, ':h')
+		if !isdirectory(dir)
+			call mkdir(dir, 'p')
+		endif
+	endif
+endfunction
+augroup BWCCreateDir
+	autocmd!
+	autocmd BufWritePre,FilterWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
+
 " misc
 set conceallevel=2
 set hidden
