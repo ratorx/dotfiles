@@ -28,7 +28,6 @@ bindsym $mod+comma workspace $email
 bindsym $mod+period workspace $messenger
 
 bindsym $mod+Tab workspace back_and_forth
-bindsym --release $mod+Tab workspace back_and_forth
 
 # move
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -41,6 +40,19 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+
+# swap
+bindsym $mod+Shift+Ctrl+1 exec $scripts/switch_workspace $ws1
+# TODO: Fix issue with this bind
+bindsym $mod+Shift+Ctrl+2 exec $scripts/switch_workspace $ws2
+bindsym $mod+Shift+Ctrl+3 exec $scripts/switch_workspace $ws3
+bindsym $mod+Shift+Ctrl+4 exec $scripts/switch_workspace $ws4
+bindsym $mod+Shift+Ctrl+5 exec $scripts/switch_workspace $ws5
+bindsym $mod+Shift+Ctrl+6 exec $scripts/switch_workspace $ws6
+bindsym $mod+Shift+Ctrl+7 exec $scripts/switch_workspace $ws7
+bindsym $mod+Shift+Ctrl+8 exec $scripts/switch_workspace $ws8
+bindsym $mod+Shift+Ctrl+9 exec $scripts/switch_workspace $ws9
+bindsym $mod+Shift+Ctrl+0 exec $scripts/switch_workspace $ws10
 
 # workspace -> output
 bindsym $mod+Ctrl+Left move workspace to output left
