@@ -251,6 +251,7 @@ config[bash]="$HOME/.bashrc $HOME/.bash_profile"
 config[compton]="$HOME/.config/compton/compton.conf"
 config[dunst]="$HOME/.config/dunst/dunstrc"
 config[i3]="$HOME/.config/i3/config.d/**/*.i3config"
+config[kitty]="$HOME/.config/kitty/kitty.conf"
 config[latex]="$HOME/.latexmkrc"
 config[polybar]="$HOME/.config/polybar/config $HOME/.config/polybar/modules/*"
 config[ranger]="$HOME/.config/ranger/*.conf $HOME/.config/ranger/commands.py $HOME/.config/ranger/scope.sh"
@@ -263,6 +264,5 @@ config[yadm]="$HOME/.yadm/bootstrap"
 config[zathura]="$HOME/.config/zathura/zathurarc"
 config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile"
 
-unset -f exists
 unset -f is_zsh
 # vim: set ft=sh:
