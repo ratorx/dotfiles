@@ -9,10 +9,6 @@ PS1='[\u@\h \W]\$ '
 
 [ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
 
-function exists() {
-	command -v "$1" >/dev/null
-}
-
 alias history='history | grep -av "[[:digit:]]\+  : "'
 
 # FZF for bash
