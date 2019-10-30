@@ -176,8 +176,8 @@ alias df="df -hl"
 alias du="du -h"
 alias ncdu="ncdu -x"
 
-exists udiskie-mount && alias mount=udiskie-mount
-exists udiskie-umount && alias umount=udiskie-umount
+exists udiskie-mount && alias rmount=udiskie-mount
+exists udiskie-umount && alias rumount=udiskie-umount
 
 # Use trash-put if available
 # Not recommended, but very useful if used sparingly (and not relied on)
