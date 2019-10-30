@@ -132,7 +132,7 @@ if exists pacman; then
 		fi
 	}
 
-	function pkgs() {
+	function pkgsnc() {
 		local pkglist
 		pkglist="$PKGLIST"
 
@@ -140,8 +140,9 @@ if exists pacman; then
 			explicit) pkglist="pacman -Qqe" ;;
 			optional) pkglist="pacman -Qqdtt" ;;
 		esac
-		comm -13 <(pacman -Qgq base-devel | sort -u) <(eval "$pkglist" | grep -v ^base$ | sort -u) | column
+		comm -13 <(pacman -Qgq base-devel | sort -u) <(eval "$pkglist" | grep -v ^base$ | sort -u)
 	}
+	alias pkgs='pkgsnc | column'
 
 	function binaries() { pacman -Qql "$@" | sed -n '/\/usr\/bin\/./s/\/usr\/bin\///p'; }
 	# shellcheck disable=SC2046
