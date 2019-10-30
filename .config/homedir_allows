@@ -12,6 +12,8 @@ usb
 .yadm
 
 # Grudging Allows
+# Ansible
+.ansible
 # Bash
 .bash_history
 .bash_profile
