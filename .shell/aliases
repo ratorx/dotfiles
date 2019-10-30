@@ -262,7 +262,7 @@ config[tmux]="$HOME/.tmux.conf"
 config[xorg]="$HOME/.config/X11/*"
 config[yadm]="$HOME/.yadm/bootstrap"
 config[zathura]="$HOME/.config/zathura/zathurarc"
-config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile"
+config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile $HOME/.shell/zsh/*"
 
 unset -f is_zsh
 # vim: set ft=sh:
