@@ -3,14 +3,6 @@ function paint_image() {
 	xloadimage -windowid "$(printf "0x%x" "$XSCREENSAVER_WINDOW")" "$XSECURELOCK_WALLPAPER"
 }
 
-case "$XSECURELOCK_SAVER_TYPE" in
-	wallpaper)
-		$XSECURELOCK_WALLPAPER_SCRIPT export
-		XSECURELOCK_WALLPAPER="$(cat "$HOME/.config/wallpaper")"
-		$XSECURELOCK_WALLPAPER_SCRIPT set "$XSECURELOCK_WALLPAPER"
-		;;
-esac
-
 paint_image
 
 trap paint_image SIGUSR1
