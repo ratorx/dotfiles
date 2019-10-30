@@ -80,7 +80,7 @@ exists polybar && exists nmcli && root_install cp "$HOME/.config/polybar/scripts
 # gui setup
 if exists startx; then
 	root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
-	exists i3lock && exists i3 && service install "$HOME/.yadm/i3lock.service"
+	service uninstall i3lock.service
 	exists xgetres && systemctl --user enable --now wallpaper@daily.timer
 fi
 

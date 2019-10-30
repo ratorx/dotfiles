@@ -1,6 +1,6 @@
 #! /bin/bash
 export XSECURELOCK_WALLPAPER=/tmp/screen.png
-export XSECURELOCK_SAVER="$(dirname "$(readlink -f "$0")")/saver"
+export XSECURELOCK_SAVER="$(dirname "$(readlink -f "$0")")/xsecurelock_saver"
 export XSECURELOCK_DISCARD_FIRST_KEYPRESS=0
 export XSECURELOCK_DIM_ALPHA=0
 export XSECURELOCK_AUTH_BACKGROUND_COLOR="$(xgetres lock.background)"
@@ -9,7 +9,8 @@ export XSECURELOCK_AUTH_WARNING_COLOR="$(xgetres lock.color1)"
 export XSECURELOCK_FONT="Ubuntu Mono-18"
 export XSECURELOCK_WALLPAPER_SCRIPT="$HOME/.local/bin/wallpaper"
 export XSECURELOCK_BLUR_SCALE=20
+export XSECURELOCK_SAVER_TYPE="$1"
 
 maim -u | convert - -scale $((100 / XSECURELOCK_BLUR_SCALE))% -scale $((100 * XSECURELOCK_BLUR_SCALE))% -strip "$XSECURELOCK_WALLPAPER"
 
-env XSECURELOCK_SAVER_TYPE="$1" xsecurelock &
+xsecurelock
