@@ -63,6 +63,11 @@ augroup fzf_statuslist
 augroup END
 '''
 
+# File browser
+[[plugins]]
+repo = 'tpope/vim-vinegar'
+on_map = {n = '-'}
+
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
