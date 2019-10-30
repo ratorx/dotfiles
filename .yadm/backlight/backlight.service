@@ -1,5 +1,5 @@
 [Unit]
-Description=Lock the screen when suspended
+Description=Save backlight before suspend
 Before=sleep.target suspend.target
 
 [Service]
