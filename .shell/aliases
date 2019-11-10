@@ -235,6 +235,29 @@ if exists fzf; then
 	exists fd && export FZF_ALT_C_COMMAND='fd --type d --follow --no-ignore-vcs --hidden --ignore-file $XDG_DATA_HOME/fzf/gitignore 2>/dev/null'
 fi
 
+# Repl
+typeset -A repl_cmd
+typeset -A repl_def
+repl_cmd[jq]='jq -r {q}'
+repl_def[jq]='.'
+
+repl_cmd[awk]='awk {q}'
+repl_def[awk]='//'
+
+function _repl_common() {
+	stdin="$(< /dev/stdin)"
+	fzf \
+		--print-query \
+		--query "${repl_def[$1]}" \
+		--preview "${repl_cmd[$1]} <<< '$stdin'" \
+		--preview-window "up:99%" \
+		< /dev/null
+}
+
+# shellcheck disable=SC2015,SC2016
+is_zsh && function repl() { echo "${repl_cmd[$1]//\{q\}/'$(_repl_common "$1")'}"; } \
+			 || function repl() { echo "${repl_cmd[$1]//\{q\}/\'$(_repl_common "$1")\'}"; }
+
 # GPG
 # shellcheck disable=SC2155
 if exists gpg; then
