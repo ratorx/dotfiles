@@ -34,10 +34,8 @@ underline-size = 0
 module-margin = ${params.margin}
 
 font-0 = Ubuntu:size=13;3
-font-1 = Font Awesome 5 Free:size=12;2
-font-2 = Font Awesome 5 Free:style=Solid:size=12;2
-font-3 = Font Awesome 5 Brands:size=12;2
-font-4 = Ubuntu:style=Bold:size=14;3
+font-1 = Ubuntu Medium:style=Bold:size=14;3
+font-2 = Symbols Nerd Font:size=14;3
 
 modules-left = device workspaces layout barrier
 modules-center = title

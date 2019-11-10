@@ -129,5 +129,5 @@ let g:move_key_modifier = 'C'
 repo = 'sheerun/vim-polyglot'
 build = './build'
 hook_add = '''
-let g:polyglot_disabled = ['latex']
+let g:polyglot_disabled = ['latex', 'markdown']
 '''

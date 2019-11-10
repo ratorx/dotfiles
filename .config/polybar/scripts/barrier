@@ -1,6 +1,6 @@
 #! /bin/bash
 # text="$(systemctl --user list-units | sed -n '/remote@/s/remote@\(.\+\)\.service.*/  \1/p')"
-text="$(systemctl --user list-units --state=running | sed -n '/remote@.\+running/s/remote@\(.\+\)\.service.*/  \1/p')"
+text="$(systemctl --user list-units --state=running | sed -n '/remote@.\+running/s/remote@\(.\+\)\.service.*/  \1/p')"
 if [ -z "$text" ]; then
 	echo "   $DEVICE   "
 else

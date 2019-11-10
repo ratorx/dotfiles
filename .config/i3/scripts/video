@@ -24,7 +24,8 @@ def command_with_log(cmd, append_focus=True):
 
 
 class State:
-    MARK = ""
+    MARK = "video"
+    MODE = "辶"
 
     def __init__(self):
         self.border = 20
@@ -242,7 +243,7 @@ def reset(_1, _2):
 
 def setup(args, state):
     if State.MARK in i3.get_marks():
-        command_with_log(f'mode "{State.MARK}"', False)
+        command_with_log(f'mode "{State.MODE}"', False)
         args.clear()
         return
 
@@ -250,7 +251,7 @@ def setup(args, state):
     command_with_log(
         ";".join(
             [
-                f"mode {State.MARK}",
+                f"mode {State.MODE}",
                 "fullscreen disable",
                 "sticky enable",
                 f"mark {State.MARK}",

@@ -1,18 +1,19 @@
 [volume-base]
-format-volume = <ramp-volume>  <label-volume>
+format-volume = <ramp-volume> <label-volume>
 format-volume-padding = ${params.padding}
 format-volume-background = ${colours.green}
 format-volume-foreground = ${colours.background}
 
 label-volume = %percentage%%
 
-label-muted = 
+label-muted = ﱝ
 label-muted-padding = ${params.padding}
 label-muted-background = ${colours.red}
 label-muted-foreground = ${colours.background}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
 
 [module/volume]
 inherit = volume-base

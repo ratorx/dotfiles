@@ -6,7 +6,7 @@ ping-interval = 3
 
 [wired-base]
 inherit = network-base
-label-connected = 
+label-connected = 
 label-connected-background = ${colours.green}
 label-connected-foreground = ${colours.background}
 label-connected-padding = ${params.padding}
@@ -17,12 +17,12 @@ label-disconnected-padding = ${params.padding}
 
 [wireless-base]
 inherit = network-base
-label-connected =   %essid:0:20:...%
+label-connected = 直 %essid:0:20:...%
 label-connected-background = ${colours.green}
 label-connected-foreground = ${colours.background}
 label-connected-padding = ${params.padding}
 
-label-disconnected = 
+label-disconnected = 直
 label-disconnected-background = ${colours.red}
 label-disconnected-foreground = ${colours.background}
 label-disconnected-padding = ${params.padding}
@@ -42,7 +42,7 @@ type = custom/ipc
 
 # VPN Up Hook
 # This detects VPN name to deal with polybar restart
-hook-0 = nmcli --terse con show --active | awk -F ":" '/vpn/ {print " ", $1}'
+hook-0 = nmcli --terse con show --active | awk -F ":" '/vpn/ {print "嬨 ", $1}'
 
 # VPN Down Hook
 hook-1 = echo ""

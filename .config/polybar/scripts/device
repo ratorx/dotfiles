@@ -9,8 +9,8 @@ for filename in /sys/class/power_supply/*/type; do
 done
 
 case $laptop in
-	true) echo -n "" ;;
-	*) echo -n "" ;;
+	true) echo -n "" ;;
+	*) echo -n "" ;;
 esac
 
 case $1 in

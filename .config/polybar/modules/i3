@@ -7,19 +7,19 @@ enable-click = true
 enable-scroll = false
 fuzzy-match = false
 
-ws-icon-0 = 1;%{T5}I%{T-}
-ws-icon-1 = 2;%{T5}II%{T-}
-ws-icon-2 = 3;%{T5}III%{T-}
-ws-icon-3 = 4;%{T5}IV%{T-}
-ws-icon-4 = 5;%{T5}V%{T-}
-ws-icon-5 = 6;%{T5}VI%{T-}
-ws-icon-6 = 7;%{T5}VII%{T-}
-ws-icon-7 = 8;%{T5}VIII%{T-}
-ws-icon-8 = 9;%{T5}IX%{T-}
-ws-icon-9 = 10;%{T5}X%{T-}
-ws-icon-10 = 91;
-ws-icon-11 = 92;
-ws-icon-12 = 93;
+ws-icon-0 = 1;%{T2}I%{T-}
+ws-icon-1 = 2;%{T2}II%{T-}
+ws-icon-2 = 3;%{T2}III%{T-}
+ws-icon-3 = 4;%{T2}IV%{T-}
+ws-icon-4 = 5;%{T2}V%{T-}
+ws-icon-5 = 6;%{T2}VI%{T-}
+ws-icon-6 = 7;%{T2}VII%{T-}
+ws-icon-7 = 8;%{T2}VIII%{T-}
+ws-icon-8 = 9;%{T2}IX%{T-}
+ws-icon-9 = 10;%{T2}X%{T-}
+ws-icon-10 = 91;
+ws-icon-11 = 92;
+ws-icon-12 = 93;
 ws-icon-default = 
 
 

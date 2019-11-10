@@ -5,28 +5,49 @@ adapter = AC
 full-at = 99
 polling = 1
 
-format-charging =   <label-charging>
+format-charging = <animation-charging> <label-charging>
 format-charging-padding = ${params.padding}
 format-charging-background = ${colours.green}
 format-charging-foreground = ${colours.background}
 label-charging = %percentage%%
 
-format-discharging = <ramp-capacity>  <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-padding = ${params.padding}
 format-discharging-background = ${colours.red}
 format-discharging-foreground = ${colours.background}
 label-discharging = %percentage%%
 
-format-full =   <label-full>
+format-full = 
 format-full-padding = ${params.padding}
 format-full-background = ${colours.green}
 format-full-foreground = ${colours.background}
 label-full = %percentage%%
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-10 = 
+ramp-capacity-11 = 
+ramp-capacity-12 = 
+ramp-capacity-13 = 
+ramp-capacity-14 = 
+ramp-capacity-15 = 
+ramp-capacity-16 = 
+ramp-capacity-17 = 
+ramp-capacity-18 = 
+ramp-capacity-19 = 
 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 290
 ; vim:ft=dosini

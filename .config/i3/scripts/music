@@ -1,7 +1,7 @@
 #! /bin/bash
 
 MUSIC_APP=spotify
-MUSIC_MARK=""
+MUSIC_MARK="music"
 
 if pgrep -x "$MUSIC_APP" >/dev/null 2>&1; then
 	i3-msg "[con_mark=\"^$MUSIC_MARK$\"] scratchpad show"

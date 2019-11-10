@@ -3,7 +3,7 @@ import sys
 
 import i3ipc
 
-outputs = {"splitv": "", "splith": "", "tabbed": "", "stacked": ""}
+outputs = {"splitv": "", "splith": "", "tabbed": "", "stacked": ""}
 
 
 i3 = i3ipc.Connection()
