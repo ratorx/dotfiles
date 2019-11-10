@@ -42,7 +42,7 @@ type = custom/ipc
 
 # VPN Up Hook
 # This detects VPN name to deal with polybar restart
-hook-0 = nmcli --terse con show --active | awk -F ":" '/vpn/ {print "嬨 ", $1}'
+hook-0 = nmcli --terse con show --active | awk -F ":" '/vpn/ {print toupper(gensub(/nordvpn-([[:alpha:]]+)([[:digit:]]+)/, "嬨 \\1 \\2", "1", $1))}'
 
 # VPN Down Hook
 hook-1 = echo ""
