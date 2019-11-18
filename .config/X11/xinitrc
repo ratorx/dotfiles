@@ -6,7 +6,7 @@ setxkbmap -option "ctrl:nocaps"
 xcape -e "Control_L=Escape"
 
 # Automatic locking
-xss-lock -n /usr/lib/xsecurelock/dimmer -l -- ~/.yadm/screenlock/lock &
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $XDG_CONFIG_HOME/yadm/screenlock/lock &
 
 bash -c "cd ~/.config/i3 && make"
 exec i3

@@ -9,7 +9,6 @@ usb
 .config
 .local
 .shell
-.yadm
 
 # Grudging Allows
 # Ansible

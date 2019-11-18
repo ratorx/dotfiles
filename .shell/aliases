@@ -261,7 +261,7 @@ config[ssh]="$HOME/.ssh/config.d/*"
 config[termite]="$HOME/.config/termite/config"
 config[tmux]="$HOME/.tmux.conf"
 config[xorg]="$HOME/.config/X11/*"
-config[yadm]="$HOME/.yadm/bootstrap"
+config[yadm]="$HOME/.config/yadm/bootstrap"
 config[zathura]="$HOME/.config/zathura/zathurarc"
 config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile $HOME/.shell/zsh/*"
 

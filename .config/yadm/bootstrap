@@ -60,7 +60,7 @@ exists trash-empty && systemctl --user enable --now trash-empty@2.timer
 
 # pacman hooks
 if exists pacman; then
-	root_install ln "$HOME/.yadm/pacman/hooks" "/etc/pacman.d"
+	root_install ln "$XDG_CONFIG_HOME/yadm/pacman/hooks" "/etc/pacman.d"
 	sudo sed -ibak \
 		-e "s/^#Color$/Color/" \
 		-e "s/^#VerbosePkgLists$/VerbosePkgLists/" \
@@ -69,9 +69,9 @@ fi
 
 # backlight
 if is_laptop; then
-	service install "$HOME/.yadm/backlight/backlight.service"
-	root_install cp "$HOME/.yadm/backlight/backlight" "/usr/bin"
-	root_install cp "$HOME/.yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
+	service install "$XDG_CONFIG_HOME/yadm/backlight/backlight.service"
+	root_install cp "$XDG_CONFIG_HOME/yadm/backlight/backlight" "/usr/bin"
+	root_install cp "$XDG_CONFIG_HOME/yadm/backlight/90-powersave.rules" "/etc/udev/rules.d"
 fi
 
 # polybar vpn hook
@@ -79,7 +79,7 @@ exists polybar && exists nmcli && root_install cp "$HOME/.config/polybar/scripts
 
 # gui setup
 if exists startx; then
-	root_install cp "$HOME/.yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
+	root_install cp "$XDG_CONFIG_HOME/yadm/xorg/override.conf" "/etc/systemd/system/getty@tty1.service.d/"
 	exists xgetres && systemctl --user enable --now wallpaper@daily.timer
 fi
 
