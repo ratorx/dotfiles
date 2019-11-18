@@ -45,7 +45,7 @@ bookmarks[web]="$HOME/projects/ree.to"
 # Dotfiles
 # shellcheck disable=SC2015
 is_zsh && alias d='noglob yadm' || alias d='yadm'
-exists git && [ -f "$HOME/.config/git/diff.inc" ] && ! exists diff-so-fancy && rm "$HOME/.config/git/diff.inc"
+exists git && [ -f "$XDG_CONFIG_HOME/git/diff.inc" ] && ! exists diff-so-fancy && rm "$XDG_CONFIG_HOME/git/diff.inc"
 
 # AWS
 if exists aws; then
@@ -101,14 +101,14 @@ alias scu="systemctl --user"
 # shellcheck disable=SC2015
 is_zsh && alias g='noglob git' || alias g='git'
 alias g=git
-config[git]="$HOME/.config/git/*"
+config[git]="$XDG_CONFIG_HOME/git/*"
 
 # Editor
 alias vi='$EDITOR'
 if exists nvim; then
 	alias todo="nvim +Goyo ~/shared/TODO.md"
 	function nvimbench() { bench="$(mktemp)" && /usr/bin/nvim --startuptime "$bench" "$@" && tail -1 "$bench" && rm -f "$bench"; }
-	config[nvim]="$HOME/.config/nvim/*.{vim,toml}"
+	config[nvim]="$XDG_CONFIG_HOME/nvim/*.{vim,toml}"
 fi
 
 # Package Manager
@@ -191,7 +191,7 @@ exists trash-restore && alias tres=trash-restore
 alias up=bd
 
 # $HOME directory cleaning
-HOMEDIR_ALLOWS="$HOME/.config/homedir_allows"
+HOMEDIR_ALLOWS="$XDG_CONFIG_HOME/homedir_allows"
 # shellcheck disable=SC2139
 alias check_homedir="fd -H --maxdepth 1 --ignore-file $HOMEDIR_ALLOWS >> $HOMEDIR_ALLOWS && '$EDITOR' $HOMEDIR_ALLOWS"
 
@@ -247,22 +247,22 @@ alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/'
 alias privip="hostname -i"
 
 # Config files
-config[alacritty]="$HOME/.config/alacritty/alacritty.yml##yadm.j2"
+config[alacritty]="$XDG_CONFIG_HOME/alacritty/alacritty.yml##yadm.j2"
 config[bash]="$HOME/.bashrc $HOME/.bash_profile"
-config[compton]="$HOME/.config/compton/compton.conf"
-config[dunst]="$HOME/.config/dunst/dunstrc"
-config[i3]="$HOME/.config/i3/config.d/**/*.i3config"
-config[kitty]="$HOME/.config/kitty/kitty.conf##yadm.j2"
+config[compton]="$XDG_CONFIG_HOME/compton/compton.conf"
+config[dunst]="$XDG_CONFIG_HOME/dunst/dunstrc"
+config[i3]="$XDG_CONFIG_HOME/i3/config.d/**/*.i3config"
+config[kitty]="$XDG_CONFIG_HOME/kitty/kitty.conf##yadm.j2"
 config[latex]="$HOME/.latexmkrc"
-config[polybar]="$HOME/.config/polybar/config $HOME/.config/polybar/modules/*"
-config[ranger]="$HOME/.config/ranger/*.conf $HOME/.config/ranger/commands.py $HOME/.config/ranger/scope.sh"
+config[polybar]="$XDG_CONFIG_HOME/polybar/config $XDG_CONFIG_HOME/polybar/modules/*"
+config[ranger]="$XDG_CONFIG_HOME/ranger/*.conf $XDG_CONFIG_HOME/ranger/commands.py $XDG_CONFIG_HOME/ranger/scope.sh"
 config[shell]="$HOME/.shell/aliases"
 config[ssh]="$HOME/.ssh/config.d/*"
-config[termite]="$HOME/.config/termite/config"
+config[termite]="$XDG_CONFIG_HOME/termite/config"
 config[tmux]="$HOME/.tmux.conf"
-config[xorg]="$HOME/.config/X11/*"
-config[yadm]="$HOME/.config/yadm/bootstrap"
-config[zathura]="$HOME/.config/zathura/zathurarc"
+config[xorg]="$XDG_CONFIG_HOME/X11/*"
+config[yadm]="$XDG_CONFIG_HOME/yadm/bootstrap"
+config[zathura]="$XDG_CONFIG_HOME/zathura/zathurarc"
 config[zsh]="$HOME/.zshrc $HOME/.zshenv $HOME/.zprofile $HOME/.shell/zsh/*"
 
 unset -f is_zsh

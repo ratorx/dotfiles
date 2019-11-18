@@ -1,4 +1,5 @@
 #define $HOME /home/reeto
+#define $XDG_CONFIG_HOME $HOME/.config
 
 ! ANSI Colours
 #define BLACK #2F343F
@@ -47,7 +48,7 @@
 
 ! i3wm
 i3wm.mod:        Mod4
-i3wm.scripts:    $HOME/.config/i3/scripts
+i3wm.scripts:    $XDG_CONFIG_HOME/i3/scripts
 i3wm.wallpapers: $HOME/shared/pictures/wallpapers/nature
 i3wm.gaps:       30
 i3wm.border:     3

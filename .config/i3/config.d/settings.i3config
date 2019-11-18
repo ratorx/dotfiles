@@ -1,6 +1,6 @@
 # variables
 set_from_resource $mod i3wm.mod Mod4
-set_from_resource $scripts i3wm.scripts ~/.config/i3/scripts
+set_from_resource $scripts i3wm.scripts $XDG_CONFIG_HOME/i3/scripts
 set_from_resource $gaps i3wm.gaps 30
 set_from_resource $border i3wm.border 3
 

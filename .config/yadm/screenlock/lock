@@ -24,7 +24,7 @@ case "$NUM_MONITORS" in
 		maim -u | convert - -scale $((100 / XSECURELOCK_BLUR_SCALE))% -scale $((100 * XSECURELOCK_BLUR_SCALE))% -strip "$XSECURELOCK_WALLPAPER"
 		;;
 	*)
-		XSECURELOCK_WALLPAPER="$(cat "$HOME/.config/wallpaper")"
+		XSECURELOCK_WALLPAPER="$(cat "$XDG_CONFIG_HOME/wallpaper")"
 		;;
 esac
 export XSECURELOCK_WALLPAPER

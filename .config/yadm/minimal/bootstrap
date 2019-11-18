@@ -17,6 +17,6 @@ mkdir -p "$SHELL_DIR"
 curl -L "$REPO/.shell/aliases" --output "$SHELL_DIR/aliases"
 
 # Setup git
-GIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/git"
+GIT_DIR="$HOME/.config/git"
 mkdir -p "$GIT_DIR"
 curl -L "$REPO/.config/git/config" --output "$GIT_DIR/config"

@@ -1,4 +1,4 @@
 #! /bin/bash
 wallpaper reset
 export MONITORS="$(echo -n "$AUTORANDR_MONITORS" | tr ":" "\n")"
-/home/reeto/.config/polybar/launch.sh
+$XDG_CONFIG_HOME/polybar/launch.sh

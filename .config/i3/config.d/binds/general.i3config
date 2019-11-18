@@ -1,8 +1,8 @@
 floating_modifier $mod
 
 # session management
-bindsym $mod+r exec --no-startup-id bash -c "cd ~/.config/i3 && make && i3-msg reload"
-bindsym $mod+Shift+r exec --no-startup-id bash -c "cd ~/.config/i3 && make && i3-msg restart"
+bindsym $mod+r exec --no-startup-id bash -c "make -C $XDG_CONFIG_HOME/i3 && i3-msg reload"
+bindsym $mod+Shift+r exec --no-startup-id bash -c "make -C $XDG_CONFIG_HOME/i3 && i3-msg restart"
 # bindsym $mod+Shift+e exit
 
 # unbound mode

@@ -75,7 +75,7 @@ if is_laptop; then
 fi
 
 # polybar vpn hook
-exists polybar && exists nmcli && root_install cp "$HOME/.config/polybar/scripts/polybar-vpn" "/etc/NetworkManager/dispatcher.d"
+exists polybar && exists nmcli && root_install cp "$XDG_CONFIG_HOME/polybar/scripts/polybar-vpn" "/etc/NetworkManager/dispatcher.d"
 
 # gui setup
 if exists startx; then

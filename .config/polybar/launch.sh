@@ -4,7 +4,7 @@
 killall -q polybar
 
 # Set device
-POLYBAR_DIR="$HOME/.config/polybar"
+POLYBAR_DIR="$XDG_CONFIG_HOME/polybar"
 export POLYBAR_SCRIPTS="$POLYBAR_DIR/scripts"
 export POLYBAR_MODULES="$POLYBAR_DIR/modules"
 export DEVICE="$("$POLYBAR_SCRIPTS/device")"

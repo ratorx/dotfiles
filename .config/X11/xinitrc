@@ -1,4 +1,4 @@
-[[ -f ~/.config/X11/Xresources ]] && xrdb -merge -I$HOME ~/.config/X11/Xresources
+[[ -f $XDG_CONFIG_HOME/X11/Xresources ]] && xrdb -merge -I$HOME $XDG_CONFIG_HOME/X11/Xresources
 autorandr --change
 
 # Caps Lock -> Ctrl/Escape
@@ -8,5 +8,5 @@ xcape -e "Control_L=Escape"
 # Automatic locking
 xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $XDG_CONFIG_HOME/yadm/screenlock/lock &
 
-bash -c "cd ~/.config/i3 && make"
+make -C $XDG_CONFIG_HOME/i3
 exec i3
