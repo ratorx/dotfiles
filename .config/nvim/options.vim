@@ -9,6 +9,7 @@ set wildmode=longest:full,full " ZSH style completion
 set foldmethod=indent foldlevel=99 " use indents; start unfolded
 set noshowmode noshowcmd " hide info on cmdline
 set mouse=a " mouse in all modes
+set inccommand=nosplit " incremental command preview
 
 " python
 let g:python3_host_prog='/usr/bin/python3'
