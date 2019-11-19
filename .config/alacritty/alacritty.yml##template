@@ -110,11 +110,11 @@ font:
     #style: Italic
 
   # Point size
-  {% if YADM_CLASS == 'desktop' -%}
+{% if yadm.class == "desktop" %}
   size: 12.0
-  {% else -%}
+{% else %}
   size: 9.0
-  {% endif -%}
+{% endif %}
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

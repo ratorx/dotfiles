@@ -270,12 +270,12 @@ alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/'
 alias privip="hostname -i"
 
 # Config files
-config[alacritty]="$XDG_CONFIG_HOME/alacritty/alacritty.yml##yadm.j2"
+config[alacritty]="$XDG_CONFIG_HOME/alacritty/alacritty.yml##template"
 config[bash]="$HOME/.bashrc $HOME/.bash_profile"
 config[compton]="$XDG_CONFIG_HOME/compton/compton.conf"
 config[dunst]="$XDG_CONFIG_HOME/dunst/dunstrc"
 config[i3]="$XDG_CONFIG_HOME/i3/config.d/**/*.i3config"
-config[kitty]="$XDG_CONFIG_HOME/kitty/kitty.conf##yadm.j2"
+config[kitty]="$XDG_CONFIG_HOME/kitty/kitty.conf##template"
 config[latex]="$HOME/.latexmkrc"
 config[polybar]="$XDG_CONFIG_HOME/polybar/config $XDG_CONFIG_HOME/polybar/modules/*"
 config[ranger]="$XDG_CONFIG_HOME/ranger/*.conf $XDG_CONFIG_HOME/ranger/commands.py $XDG_CONFIG_HOME/ranger/scope.sh"
