@@ -5,13 +5,13 @@ adapter = AC
 full-at = 99
 polling = 1
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging>  <label-charging>
 format-charging-padding = ${params.padding}
 format-charging-background = ${colours.green}
 format-charging-foreground = ${colours.background}
 label-charging = %percentage%%
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity>  <label-discharging>
 format-discharging-padding = ${params.padding}
 format-discharging-background = ${colours.red}
 format-discharging-foreground = ${colours.background}

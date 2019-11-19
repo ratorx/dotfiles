@@ -1,5 +1,5 @@
 [volume-base]
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume>  <label-volume>
 format-volume-padding = ${params.padding}
 format-volume-background = ${colours.green}
 format-volume-foreground = ${colours.background}
