@@ -68,7 +68,7 @@ bindkey "^?" backward-delete-char
 setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_EXPIRE_DUPS_FIRST AUTO_LIST NO_NOMATCH AUTO_CD
 
 # Completions
-export fpath=($XDG_DATA_DIR/zsh/completions $fpath)
+export fpath=($XDG_DATA_HOME/zsh/completions $fpath)
 
 autoload -Uz compinit
 setopt EXTENDEDGLOB
