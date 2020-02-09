@@ -1,0 +1,13 @@
+#! /bin/bash
+
+TEMP_WORKSPACE="_temp"
+current_workspace="$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused) | .name')"
+
+# Input Validation
+[ -z "$1" ] && exit
+[ "$current_workspace" == "$1" ] && exit
+
+# Swap using _temp
+i3-msg rename workspace to "$TEMP_WORKSPACE"
+i3-msg rename workspace "$1" to "$current_workspace"
+i3-msg rename workspace to "$1"
