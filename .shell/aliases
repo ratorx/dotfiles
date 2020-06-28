@@ -258,13 +258,6 @@ function _repl_common() {
 is_zsh && function repl() { echo "${repl_cmd[$1]//\{q\}/'$(_repl_common "$1")'}"; } \
 			 || function repl() { echo "${repl_cmd[$1]//\{q\}/\'$(_repl_common "$1")\'}"; }
 
-# GPG
-# shellcheck disable=SC2155
-if exists gpg; then
-	export GPG_TTY="$(tty)"
-	gpg-connect-agent updatestartuptty /bye >/dev/null
-fi
-
 # IP
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF	}'"
 alias privip="hostname -i"
