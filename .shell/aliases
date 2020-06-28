@@ -74,7 +74,7 @@ if is_zsh; then
 fi
 
 # Systemd
-systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload)
+systemd_sudo_commands=(start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff)
 
 if is_zsh; then
 	function sc() {
