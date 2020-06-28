@@ -12,28 +12,7 @@ export SAVEHIST=500000
 
 typeset -U fpath
 
-# Terminal title
-autoload -Uz add-zsh-hook
-function xterm_title_precmd () { print -Pn '\e]2;%~\a' }
-function xterm_title_preexec () { print -Pn '\e]2;'; print -n "${(q)1}\a" }
-if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
-	add-zsh-hook -Uz precmd xterm_title_precmd
-	add-zsh-hook -Uz preexec xterm_title_preexec
-fi
-
-# Vim Keys
-bindkey -v
-KEYTIMEOUT=1
-
-function zle-line-init zle-keymap-select {
-	case ${KEYMAP} in
-		(vicmd) echo -ne '\e[1 q' ;;
-		(*)			echo -ne '\e[5 q' ;;
-	esac
-	zle .reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+bindkey -e
 
 function up-line-or-local-history() {
 	zle set-local-history 1
@@ -52,17 +31,17 @@ zle -N down-line-or-local-history
 # Key bindings
 bindkey '^[[A' up-line-or-local-history
 bindkey '^[[B' down-line-or-local-history
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
-bindkey "^[[H" beginning-of-line
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[[4~" end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^A' kill-whole-line
-bindkey '^X' sudo-command-line
-bindkey '^[.' insert-last-word
-bindkey "^?" backward-delete-char
+# bindkey '^[[1;5D' backward-word
+# bindkey '^[[1;5C' forward-word
+# bindkey "^[[H" beginning-of-line
+# bindkey "^[[1~" beginning-of-line
+# bindkey "^[[F" end-of-line
+# bindkey "^[[4~" end-of-line
+# bindkey '^[[3~' delete-char
+# bindkey '^A' kill-whole-line
+# bindkey '^X' sudo-command-line
+# bindkey '^[.' insert-last-word
+# bindkey "^?" backward-delete-char
 
 # Options
 setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_EXPIRE_DUPS_FIRST AUTO_LIST NO_NOMATCH AUTO_CD
