@@ -5,11 +5,17 @@ function join { local IFS=","; echo "$*"; }
 
 function ssh_ca_sign() {
 	mkdir -p ~/.ssh/ca
-	ln -sfv "$SSH_PRIVATE_CA_KEY" ~/.ssh/ca
-	cp -v "$SSH_PRIVATE_CA_KEY.pub" ~/.ssh/ca
-	chmod -v 0444 "$HOME/.ssh/ca/$(basename "$SSH_PRIVATE_CA_KEY.pub")"
 
-	ssh-keygen -t ed255SSH_PRIVATE_CA_KEY9 -b 521
+	local ca_key ca_cert
+	ca_key="$HOME/.ssh/ca/$(basename "$SSH_PRIVATE_CA_KEY")"
+	ca_cert="$HOME/.ssh/ca/$(basename "$SSH_PRIVATE_CA_KEY.pub")"
+
+	rm -f "$ca_key" "$ca_cert"
+	ln -sfv "$SSH_PRIVATE_CA_KEY" "$ca_key"
+	cp -v "$SSH_PRIVATE_CA_KEY.pub" "$ca_cert"
+	chmod -v 0444 "$ca_cert"
+
+	ssh-keygen -t ed25519 -b 521
 	ssh-keygen -s "$SSH_PRIVATE_CA_KEY" -I "${USER}_$(hostname)_user_cert" -n "$(join "${PRINCIPALS[@]}")" ~/.ssh/id_ed25519.pub
 }
 
