@@ -7,6 +7,10 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" use visual traversal by default
+nnoremap j gj
+nnoremap k gk
+
 " buffers
 noremap <Tab> :b#<CR>
 noremap <A-]> :bnext<CR>
