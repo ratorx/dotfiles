@@ -15,12 +15,7 @@ alias history='history | grep -av "[[:digit:]]\+  : "'
 
 # FZF for bash
 if exists fzf; then
-
-	[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
-	[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
-	
-	[ -f "$HOME"/.fzf/bin/completion.bash ] && source "$HOME"/.fzf/bin/completion.bash
-	[ -f "$HOME"/.fzf/bin/completion.bash ] && source "$HOME"/.fzf/bin/completion.bash
+	source "$HOME/.shell/fzf.sh"
 
 	__fzf_history__() (
 	shopt -u nocaseglob nocasematch
