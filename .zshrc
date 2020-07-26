@@ -62,7 +62,7 @@ autoload -Uz bashcompinit
 bashcompinit
 
 # Load common aliases and functions
-[ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
+[ -f "$HOME/.shell/aliases.sh" ] && source "$HOME/.shell/aliases.sh"
 
 # Antibody
 source <(antibody init)

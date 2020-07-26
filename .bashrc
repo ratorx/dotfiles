@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# shellcheck source=.zshenv
 [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
 
 # If not running interactively, don't do anything
@@ -7,7 +8,8 @@
 
 PS1='[\u@\h \W]\$ '
 
-[ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
+# shellcheck source=.shell/aliases.sh
+[ -f "$HOME/.shell/aliases.sh" ] && source "$HOME/.shell/aliases.sh"
 
 alias history='history | grep -av "[[:digit:]]\+  : "'
 
@@ -24,8 +26,9 @@ if exists fzf; then
 	shopt -u nocaseglob nocasematch
 	edit_key=${FZF_CTRL_R_EDIT_KEY:-ctrl-e}
 	exec_key=${FZF_CTRL_R_EXEC_KEY:-enter}
+	# shellcheck disable=SC2091
 	if selected=$(
-		HISTTIMEFORMAT= history | grep -av '[[:digit:]]\+  : ' |
+		HISTTIMEFORMAT="" history | grep -av '[[:digit:]]\+  : ' |
 			FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --expect=$edit_key,$exec_key +m" $(__fzfcmd) |
 			command grep "^\\($exec_key$\\|$edit_key$\\| *[0-9]\\)")
 	then
@@ -34,15 +37,17 @@ if exists fzf; then
 
 		result=$(
 		if [[ $- =~ H ]]; then
+			# shellcheck disable=SC2001
 			sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
 		else
+			# shellcheck disable=SC2001
 			sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
 		fi
 		)
 
 		case $key in
-			$edit_key) result=$result$__fzf_edit_suffix__;;
-			$exec_key) result=$result$__fzf_exec_suffix__;;
+			"$edit_key") result=$result$__fzf_edit_suffix__;;
+			"$exec_key") result=$result$__fzf_exec_suffix__;;
 		esac
 
 		echo "$result"
@@ -69,8 +74,10 @@ if exists fzf; then
 	bind -x '"\C-x\C-o": __fzf_rebind_ctrl_x_ctrl_p__'
 
 	if [[ ! -o vi ]]; then
+		# shellcheck disable=SC2016
 		bind '"\C-r": " \C-e\C-u\C-y\ey\C-u`__fzf_history__`\e\C-e\er\e^\C-x\C-o\C-x\C-p"'
 	else
+		# shellcheck disable=SC2016
 		bind '"\C-r": "\C-x\C-addi`__fzf_history__`\C-x\C-e\C-x\C-r\C-x^\C-x\C-a$a\C-x\C-o\C-x\C-p"'
 	fi
 fi
