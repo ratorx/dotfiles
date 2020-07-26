@@ -262,6 +262,11 @@ is_zsh && function repl() { echo "${repl_cmd[$1]//\{q\}/'$(_repl_common "$1")'}"
 alias pubip="drill myip.opendns.com @resolver1.opendns.com | awk '!/;;/ && /IN/' | head -n 1 | awk '{ print \$NF	}'"
 alias privip="hostname -i"
 
+# Start Linux VM
+function startvm() {
+	ssh "$1" '"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm Linux --type headless'
+}
+
 # Config files
 config[alacritty]="$XDG_CONFIG_HOME/alacritty/alacritty.yml##template"
 config[bash]="$HOME/.bashrc $HOME/.bash_profile"
