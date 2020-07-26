@@ -10,6 +10,11 @@ set foldmethod=indent foldlevel=99 " use indents; start unfolded
 set noshowmode noshowcmd " hide info on cmdline
 set mouse=a " mouse in all modes
 set inccommand=nosplit " incremental command preview
+set conceallevel=2 " concealed text effects
+set hidden " hidden buffers
+set title " set terminal title
+set lazyredraw " dont render macro execution
+set showmatch " matching brackets
 
 " python
 let g:python3_host_prog='/usr/bin/python3'
@@ -65,7 +70,3 @@ augroup BWCCreateDir
 	autocmd!
 	autocmd BufWritePre,FilterWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
-
-" misc
-set conceallevel=2
-set hidden
