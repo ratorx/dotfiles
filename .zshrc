@@ -30,17 +30,6 @@ zle -N down-line-or-local-history
 # Key bindings
 bindkey '^[[A' up-line-or-local-history
 bindkey '^[[B' down-line-or-local-history
-# bindkey '^[[1;5D' backward-word
-# bindkey '^[[1;5C' forward-word
-# bindkey "^[[H" beginning-of-line
-# bindkey "^[[1~" beginning-of-line
-# bindkey "^[[F" end-of-line
-# bindkey "^[[4~" end-of-line
-# bindkey '^[[3~' delete-char
-# bindkey '^A' kill-whole-line
-# bindkey '^X' sudo-command-line
-# bindkey '^[.' insert-last-word
-# bindkey "^?" backward-delete-char
 
 # Options
 setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_EXPIRE_DUPS_FIRST AUTO_LIST NO_NOMATCH AUTO_CD
