@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ANTIBODYHOME="$HOME/.shell/antibody"
 export HISTFILE="$HOME/.bash_history"
 export HISTSIZE=500000
 export SAVEHIST=500000
@@ -66,9 +65,9 @@ bashcompinit
 [ -f "$HOME/.shell/aliases" ] && source "$HOME/.shell/aliases"
 
 # Antibody
-source "$ANTIBODYHOME/load.zsh"
-antibody bundle < "$ANTIBODYHOME/plugins"
-config[antibody]="$ANTIBODYHOME/plugins"
+source <(antibody init)
+antibody bundle < "$HOME/.shell/plugins"
+config[antibody]="$HOME/.shell/plugins"
 
 # Prompt config
 [[ ! -f ~/.shell/zsh/p10k.zsh ]] || source ~/.shell/zsh/p10k.zsh
