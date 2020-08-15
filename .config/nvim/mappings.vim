@@ -31,7 +31,7 @@ noremap zx :qall!<CR>
 noremap H ^
 noremap L $
 
- " copy paste
+" copy paste
 nnoremap Y y$
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y

@@ -63,11 +63,6 @@ augroup fzf_statuslist
 augroup END
 '''
 
-# File browser
-[[plugins]]
-repo = 'tpope/vim-vinegar'
-on_map = {n = '-'}
-
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
@@ -131,3 +126,44 @@ build = './build'
 hook_add = '''
 let g:polyglot_disabled = ['latex', 'markdown']
 '''
+
+[[plugins]]
+repo = 'w0rp/ale'
+on_ft = ['sh', 'vim']
+hook_add = '''
+let g:ale_set_loclist=0
+let g:ale_set_quickfix=1
+let g:ale_sign_error='‼'
+let g:ale_sign_warning='!'
+let g:ale_fix_on_save=1
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_save=1
+let g:ale_lint_on_enter=1
+" TODO: Change after ale is fixed
+let g:ale_lint_on_text_changed=1
+
+let g:ale_linters={}
+let g:ale_linters.sh=['shellcheck']
+let g:ale_linters.vim=['vint']
+
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap K :ALEFindReferences<CR>
+nnoremap gs :ALESymbolSearch<Space>
+
+nnoremap <F2> :ALERename<CR>
+'''
+
+[[plugins]]
+repo = 'mhinz/vim-signify'
+hook_add = '''
+let g:signify_sign_show_count=0
+let g:signify_sign_add='▍'
+let g:signify_sign_delete='▍'
+let g:signify_sign_delete_first_line='▔'
+let g:signify_sign_change='▍'
+'''
+
+[[plugins]]
+repo = 'fszymanski/fzf-quickfix'
+depends = 'fzf'
+on_cmd = 'Quickfix'
