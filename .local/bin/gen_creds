@@ -31,8 +31,6 @@ function docker_ca_sign() {
 	ca_key="ca/$(basename "$DOCKER_PRIVATE_CA_KEY")"
 	ca_cert="ca/$(basename "$DOCKER_PRIVATE_CA_KEY.crt")"
 
-	ln -sfv "$ca_cert" ca.pem
-
 	openssl genrsa -out key.pem 4096
 	openssl req -subj '/CN=client' -new -key key.pem -out client.csr
 	echo extendedKeyUsage = clientAuth > extfile-client.cnf
