@@ -16,6 +16,7 @@ if ! exists yadm; then
 		unset -f yadm
 	}
 fi
+function completion_add() { [ -n "$ZPFX" ] && zicompdef "$@"; }
 
 function yadm_setup() {
 	local authkeys
@@ -34,7 +35,7 @@ function j() { cd "${bookmarks[$1]}" || return; }
 if is_zsh; then
 	# shellcheck disable=SC2154
 	function _j() { _arguments "1:bookmark:(${(k)bookmarks})"; }
-	compdef _j j
+	completion_add _j j
 fi
 
 bookmarks[uni]="$HOME/projects/cambridge/ii"
@@ -70,7 +71,7 @@ function cfg() {
 if is_zsh; then
 	# shellcheck disable=SC2154
 	function _cfg() { _arguments "1:module:(${(k)config})"; }
-	compdef _cfg cfg
+	completion_add _cfg cfg
 fi
 
 # Systemd
@@ -93,7 +94,7 @@ else
 		fi
 	}
 fi
-is_zsh && compdef sc=systemctl
+is_zsh && completion_add sc=systemctl
 alias scu="systemctl --user"
 
 # Git

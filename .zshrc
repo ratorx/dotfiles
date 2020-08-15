@@ -37,29 +37,29 @@ setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_EXPIRE_DUPS_FIR
 # Completions
 export fpath=($XDG_DATA_HOME/zsh/completions $fpath)
 
-autoload -Uz compinit
-setopt EXTENDEDGLOB
-for dump in $HOME/.zcompdump(#qN.m1); do
-	compinit
-	[[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]] && zcompile "$dump"
-done
-unsetopt EXTENDEDGLOB
-compinit -C
+# Zinit
+declare -A ZINIT
+ZINIT[HOME_DIR]="$XDG_DATA_HOME/zinit"
+ZINIT_SRC="$XDG_DATA_HOME/zinit/bin/zinit.zsh" 
+if [ -f "$ZINIT_SRC" ]; then
+	source "$ZINIT_SRC"
 
-# Bash completions
-autoload -Uz bashcompinit
-bashcompinit
+	zinit ice depth'1' atload'source ~/.shell/zsh/p10k.zsh'
+	zinit light romkatv/powerlevel10k
+
+	zinit wait lucid for \
+		blockf zsh-users/zsh-completions \
+		ratorx/zsh-bd \
+		OMZP::sudo/sudo.plugin.zsh \
+		OMZP::colored-man-pages/colored-man-pages.plugin.zsh
+
+	zinit ice wait lucid atinit"zpcompinit; zpcdreplay"
+	zinit load zdharma/fast-syntax-highlighting
+fi
+unset ZINIT_SRC
 
 # Load common aliases and functions
 [ -f "$HOME/.shell/aliases.sh" ] && source "$HOME/.shell/aliases.sh"
-
-# Antibody
-source <(antibody init)
-antibody bundle < "$HOME/.shell/plugins"
-config[antibody]="$HOME/.shell/plugins"
-
-# Prompt config
-[[ ! -f ~/.shell/zsh/p10k.zsh ]] || source ~/.shell/zsh/p10k.zsh
 
 # FZF
 if exists fzf; then
