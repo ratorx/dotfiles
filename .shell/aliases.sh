@@ -1,21 +1,5 @@
 function is_zsh() { [ -n "$ZSH_NAME" ]; }
 function exists() { command -v "$1" >/dev/null; }
-
-# Bootstrap functions
-if ! exists yadm; then
-	function yadm() {
-		if ! exists git; then
-			echo "Install git"
-			return 1
-		fi
-		local yadm
-		yadm="$HOME/.local/bin/yadm"
-		mkdir -p "$(dirname "$yadm")"
-		curl -o "$yadm" "https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm"
-		chmod +x "$yadm"
-		unset -f yadm
-	}
-fi
 function completion_add() { [ -n "$ZPFX" ] && zicompdef "$@"; }
 
 function yadm_setup() {
