@@ -40,7 +40,8 @@ export fpath=($XDG_DATA_HOME/zsh/completions $fpath)
 # Zinit
 declare -A ZINIT
 ZINIT[HOME_DIR]="$XDG_DATA_HOME/zinit"
-ZINIT_SRC="$XDG_DATA_HOME/zinit/bin/zinit.zsh" 
+# Bad form to run curled script, but we always run zinit.zsh anyway so the repository is already trusted.
+ZINIT_SRC="${ZINIT[HOME_DIR]}/bin/zinit.zsh" 
 if [ -f "$ZINIT_SRC" ]; then
 	source "$ZINIT_SRC"
 
@@ -55,6 +56,8 @@ if [ -f "$ZINIT_SRC" ]; then
 
 	zinit ice wait lucid atinit"zpcompinit; zpcdreplay"
 	zinit load zdharma/fast-syntax-highlighting
+else
+	function zinit() { ZINIT_HOME="${ZINIT[HOME_DIR]}" sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"; zsh -i -c -- 'zinit self-update'; }
 fi
 unset ZINIT_SRC
 
