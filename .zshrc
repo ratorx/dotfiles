@@ -52,7 +52,8 @@ if [ -f "$ZINIT_SRC" ]; then
 		blockf zsh-users/zsh-completions \
 		ratorx/zsh-bd \
 		OMZP::sudo/sudo.plugin.zsh \
-		OMZP::colored-man-pages/colored-man-pages.plugin.zsh
+		OMZP::colored-man-pages/colored-man-pages.plugin.zsh \
+		OMZP::command-not-found/command-not-found.plugin.zsh
 
 	zinit ice wait lucid atinit"zpcompinit; zpcdreplay"
 	zinit load zdharma/fast-syntax-highlighting
