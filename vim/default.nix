@@ -40,5 +40,8 @@
           p.fzf-vim
         ]) ++ [ p.fzfWrapper ];
     };
-
+  home.sessionVariables = {
+    # Don't use full path since configured neovim might have a different package to nixpkgs neovim.
+    EDITOR = "nvim";
+  };
 }
