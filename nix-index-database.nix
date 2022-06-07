@@ -31,7 +31,7 @@ in {
           filename="index-$(uname -m)-$(uname | tr '[:upper:]' '[:lower:]')"
           mkdir -p "$XDG_CACHE_HOME/nix-index"
           cd "$XDG_CACHE_HOME/nix-index"
-          wget -nv -N "${cfg.upstreamPath}/$filename"
+          wget -nv -N "${strings.escapeShellArg cfg.upstreamPath}/$filename"
           ln -f "$filename" files
         ''}";
       };
