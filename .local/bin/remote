@@ -1,7 +1,0 @@
-#! /bin/bash
-
-if systemctl --user is-active "remote@$1.service" >/dev/null; then
-	systemctl --user stop "remote@$1.service"
-else
-	systemctl --user start "remote@$1.service"
-fi

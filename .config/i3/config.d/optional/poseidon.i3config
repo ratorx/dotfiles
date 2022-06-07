@@ -1,6 +1,0 @@
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id nm-applet
-exec --no-startup-id /usr/bin/zsh -c "wallpaper reset"
-
-# barrier
-bindsym $mod+Shift+numbersign exec --no-startup-id remote zeus

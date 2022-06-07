@@ -1,6 +1,0 @@
-#! /bin/bash
-case $1 in
-	up) brillo -A 10 ;;
-	down) brillo -U 10 ;;
-esac
-dunstify -r 2000 "Brightness: $(printf "%.f\n" "$(brillo -G)")%"

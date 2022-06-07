@@ -1,0 +1,16 @@
+ControlMaster auto
+ControlPath ~/.ssh/ctrl-%r@%h:%p
+
+# Enable canonicalization only for hosts which don't have a . in it
+# Prevents performance penalty when using a normal domain (e.g. cloning from GitHub)
+Match host !*.*,*
+	CanonicalizeHostname yes
+	CanonicalDomains lan
+
+# Local Network
+Host *.lan
+	CheckHostIP no
+
+# External
+Host hades
+	HostName hades.ree.to

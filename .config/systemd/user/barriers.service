@@ -1,9 +1,0 @@
-[Unit]
-Description=Barrier Server Daemon
-After=network.target
-StopWhenUnneeded=true
-
-[Service]
-Environment=DISPLAY=:0
-ExecStart=/usr/bin/barriers --no-daemon --no-restart --debug NOTE --address 127.0.0.1:24800
-Restart=on-failure

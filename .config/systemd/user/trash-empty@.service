@@ -1,6 +1,0 @@
-[Unit]
-Description=Clear trash older than %i days
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/trash-empty %i

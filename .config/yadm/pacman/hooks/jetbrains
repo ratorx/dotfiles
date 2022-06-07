@@ -1,2 +1,0 @@
-#! /bin/bash
-/usr/bin/sed -i -e "s/# \(idea.system.path=\${user.home}\/\).*/\1.cache\/$1/" -e "s/# \(idea.config.path=\${user.home}\/\).*/\1.config\/$1/" "/opt/$1/bin/idea.properties"

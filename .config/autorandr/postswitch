@@ -1,4 +1,0 @@
-#! /bin/bash
-wallpaper reset
-export MONITORS="$(echo -n "$AUTORANDR_MONITORS" | tr ":" "\n")"
-$XDG_CONFIG_HOME/polybar/launch.sh

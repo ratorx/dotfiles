@@ -1,5 +1,0 @@
-device_config:
-  - id_type: vfat
-  - id_label: KEYFILE
-    ignore: true
-    keyfile: /home/reeto/.local/share/secrets/kf_usb
