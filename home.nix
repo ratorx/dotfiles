@@ -1,14 +1,12 @@
 { inputs, flakeRoot, config, lib, pkgs, ... }:
 
 let
-  fullBin = { name, deps, extraEnv ? "" }:
+  simpleBin = (name: deps: 
     pkgs.writeShellScriptBin name ''
       PATH=${lib.makeBinPath deps}
-      ${extraEnv}
 
       ${builtins.readFile (./bin + "/${name}.sh")}
-    '';
-  simpleBin = (name: deps: fullBin { inherit name deps; });
+    '');
 in
 {
   imports = [
@@ -40,13 +38,7 @@ in
     pkgs.shellcheck
     pkgs.vim-vint
     # Custom utilities
-    (fullBin {
-      name = ",";
-      deps = [ pkgs.fzf pkgs.coreutils pkgs.gawk pkgs.gnugrep pkgs.nix pkgs.nix-index ];
-      extraEnv = ''
-        FLAKE_ROOT=${flakeRoot}
-      '';
-    })
+    (simpleBin "," [ pkgs.fzf pkgs.coreutils pkgs.gawk pkgs.gnugrep pkgs.nix pkgs.nix-index ])
     (simpleBin "pkglocate" [ pkgs.nix-index pkgs.gnused ])
     (simpleBin "nixify" [ pkgs.coreutils pkgs.direnv ])
   ];
@@ -55,6 +47,7 @@ in
     LESS =
       "--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
     SYSTEMD_LESS = LESS;
+    HOME_MANAGER_FLAKE_ROOT = flakeRoot;
   };
 
   programs.bat = {
