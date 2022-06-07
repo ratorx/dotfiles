@@ -26,12 +26,6 @@ in
   programs.home-manager.enable = true;
 
   xdg.enable = true;
-  systemd.user.sessionVariables = {
-    "XDG_CACHE_HOME" = config.xdg.cacheHome;
-    "XDG_CONFIG_HOME" = config.xdg.configHome;
-    "XDG_DATA_HOME" = config.xdg.dataHome;
-  };
-
   services.nix-index-database.enable = true;
 
   # Home Manager needs a bit of information about you and the
