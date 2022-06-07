@@ -10,7 +10,6 @@ let
 in
 {
   imports = [
-    (inputs.autofix-vscode-server + "/modules/vscode-server/home.nix")
     ./fish
     ./ssh
     ./vim
@@ -18,7 +17,11 @@ in
     ./nix-index-database.nix
   ];
 
-  targets.genericLinux.enable = true;
+  accounts.email.accounts = {
+    personal.address = "git@ree.to";
+    personal.primary = true;
+    google.address = "reeto@google.com";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -86,6 +89,4 @@ in
         '';
     };
   };
-
-  services.vscode-server.enable = true;
 }

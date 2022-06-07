@@ -26,18 +26,28 @@
             ${home-manager.packages.${system}.home-manager}/bin/home-manager --flake "${./.}" switch
           '';
         };
-      }) // {
-      homeConfigurations."reeto@zeus" = home-manager.lib.homeManagerConfiguration rec {
-        system = flake-utils.lib.system.x86_64-linux;
-        configuration = import ./home.nix;
+      }) // (let
+      homeCfgBase = {
         username = "reeto";
-        homeDirectory = "/home/${username}";
         stateVersion = "22.05";
-        pkgs = self.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs;
           flakeRoot = builtins.toString ./.;
         };
       };
-    };
+      makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg));
+      in {
+      homeConfigurations."reeto@zeus" = makeCfg rec {
+        system = flake-utils.lib.system.x86_64-linux;
+        configuration = import ./systems/zeus.nix;
+        homeDirectory = "/home/${homeCfgBase.username}";
+        pkgs = self.legacyPackages.${system};
+      };
+      homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg rec {
+        system = flake-utils.lib.system.x86_64-darwin;
+        configuration = import ./systems/oceanus.nix;
+        homeDirectory = "/Users/${homeCfgBase.username}";
+        pkgs = self.legacyPackages.${system};
+      };
+    });
 }
