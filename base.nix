@@ -42,6 +42,7 @@ in
     pkgs.vim-vint
     # Custom utilities
     (simpleBin "," [ pkgs.fzf pkgs.nix pkgs.nix-index ])
+    (simpleBin ",man" [ pkgs.fzf pkgs.nix pkgs.nix-index ])
     (simpleBin "pkglocate" [ pkgs.nix-index pkgs.gnused ])
     (simpleBin "nixify" [ pkgs.coreutils pkgs.direnv ])
   ];
