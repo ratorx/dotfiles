@@ -41,7 +41,7 @@ in
     pkgs.shellcheck
     pkgs.vim-vint
     # Custom utilities
-    (simpleBin "," [ pkgs.fzf pkgs.coreutils pkgs.gawk pkgs.gnugrep pkgs.nix pkgs.nix-index ])
+    (simpleBin "," [ pkgs.fzf pkgs.nix pkgs.nix-index ])
     (simpleBin "pkglocate" [ pkgs.nix-index pkgs.gnused ])
     (simpleBin "nixify" [ pkgs.coreutils pkgs.direnv ])
   ];
