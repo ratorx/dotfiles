@@ -3,7 +3,7 @@
   programs.git = {
     enable = true;
     userName = "Reeto Chatterjee";
-    userEmail = lib.mkDefault config.accounts.email.personal.address;
+    userEmail = lib.mkDefault config.accounts.email.accounts.personal.address;
     aliases = {
       a = "add";
       aa = "add .";
