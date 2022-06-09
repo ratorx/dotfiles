@@ -1,4 +1,6 @@
 # shellcheck shell=bash
+set -euo pipefail
+
 if [ ! -e ./.envrc ]; then
   echo "use nix" >.envrc
   direnv allow
@@ -14,3 +16,5 @@ pkgs.mkShell {
 }
 EOF
 fi
+
+[[ -z "$EDITOR" ]] && $EDITOR default.nix

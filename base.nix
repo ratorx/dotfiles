@@ -35,7 +35,7 @@
     (pkgs.custom.simpleShellScriptBin ./bin/n.sh [ pkgs.fzf pkgs.nix pkgs.nix-index ])
     (pkgs.custom.simpleShellScriptBin ./bin/nman.sh [ pkgs.fzf pkgs.nix pkgs.nix-index ])
     (pkgs.custom.simpleShellScriptBin ./bin/pkglocate.sh [ pkgs.nix-index pkgs.gnused ])
-    (pkgs.custom.simpleShellScriptBin ./bin/nixify.sh [ pkgs.coreutils pkgs.direnv ])
+    (pkgs.custom.impureShellScriptBin ./bin/nixify.sh [ pkgs.coreutils pkgs.direnv ])
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";
