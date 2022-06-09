@@ -29,7 +29,10 @@
     enable = true;
     # This shims into fish at the very beginning of bashrc (if interactive)
     bashrcExtra = ''
-      [[ $- == *i* ]] && exec "${pkgs.fish}/bin/fish"
+      if [[ "$-" =~ i && "$(${pkgs.coreutils}/bin/basename "$SHELL")" == "bash" ]]; then
+        FISH="${pkgs.fish}/bin/fish"
+        exec env SHELL="$FISH" "$FISH"
+      fi
     '';
   };
 }
