@@ -15,6 +15,7 @@
         legacyPackages = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          overlays = [(import ./overlay.nix inputs)];
         };
         # Make a system-specific package for every homeConfiguration
         packages = nixpkgs.lib.attrsets.filterAttrs

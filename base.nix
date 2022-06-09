@@ -1,13 +1,4 @@
 { inputs, flakeRoot, config, lib, pkgs, ... }:
-
-let
-  simpleBin = (name: deps: 
-    pkgs.writeShellScriptBin name ''
-      PATH=${lib.makeBinPath deps}
-
-      ${builtins.readFile (./bin + "/${name}.sh")}
-    '');
-in
 {
   imports = [
     ./fish
@@ -41,10 +32,10 @@ in
     pkgs.shellcheck
     pkgs.vim-vint
     # Custom utilities
-    (simpleBin "," [ pkgs.fzf pkgs.nix pkgs.nix-index ])
-    (simpleBin ",man" [ pkgs.fzf pkgs.nix pkgs.nix-index ])
-    (simpleBin "pkglocate" [ pkgs.nix-index pkgs.gnused ])
-    (simpleBin "nixify" [ pkgs.coreutils pkgs.direnv ])
+    (pkgs.custom.simpleShellScriptBin ./bin/n.sh [ pkgs.fzf pkgs.nix pkgs.nix-index ])
+    (pkgs.custom.simpleShellScriptBin ./bin/nman.sh [ pkgs.fzf pkgs.nix pkgs.nix-index ])
+    (pkgs.custom.simpleShellScriptBin ./bin/pkglocate.sh [ pkgs.nix-index pkgs.gnused ])
+    (pkgs.custom.simpleShellScriptBin ./bin/nixify.sh [ pkgs.coreutils pkgs.direnv ])
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";

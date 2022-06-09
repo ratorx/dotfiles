@@ -1,19 +1,10 @@
 { pkgs, lib, config, ... }:
-let
-  # Needs access to non-Nix dependencies via PATH
-  simpleBin = (name: deps: 
-    pkgs.writeShellScriptBin name ''
-      PATH=${lib.makeBinPath deps}:"$PATH"
-
-      ${builtins.readFile (../bin + "/${name}.sh")}
-    '');
-in
 {
   imports = [../base.nix];
 
   home.packages = [
-    (simpleBin "irctunnel" [ pkgs.autossh pkgs.tmux ])
-    (simpleBin "authrefresh" [])
+    (pkgs.custom.impureShellScriptBin ../bin/irctunnel.sh [ pkgs.autossh pkgs.tmux ])
+    (pkgs.custom.impureShellScriptBin ../bin/authrefresh.sh [])
   ];
 
   home.sessionVariables = {
