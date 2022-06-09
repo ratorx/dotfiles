@@ -1,5 +1,8 @@
+# shellcheck shell=bash
+set -euo pipefail
+
 TUNNEL_PORT=9001
-: ${HOST:="$1"}
+: "${HOST:="$1"}"
 
 /usr/local/bin/rw --nossh_interactively --check_remaining "$HOST"
 if lsof -t -i ":$TUNNEL_PORT" > /dev/null; then
