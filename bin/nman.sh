@@ -21,9 +21,9 @@ attr="$(nix-locate --minimal --top-level --regex -t r -t s "man/man\\d/$page\\..
 trap - EXIT
 
 nix shell \
-  "$HOME_MANAGER_FLAKE_ROOT#man" \
-  "$HOME_MANAGER_FLAKE_ROOT#gzip" \
-  "$HOME_MANAGER_FLAKE_ROOT#less" \
-  "$HOME_MANAGER_FLAKE_ROOT#coreutils" \
-  "$HOME_MANAGER_FLAKE_ROOT#$attr" \
+  "$FLAKE#man" \
+  "$FLAKE#gzip" \
+  "$FLAKE#less" \
+  "$FLAKE#coreutils" \
+  "$FLAKE#$attr" \
   -c man "${manargs[@]}"

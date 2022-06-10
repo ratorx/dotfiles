@@ -1,10 +1,17 @@
 { pkgs, lib, config, ... }:
 {
-  imports = [../base.nix];
+  imports = [ ../base.nix ];
 
   home.packages = [
-    (pkgs.custom.impureShellScriptBin ../bin/irctunnel.sh [ pkgs.autossh pkgs.tmux ])
-    (pkgs.custom.impureShellScriptBin ../bin/authrefresh.sh [])
+    (pkgs.custom.shellUtil {
+      src = ../bin/irctunnel.sh;
+      deps = [ pkgs.autossh pkgs.tmux ];
+      impure = true;
+    })
+    (pkgs.custom.shellUtil {
+      src = ../bin/authrefresh.sh;
+      impure = true;
+    })
   ];
 
   home.sessionVariables = {

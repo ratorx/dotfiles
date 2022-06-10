@@ -6,13 +6,9 @@ let
 in
 {
   custom = {
-    simpleShellScriptBin = (src: deps: pkgs.writeShellScriptBin (lib.strings.removeSuffix ".sh" (builtins.baseNameOf src)) ''
-      PATH=${lib.makeBinPath deps}
-
-      ${builtins.readFile src}
-    '');
-    impureShellScriptBin = (src: deps: pkgs.writeShellScriptBin (lib.strings.removeSuffix ".sh" (builtins.baseNameOf src)) ''
-      PATH=${lib.makeBinPath deps}:"$PATH"
+    shellUtil = ({src, deps ? [], extraEnv ? "", impure ? false}: pkgs.writeShellScriptBin (lib.strings.removeSuffix ".sh" (builtins.baseNameOf src)) ''
+      PATH=${lib.makeBinPath deps}${if impure then ":$PATH" else ""}
+      ${extraEnv}
 
       ${builtins.readFile src}
     '');

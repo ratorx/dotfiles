@@ -32,17 +32,32 @@
     pkgs.shellcheck
     pkgs.vim-vint
     # Custom utilities
-    (pkgs.custom.simpleShellScriptBin ./bin/n.sh [ pkgs.fzf pkgs.nix pkgs.nix-index ])
-    (pkgs.custom.simpleShellScriptBin ./bin/nman.sh [ pkgs.fzf pkgs.nix pkgs.nix-index ])
-    (pkgs.custom.simpleShellScriptBin ./bin/pkglocate.sh [ pkgs.nix-index pkgs.gnused ])
-    (pkgs.custom.impureShellScriptBin ./bin/nixify.sh [ pkgs.coreutils pkgs.direnv ])
+    (pkgs.custom.shellUtil {
+      src = ./bin/n.sh;
+      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
+      extraEnv = "FLAKE=${flakeRoot}";
+    })
+    (pkgs.custom.shellUtil {
+      src = ./bin/nman.sh;
+      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
+      extraEnv = "FLAKE=${flakeRoot}";
+    })
+    (pkgs.custom.shellUtil {
+      src = ./bin/pkglocate.sh;
+      deps = [ pkgs.nix-index pkgs.gnused ];
+      impure = true;
+    })
+    (pkgs.custom.shellUtil {
+      src = ./bin/nixify.sh;
+      deps = [ pkgs.coreutils pkgs.direnv ];
+      impure = true;
+    })
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";
     LESS =
       "--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
     SYSTEMD_LESS = LESS;
-    HOME_MANAGER_FLAKE_ROOT = flakeRoot;
   };
 
   programs.bat = {
