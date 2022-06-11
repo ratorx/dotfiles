@@ -64,8 +64,8 @@
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";
-    LESS =
-      "--quit-if-one-screen --RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
+    LESS_NO_QUIT = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
+    LESS = "--quit-if-one-screen ${LESS_NO_QUIT}";
     SYSTEMD_LESS = LESS;
   };
 
@@ -128,17 +128,8 @@
       paths = [ pkgs.nnn ];
       buildInputs = [ pkgs.makeWrapper ];
       postBuild =
-        let
-          # Filter out --quit-if-one-screen from LESS
-          # Causes help page to not load when the terminal is big
-          nnnLess = builtins.toString (
-            builtins.filter
-              (s: s != "--quit-if-one-screen")
-              (lib.strings.splitString " " config.home.sessionVariables.LESS)
-          );
-        in
         ''
-          wrapProgram $out/bin/nnn --set LESS ${lib.strings.escapeShellArg nnnLess}
+          wrapProgram $out/bin/nnn --set LESS ${lib.escapeShellArg config.home.sessionVariables.LESS_NO_QUIT}
         '';
     };
   };

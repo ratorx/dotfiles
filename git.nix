@@ -23,30 +23,11 @@
       df = "diff";
       dfs = "diff --staged";
 
-      lg = "!${pkgs.writeShellScript "fzf-git-log.sh" (
-        let path = lib.makeBinPath (builtins.attrValues {
-          inherit (pkgs) bash coreutils delta gnugrep findutils fzf git;
-        });
-        in
-        ''
-          PATH="${path}"
-          # Git Commit Browser (w/ previews)
-          _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\\{7\\}' | head -1"
-          _viewGitLogLine="$_gitLogLineToHash | xargs -I % git show %"
-
-          glog() {
-            git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@" |
-              fzf --bind shift-up:preview-up,shift-down:preview-down --no-sort --reverse --tiebreak=index --no-multi --ansi --exit-0 --preview "$_viewGitLogLine" | 
-              grep -o '[a-f0-9]\{7\}' | 
-              tr -d '\n'
-
-            # Send through exit code
-            e=$? && [ $e -eq 130 ] || [ $e -eq 1 ] || return $e
-          }
-
-          glog "$@"
-        ''
-      )}";
+      lg = "!${pkgs.custom.shellUtil {
+        src = ./bin/fzf-git-log.sh;
+        deps = [pkgs.coreutils pkgs.gnugrep pkgs.findutils pkgs.gawk pkgs.fzf pkgs.git pkgs.less];
+        bin = false;
+      }}";
       lgs = "log --oneline --decorate --no-merges --max-count=20";
 
       pl = "pull";
