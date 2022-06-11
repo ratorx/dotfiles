@@ -1,9 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.fish = {
     enable = true;
     shellAliases = {
       g = "git";
+      # Shortcut for dotfile operations
+      d = "git -C ${lib.escapeShellArg config.home.homeDirectory}/.config/nixpkgs";
       # ls -> exa
       ls = "exa -xF";
       la = "ls -a";
@@ -21,6 +23,7 @@
       pubip = "string trim -c '\"' $(${pkgs.dnsutils}/bin/dig +short txt ch whoami.cloudflare @1.1.1.1)";
       # System
       scu = "systemctl --user";
+      hm = "home-manager";
     };
     interactiveShellInit = (builtins.readFile ./interactive.fish);
   };
