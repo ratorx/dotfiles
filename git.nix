@@ -32,7 +32,7 @@
           PATH="${path}"
           # Git Commit Browser (w/ previews)
           _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\\{7\\}' | head -1"
-          _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show % | delta'"
+          _viewGitLogLine="$_gitLogLineToHash | xargs -I % git show %"
 
           glog() {
             git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@" |
@@ -80,13 +80,13 @@
       pull.rebase = true;
       color.ui = true;
       color.diff = {
-        meta = "yellow";
+        meta = "blue";
         frag = "magenta bold";
         commit = "yellow bold";
-        old = "red bold";
-        new = "green bold";
-        whitespace = "red reverse";
       };
+      diff.tool = "vimdiff";
+      diff.guitool = "vscode";
+      difftool.vscode.cmd = "code --wait --diff $LOCAL $REMOTE";
     } // {
       url = builtins.mapAttrs (name: value: { insteadOf = value; pushInsteadOf = value; }) {
         "git@github.com:" = "gh:";
@@ -94,7 +94,5 @@
         "git@bitbucket.org:" = "bb:";
       };
     };
-    delta.enable = true;
-    delta.options = { };
   };
 }
