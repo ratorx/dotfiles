@@ -6,11 +6,11 @@
     (pkgs.custom.shellUtil {
       src = ../bin/irctunnel.sh;
       deps = [ pkgs.autossh pkgs.tmux ];
-      impure = true;
+      pure = false;
     })
     (pkgs.custom.shellUtil {
       src = ../bin/authrefresh.sh;
-      impure = true;
+      pure = false;
     })
   ];
 

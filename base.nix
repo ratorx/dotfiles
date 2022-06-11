@@ -45,12 +45,12 @@
     (pkgs.custom.shellUtil {
       src = ./bin/pkglocate.sh;
       deps = [ pkgs.nix-index pkgs.gnused ];
-      impure = true;
+      pure = false;
     })
     (pkgs.custom.shellUtil {
       src = ./bin/nixify.sh;
       deps = [ pkgs.coreutils pkgs.direnv ];
-      impure = true;
+      pure = false;
     })
     # This is an amazing hack that makes 'n' and 'nman' work offline if the
     # package is already present! This is necessary since there's no way for Nix
