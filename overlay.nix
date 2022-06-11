@@ -13,8 +13,13 @@ in
                  , extraEnv ? ""
                    # Pure mode replaces PATH; otherwise it is only prepended
                  , pure ? true
+                   # Whether to use writeShellScriptBin or writeShellScript
+                 , bin ? true
                  }:
-      pkgs.writeShellScriptBin (lib.strings.removeSuffix ".sh" (builtins.baseNameOf src)) ''
+      let
+        writer = if bin then pkgs.writeShellScriptBin else pkgs.writeShellScript;
+      in
+      writer (lib.strings.removeSuffix ".sh" (builtins.baseNameOf src)) ''
         PATH=${lib.makeBinPath deps}${if pure then "" else ":\"$PATH\""}
         ${extraEnv}
 
