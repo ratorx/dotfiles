@@ -70,9 +70,7 @@
       difftool.vscode.cmd = "code --wait --diff $LOCAL $REMOTE";
     } // {
       url = builtins.mapAttrs (name: value: { insteadOf = value; pushInsteadOf = value; }) {
-        "git@github.com:" = "gh:";
-        "git@github.com:ratorx/dotfiles" = "dots:";
-        "git@bitbucket.org:" = "bb:";
+        "git@github.com:" = "github:";
       };
     };
   };
