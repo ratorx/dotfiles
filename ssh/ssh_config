@@ -11,6 +11,13 @@ Match host !*.*,*
 Host *.lan
 	CheckHostIP no
 
+# Work
+Host kronos
+	HostName kronos.lon.corp.google.com
+
+Host iapetus
+	HostName iapetus.fra.corp.google.com
+
 # External
 Host hades
 	HostName hades.ree.to
