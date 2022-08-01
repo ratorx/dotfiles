@@ -95,3 +95,5 @@ noremap zx :qall!<CR>
 " more movement
 noremap H ^
 noremap L $
+" buffers
+nnoremap <leader>b :ls<CR>:b<SPACE>

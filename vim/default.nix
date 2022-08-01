@@ -37,8 +37,7 @@
           p.vim-commentary
           p.vim-surround
           p.vim-vinegar
-          p.fzf-vim
-        ]) ++ [ p.fzfWrapper ];
+        ]);
     };
   home.sessionVariables = {
     # Don't use full path since configured neovim might have a different package to nixpkgs neovim.
