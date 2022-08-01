@@ -44,6 +44,12 @@
         homeDirectory = "/home/${homeCfgBase.username}";
         pkgs = self.legacyPackages.${system};
       };
+      homeConfigurations."reeto@hades" = makeCfg rec {
+        system = flake-utils.lib.system.x86_64-linux;
+        configuration = import ./base.nix;
+        homeDirectory = "/home/${homeCfgBase.username}";
+        pkgs = self.legacyPackages.${system};
+      };
       homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg rec {
         system = flake-utils.lib.system.x86_64-darwin;
         configuration = import ./systems/oceanus.nix;
