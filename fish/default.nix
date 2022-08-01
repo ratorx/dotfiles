@@ -24,6 +24,8 @@
       # System
       scu = "systemctl --user";
       hm = "home-manager";
+      # Google
+      gssh = "/usr/local/bin/rw --cider --check_remaining";
     };
     interactiveShellInit = (builtins.readFile ./interactive.fish);
   };
