@@ -23,6 +23,7 @@ set shortmess+=c
 set conceallevel=2
 set hidden
 set signcolumn=yes
+set laststatus=3
 
 let g:netrw_altfile=1
 let g:netrw_fastbrowse=0
