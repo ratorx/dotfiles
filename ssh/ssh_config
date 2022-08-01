@@ -14,9 +14,11 @@ Host *.lan
 # Work
 Host kronos
 	HostName kronos.lon.corp.google.com
+	ControlPersist 15h
 
 Host iapetus
 	HostName iapetus.fra.corp.google.com
+	ControlPersist 15h
 
 # External
 Host hades
