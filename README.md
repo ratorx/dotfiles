@@ -23,7 +23,7 @@ Direnv + nix-direnv is a really nice way to develop isolated projects. Each proj
 
 ## Useful Scripts
 
-* `,` (based on [nix-community/comma](https://github.com/nix-community/comma)) - Run any binary packaged in nixpkgs without modifying the user profile. Changed to be flake-specific and use the config version of nixpkgs[^1]. Uses `nix-index` (and `nix-index-database`) and `nix shell`.
+* `n` (based on [nix-community/comma](https://github.com/nix-community/comma)) - Run any binary packaged in nixpkgs without modifying the user profile. Changed to be flake-specific and use the config version of nixpkgs[^1]. Uses `nix-index` (and `nix-index-database`) and `nix shell`.
 
 ## Usage
 
