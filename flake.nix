@@ -15,8 +15,9 @@
         legacyPackages = import nixpkgs {
           inherit system;
           # config.allowUnfree = true;
-          overlays = [(import ./overlay.nix inputs)];
+          overlays = [ (import ./overlay.nix inputs) ];
         };
+        formatter = self.legacyPackages.${system}.nixpkgs-fmt;
         # Make a system-specific package for every homeConfiguration
         packages = nixpkgs.lib.attrsets.filterAttrs
           (_: v: v.system == system)
@@ -27,26 +28,29 @@
             ${home-manager.packages.${system}.home-manager}/bin/home-manager --flake "${./.}" switch
           '';
         };
-      }) // (let
-      homeCfgBase = {
-        extraSpecialArgs = {
-          inherit inputs;
-          flakeRoot = builtins.toString ./.;
+      }) // (
+      let
+        homeCfgBase = {
+          extraSpecialArgs = {
+            inherit inputs;
+            flakeRoot = builtins.toString ./.;
+          };
         };
-      };
-      makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg));
-      in {
-      homeConfigurations."reeto@zeus" = makeCfg rec {
-        modules = [ ./systems/zeus.nix ];
-        pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
-      };
-      homeConfigurations."reeto@hades" = makeCfg rec {
-        modules = [ ./base.nix ];
-        pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
-      };
-      homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg rec {
-        modules = [ ./systems/oceanus.nix ];
-        pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
-      };
-    });
+        makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg));
+      in
+      {
+        homeConfigurations."reeto@zeus" = makeCfg rec {
+          modules = [ ./systems/zeus.nix ];
+          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
+        };
+        homeConfigurations."reeto@hades" = makeCfg rec {
+          modules = [ ./base.nix ];
+          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
+        };
+        homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg rec {
+          modules = [ ./systems/oceanus.nix ];
+          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
+        };
+      }
+    );
 }

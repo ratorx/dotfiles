@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 {
   programs.neovim =
-    let cfg = (name:
-      let
-        path = ./. + "/${name}.vim";
-      in
-      if builtins.pathExists path then builtins.readFile path else ""
-    );
+    let
+      cfg = (name:
+        let
+          path = ./. + "/${name}.vim";
+        in
+        if builtins.pathExists path then builtins.readFile path else ""
+      );
     in
     {
       enable = true;
