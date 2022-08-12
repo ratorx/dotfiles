@@ -34,7 +34,6 @@
     pkgs.rnix-lsp
     pkgs.shfmt
     pkgs.shellcheck
-    pkgs.vim-vint
     # Custom utilities
     (pkgs.custom.shellUtil {
       src = ./bin/n.sh;
