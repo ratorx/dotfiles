@@ -22,6 +22,10 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
+  home.username = "reeto";
+  home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
+  home.stateVersion = "22.05";
+
   home.language.base = "en_GB.UTF-8";
   home.packages = [
     pkgs.hyperfine

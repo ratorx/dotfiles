@@ -2,6 +2,7 @@
 {
   imports = [ ../base.nix ];
 
+  home.homeDirectory = "/Users/${config.home.username}";
   home.packages = [
     (pkgs.custom.shellUtil {
       src = ../bin/irctunnel.sh;

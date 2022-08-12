@@ -29,8 +29,6 @@
         };
       }) // (let
       homeCfgBase = {
-        username = "reeto";
-        stateVersion = "22.05";
         extraSpecialArgs = {
           inherit inputs;
           flakeRoot = builtins.toString ./.;
@@ -39,22 +37,16 @@
       makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg));
       in {
       homeConfigurations."reeto@zeus" = makeCfg rec {
-        system = flake-utils.lib.system.x86_64-linux;
-        configuration = import ./systems/zeus.nix;
-        homeDirectory = "/home/${homeCfgBase.username}";
-        pkgs = self.legacyPackages.${system};
+        modules = [ ./systems/zeus.nix ];
+        pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
       };
       homeConfigurations."reeto@hades" = makeCfg rec {
-        system = flake-utils.lib.system.x86_64-linux;
-        configuration = import ./base.nix;
-        homeDirectory = "/home/${homeCfgBase.username}";
-        pkgs = self.legacyPackages.${system};
+        modules = [ ./base.nix ];
+        pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
       };
       homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg rec {
-        system = flake-utils.lib.system.x86_64-darwin;
-        configuration = import ./systems/oceanus.nix;
-        homeDirectory = "/Users/${homeCfgBase.username}";
-        pkgs = self.legacyPackages.${system};
+        modules = [ ./systems/oceanus.nix ];
+        pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
       };
     });
 }
