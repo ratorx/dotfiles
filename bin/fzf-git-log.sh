@@ -4,7 +4,7 @@
 delim="$(echo -e '\u00a0')"
 # <short commit> (branch) <message> <when> <author> <full commit>
 # %C(auto) enables colours based on git config
-fmt="%C(auto)%h%d$delim%s$delim%C(dim)%cr%C(auto)$delim%an$delim%H" 
+fmt="%C(auto)%h%d$delim%s$delim%C(dim)%cr%C(auto)$delim%an$delim%H"
 cmd="git show --color=always {-1}"
 
 glog() {
@@ -25,7 +25,7 @@ glog() {
       --no-multi \
       --ansi \
       --exit-0 \
-      --preview "$cmd" | 
+      --preview "$cmd" |
     awk -F "$delim" '{print $NF}' |
     tr -d '\n'
 

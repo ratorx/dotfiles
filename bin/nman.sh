@@ -14,7 +14,7 @@ elif [ "$#" -eq 2 ]; then
   page="$2"
   manargs=("$1" "$2")
 else
- exit 1
+  exit 1
 fi
 
 attr="$(nix-locate --minimal --top-level --regex -t r -t s "man/man\\d/$page\\..+" | fzf --select-1 --exit-0)"
