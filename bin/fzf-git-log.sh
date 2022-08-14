@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# Two panel git log browser. Commits on left, diff preview on right.
 
 # Non-breaking space
 delim="$(echo -e '\u00a0')"

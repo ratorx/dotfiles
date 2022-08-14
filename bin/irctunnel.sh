@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# Create an SSH tunnel for Weechat IRC forwarding
 set -euo pipefail
 
 TUNNEL_PORT=9001

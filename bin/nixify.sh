@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# Setup a Nix shell in the current directory.
 set -euo pipefail
 
 if [ ! -e ./.envrc ]; then

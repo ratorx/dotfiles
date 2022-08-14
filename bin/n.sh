@@ -1,8 +1,9 @@
 # shellcheck shell=bash
+# Run a binary by name from any Nix Package that provides it. Uses fzf for resolving ambiguities.
 set -euo pipefail
 
 usage() {
-  echo "usage: , <binary>"
+  echo "usage: n <binary>"
   exit 1
 }
 trap usage EXIT

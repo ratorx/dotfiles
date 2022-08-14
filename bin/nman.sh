@@ -1,4 +1,6 @@
 # shellcheck shell=bash
+# Get a man page by name from any Nix Package that provides it.
+# Uses fzf for resolving ambiguities.
 set -euo pipefail
 
 usage() {
