@@ -70,6 +70,9 @@
     LESS_NO_QUIT = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
     LESS = "--quit-if-one-screen ${LESS_NO_QUIT}";
     SYSTEMD_LESS = LESS;
+    # If Go is used, it will default GOPATH to $HOME/go
+    # However, the proper place for it is underneath $XDG_DATA_HOME.
+    GOPATH = "${config.home.sessionVariables.XDG_DATA_HOME}/go";
   };
 
   programs.bat = {
