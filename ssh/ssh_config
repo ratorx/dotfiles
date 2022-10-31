@@ -5,7 +5,7 @@ ControlPath ~/.ssh/ctrl-%r@%h:%p
 # Prevents performance penalty when using a normal domain (e.g. cloning from GitHub)
 Match host !*.*,*
 	CanonicalizeHostname yes
-	CanonicalDomains lan
+	CanonicalDomains lan,d.ree.to
 
 # Local Network
 Host *.lan
