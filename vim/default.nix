@@ -35,11 +35,6 @@
           p.lightline-vim # TODO: Replace with lualine/custom Lua function
           p.onedark-vim # TODO: Explore lighter weight options
           p.suda-vim
-          # Enhancements
-          # TODO: Drop these plugins
-          p.vim-operator-user
-          p.vim-operator-replace
-          p.vim-repeat
           # Extra
           p.vim-commentary # TODO: Replace with nvim-comment
           p.vim-surround # TODO: Explore Lua options
