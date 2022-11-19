@@ -14,7 +14,6 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      extraConfig = cfg "init";
       plugins =
         let
           p = pkgs.vimPlugins;
@@ -23,6 +22,7 @@
             config = cfg (pkgs.lib.strings.removeSuffix ".vim" pkg.pname);
           });
         in
+        # TODO: Replace with neovim Lua plugins where possible
         (builtins.map withCfg [
           # QoL
           p.is-vim
@@ -38,7 +38,14 @@
           p.vim-commentary
           p.vim-surround
           p.vim-vinegar
-        ]);
+        ]) ++ [
+          # Dummy plugin to load Lua config
+          {
+            plugin = pkgs.emptyFile;
+            type = "lua";
+            config = builtins.readFile ./init.lua;
+          }
+        ];
     };
   home.sessionVariables = {
     # Don't use full path since configured neovim might have a different package to nixpkgs neovim.
