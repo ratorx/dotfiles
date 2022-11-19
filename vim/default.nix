@@ -4,7 +4,7 @@
     let
       cfg = (name:
         let
-          path = ./. + "/${name}.vim";
+          path = ./. + "/${name}.lua";
         in
         if builtins.pathExists path then builtins.readFile path else ""
       );
@@ -19,8 +19,10 @@
           p = pkgs.vimPlugins;
           withCfg = (pkg: {
             plugin = pkg;
+            type = "lua";
             config = cfg (pkgs.lib.strings.removeSuffix ".vim" pkg.pname);
           });
+        # TODO: Add an assertion to prevent non-Lua plugin configs
         in [
           # Dummy plugin which is loaded first. This sets mappings that are used
           # by all config and other plugins. Config is in Vimscript, because all
