@@ -22,7 +22,6 @@
             type = "lua";
             config = cfg (pkgs.lib.strings.removeSuffix ".vim" pkg.pname);
           });
-        # TODO: Add an assertion to prevent non-Lua plugin configs
         in [
           # Dummy plugin to load user config first.
           {
@@ -53,4 +52,11 @@
     # Don't use full path since configured neovim might have a different package to nixpkgs neovim.
     EDITOR = "nvim";
   };
+
+  assertions = [
+    {
+      assertion = config.programs.neovim.generatedConfigViml == "";
+      message = "generated vimscript config is non-empty";
+    }
+  ];
 }
