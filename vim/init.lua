@@ -109,24 +109,29 @@ vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 -- Mappings
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
+
 -- Disable arrow keys
 vim.keymap.set('', '<up>', '<nop>')
 vim.keymap.set('', '<down>', '<nop>')
 vim.keymap.set('', '<left>', '<nop>')
 vim.keymap.set('', '<right>', '<nop>')
+
 -- Line traversal that respects visual folds
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
+
 -- Buffer navigation
 vim.keymap.set('', '<Tab>', '<cmd>b#<cr>')
 vim.keymap.set('', '<A-]>', '<cmd>bnext<cr>')
 vim.keymap.set('', '<A-[>', '<cmd>bprev<cr>')
 vim.keymap.set('', '<leader>b', '<cmd>ls<cr>:b<space>')
+
 -- Split navigation
 vim.keymap.set('', '<A-h>', '<C-w><C-h>')
 vim.keymap.set('', '<A-j>', '<C-w><C-j>')
 vim.keymap.set('', '<A-k>', '<C-w><C-k>')
 vim.keymap.set('', '<A-l>', '<C-w><C-l>')
+
 -- Save & Exit
 vim.keymap.set('', '<leader>w', '<cmd>w<cr>')
 vim.keymap.set('', 'zz', '<cmd>wqall<cr>')
