@@ -131,6 +131,3 @@ vim.keymap.set('', '<A-l>', '<C-w><C-l>')
 vim.keymap.set('', '<leader>w', '<cmd>w<cr>')
 vim.keymap.set('', 'zz', '<cmd>wqall<cr>')
 vim.keymap.set('', 'zx', '<cmd>qall!<cr>')
--- More movement
-vim.keymap.set('', 'H', '^')
-vim.keymap.set('', 'L', '$')
