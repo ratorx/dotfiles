@@ -21,7 +21,27 @@
             plugin = pkg;
             config = cfg (pkgs.lib.strings.removeSuffix ".vim" pkg.pname);
           });
-        in
+        in [
+          # Dummy plugin which is loaded first. This sets mappings that are used
+          # by all config and other plugins. Config is in Vimscript, because all
+          # Vimscript config is evaluated first.
+          # TODO: Remove after getting rid of non-Lua Vimscript plugins.
+          {
+            plugin = pkgs.emptyFile;
+            config = ''
+              let g:mapleader = "\<space>"
+              let g:maplocalleader = "\\"
+            '';
+          }
+          # Dummy plugin which is loaded second. This sets the user, non-plugin specific
+          # config before any other (Lua) plugins are loaded. Unfortunately, Vimscript
+          # plugin configs are loaded first.
+          {
+            plugin = pkgs.emptyFile;
+            type = "lua";
+            config = builtins.readFile ./init.lua;
+          }
+        ] ++
         # TODO: Replace with neovim Lua plugins where possible
         (builtins.map withCfg [
           # QoL
@@ -38,14 +58,7 @@
           p.vim-commentary
           p.vim-surround
           p.vim-vinegar
-        ]) ++ [
-          # Dummy plugin to load Lua config
-          {
-            plugin = pkgs.emptyFile;
-            type = "lua";
-            config = builtins.readFile ./init.lua;
-          }
-        ];
+        ]);
     };
   home.sessionVariables = {
     # Don't use full path since configured neovim might have a different package to nixpkgs neovim.

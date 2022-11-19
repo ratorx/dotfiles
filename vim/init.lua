@@ -107,9 +107,6 @@ vim.g.netrw_altfile = 1 -- Don't use netrw as alt buffer
 vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 
 -- Mappings
--- mapleader doesn't work because this is executed after plugins
--- instead add space as an alias to the default leader (\)
-vim.keymap.set('', '<space>', '<leader>', { remap = true })
 -- Disable arrow keys
 vim.keymap.set('', '<up>', '<nop>')
 vim.keymap.set('', '<down>', '<nop>')
