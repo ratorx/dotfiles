@@ -55,7 +55,7 @@
 
   assertions = [
     {
-      assertion = config.programs.neovim.generatedConfigViml == "";
+      assertion = !config.programs.neovim.generatedConfigs ? viml;
       message = "generated vimscript config is non-empty";
     }
   ];
