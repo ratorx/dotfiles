@@ -110,6 +110,10 @@ vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
+-- Clear HL
+vim.keymap.set('n', '<esc>', '<cmd>noh<cr>')
+vim.keymap.set('', '<C-l>', '<cmd>noh<cr>')
+
 -- Disable arrow keys
 vim.keymap.set('', '<up>', '<nop>')
 vim.keymap.set('', '<down>', '<nop>')

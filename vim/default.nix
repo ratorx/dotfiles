@@ -32,7 +32,6 @@
         ] ++
         (builtins.map withCfg [
           # QoL
-          p.is-vim # TODO: Replace with Esc to clear HL
           p.lightline-vim # TODO: Replace with lualine/custom Lua function
           p.onedark-vim # TODO: Explore lighter weight options
           p.suda-vim
