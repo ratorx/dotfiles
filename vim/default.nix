@@ -35,7 +35,6 @@
           p.lightline-vim # TODO: Replace with lualine/custom Lua function
           p.onedark-vim # TODO: Explore lighter weight options
           p.suda-vim
-          p.vim-polyglot # TODO: Attempt to replace with tree sitter
           # Enhancements
           # TODO: Drop these plugins
           p.vim-operator-user
@@ -45,6 +44,7 @@
           p.vim-commentary # TODO: Replace with nvim-comment
           p.vim-surround # TODO: Explore Lua options
           p.vim-vinegar
+          (p.nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
         ]);
     };
   home.sessionVariables = {
