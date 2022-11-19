@@ -107,6 +107,8 @@ vim.g.netrw_altfile = 1 -- Don't use netrw as alt buffer
 vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 
 -- Mappings
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 -- Disable arrow keys
 vim.keymap.set('', '<up>', '<nop>')
 vim.keymap.set('', '<down>', '<nop>')

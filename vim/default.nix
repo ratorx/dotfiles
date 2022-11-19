@@ -24,20 +24,7 @@
           });
         # TODO: Add an assertion to prevent non-Lua plugin configs
         in [
-          # Dummy plugin which is loaded first. This sets mappings that are used
-          # by all config and other plugins. Config is in Vimscript, because all
-          # Vimscript config is evaluated first.
-          # TODO: Remove after getting rid of non-Lua Vimscript plugins.
-          {
-            plugin = pkgs.emptyFile;
-            config = ''
-              let g:mapleader = "\<space>"
-              let g:maplocalleader = "\\"
-            '';
-          }
-          # Dummy plugin which is loaded second. This sets the user, non-plugin specific
-          # config before any other (Lua) plugins are loaded. Unfortunately, Vimscript
-          # plugin configs are loaded first.
+          # Dummy plugin to load user config first.
           {
             plugin = pkgs.emptyFile;
             type = "lua";
