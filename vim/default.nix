@@ -30,21 +30,21 @@
             config = builtins.readFile ./init.lua;
           }
         ] ++
-        # TODO: Replace with neovim Lua plugins where possible
         (builtins.map withCfg [
           # QoL
-          p.is-vim
-          p.lightline-vim
-          p.onedark-vim
+          p.is-vim # TODO: Replace with Esc to clear HL
+          p.lightline-vim # TODO: Replace with lualine/custom Lua function
+          p.onedark-vim # TODO: Explore lighter weight options
           p.suda-vim
-          p.vim-polyglot
+          p.vim-polyglot # TODO: Attempt to replace with tree sitter
           # Enhancements
+          # TODO: Drop these plugins
           p.vim-operator-user
           p.vim-operator-replace
           p.vim-repeat
           # Extra
-          p.vim-commentary
-          p.vim-surround
+          p.vim-commentary # TODO: Replace with nvim-comment
+          p.vim-surround # TODO: Explore Lua options
           p.vim-vinegar
         ]);
     };
