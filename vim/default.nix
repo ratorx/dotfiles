@@ -23,7 +23,10 @@ in
         {
           plugin = p.nvim-lspconfig;
           type = "lua";
-          config = (builtins.readFile ./lspconfig.lua) + util.generateLspConfig {};
+          config = (builtins.readFile ./lspconfig.lua) + util.generateLspConfig {
+            rnix = pkgs.rnix-lsp + /bin/rnix-lsp;
+            sumneko_lua = pkgs.sumneko-lua-language-server + /bin/lua-language-server;
+          };
         }
       ] ++ util.makePlugins [
         # QoL

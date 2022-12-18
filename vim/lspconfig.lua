@@ -2,7 +2,18 @@
 ---@diagnostic disable-next-line:unused-local
 local configure_lsps = function(lsps)
   local lspconfig = require('lspconfig')
-  local extra = {}
+  local extra = {
+    sumneko_lua = {
+      settings = {
+        Lua = {
+          runtime = { version = 'LuaJIT' },
+          diagnostics = { globals = { 'vim' }, disable = { 'unused-function' } },
+          workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
+          telemetry = { enable = false },
+        },
+      },
+    },
+  }
   local on_attach = function(_, bufnr)
     -- Mappings
     local bufopts = { silent = true, buffer = bufnr }
