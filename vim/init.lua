@@ -110,6 +110,22 @@ vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
+-- Completion with Tab
+vim.keymap.set({'i', 's'}, '<Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
+end, {expr = true})
+
+vim.keymap.set({'i', 's'}, '<S-Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
+end, {expr = true})
+
+-- Diagnostics
+do
+  local opts = { float = false }
+  vim.keymap.set('n', '<leader>d', function() vim.diagnostic.goto_next(opts) end)
+  vim.keymap.set('n', '<leader>D', function() vim.diagnostic.goto_prev(opts) end)
+end
+
 -- Clear HL
 vim.keymap.set('n', '<esc>', '<cmd>noh<cr>')
 vim.keymap.set('', '<C-l>', '<cmd>noh<cr>')

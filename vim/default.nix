@@ -19,6 +19,12 @@ in
           type = "lua";
           config = builtins.readFile ./init.lua;
         }
+        # LSPs configured in Nix
+        {
+          plugin = p.nvim-lspconfig;
+          type = "lua";
+          config = (builtins.readFile ./lspconfig.lua) + util.generateLspConfig {};
+        }
       ] ++ util.makePlugins [
         # QoL
         p.lightline-vim # TODO: Replace with lualine/custom Lua function
