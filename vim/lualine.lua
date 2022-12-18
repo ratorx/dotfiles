@@ -22,7 +22,7 @@ require('lualine').setup({
     },
     lualine_c = { 'diagnostics' },
     lualine_x = {},
-    lualine_y = { 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'encoding', { 'fileformat', icons_enabled = false }, 'filetype' },
     lualine_z = { 'location' },
   },
 

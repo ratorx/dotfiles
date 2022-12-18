@@ -49,6 +49,12 @@ in
     # Don't use full path since configured neovim might have a different package to nixpkgs neovim.
     EDITOR = "nvim";
   };
+  home.packages = [
+    (pkgs.custom.shellUtil {
+      src = ../bin/nvimbench.sh;
+      deps = [ config.programs.neovim.finalPackage pkgs.coreutils pkgs.less ];
+    })
+  ];
 
   assertions = [
     {
