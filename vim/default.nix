@@ -41,7 +41,8 @@ in
         p.vim-commentary # TODO: Replace with nvim-comment
         p.vim-surround # TODO: Explore Lua options
         p.vim-vinegar
-        (p.nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+        # TODO: Remove bash exclusion once grammar/treesitter is fixed
+        (p.nvim-treesitter.withPlugins (_: builtins.filter (p: p.pname != "tree-sitter-bash-grammar") pkgs.tree-sitter.allGrammars))
       ];
   };
   home.sessionVariables = {
