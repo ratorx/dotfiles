@@ -8,6 +8,7 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    extraPackages = [ pkgs.shfmt pkgs.shellcheck ];
     plugins =
       let
         p = pkgs.vimPlugins;
@@ -20,6 +21,10 @@ in
           config = builtins.readFile ./init.lua;
           runtime.ftplugin = {
             source = ./ftplugin;
+            recursive = true;
+          };
+          runtime.lua = {
+            source = ./lua;
             recursive = true;
           };
         }
@@ -43,6 +48,7 @@ in
         p.vim-vinegar
         # TODO: Remove bash exclusion once grammar/treesitter is fixed
         (p.nvim-treesitter.withPlugins (_: builtins.filter (p: p.pname != "tree-sitter-bash-grammar") pkgs.tree-sitter.allGrammars))
+        p.null-ls-nvim
       ];
   };
   home.sessionVariables = {
