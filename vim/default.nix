@@ -46,7 +46,8 @@ in
       ];
   };
   home.sessionVariables = {
-    # Don't use full path since configured neovim might have a different package to nixpkgs neovim.
+    # Session variables are not reloaded automatically.
+    # Using an absolute path would require a re-login to update Neovim config.
     EDITOR = "nvim";
   };
   home.packages = [
