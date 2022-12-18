@@ -1,7 +1,6 @@
 vim.opt.cmdheight = 1 -- TODO: Hide cmdline and show messages somehwere else
 vim.opt.conceallevel = 2 -- Hide concealed text unless replacement character defined
 vim.opt.cursorline = true -- highlight current line
-vim.opt.laststatus = 3 -- global statusbar
 vim.opt.signcolumn = 'yes' -- always show signcolumn
 
 -- Terminal setup

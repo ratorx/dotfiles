@@ -34,8 +34,8 @@ in
         }
       ] ++ util.makePlugins [
         # QoL
-        p.lightline-vim # TODO: Replace with lualine/custom Lua function
-        p.onedark-vim # TODO: Explore lighter weight options
+        p.lualine-nvim
+        p.onedark-nvim
         p.suda-vim
         # Extra
         p.vim-commentary # TODO: Replace with nvim-comment
