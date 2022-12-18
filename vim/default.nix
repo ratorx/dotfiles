@@ -18,6 +18,10 @@ in
           plugin = pkgs.emptyFile;
           type = "lua";
           config = builtins.readFile ./init.lua;
+          runtime.ftplugin = {
+            source = ./ftplugin;
+            recursive = true;
+          };
         }
         # LSPs configured in Nix
         {
