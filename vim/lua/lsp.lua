@@ -11,6 +11,7 @@ return {
     if client.server_capabilities.referencesProvider then vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts) end
 
     if client.server_capabilities.declarationProvider then vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts) end
+    if client.server_capabilities.typeDefinitionProvider then vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts) end
     if client.server_capabilities.implementationProvider then vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts) end
 
     if client.server_capabilities.hoverProvider then vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts) end
