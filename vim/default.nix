@@ -34,7 +34,7 @@ in
         p.onedark-nvim
         p.suda-vim
         # Extra
-        p.vim-commentary # TODO: Replace with nvim-comment
+        p.nvim-comment
         p.vim-surround # TODO: Explore Lua options
         p.vim-vinegar
         # TODO: Remove bash exclusion once grammar/treesitter is fixed
