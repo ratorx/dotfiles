@@ -3,6 +3,7 @@ vim.opt.conceallevel = 2 -- Hide concealed text unless replacement character def
 vim.opt.cursorline = true -- highlight current line
 vim.opt.signcolumn = 'yes' -- always show signcolumn
 vim.opt.undofile = true
+vim.opt.jumpoptions:append('stack')
 
 -- Terminal setup
 vim.opt.title = true
@@ -142,6 +143,8 @@ vim.keymap.set('n', 'k', 'gk')
 
 -- Buffer navigation
 vim.keymap.set('', '<Tab>', '<cmd>b#<cr>')
+vim.keymap.set('', '<C-i>', '<C-i>') -- fix jump navigation, if CSI u supported
+
 vim.keymap.set('', '<A-]>', '<cmd>bnext<cr>')
 vim.keymap.set('', '<A-[>', '<cmd>bprev<cr>')
 vim.keymap.set('', '<leader>b', '<cmd>ls<cr>:b<space>')
