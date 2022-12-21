@@ -10,11 +10,8 @@ let
     type = "lua";
     config = readFileOptional (./. + "/${sanitisePluginName plugin.pname}.lua");
   };
-
-  formatLspList = lsps: lib.strings.concatStringsSep ", " (lib.attrsets.mapAttrsToList (name: cmd: "${name} = \"${cmd}\"") lsps);
 in
 {
   makePlugins = plugins: (builtins.map makePlugin plugins);
-  generateLspConfig = lsps: "configure_lsps({${formatLspList lsps}})";
 }
 

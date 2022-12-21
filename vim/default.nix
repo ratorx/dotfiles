@@ -8,7 +8,8 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = [ pkgs.shfmt pkgs.shellcheck ];
+    # TODO: Replace with deps provided by shell.nix
+    extraPackages = [ pkgs.shfmt pkgs.shellcheck pkgs.rnix-lsp pkgs.sumneko-lua-language-server ];
     plugins =
       let
         p = pkgs.vimPlugins;
@@ -28,15 +29,6 @@ in
             recursive = true;
           };
         }
-        # LSPs configured in Nix
-        {
-          plugin = p.nvim-lspconfig;
-          type = "lua";
-          config = (builtins.readFile ./lspconfig.lua) + util.generateLspConfig {
-            rnix = pkgs.rnix-lsp + /bin/rnix-lsp;
-            sumneko_lua = pkgs.sumneko-lua-language-server + /bin/lua-language-server;
-          };
-        }
       ] ++ util.makePlugins [
         # QoL
         p.lualine-nvim
@@ -49,6 +41,7 @@ in
         # TODO: Remove bash exclusion once grammar/treesitter is fixed
         (p.nvim-treesitter.withPlugins (_: builtins.filter (p: p.pname != "tree-sitter-bash-grammar") pkgs.tree-sitter.allGrammars))
         p.null-ls-nvim
+        p.nvim-lspconfig
       ];
   };
   home.sessionVariables = {
