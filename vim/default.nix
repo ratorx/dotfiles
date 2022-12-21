@@ -9,7 +9,6 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     # TODO: Replace with deps provided by shell.nix
-    extraPackages = [ pkgs.shfmt pkgs.shellcheck pkgs.rnix-lsp pkgs.sumneko-lua-language-server ];
     plugins =
       let
         p = pkgs.vimPlugins;

@@ -8,27 +8,38 @@
       url = "github:msteen/nixos-vscode-server";
       flake = false;
     };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
   outputs = inputs@{ self, flake-utils, nixpkgs, home-manager, ... }:
     flake-utils.lib.eachDefaultSystem
-      (system: {
-        legacyPackages = import nixpkgs {
-          inherit system;
-          # config.allowUnfree = true;
-          overlays = [ (import ./overlay.nix inputs) ];
-        };
-        formatter = self.legacyPackages.${system}.nixpkgs-fmt;
-        # Make a system-specific package for every homeConfiguration
-        packages = nixpkgs.lib.attrsets.filterAttrs
-          (_: v: v.system == system)
-          (builtins.mapAttrs (_: cfg: cfg.activationPackage) self.homeConfigurations);
-        apps.default = flake-utils.lib.mkApp {
-          drv = self.legacyPackages.${system}.writeShellScriptBin "apply-config" ''
-            set -x
-            ${home-manager.packages.${system}.home-manager}/bin/home-manager --flake "${./.}" switch
-          '';
-        };
-      }) // (
+      (system:
+        let
+          pkgs = self.legacyPackages.${system};
+        in
+        {
+          legacyPackages = import nixpkgs {
+            inherit system;
+            # config.allowUnfree = true;
+            overlays = [ (import ./overlay.nix inputs) ];
+          };
+          formatter = pkgs.nixpkgs-fmt;
+          # Make a system-specific package for every homeConfiguration
+          packages = nixpkgs.lib.attrsets.filterAttrs
+            (_: v: v.system == system)
+            (builtins.mapAttrs (_: cfg: cfg.activationPackage) self.homeConfigurations);
+          apps.default = flake-utils.lib.mkApp {
+            drv = pkgs.writeShellScriptBin "apply-config" ''
+              set -x
+              ${home-manager.packages.${system}.home-manager}/bin/home-manager --flake "${./.}" switch
+            '';
+          };
+          devShells.default = pkgs.mkShell {
+            nativeBuildInputs = [ pkgs.shfmt pkgs.shellcheck pkgs.rnix-lsp pkgs.sumneko-lua-language-server ];
+          };
+        }) // (
       let
         homeCfgBase = {
           extraSpecialArgs = {
