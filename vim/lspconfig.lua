@@ -10,6 +10,7 @@ local cfgs = {
   rnix = {}, -- Nix
   rust_analyzer = {},-- Rust
   sumneko_lua = {}, -- Lua
+  terraformls = {}, -- Terraform
 }
 
 for name, cfg in pairs(cfgs) do
