@@ -23,7 +23,7 @@
           filename="index-$(uname -m)-$(uname | tr '[:upper:]' '[:lower:]')"
           mkdir -p "$XDG_CACHE_HOME/nix-index"
           cd "$XDG_CACHE_HOME/nix-index"
-          wget -nv -N ${lib.strings.escapeShellArg (builtins.toString cfg.upstreamPath)}/"$filename"
+          wget -nv -N -c --no-if-modified-since ${lib.strings.escapeShellArg (builtins.toString cfg.upstreamPath)}/"$filename"
           ln -f "$filename" files
         ''}";
     in
