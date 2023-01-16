@@ -1,6 +1,8 @@
 args@{ config, pkgs, ... }:
 let
   util = (import ./util.nix) args;
+  # TODO: Remove exclusions once grammar/treesitter is fixed
+  excludedTSPlugins = builtins.map (s: "tree-sitter-${s}-grammar") [ "bash" "fish" ];
 in
 {
   programs.neovim = {
@@ -37,8 +39,7 @@ in
         p.nvim-comment
         p.vim-surround # TODO: Explore Lua options
         p.vim-vinegar
-        # TODO: Remove bash exclusion once grammar/treesitter is fixed
-        (p.nvim-treesitter.withPlugins (_: builtins.filter (p: p.pname != "tree-sitter-bash-grammar") pkgs.tree-sitter.allGrammars))
+        (p.nvim-treesitter.withPlugins (_: builtins.filter (p: !(builtins.elem p.pname excludedTSPlugins)) pkgs.tree-sitter.allGrammars))
         p.null-ls-nvim
         p.nvim-lspconfig
       ];
