@@ -1,6 +1,5 @@
 { lib, pkgs, ... }:
 let
-  print = s: builtins.trace s s;
   readFileOptional = path: if builtins.pathExists path then builtins.readFile path else "";
   stripSuffixes = name: pkgs.lib.foldr pkgs.lib.strings.removeSuffix name [ ".vim" ".nvim" ];
   stripPrefixes = name: pkgs.lib.foldr pkgs.lib.strings.removePrefix name [ "vim-" "nvim-" ];

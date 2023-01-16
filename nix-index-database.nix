@@ -6,7 +6,7 @@
 
     upstreamPath = lib.mkOption rec {
       type = lib.types.str;
-      default = https://github.com/Mic92/nix-index-database/releases/latest/download;
+      default = "https://github.com/Mic92/nix-index-database/releases/latest/download";
       example = default;
       description = ''
         The upstream URL to fetch the index database from.

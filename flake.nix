@@ -47,15 +47,15 @@
         makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg));
       in
       {
-        homeConfigurations."reeto@zeus" = makeCfg rec {
+        homeConfigurations."reeto@zeus" = makeCfg {
           modules = [ ./systems/zeus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
-        homeConfigurations."reeto@hades" = makeCfg rec {
+        homeConfigurations."reeto@hades" = makeCfg {
           modules = [ ./base.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
-        homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg rec {
+        homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg {
           modules = [ ./systems/oceanus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
         };
