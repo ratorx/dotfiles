@@ -8,10 +8,6 @@
       url = "github:msteen/nixos-vscode-server";
       flake = false;
     };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
   };
   outputs = inputs@{ self, flake-utils, nixpkgs, home-manager, ... }:
     flake-utils.lib.eachDefaultSystem
@@ -38,6 +34,7 @@
           };
           devShells.default = pkgs.mkShell {
             nativeBuildInputs = [ pkgs.shfmt pkgs.shellcheck pkgs.rnix-lsp pkgs.sumneko-lua-language-server ];
+            buildInputs = [ ];
           };
         }) // (
       let

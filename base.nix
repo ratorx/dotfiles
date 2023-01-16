@@ -50,11 +50,6 @@
       deps = [ pkgs.nix-index pkgs.gnused ];
       pure = false;
     })
-    (pkgs.custom.shellUtil {
-      src = ./bin/nixify.sh;
-      deps = [ pkgs.coreutils pkgs.direnv ];
-      pure = false;
-    })
     # This is an amazing hack that makes 'n' and 'nman' work offline if the
     # package is already present! This is necessary since there's no way for Nix
     # to track dependencies in flake inputs (as they don't usually reference

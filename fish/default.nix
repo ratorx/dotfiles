@@ -6,6 +6,8 @@
       g = "git";
       # Shortcut for dotfile operations
       d = "git -C ${lib.escapeShellArg config.home.homeDirectory}/.config/nixpkgs";
+      # Setup a new Nix flake with direnv nix-shell
+      nixify = "nix flake init -t github:ratorx/base";
       # ls -> exa
       ls = "exa -xF";
       la = "ls -a";
