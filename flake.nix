@@ -33,7 +33,7 @@
             '';
           };
           devShells.default = pkgs.mkShell {
-            nativeBuildInputs = [ pkgs.shfmt pkgs.shellcheck pkgs.rnix-lsp pkgs.sumneko-lua-language-server ];
+            nativeBuildInputs = [ pkgs.shfmt pkgs.shellcheck pkgs.nil pkgs.nixpkgs-fmt pkgs.sumneko-lua-language-server ];
             buildInputs = [ ];
           };
         }) // (

@@ -7,8 +7,16 @@ local lspconfig = require('lspconfig')
 local cfgs = {
   gopls = {}, -- Go
   hls = {}, -- Haskell
-  rnix = {}, -- Nix
-  rust_analyzer = {},-- Rust
+  nil_ls = {
+    settings = {
+      ['nil'] = {
+        formatting = {
+          command = { "nixpkgs-fmt" }
+        }
+      }
+    }
+  }, -- Nix
+  rust_analyzer = {}, -- Rust
   sumneko_lua = {}, -- Lua
   terraformls = {}, -- Terraform
 }
