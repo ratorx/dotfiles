@@ -19,6 +19,7 @@
     NIX_SSL_CERT_FILE = "/etc/ssl/cert.pem";
   };
 
+  # TODO: Migrate to multi-user installation of to keep things simpler
   home.sessionVariablesExtra = ''
     . "${pkgs.nix}/etc/profile.d/nix.sh"
   '';
