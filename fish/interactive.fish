@@ -30,3 +30,9 @@ function sc -d "Systemctl wrapper with automatic sudo" -w systemctl
   test -n "$argv" && contains "$argv[1]" $systemctl_sudo_commands && set -l SYSTEMCTL sudo systemctl
   $SYSTEMCTL $argv
 end
+
+# Expand !! to last command
+function last_history_item
+  echo $history[1]
+end
+abbr -a !! --position anywhere --function last_history_item
