@@ -32,14 +32,28 @@
     interactiveShellInit = (builtins.readFile ./interactive.fish);
   };
 
-  programs.bash = {
-    enable = true;
-    # This shims into fish at the very beginning of bashrc (if interactive)
-    bashrcExtra = ''
-      if [[ "$-" =~ i && "$(${pkgs.coreutils}/bin/basename "$SHELL")" == "bash" ]]; then
-        FISH="${pkgs.fish}/bin/fish"
-        exec env SHELL="$FISH" "$FISH"
-      fi
-    '';
-  };
+  # Shim into Fish from Bash or ZSH if interactive and $SHELL is set
+  home.file =
+    let
+      fishShim = (shell: ''
+        if [[ "$(${pkgs.coreutils}/bin/basename "$SHELL")" == "${shell}" ]]; then
+          FISH="${pkgs.fish}/bin/fish"
+          exec env SHELL="$FISH" "$FISH"
+        fi
+      '');
+    in
+    {
+      # Only shim if interactive
+      ".bashrc".text = ''
+        [[ $- == *i* ]] || return
+        ${fishShim "bash"}
+      '';
+      # Run .bashrc for login shells as well
+      ".bash_profile".text = ''
+        [[ -f ~/.bashrc ]] && . ~/.bashrc
+      '';
+
+      # .zshrc only run when interactive
+      ".zshrc".text = fishShim "zsh";
+    };
 }
