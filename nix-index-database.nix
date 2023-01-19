@@ -20,7 +20,7 @@
       nix-index-database = "${pkgs.writeShellScript "nix-index-database-fetch.sh" ''
           set -exuo pipefail
           PATH=${lib.makeBinPath [ pkgs.coreutils pkgs.wget ]};
-          filename="index-$(uname -m)-$(uname | tr '[:upper:]' '[:lower:]')"
+          filename="index-${pkgs.stdenv.hostPlatform.system}"
           mkdir -p "$XDG_CACHE_HOME/nix-index"
           cd "$XDG_CACHE_HOME/nix-index"
           wget -nv -N -c --no-if-modified-since ${lib.strings.escapeShellArg (builtins.toString cfg.upstreamPath)}/"$filename"
