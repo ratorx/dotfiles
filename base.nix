@@ -32,10 +32,6 @@
     pkgs.openssh
     pkgs.hyperfine
     pkgs.ripgrep
-    # VS Code
-    pkgs.rnix-lsp
-    pkgs.shfmt
-    pkgs.shellcheck
     # Custom utilities
     (pkgs.custom.shellUtil {
       src = ./bin/n.sh;
