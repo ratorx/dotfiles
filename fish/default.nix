@@ -8,6 +8,8 @@
       d = "git -C ${lib.escapeShellArg config.home.homeDirectory}/.config/nixpkgs";
       # Setup a new Nix flake with direnv nix-shell
       nixify = "nix flake init -t github:ratorx/base";
+      # Refresh credentials for SSH
+      refressh = "ssh-add -D && ssh-add -K";
       # ls -> exa
       ls = "exa -xF";
       la = "ls -a";

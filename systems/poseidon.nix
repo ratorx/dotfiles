@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 {
-  imports = [ ../base.nix ];
+  imports = [ ../base.nix ../ssh-agent.nix ];
 
   home.homeDirectory = "/Users/${config.home.username}";
 
@@ -9,4 +9,6 @@
       source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     fi
   '';
+
+  services.ssh-agent.enable = true;
 }
