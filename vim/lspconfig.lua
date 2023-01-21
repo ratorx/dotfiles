@@ -18,7 +18,10 @@ local cfgs = {
   }, -- Nix
   rust_analyzer = {}, -- Rust
   sumneko_lua = {}, -- Lua
+  svelte = {}, -- Svelte
+  tailwindcss = {}, -- Tailwind CSS
   terraformls = {}, -- Terraform
+  tsserver = {}, -- Typescript
 }
 
 for name, cfg in pairs(cfgs) do
