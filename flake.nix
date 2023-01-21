@@ -8,6 +8,8 @@
       url = "github:msteen/nixos-vscode-server";
       flake = false;
     };
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs@{ self, flake-utils, nixpkgs, home-manager, ... }:
     flake-utils.lib.eachDefaultSystem

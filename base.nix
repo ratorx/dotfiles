@@ -5,7 +5,7 @@
     ./ssh
     ./vim
     ./git.nix
-    ./nix-index-database.nix
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   accounts.email.accounts = {
@@ -18,7 +18,6 @@
   programs.home-manager.enable = true;
 
   xdg.enable = true;
-  services.nix-index-database.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
