@@ -34,32 +34,22 @@
     interactiveShellInit = (builtins.readFile ./interactive.fish);
   };
 
-  # Shim into Fish from Bash or ZSH if interactive and $SHELL is set
-  home.file =
-    let
-      hmSessionShim = "[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && source ~/.nix-profile/etc/profile.d/hm-session-vars.sh";
-      fishShim = (shell: ''
-        if [[ "$(${pkgs.coreutils}/bin/basename "$SHELL")" == "${shell}" ]]; then
-          FISH="${pkgs.fish}/bin/fish"
-          exec env SHELL="$FISH" "$FISH"
-        fi
-      '');
-    in
-    {
-      # Session shim always; only fish shim if interactive
-      ".bashrc".text = ''
-        ${hmSessionShim}
-        [[ $- == *i* ]] || return
-        ${fishShim "bash"}
-      '';
-      # Run .bashrc for login shells as well
-      ".bash_profile".text = ''
-        [[ -f ~/.bashrc ]] && source ~/.bashrc
-      '';
-
-      # .zshenv is always run
-      ".zshenv".text = hmSessionShim;
-      # .zshrc only run when interactive
-      ".zshrc".text = fishShim "zsh";
-    };
+  # WARNING: Attempting to re-create this shim in ZSH is futile, because path_helper (which is called in the profile stage), will re-order the PATH set in env stage. So MacOS devices are better off settting Bash as the user shell and not complicating it even more.
+  # Manually link files for two reasons:
+  #   * MacOS uses an old version of Bash that errors on HM config
+  #   * Keep dependencies minimal
+  home.file = {
+    # Session shim always; only fish shim if interactive
+    ".bashrc".text = ''
+      [[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      if [[ "$-" =~ i && "$(${pkgs.coreutils}/bin/basename "$SHELL")" == "bash" ]]; then
+        FISH="${pkgs.fish}/bin/fish"
+        exec env SHELL="$FISH" "$FISH"
+      fi
+    '';
+    # Run .bashrc for login shells as well
+    ".bash_profile".text = ''
+      [[ -f ~/.bashrc ]] && source ~/.bashrc
+    '';
+  };
 }
