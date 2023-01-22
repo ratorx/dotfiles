@@ -37,7 +37,7 @@
   # Shim into Fish from Bash or ZSH if interactive and $SHELL is set
   home.file =
     let
-      hmSessionShim = "[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && . ~/.nix-profile/etc/profile.d/hm-session-vars.sh";
+      hmSessionShim = "[[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && source ~/.nix-profile/etc/profile.d/hm-session-vars.sh";
       fishShim = (shell: ''
         if [[ "$(${pkgs.coreutils}/bin/basename "$SHELL")" == "${shell}" ]]; then
           FISH="${pkgs.fish}/bin/fish"
@@ -54,7 +54,7 @@
       '';
       # Run .bashrc for login shells as well
       ".bash_profile".text = ''
-        [[ -f ~/.bashrc ]] && . ~/.bashrc
+        [[ -f ~/.bashrc ]] && source ~/.bashrc
       '';
 
       # .zshenv is always run

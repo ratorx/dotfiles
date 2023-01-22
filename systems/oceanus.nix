@@ -21,7 +21,7 @@
 
   # TODO: Migrate to multi-user installation of to keep things simpler
   home.sessionVariablesExtra = ''
-    . "${pkgs.nix}/etc/profile.d/nix.sh"
+    source "${pkgs.nix}/etc/profile.d/nix.sh"
   '';
   programs.git.userEmail = config.accounts.email.accounts.google.address;
 }
