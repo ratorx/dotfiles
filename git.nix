@@ -53,6 +53,7 @@
         autocrlf = "input";
         whitespace = "space-before-tab,-indent-with-non-tab,trailing-space";
       };
+      init.defaultBranch = "master";
       apply.whitespace = "fix";
       rebase = {
         autostash = true;
@@ -68,7 +69,6 @@
       diff.tool = "vimdiff";
       diff.guitool = "vscode";
       difftool.vscode.cmd = "code --wait --diff $LOCAL $REMOTE";
-    } // {
       url = builtins.mapAttrs (name: value: { insteadOf = value; pushInsteadOf = value; }) {
         "git@github.com:" = "github:";
       };
