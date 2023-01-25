@@ -4,7 +4,7 @@
 set -euo pipefail
 
 usage() {
-  echo "usage: , [section] <page>"
+  echo "usage: nman [section] <page>"
   exit 1
 }
 trap usage EXIT
