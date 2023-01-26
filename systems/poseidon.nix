@@ -1,6 +1,5 @@
-{ pkgs, lib, config, ... }:
-{
-  imports = [ ../home.nix ../ssh-agent.nix ];
+{ pkgs, lib, config, ... }: {
+  imports = [ ../ssh-agent.nix ];
 
   home.homeDirectory = "/Users/${config.home.username}";
 

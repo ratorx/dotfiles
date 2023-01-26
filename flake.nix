@@ -41,12 +41,13 @@
         }) // (
       let
         homeCfgBase = {
+          modules = [ ./home.nix ];
           extraSpecialArgs = {
             inherit inputs;
             flakeRoot = builtins.toString ./.;
           };
         };
-        makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg));
+        makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg // { modules = homeCfgBase.modules ++ cfg.modules; } ));
       in
       {
         homeConfigurations."reeto@zeus" = makeCfg {

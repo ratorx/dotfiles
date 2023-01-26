@@ -1,7 +1,4 @@
-{ pkgs, lib, config, ... }:
-{
-  imports = [ ../home.nix ];
-
+{ pkgs, lib, config, ... }: {
   home.homeDirectory = "/Users/${config.home.username}";
   home.packages = [
     (pkgs.custom.shellUtil {
