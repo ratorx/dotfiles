@@ -58,7 +58,7 @@
           modules = [ ./systems/oceanus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
         };
-        homeConfigurations."reeto@poseidon" = makeCfg rec {
+        homeConfigurations."reeto@poseidon" = makeCfg {
           modules = [ ./systems/poseidon.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.aarch64-darwin};
         };
