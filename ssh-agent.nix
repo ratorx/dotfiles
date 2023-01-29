@@ -15,7 +15,6 @@
         fi
 
         if ! ${pkgs.ps}/bin/ps "$SSH_AGENT_PID" > /dev/null ; then
-          echo "New SSH Agent"
           ${pkgs.openssh}/bin/ssh-agent | ${pkgs.gnused}/bin/sed '/echo/d' > "$SSH_ENV"
           source "$SSH_ENV" > /dev/null
         fi
