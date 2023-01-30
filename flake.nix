@@ -47,7 +47,7 @@
             flakeRoot = builtins.toString ./.;
           };
         };
-        makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg // { modules = homeCfgBase.modules ++ cfg.modules; } ));
+        makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg // { modules = homeCfgBase.modules ++ cfg.modules; }));
       in
       {
         homeConfigurations."reeto@zeus" = makeCfg {
