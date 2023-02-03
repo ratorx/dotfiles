@@ -33,7 +33,7 @@
     pkgs.openssh
     pkgs.neofetch
     pkgs.host.dnsutils
-    pkgs.ncdu_2
+    pkgs.ncdu_1
     pkgs.hyperfine
     pkgs.ripgrep
     # Custom utilities
