@@ -18,7 +18,13 @@ local cfgs = {
       }
     }
   }, -- Nix
-  rust_analyzer = {}, -- Rust
+  rust_analyzer = {
+    settings = {
+      ['rust-analyzer'] = {
+        files = { excludeDirs = { ".direnv", ".git" } }
+      }
+    }
+  }, -- Rust
   sumneko_lua = {}, -- Lua
   terraformls = {}, -- Terraform
 }
