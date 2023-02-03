@@ -42,6 +42,13 @@ in
         (p.nvim-treesitter.withPlugins (_: builtins.filter (p: !(builtins.elem p.pname excludedTSPlugins)) pkgs.tree-sitter.allGrammars))
         p.null-ls-nvim
         p.nvim-lspconfig
+        # Completion
+        p.vim-vsnip
+        p.nvim-cmp
+        p.cmp-buffer
+        p.cmp-nvim-lsp
+        p.cmp-path
+        p.cmp-vsnip
       ];
   };
   home.sessionVariables = {

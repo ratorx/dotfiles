@@ -38,7 +38,7 @@ vim.opt.showmode = false
 vim.opt.showcmd = false
 
 -- ZSH style completion
-vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.completeopt = 'menuone,noinsert'
 vim.opt.wildmode = 'longest:full,full'
 
 -- Relative line numbers when not in insert mode
@@ -110,15 +110,6 @@ vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 -- Mappings
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-
--- Completion with Tab
-vim.keymap.set({'i', 's'}, '<Tab>', function()
-  return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
-end, {expr = true})
-
-vim.keymap.set({'i', 's'}, '<S-Tab>', function()
-  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
-end, {expr = true})
 
 -- Diagnostics
 do
