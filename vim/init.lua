@@ -45,62 +45,62 @@ vim.opt.wildmode = 'longest:full,full'
 vim.opt.number = true
 vim.opt.relativenumber = true
 do
-    local augroup_id = vim.api.nvim_create_augroup("relnum", { clear = true })
-    vim.api.nvim_create_autocmd("InsertEnter", {
-        group = augroup_id,
-        pattern = { "*" },
-        callback = function(_)
-          vim.opt_local.relativenumber = false
-        end,
-    })
-    vim.api.nvim_create_autocmd("InsertLeave", {
-        group = augroup_id,
-        pattern = { "*" },
-        callback = function(_)
-          vim.opt_local.relativenumber = true
-        end,
-    })
+  local augroup_id = vim.api.nvim_create_augroup("relnum", { clear = true })
+  vim.api.nvim_create_autocmd("InsertEnter", {
+    group = augroup_id,
+    pattern = { "*" },
+    callback = function(_)
+      vim.opt_local.relativenumber = false
+    end,
+  })
+  vim.api.nvim_create_autocmd("InsertLeave", {
+    group = augroup_id,
+    pattern = { "*" },
+    callback = function(_)
+      vim.opt_local.relativenumber = true
+    end,
+  })
 end
 
 -- Disable line numbers and signcolumn in terminal
 do
-    local augroup_id = vim.api.nvim_create_augroup("termsetup", { clear = true })
-    vim.api.nvim_create_autocmd("TermOpen", {
-        group = augroup_id,
-        pattern = { "*" },
-        callback = function(_)
-          vim.opt_local.number = false
-          vim.opt_local.signcolumn = 'no'
-        end,
-    })
+  local augroup_id = vim.api.nvim_create_augroup("termsetup", { clear = true })
+  vim.api.nvim_create_autocmd("TermOpen", {
+    group = augroup_id,
+    pattern = { "*" },
+    callback = function(_)
+      vim.opt_local.number = false
+      vim.opt_local.signcolumn = 'no'
+    end,
+  })
 end
 
 -- Fix cursor when leaving neovim
 do
-    local augroup_id = vim.api.nvim_create_augroup("cursorfix", { clear = true })
-    vim.api.nvim_create_autocmd({'VimLeave', 'VimSuspend'}, {
-        group = augroup_id,
-        pattern = { "*" },
-        callback = function(_)
-          vim.opt.guicursor = 'a:ver25'
-        end,
-    })
+  local augroup_id = vim.api.nvim_create_augroup("cursorfix", { clear = true })
+  vim.api.nvim_create_autocmd({ 'VimLeave', 'VimSuspend' }, {
+    group = augroup_id,
+    pattern = { "*" },
+    callback = function(_)
+      vim.opt.guicursor = 'a:ver25'
+    end,
+  })
 end
 
 -- Auto-create non-existent directories
 do
-    local augroup_id = vim.api.nvim_create_augroup("autocreatedir", { clear = true })
-    vim.api.nvim_create_autocmd({'BufWritePre', 'FilterWritePre'}, {
-        group = augroup_id,
-        pattern = { "*" },
-        -- From https://raw.githubusercontent.com/jghauser/mkdir.nvim/034c04ff1efb98aa6e4017b23846c4ad9c5313ab/lua/mkdir.lua
-        callback = function(_)
-            local dir = vim.fn.expand('<afile>:p:h')
-            if dir:find('%l+://') == 0 and vim.fn.isdirectory(dir) == 0 then
-                vim.fn.mkdir(dir, 'p')
-            end
-        end,
-    })
+  local augroup_id = vim.api.nvim_create_augroup("autocreatedir", { clear = true })
+  vim.api.nvim_create_autocmd({ 'BufWritePre', 'FilterWritePre' }, {
+    group = augroup_id,
+    pattern = { "*" },
+    -- From https://raw.githubusercontent.com/jghauser/mkdir.nvim/034c04ff1efb98aa6e4017b23846c4ad9c5313ab/lua/mkdir.lua
+    callback = function(_)
+      local dir = vim.fn.expand('<afile>:p:h')
+      if dir:find('%l+://') == 0 and vim.fn.isdirectory(dir) == 0 then
+        vim.fn.mkdir(dir, 'p')
+      end
+    end,
+  })
 end
 
 -- netrw options
