@@ -28,7 +28,9 @@
   home.language.base = "en_GB.UTF-8";
   # TODO: Determine if these are interactive only packages and move them to Fish aliases if they are
   home.packages = [
+    pkgs.btop
     pkgs.curlie
+    pkgs.darkhttpd
     pkgs.jq
     pkgs.openssh
     pkgs.neofetch
