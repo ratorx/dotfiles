@@ -9,7 +9,7 @@
   ];
 
   accounts.email.accounts = {
-    personal.address = "git@ree.to";
+    personal.address = "me@ree.to";
     personal.primary = true;
     google.address = "reeto@google.com";
   };
