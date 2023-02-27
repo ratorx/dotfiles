@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "autofix-vscode-server": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1662442857,
-        "narHash": "sha256-e2ex4mO4q6UBoJvPSRdYBX1vIvpulqs6SNxvdSsL6uE=",
-        "owner": "msteen",
-        "repo": "nixos-vscode-server",
-        "rev": "c54b714db58ad05d064f394d6603751ee6bd04f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "msteen",
-        "repo": "nixos-vscode-server",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -90,7 +74,6 @@
     },
     "root": {
       "inputs": {
-        "autofix-vscode-server": "autofix-vscode-server",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
