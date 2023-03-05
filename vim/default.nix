@@ -2,7 +2,7 @@ args@{ config, pkgs, ... }:
 let
   util = (import ./util.nix) args;
   # TODO: Remove exclusions once grammar/treesitter is fixed
-  excludedTSPlugins = builtins.map (s: "tree-sitter-${s}-grammar") [ "bash" "fish" ];
+  excludedTSPlugins = builtins.map (s: "tree-sitter-${s}-grammar") [ "bash" "fish" "markdown" ];
 in
 {
   programs.neovim = {
