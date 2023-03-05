@@ -25,7 +25,7 @@ local cfgs = {
       }
     }
   }, -- Rust
-  sumneko_lua = {}, -- Lua
+  lua_ls = {}, -- Lua
   terraformls = {}, -- Terraform
 }
 
