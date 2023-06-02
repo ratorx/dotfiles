@@ -1,5 +1,6 @@
-{ pkgs, lib, config, ... }: {
-  home.homeDirectory = "/Users/${config.home.username}";
+{ pkgs, config, ... }: {
+  imports = [ ./mac.nix ];
+
   home.packages = [
     (pkgs.custom.shellUtil {
       src = ../bin/irctunnel.sh;
@@ -16,9 +17,5 @@
     NIX_SSL_CERT_FILE = "/etc/ssl/cert.pem";
   };
 
-  # TODO: Migrate to multi-user installation of to keep things simpler
-  home.sessionVariablesExtra = ''
-    source "${pkgs.nix}/etc/profile.d/nix.sh"
-  '';
   programs.git.userEmail = config.accounts.email.accounts.google.address;
 }
