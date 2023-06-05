@@ -5,7 +5,7 @@
     shellAliases = {
       g = "git";
       # Shortcut for dotfile operations
-      d = "git -C ${lib.escapeShellArg config.home.homeDirectory}/.config/nixpkgs";
+      d = "git -C ${lib.escapeShellArg config.home.homeDirectory}/.config/home-manager";
       # Setup a new Nix flake with direnv nix-shell
       nixify = "nix flake init -t github:ratorx/base";
       # Refresh credentials for SSH
