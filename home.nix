@@ -32,7 +32,6 @@
     pkgs.curlie
     pkgs.darkhttpd
     pkgs.jq
-    pkgs.openssh
     pkgs.neofetch
     pkgs.host.dnsutils
     pkgs.ncdu_1
