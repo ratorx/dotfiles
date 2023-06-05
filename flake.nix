@@ -50,7 +50,7 @@
           modules = [ ./systems/zeus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
-        homeConfigurations."reeto@oceanus.roam.corp.google.com" = makeCfg {
+        homeConfigurations."reeto@oceanus.roam.internal" = makeCfg {
           modules = [ ./systems/oceanus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
         };
