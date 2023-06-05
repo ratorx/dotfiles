@@ -17,7 +17,7 @@ Host kronos
 	ControlPersist 15h
 
 Host iapetus
-	HostName iapetus.fra.corp.google.com
+	HostName iapetus.c.googlers.com
 	ControlPersist 15h
 
 # External
