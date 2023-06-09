@@ -51,7 +51,11 @@
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
         homeConfigurations."reeto@iapetus.c.googlers.com" = makeCfg {
-          modules = [ ./systems/iapetus.nix ];
+          modules = [ ./systems/glinux.nix ];
+          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
+        };
+        homeConfigurations."reeto@kronos.lon.corp.google.com" = makeCfg {
+          modules = [ ./systems/glinux.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
         homeConfigurations."reeto@oceanus.roam.internal" = makeCfg {
