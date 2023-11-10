@@ -2,4 +2,4 @@
 # Reauthenticate on all workstations
 set -euo pipefail
 
-/usr/local/bin/rw --cider --check_remaining --nossh_interactively iapetus
+/usr/local/bin/rw --check_remaining --nossh_interactively iapetus
