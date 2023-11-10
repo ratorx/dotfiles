@@ -78,7 +78,7 @@
     config.theme = "TwoDark";
   };
 
-  programs.exa.enable = true;
+  programs.eza.enable = true;
 
   programs.direnv = {
     enable = true;

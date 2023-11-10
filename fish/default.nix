@@ -10,12 +10,12 @@
       nixify = "nix flake init -t github:ratorx/base";
       # Refresh credentials for SSH
       refressh = "ssh-add -D && ssh-add -K";
-      # ls -> exa
-      ls = "exa -xF";
+      # ls -> eza
+      ls = "eza -xF";
       la = "ls -a";
       lh = "ls -d .*";
       lt = "ls -T --group-directories-first";
-      ll = "exa -lF";
+      ll = "eza -lF";
       lla = "ll -a";
       # safer fs
       mv = "mv -v";
