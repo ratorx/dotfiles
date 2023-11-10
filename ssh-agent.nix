@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  disabledModules = [ "services/ssh-agent.nix" ];
+
   options.services.ssh-agent = {
     enable = lib.mkEnableOption "Setup ssh-agent for MacOS";
   };
