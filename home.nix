@@ -40,8 +40,7 @@
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";
-    LESS_NO_QUIT = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
-    LESS = "--quit-if-one-screen ${LESS_NO_QUIT}";
+    LESS = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2 --quit-if-one-screen";
     SYSTEMD_LESS = LESS;
     # If Go is used, it will default GOPATH to $HOME/go
     # However, the proper place for it is underneath $XDG_DATA_HOME.
@@ -98,17 +97,5 @@
 
       set -g status on
     '';
-  };
-  programs.nnn = {
-    enable = true;
-    package = pkgs.symlinkJoin {
-      name = "nnn";
-      paths = [ pkgs.nnn ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild =
-        ''
-          wrapProgram $out/bin/nnn --set LESS ${lib.escapeShellArg config.home.sessionVariables.LESS_NO_QUIT}
-        '';
-    };
   };
 }
