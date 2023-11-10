@@ -52,8 +52,8 @@ in
       src = ../bin/nvimbench.sh;
       deps = [ pkgs.neovim pkgs.coreutils pkgs.less ];
     };
-    pkglocate = makeShellBin {
-      src = ./pkglocate.sh;
+    pkgfile = makeShellBin {
+      src = ./pkgfile.sh;
       deps = [ pkgs.nix-index pkgs.gnused ];
       pure = false;
     };

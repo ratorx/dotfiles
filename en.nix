@@ -5,7 +5,7 @@
   home.packages = [
     (pkgs.custom.builder.n flakeRoot)
     (pkgs.custom.builder.nman flakeRoot)
-    pkgs.custom.pkglocate
+    pkgs.custom.pkgfile
     # This is an amazing hack that makes 'n' and 'nman' work offline if the
     # package is already present! This is necessary since there's no way for Nix
     # to track dependencies in flake inputs (as they don't usually reference
