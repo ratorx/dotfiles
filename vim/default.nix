@@ -57,10 +57,7 @@ in
     EDITOR = "nvim";
   };
   home.packages = [
-    (pkgs.custom.shellUtil {
-      src = ../bin/nvimbench.sh;
-      deps = [ config.programs.neovim.finalPackage pkgs.coreutils pkgs.less ];
-    })
+    pkgs.custom.nvimbench
   ];
 
   assertions = [

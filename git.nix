@@ -23,11 +23,7 @@
       df = "diff";
       dfs = "diff --staged";
 
-      lg = "!${pkgs.custom.shellUtil {
-        src = ./bin/fzf-git-log.sh;
-        deps = [pkgs.coreutils pkgs.gnugrep pkgs.findutils pkgs.gawk pkgs.fzf pkgs.git pkgs.less];
-        bin = false;
-      }}";
+      lg = "!${pkgs.custom.fzf-git-log}/bin/fzf-git-log";
       lgs = "log --oneline --decorate --no-merges --max-count=20";
 
       pl = "pull";

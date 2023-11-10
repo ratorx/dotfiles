@@ -2,15 +2,8 @@
   imports = [ ./mac.nix ];
 
   home.packages = [
-    (pkgs.custom.shellUtil {
-      src = ../bin/irctunnel.sh;
-      deps = [ pkgs.autossh pkgs.tmux ];
-      pure = false;
-    })
-    (pkgs.custom.shellUtil {
-      src = ../bin/authrefresh.sh;
-      pure = false;
-    })
+    pkgs.custom.authrefresh
+    pkgs.custom.itermcopy
   ];
 
   home.sessionVariables = {

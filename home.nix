@@ -1,11 +1,11 @@
-{ inputs, flakeRoot, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   imports = [
     ./fish
     ./ssh
     ./vim
+    ./en.nix
     ./git.nix
-    inputs.nix-index-database.hmModules.nix-index
   ];
 
   accounts.email.accounts = {
@@ -37,31 +37,6 @@
     pkgs.ncdu_1
     pkgs.hyperfine
     pkgs.ripgrep
-    # Custom utilities
-    (pkgs.custom.shellUtil {
-      src = ./bin/n.sh;
-      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
-      extraEnv = "FLAKE=${flakeRoot}";
-    })
-    (pkgs.custom.shellUtil {
-      src = ./bin/nman.sh;
-      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
-      extraEnv = "FLAKE=${flakeRoot}";
-    })
-    (pkgs.custom.shellUtil {
-      src = ./bin/pkglocate.sh;
-      deps = [ pkgs.nix-index pkgs.gnused ];
-      pure = false;
-    })
-    # This is an amazing hack that makes 'n' and 'nman' work offline if the
-    # package is already present! This is necessary since there's no way for Nix
-    # to track dependencies in flake inputs (as they don't usually reference
-    # each other by path). Without this, all flake deps of the packages (i.e.
-    # this flake) would be fetched (and cleaned up by nix-collect-garbage).
-    # This WILL NOT WORK (I think) if there are dependent flakes.
-    (pkgs.writeTextDir "inputs" ''
-      ${builtins.toString (builtins.attrValues inputs)}
-    '')
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";
@@ -124,7 +99,6 @@
       set -g status on
     '';
   };
-  programs.nix-index.enable = true;
   programs.nnn = {
     enable = true;
     package = pkgs.symlinkJoin {
