@@ -60,5 +60,9 @@ in
     pkgbin = pkgs.writeShellScriptBin "pkgbin" ''
       exec ${pkgs.custom.pkgfile}/bin/pkgfile --type x "$@"
     '';
+    pubip = makeShellBin {
+      src = ./pubip.sh;
+      deps = [ pkgs.coreutils pkgs.dnsutils ];
+    };
   };
 }

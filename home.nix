@@ -33,10 +33,11 @@
     pkgs.darkhttpd
     pkgs.jq
     pkgs.neofetch
-    pkgs.host.dnsutils
+    pkgs.dnsutils
     pkgs.ncdu_1
     pkgs.hyperfine
     pkgs.ripgrep
+    pkgs.custom.pubip
   ];
   home.sessionVariables = rec {
     LESSHISTFILE = "/dev/null";
