@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   readFileOptional = path: if builtins.pathExists path then builtins.readFile path else "";
   stripSuffixes = name: pkgs.lib.foldr pkgs.lib.strings.removeSuffix name [ ".vim" ".nvim" ];
