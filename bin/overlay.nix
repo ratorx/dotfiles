@@ -57,5 +57,8 @@ in
       deps = [ pkgs.nix-index pkgs.gnused ];
       pure = false;
     };
+    pkgbin = pkgs.writeShellScriptBin "pkgbin" ''
+      exec ${pkgs.custom.pkgfile}/bin/pkgfile --type x "$@"
+    '';
   };
 }
