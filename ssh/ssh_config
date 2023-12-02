@@ -21,5 +21,11 @@ Host iapetus
 	ControlPersist 15h
 
 # External
-Host hades
-	HostName hades.ree.to
+Host srcf
+  HostName shell.srcf.net
+  User rc691
+
+Host storage
+  HostName u334623.your-storagebox.de
+  User u334623
+  Port 23
