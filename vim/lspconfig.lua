@@ -7,8 +7,11 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- * Python (maybe ruff + black + ??? for completions)
 -- * Svelte (tsserver + sveltels + tailwindcssls + ???)
 local cfgs = {
-  gopls = {}, -- Go
-  hls = {}, -- Haskell
+  gopls = {},       -- Go
+  hls = {},         -- Haskell
+  lua_ls = {},      -- Lua
+  terraformls = {}, -- Terraform
+  -- Custom Settings
   nil_ls = {
     settings = {
       ['nil'] = {
@@ -25,8 +28,6 @@ local cfgs = {
       }
     }
   }, -- Rust
-  lua_ls = {}, -- Lua
-  terraformls = {}, -- Terraform
 }
 
 for name, cfg in pairs(cfgs) do

@@ -1,6 +1,6 @@
-vim.opt.cmdheight = 1 -- TODO: Hide cmdline and show messages somehwere else
-vim.opt.conceallevel = 2 -- Hide concealed text unless replacement character defined
-vim.opt.cursorline = true -- highlight current line
+vim.opt.cmdheight = 1      -- TODO: Hide cmdline and show messages somehwere else
+vim.opt.conceallevel = 2   -- Hide concealed text unless replacement character defined
+vim.opt.cursorline = true  -- highlight current line
 vim.opt.signcolumn = 'yes' -- always show signcolumn
 vim.opt.undofile = true
 vim.opt.jumpoptions:append('stack')
@@ -104,7 +104,7 @@ do
 end
 
 -- netrw options
-vim.g.netrw_altfile = 1 -- Don't use netrw as alt buffer
+vim.g.netrw_altfile = 1    -- Don't use netrw as alt buffer
 vim.g.netrw_fastbrowse = 0 -- Always reload files from directory
 
 -- Mappings
