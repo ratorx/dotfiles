@@ -4,12 +4,12 @@ let
   pkgs = final;
   lib = final.lib;
   makeShellBin = ({ src
-                   # Dependencies to provide via makeBinPath
-                 , deps ? [ ]
-                   # Pure mode replaces PATH; otherwise it is only prepended
-                 , pure ? true
-                 , extraEnv ? ""
-                 }:
+                    # Dependencies to provide via makeBinPath
+                  , deps ? [ ]
+                    # Pure mode replaces PATH; otherwise it is only prepended
+                  , pure ? true
+                  , extraEnv ? ""
+                  }:
     pkgs.writeShellScriptBin (lib.strings.removeSuffix ".sh" (builtins.baseNameOf src)) ''
       PATH=${lib.makeBinPath deps}${if pure then "" else ":\"$PATH\""}
       ${extraEnv}
@@ -37,7 +37,7 @@ in
     };
     fzf-git-log = makeShellBin {
       src = ./fzf-git-log.sh;
-      deps = [pkgs.coreutils pkgs.gnugrep pkgs.findutils pkgs.gawk pkgs.fzf pkgs.git pkgs.less];
+      deps = [ pkgs.coreutils pkgs.gnugrep pkgs.findutils pkgs.gawk pkgs.fzf pkgs.git pkgs.less ];
     };
     itermcopy = makeShellBin {
       src = ./itermcopy.sh;

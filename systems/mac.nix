@@ -1,4 +1,4 @@
-{  config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   home.homeDirectory = "/Users/${config.home.username}";
   home.packages = [
     pkgs.openssh
