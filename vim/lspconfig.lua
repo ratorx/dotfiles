@@ -10,6 +10,7 @@ local cfgs = {
   gopls = {},       -- Go
   hls = {},         -- Haskell
   lua_ls = {},      -- Lua
+  ruff_lsp = {},    -- Python
   terraformls = {}, -- Terraform
   -- Custom Settings
   nil_ls = {
