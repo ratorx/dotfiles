@@ -17,7 +17,7 @@
           legacyPackages = import nixpkgs {
             inherit system;
             # config.allowUnfree = true;
-            overlays = [ (import ./bin/overlay.nix inputs) ];
+            overlays = [ (import ./overlay inputs) ];
           };
           formatter = pkgs.nixpkgs-fmt;
           # Make a system-specific package for every homeConfiguration
@@ -37,7 +37,7 @@
         }) // (
       let
         homeCfgBase = {
-          modules = [ ./home.nix ];
+          modules = [ ./modules/home.nix ];
           extraSpecialArgs = {
             inherit inputs;
             flakeRoot = builtins.toString ./.;
@@ -47,23 +47,23 @@
       in
       {
         homeConfigurations."reeto@zeus" = makeCfg {
-          modules = [ ./systems/zeus.nix ];
+          modules = [ ./zeus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
         homeConfigurations."reeto@iapetus.c.googlers.com" = makeCfg {
-          modules = [ ./systems/glinux.nix ];
+          modules = [ ./glinux.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
         homeConfigurations."reeto@kronos.lon.corp.google.com" = makeCfg {
-          modules = [ ./systems/glinux.nix ];
+          modules = [ ./glinux.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
         };
         homeConfigurations."reeto@oceanus.roam.internal" = makeCfg {
-          modules = [ ./systems/oceanus.nix ];
+          modules = [ ./oceanus.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
         };
         homeConfigurations."reeto@poseidon" = makeCfg {
-          modules = [ ./systems/poseidon.nix ];
+          modules = [ ./poseidon.nix ];
           pkgs = self.legacyPackages.${flake-utils.lib.system.aarch64-darwin};
         };
       }

@@ -21,39 +21,39 @@ in
   custom = {
     builder = {
       n = (flakeRoot: makeShellBin {
-        src = ./n.sh;
+        src = ./bin/n.sh;
         deps = [ pkgs.fzf pkgs.git pkgs.nix pkgs.nix-index ];
         extraEnv = "FLAKE=${flakeRoot}";
       });
       nman = (flakeRoot: makeShellBin {
-        src = ./nman.sh;
+        src = ./bin/nman.sh;
         deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
         extraEnv = "FLAKE=${flakeRoot}";
       });
     };
     authrefresh = makeShellBin {
-      src = ../bin/authrefresh.sh;
+      src = ./bin/authrefresh.sh;
       pure = false;
     };
     fzf-git-log = makeShellBin {
-      src = ./fzf-git-log.sh;
+      src = ./bin/fzf-git-log.sh;
       deps = [ pkgs.coreutils pkgs.gnugrep pkgs.findutils pkgs.gawk pkgs.fzf pkgs.git pkgs.less ];
     };
     itermcopy = makeShellBin {
-      src = ./itermcopy.sh;
+      src = ./bin/itermcopy.sh;
       deps = [ pkgs.coreutils pkgs.gnugrep ];
     };
     irctunnel = makeShellBin {
-      src = ./irctunnel.sh;
+      src = ./bin/irctunnel.sh;
       deps = [ pkgs.autossh pkgs.tmux ];
       pure = false;
     };
     nvimbench = makeShellBin {
-      src = ../bin/nvimbench.sh;
+      src = ./bin/nvimbench.sh;
       deps = [ pkgs.neovim pkgs.coreutils pkgs.less ];
     };
     pkgfile = makeShellBin {
-      src = ./pkgfile.sh;
+      src = ./bin/pkgfile.sh;
       deps = [ pkgs.nix-index pkgs.gnused ];
       pure = false;
     };
@@ -61,7 +61,7 @@ in
       exec ${pkgs.custom.pkgfile}/bin/pkgfile --type x "$@"
     '';
     pubip = makeShellBin {
-      src = ./pubip.sh;
+      src = ./bin/pubip.sh;
       deps = [ pkgs.coreutils pkgs.dnsutils ];
     };
   };
