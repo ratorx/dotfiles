@@ -38,10 +38,10 @@
     pkgs.ripgrep
     pkgs.custom.pubip
   ];
-  home.sessionVariables = rec {
+  home.sessionVariables = {
     LESSHISTFILE = "/dev/null";
     LESS = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2 --quit-if-one-screen";
-    SYSTEMD_LESS = LESS;
+    SYSTEMD_LESS = config.home.sessionVariables.LESS;
     # If Go is used, it will default GOPATH to $HOME/go
     # However, the proper place for it is underneath $XDG_DATA_HOME.
     GOPATH = "${config.home.sessionVariables.XDG_DATA_HOME}/go";
