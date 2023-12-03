@@ -24,11 +24,11 @@ function up -d "Go to an ancestor directory"
   cd $p
 end
 
-set systemctl_sudo_commands start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
 function sc -d "Systemctl wrapper with automatic sudo" -w systemctl
-  set -l SYSTEMCTL systemctl
-  test -n "$argv" && contains "$argv[1]" $systemctl_sudo_commands && set -l SYSTEMCTL sudo systemctl
-  $SYSTEMCTL $argv
+  set -l systemctl_sudo_commands start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
+  set -l systemctl systemctl
+  test -n "$argv" && contains "$argv[1]" $systemctl_sudo_commands && set -l systemctl sudo systemctl
+  $systemctl $argv
 end
 
 # Expand !! to last command
