@@ -1,48 +1,61 @@
-{ config, lib, pkgs, ... }:
-{
-  programs.git = {
+{ config, lib, pkgs, ... }: {
+
+  options.custom.programs.git.useFullConfig = lib.mkOption {
+    description = "Whether to use a minimal git config or not.";
+    type = lib.types.bool;
+    default = false;
+  };
+
+  config.programs.git = {
     enable = true;
     userName = "Reeto Chatterjee";
     userEmail = lib.mkDefault config.accounts.email.accounts.personal.address;
-    aliases = {
-      a = "add";
-      aa = "add .";
-      ap = "add --patch";
+    aliases =
+      let
+        simpleLog = "log --oneline --decorate --no-merges";
+        fzfLog = "!${pkgs.custom.fzf-git-log}/bin/fzf-git-log";
+      in
+      {
+        a = "add";
+        aa = "add .";
+        ap = "add --patch";
 
-      b = "branch";
-      co = "checkout";
+        b = "branch";
+        co = "checkout";
 
-      cl = "clone";
-      clr = "clone --recursive";
+        cl = "clone";
+        clr = "clone --recursive";
 
-      c = "commit";
-      cf = "commit --fixup";
-      cm = "commit --message";
-      amd = "commit --amend --no-edit";
+        c = "commit";
+        cf = "commit --fixup";
+        cm = "commit --message";
+        amd =
+          "commit --amend --no-edit";
 
-      df = "diff";
-      dfs = "diff --staged";
+        df = "diff";
+        dfs = "diff --staged";
 
-      lg = "!${pkgs.custom.fzf-git-log}/bin/fzf-git-log";
-      lgs = "log --oneline --decorate --no-merges --max-count=20";
+        lg = if config.custom.programs.git.useFullConfig then fzfLog else simpleLog;
+        lgs = simpleLog;
 
-      pl = "pull";
-      ps = "push";
+        pl = "pull";
+        ps = "push";
 
-      rb = "rebase";
-      rbi = "rebase --interactive";
-      rs = "reset";
+        rb = "rebase";
+        rbi = "rebase --interactive";
+        rs = "reset";
 
-      sts = "stash save";
-      stp = "stash pop";
-      std = "stash drop";
-      stl = "stash list";
+        sts = "stash save";
+        stp = "stash pop";
+        std = "stash drop";
+        stl =
+          "stash list";
 
-      s = "status --short";
-      st = "status";
+        s = "status --short";
+        st = "status";
 
-      root = "!pwd";
-    };
+        root = "!pwd";
+      };
     ignores = [ ".direnv/" ];
     extraConfig = {
       core = {
@@ -65,9 +78,9 @@
       diff.tool = "vimdiff";
       diff.guitool = "vscode";
       difftool.vscode.cmd = "code --wait --diff $LOCAL $REMOTE";
-      url = builtins.mapAttrs (name: value: { insteadOf = value; pushInsteadOf = value; }) {
-        "git@github.com:" = "github:";
-      };
+      url = builtins.mapAttrs
+        (name: value: { insteadOf = value; pushInsteadOf = value; })
+        { "git@github.com:" = "github:"; };
     };
   };
 }

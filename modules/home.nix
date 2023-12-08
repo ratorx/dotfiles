@@ -4,7 +4,6 @@
     ./minimal.nix
     ./ssh
     ./vim
-    ./git.nix
   ];
 
   home.packages = [
@@ -24,6 +23,7 @@
     enable = true;
     config.theme = "TwoDark";
   };
+  custom.programs.git.useFullConfig = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;

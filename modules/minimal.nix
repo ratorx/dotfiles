@@ -3,6 +3,7 @@
   imports = [
     ./fish
     ./en.nix
+    ./git.nix
   ];
 
   accounts.email.accounts = {
@@ -28,5 +29,4 @@
   };
 
   programs.home-manager.enable = true;
-  programs.fzf.enable = true;
 }
