@@ -5,4 +5,5 @@
     pkgs.openssh
   ];
   services.ssh-agent.enable = true;
+  variants.work = false;
 }

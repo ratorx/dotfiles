@@ -1,1 +1,3 @@
-{ ... }: { }
+{ ... }: {
+  variants.work = false;
+}

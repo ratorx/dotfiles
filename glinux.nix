@@ -7,4 +7,5 @@
   programs.fish.interactiveShellInit = ''
     source_google_fish_package buildfix citc_prompt hi pastebin
   '';
+  variants.work = true;
 }
