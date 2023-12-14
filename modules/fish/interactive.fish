@@ -24,6 +24,22 @@ function up -d "Go to an ancestor directory"
   cd $p
 end
 
+function tmpd -d "cd to a new temporary directory"
+  if test (count $argv) -eq 0
+    set -ga TMPD_STACK (mktemp -d) || return $status
+    set argv -1
+  end
+
+  test (count $TMPD_STACK) -ge (math abs $argv[1] 2> /dev/null) 2> /dev/null || return 2
+  cd $TMPD_STACK[$argv[1]]
+end
+
+function _tmpd_on_exit -e fish_exit
+  for dir in $TMPD_STACK
+    command rm -rf -- $dir
+  end
+end
+
 function sc -d "Systemctl wrapper with automatic sudo" -w systemctl
   set -l systemctl_sudo_commands start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
   set -l systemctl systemctl
