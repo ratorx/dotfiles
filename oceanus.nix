@@ -1,6 +1,4 @@
 { pkgs, config, ... }: {
-  imports = [ ./mac.nix ];
-
   home.packages = [
     pkgs.custom.authrefresh
     pkgs.custom.itermcopy
