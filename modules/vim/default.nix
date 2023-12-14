@@ -10,9 +10,12 @@ in
     {
       programs.neovim = {
         enable = true;
+        defaultEditor = true;
+
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
+
         # TODO: Replace with deps provided by shell.nix
         plugins = [
           # Dummy plugin to load user config first.
@@ -38,11 +41,6 @@ in
           p.vim-surround # TODO: Explore Lua options
           p.vim-vinegar
         ];
-      };
-      home.sessionVariables = {
-        # Session variables are not reloaded automatically.
-        # Using an absolute path would require a re-login to update Neovim config.
-        EDITOR = "nvim";
       };
 
       assertions = [
