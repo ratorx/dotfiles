@@ -1,44 +1,63 @@
-args@{ config, pkgs, ... }:
+args@{ config, lib, pkgs, ... }:
 let
   util = (import ./util.nix) args;
   # TODO: Remove exclusions once grammar/treesitter is fixed
   excludedTSPlugins = builtins.map (s: "tree-sitter-${s}-grammar") [ "bash" ];
+  p = pkgs.vimPlugins;
 in
 {
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    # TODO: Replace with deps provided by shell.nix
-    plugins =
-      let
-        p = pkgs.vimPlugins;
-      in
-      [
-        # Dummy plugin to load user config first.
+  config = lib.mkMerge [
+    {
+      programs.neovim = {
+        enable = true;
+        viAlias = true;
+        vimAlias = true;
+        vimdiffAlias = true;
+        # TODO: Replace with deps provided by shell.nix
+        plugins = [
+          # Dummy plugin to load user config first.
+          {
+            plugin = pkgs.emptyFile;
+            type = "lua";
+            config = builtins.readFile ./init.lua;
+            runtime.ftplugin = {
+              source = ./ftplugin;
+              recursive = true;
+            };
+            runtime.lua = {
+              source = ./lua;
+              recursive = true;
+            };
+          }
+        ] ++
+        util.makePlugins [
+          p.lualine-nvim
+          p.nvim-comment
+          p.onedark-nvim
+          p.suda-vim
+          p.vim-surround # TODO: Explore Lua options
+          p.vim-vinegar
+        ];
+      };
+      home.sessionVariables = {
+        # Session variables are not reloaded automatically.
+        # Using an absolute path would require a re-login to update Neovim config.
+        EDITOR = "nvim";
+      };
+
+      assertions = [
         {
-          plugin = pkgs.emptyFile;
-          type = "lua";
-          config = builtins.readFile ./init.lua;
-          runtime.ftplugin = {
-            source = ./ftplugin;
-            recursive = true;
-          };
-          runtime.lua = {
-            source = ./lua;
-            recursive = true;
-          };
+          assertion = !config.programs.neovim.generatedConfigs ? viml;
+          message = "generated vimscript config is non-empty";
         }
-      ] ++ util.makePlugins [
-        # QoL
-        p.lualine-nvim
-        p.onedark-nvim
-        p.suda-vim
-        # Extra
-        p.nvim-comment
-        p.vim-surround # TODO: Explore Lua options
-        p.vim-vinegar
+      ];
+    }
+    (lib.mkIf (!config.variants.minimal) {
+      home.packages = [
+        (pkgs.custom.builder.nvimbench config.programs.neovim.finalPackage)
+      ];
+
+      programs.neovim.plugins = util.makePlugins [
         (p.nvim-treesitter.withPlugins (_: builtins.filter (p: !(builtins.elem p.pname excludedTSPlugins)) pkgs.tree-sitter.allGrammars))
         p.null-ls-nvim
         p.nvim-lspconfig
@@ -50,20 +69,6 @@ in
         p.cmp-path
         p.cmp-vsnip
       ];
-  };
-  home.sessionVariables = {
-    # Session variables are not reloaded automatically.
-    # Using an absolute path would require a re-login to update Neovim config.
-    EDITOR = "nvim";
-  };
-  home.packages = [
-    pkgs.custom.nvimbench
-  ];
-
-  assertions = [
-    {
-      assertion = !config.programs.neovim.generatedConfigs ? viml;
-      message = "generated vimscript config is non-empty";
-    }
+    })
   ];
 }

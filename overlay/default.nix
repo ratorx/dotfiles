@@ -30,6 +30,10 @@ in
         deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
         extraEnv = "FLAKE=${flakeRoot}";
       });
+      nvimbench = (nvim: makeShellBin {
+        src = ./bin/nvimbench.sh;
+        deps = [ nvim pkgs.coreutils pkgs.less ];
+      });
     };
     authrefresh = makeShellBin {
       src = ./bin/authrefresh.sh;
@@ -47,10 +51,6 @@ in
       src = ./bin/irctunnel.sh;
       deps = [ pkgs.autossh pkgs.tmux ];
       pure = false;
-    };
-    nvimbench = makeShellBin {
-      src = ./bin/nvimbench.sh;
-      deps = [ pkgs.neovim pkgs.coreutils pkgs.less ];
     };
     pkgfile = makeShellBin {
       src = ./bin/pkgfile.sh;
