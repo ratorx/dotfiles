@@ -34,10 +34,6 @@
       home.sessionVariables = {
         LESSHISTFILE = "/dev/null";
         LESS = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2 --quit-if-one-screen";
-        # If Go is used, it will default GOPATH to $HOME/go
-        # However, the proper place for it is underneath $XDG_DATA_HOME.
-        GOPATH = "${config.home.sessionVariables.XDG_DATA_HOME}/go";
-        CARGO_HOME = "${config.home.sessionVariables.XDG_DATA_HOME}/cargo";
       };
 
       programs.home-manager.enable = true;
@@ -55,6 +51,13 @@
       '';
     })
     (lib.mkIf (!config.variants.minimal) {
+      home.sessionVariables = {
+        # If Go is used, it will default GOPATH to $HOME/go
+        # However, the proper place for it is underneath $XDG_DATA_HOME.
+        GOPATH = "${config.home.sessionVariables.XDG_DATA_HOME}/go";
+        CARGO_HOME = "${config.home.sessionVariables.XDG_DATA_HOME}/cargo";
+      };
+
       home.packages = [
         pkgs.btop
         pkgs.curlie
