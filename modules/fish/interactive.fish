@@ -14,14 +14,10 @@ set fish_color_host brwhite
 set fish_color_host_remote green
 
 # Functions
-# From https://raw.githubusercontent.com/mattmc3/up.fish/main/functions/up.fish
-function up -d "Go to an ancestor directory"
-  test -n "$argv" || set argv "1"
-  set -l p (string repeat -n "$argv[1]" "../" 2>/dev/null) || begin
-    echo "Usage: "(status function)" <levels>" >&2
-    return 2
-  end
-  cd $p
+function up -d "cd to an ancestor directory"
+  test (count $argv) -eq 0 && set argv 1
+  set -l ancestor (string repeat -n $argv[1] "../" 2> /dev/null) || return 2
+  cd $ancestor
 end
 
 function tmpd -d "cd to a new temporary directory"
@@ -40,15 +36,16 @@ function _tmpd_on_exit -e fish_exit
   end
 end
 
-function sc -d "Systemctl wrapper with automatic sudo" -w systemctl
-  set -l systemctl_sudo_commands start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
-  set -l systemctl systemctl
-  test -n "$argv" && contains "$argv[1]" $systemctl_sudo_commands && set -l systemctl sudo systemctl
-  $systemctl $argv
+function sc -d "systemctl wrapper with automatic sudo" -w systemctl
+  if contains $argv[1] start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
+    sudo systemctl $argv
+  else
+    systemctl $argv
+  end
 end
 
 # Expand !! to last command
-function last_history_item
+function _last_history_item
   echo $history[1]
 end
-abbr -a !! --position anywhere --function last_history_item
+abbr -a !! --position anywhere --function _last_history_item
