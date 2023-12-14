@@ -4,6 +4,7 @@
     ./fish
     ./en.nix
     ./git.nix
+    ./ssh.nix
   ];
 
   options.variants.minimal = lib.mkOption {

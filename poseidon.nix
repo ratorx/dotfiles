@@ -1,9 +1,7 @@
 { pkgs, ... }: {
   imports = [ ./modules/ssh-agent.nix ];
 
-  home.packages = [
-    pkgs.openssh
-  ];
+  programs.ssh.package = pkgs.openssh;
   services.ssh-agent.enable = true;
   variants.work = false;
 }
