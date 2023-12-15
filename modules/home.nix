@@ -2,6 +2,7 @@
 {
   imports = [
     ./fish
+    ./vim
     ./en.nix
     ./git.nix
     ./ssh.nix

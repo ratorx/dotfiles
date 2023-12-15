@@ -37,7 +37,7 @@
         }) // (
       let
         homeCfgBase = {
-          modules = [ ./modules/full.nix ];
+          modules = [ ./modules/home.nix ];
           extraSpecialArgs = {
             inherit inputs;
             flakeRoot = builtins.toString ./.;
