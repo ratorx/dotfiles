@@ -16,7 +16,6 @@ in
         vimAlias = true;
         vimdiffAlias = true;
 
-        # TODO: Replace with deps provided by shell.nix
         plugins = [
           # Dummy plugin to load user config first.
           {
@@ -57,9 +56,6 @@ in
 
       programs.neovim.plugins = util.makePlugins [
         (p.nvim-treesitter.withPlugins (_: builtins.filter (p: !(builtins.elem p.pname excludedTSPlugins)) pkgs.tree-sitter.allGrammars))
-        p.null-ls-nvim
-        p.nvim-lspconfig
-        # Completion
         p.vim-vsnip
         p.nvim-cmp
         p.cmp-buffer
@@ -68,5 +64,12 @@ in
         p.cmp-vsnip
       ];
     })
+    (lib.mkIf (!config.variants.minimal && !config.variants.work) {
+      programs.neovim.plugins = util.makePlugins [
+        p.null-ls-nvim
+        p.nvim-lspconfig
+      ];
+    })
   ];
 }
+
