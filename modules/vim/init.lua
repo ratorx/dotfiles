@@ -118,6 +118,11 @@ do
   vim.keymap.set('n', '<leader>D', function() vim.diagnostic.goto_prev(opts) end)
 end
 
+-- Quickfix
+vim.keymap.set('', '<leader>q', '<cmd>copen<cr>')
+vim.keymap.set('', '<leader>n', '<cmd>cnext<cr>')
+vim.keymap.set('', '<leader>N', '<cmd>cprev<cr>')
+
 -- Clear HL
 vim.keymap.set('n', '<esc>', '<cmd>noh<cr>')
 vim.keymap.set('', '<C-l>', '<cmd>noh<cr>')
