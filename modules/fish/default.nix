@@ -12,6 +12,8 @@
       nixify = "nix flake init -t github:ratorx/base";
       # Refresh credentials for SSH
       refressh = "ssh-add -D && ssh-add -K";
+      # Start editor with all the files in the project
+      dev = "$EDITOR (git ls-files --cached --others --exclude-standard)";
       # ls -> eza
       ls = "eza -xF";
       la = "ls -a";

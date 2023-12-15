@@ -52,6 +52,8 @@
       s = "status --short";
       st = "status";
 
+      lsp = "ls-files --cached --others --exclude-standard";
+
       root = "!pwd";
     };
     ignores = [ ".direnv/" ];
