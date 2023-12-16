@@ -29,9 +29,9 @@ vim.opt.smartcase = true
 vim.opt.tagcase = 'match'
 
 -- Fold with indents and start unfolded
--- TODO: Possibly integrate tree-sitter here
-vim.opt.foldmethod = 'indent'
-vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = false
 
 -- Hide extraneous cmdline info
 vim.opt.showmode = false
