@@ -37,7 +37,7 @@ in
           p.nvim-comment
           p.onedark-nvim
           p.suda-vim
-          p.vim-surround # TODO: Explore Lua options
+          p.nvim-surround
           p.vim-vinegar
         ];
       };
