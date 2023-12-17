@@ -62,16 +62,14 @@
       home.packages = [
         pkgs.btop
         pkgs.curlie
-        pkgs.darkhttpd
         pkgs.jq
-        pkgs.neofetch
         pkgs.dnsutils
-        pkgs.ncdu_1
         pkgs.hyperfine
         pkgs.ripgrep
         pkgs.custom.pubip
       ];
 
+      # TODO: Look into using neovim as man pager
       programs.bat = {
         enable = true;
         config.theme = "TwoDark";
@@ -82,6 +80,8 @@
       };
       programs.eza.enable = true;
       programs.fzf.enable = true;
+      # TODO: Consider integrating with service runner
+      # for persisting jobs across logout
       programs.tmux = {
         enable = true;
         terminal = "tmux-256color";

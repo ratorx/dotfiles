@@ -56,6 +56,7 @@ in
 
       programs.neovim.plugins = util.makePlugins [
         (p.nvim-treesitter.withPlugins (_: builtins.filter (p: !(builtins.elem p.pname excludedTSPlugins)) pkgs.tree-sitter.allGrammars))
+        # TODO: Explore alternatives (luasnip)
         p.vim-vsnip
         p.nvim-cmp
         p.cmp-buffer
@@ -66,6 +67,7 @@ in
     })
     (lib.mkIf (!config.variants.minimal && !config.variants.work) {
       programs.neovim.plugins = util.makePlugins [
+        # TODO: null-ls has been archived. Replace (with none-ls)
         p.null-ls-nvim
         p.nvim-lspconfig
       ];
