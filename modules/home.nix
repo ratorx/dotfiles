@@ -60,7 +60,6 @@
       };
 
       home.packages = [
-        pkgs.btop
         pkgs.curlie
         pkgs.jq
         pkgs.dnsutils
