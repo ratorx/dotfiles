@@ -10,52 +10,56 @@
         null
         (builtins.attrValues config.accounts.email.accounts)
     ).address;
-    aliases = {
-      a = "add";
-      aa = "add .";
-      ap = "add --patch";
+    aliases =
+      let
+        shortLog = "log --oneline --decorate --no-merges";
+      in
+      {
+        a = "add";
+        aa = "add .";
+        ap = "add --patch";
 
-      b = "branch";
-      co = "checkout";
+        b = "branch";
+        co = "checkout";
 
-      cl = "clone";
-      clr = "clone --recursive";
+        cl = "clone";
+        clr = "clone --recursive";
 
-      c = "commit";
-      cf = "commit --fixup";
-      cm = "commit --message";
-      amd =
-        "commit --amend --no-edit";
+        c = "commit";
+        cf = "commit --fixup";
+        cm = "commit --message";
+        amd =
+          "commit --amend --no-edit";
 
-      df = "diff";
-      dfs = "diff --staged";
+        df = "diff";
+        dfs = "diff --staged";
 
-      lg = lib.mkMerge [
-        (lib.mkIf config.variants.minimal config.programs.git.aliases.lgs)
-        (lib.mkIf (!config.variants.minimal) "!${pkgs.custom.fzf-git-log}/bin/fzf-git-log")
-      ];
-      lgs = "log --oneline --decorate --no-merges";
+        lg = lib.mkMerge [
+          (lib.mkIf config.variants.minimal shortLog)
+          (lib.mkIf (!config.variants.minimal) "!${pkgs.custom.fzf-git-log}/bin/fzf-git-log")
+        ];
+        lgs = shortLog;
 
-      pl = "pull";
-      ps = "push";
+        pl = "pull";
+        ps = "push";
 
-      rb = "rebase";
-      rbi = "rebase --interactive";
-      rs = "reset";
+        rb = "rebase";
+        rbi = "rebase --interactive";
+        rs = "reset";
 
-      sts = "stash save";
-      stp = "stash pop";
-      std = "stash drop";
-      stl =
-        "stash list";
+        sts = "stash save";
+        stp = "stash pop";
+        std = "stash drop";
+        stl =
+          "stash list";
 
-      s = "status --short";
-      st = "status";
+        s = "status --short";
+        st = "status";
 
-      lsp = "ls-files --cached --others --exclude-standard";
+        lsp = "ls-files --cached --others --exclude-standard";
 
-      root = "!pwd";
-    };
+        root = "!pwd";
+      };
     ignores = [ ".direnv/" ];
     extraConfig = {
       core = {
