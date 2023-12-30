@@ -1,39 +1,43 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 # NOTE: Be careful about using variables in this file because the shell
 # needs to be restarted to use it.
 {
   programs.fish = {
     enable = true;
-    shellAliases = {
-      g = "git";
-      # Shortcut for dotfile operations
-      d = "git -C \"$XDG_CONFIG_HOME/home-manager\"";
-      # Setup a new Nix flake with direnv nix-shell
-      nixify = "nix flake init -t github:ratorx/base";
-      # Refresh credentials for SSH
-      refressh = "ssh-add -D && ssh-add -K";
-      # Start editor with all the files in the project
-      dev = "$EDITOR (git ls-files --cached --others --exclude-standard)";
-      # ls -> eza
-      ls = "eza -xF";
-      la = "ls -a";
-      lh = "ls -d .*";
-      lt = "ls -T --group-directories-first";
-      ll = "eza -lF";
-      lla = "ll -a";
-      # safer fs
-      mv = "mv -v";
-      rm = "rm -Iv";
-      cp = "cp -v";
-      df = "df -hl";
-      du = "du -h";
-      # Network
-      # System
-      scu = "systemctl --user";
-      hm = "home-manager";
-      # Google
-      gssh = "/usr/local/bin/rw --check_remaining";
-    };
+    shellAliases = lib.mkMerge [
+      {
+        cp = "cp -v";
+        df = "df -hl";
+        du = "du -h";
+        hm = "home-manager";
+        la = "ls -a";
+        lh = "ls -d .*";
+        ll = "ls -lF";
+        lla = "ll -a";
+        mv = "mv -v";
+        rm = "rm -Iv";
+        which = "type";
+      }
+      (lib.mkIf config.programs.eza.enable {
+        ls = "eza -xF";
+        lt = "ls -T --group-directories-first";
+      })
+      (lib.mkIf config.programs.git.enable {
+        g = "git";
+        d = "git -C \"$XDG_CONFIG_HOME/home-manager\"";
+        dev = "$EDITOR (git ls-files --cached --others --exclude-standard)";
+        nixify = "nix flake init -t github:ratorx/base";
+      })
+      (lib.mkIf pkgs.stdenv.isLinux {
+        scu = "systemctl --user";
+      })
+      (lib.mkIf config.variants.work {
+        gssh = "/usr/local/bin/rw --check_remaining";
+      })
+      (lib.mkIf (!config.variants.work) {
+        refressh = "ssh-add -D && ssh-add -K";
+      })
+    ];
     interactiveShellInit = lib.mkMerge [
       (builtins.readFile ./interactive.fish)
       (lib.mkIf pkgs.stdenv.isDarwin ''

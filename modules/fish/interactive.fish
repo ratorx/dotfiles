@@ -36,11 +36,13 @@ function _tmpd_on_exit -e fish_exit
   end
 end
 
-function sc -d "systemctl wrapper with automatic sudo" -w systemctl
-  if contains $argv[1] start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
-    sudo systemctl $argv
-  else
-    systemctl $argv
+if command -q systemctl
+  function sc -d "systemctl wrapper with automatic sudo" -w systemctl
+    if contains $argv[1] start stop reload restart enable disable mask unmask edit daemon-reload reboot suspend poweroff
+      sudo systemctl $argv
+    else
+      systemctl $argv
+    end
   end
 end
 
