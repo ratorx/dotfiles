@@ -1,10 +1,10 @@
-{ config, flakeRoot, inputs, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 {
   imports = [ inputs.nix-index-database.hmModules.nix-index ];
   home.packages = lib.mkMerge [
     [
-      (pkgs.custom.builder.n flakeRoot)
+      (pkgs.custom.n)
       # This is an amazing hack that makes 'n' and 'nman' work offline if the
       # package is already present! This is necessary since there's no way for Nix
       # to track dependencies in flake input sources (as they don't usually reference
@@ -16,7 +16,7 @@
       '')
     ]
     (lib.mkIf (!config.variants.minimal) [
-      (pkgs.custom.builder.nman flakeRoot)
+      pkgs.custom.nman
       pkgs.custom.pkgfile
       pkgs.custom.pkgbin
     ])

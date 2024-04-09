@@ -40,7 +40,6 @@
           modules = [ ./modules/home.nix cfg.module ];
           extraSpecialArgs = {
             inherit inputs;
-            flakeRoot = builtins.toString ./.;
           };
           pkgs = self.legacyPackages.${cfg.system};
         })

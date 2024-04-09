@@ -1,4 +1,4 @@
-{ ... }:
+{ nixpkgs, ... }:
 final: prev:
 let
   pkgs = final;
@@ -20,16 +20,6 @@ in
 {
   custom = {
     builder = {
-      n = (flakeRoot: makeShellBin {
-        src = ./bin/n.sh;
-        deps = [ pkgs.fzf pkgs.git pkgs.nix pkgs.nix-index ];
-        extraEnv = "FLAKE=${flakeRoot}";
-      });
-      nman = (flakeRoot: makeShellBin {
-        src = ./bin/nman.sh;
-        deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
-        extraEnv = "FLAKE=${flakeRoot}";
-      });
       nvimbench = (nvim: makeShellBin {
         src = ./bin/nvimbench.sh;
         deps = [ nvim pkgs.coreutils pkgs.less ];
@@ -52,6 +42,16 @@ in
       src = ./bin/maybe-gcert.sh;
       deps = [ pkgs.findutils ];
       pure = false;
+    };
+    n = makeShellBin {
+      src = ./bin/n.sh;
+      deps = [ pkgs.fzf pkgs.git pkgs.nix pkgs.nix-index ];
+      extraEnv = "FLAKE=${nixpkgs}";
+    };
+    nman = makeShellBin {
+      src = ./bin/nman.sh;
+      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
+      extraEnv = "FLAKE=${nixpkgs}";
     };
     pkgfile = makeShellBin {
       src = ./bin/pkgfile.sh;
