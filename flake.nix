@@ -7,7 +7,7 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = inputs@{ self, flake-utils, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, home-manager, nix-index-database, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -17,7 +17,7 @@
           legacyPackages = import nixpkgs {
             inherit system;
             # config.allowUnfree = true;
-            overlays = [ (import ./overlay inputs) ];
+            overlays = [ nix-index-database.overlays.nix-index (import ./overlay inputs) ];
           };
           formatter = pkgs.nixpkgs-fmt;
           # Make a system-specific package for every homeConfiguration

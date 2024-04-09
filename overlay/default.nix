@@ -45,17 +45,17 @@ in
     };
     n = makeShellBin {
       src = ./bin/n.sh;
-      deps = [ pkgs.fzf pkgs.git pkgs.nix pkgs.nix-index ];
+      deps = [ pkgs.fzf pkgs.git pkgs.nix pkgs.nix-index-with-db ];
       extraEnv = "FLAKE=${nixpkgs}";
     };
     nman = makeShellBin {
       src = ./bin/nman.sh;
-      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index ];
+      deps = [ pkgs.fzf pkgs.nix pkgs.nix-index-with-db ];
       extraEnv = "FLAKE=${nixpkgs}";
     };
     pkgfile = makeShellBin {
       src = ./bin/pkgfile.sh;
-      deps = [ pkgs.nix-index pkgs.gnused ];
+      deps = [ pkgs.nix-index-with-db pkgs.gnused ];
       pure = false;
     };
     pkgbin = pkgs.writeShellScriptBin "pkgbin" ''
@@ -66,4 +66,6 @@ in
       deps = [ pkgs.coreutils pkgs.dnsutils ];
     };
   };
+
+  nix-index = builtins.throw "Use nix-index-with-db instead";
 }

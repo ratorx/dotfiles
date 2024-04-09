@@ -1,7 +1,6 @@
 { config, inputs, lib, pkgs, ... }:
 
 {
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
   home.packages = lib.mkMerge [
     [
       (pkgs.custom.n)
@@ -22,4 +21,5 @@
     ])
   ];
   programs.nix-index.enable = true;
+  programs.nix-index.package = pkgs.nix-index-with-db;
 }
