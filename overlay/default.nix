@@ -35,10 +35,6 @@ in
         deps = [ nvim pkgs.coreutils pkgs.less ];
       });
     };
-    authrefresh = makeShellBin {
-      src = ./bin/authrefresh.sh;
-      pure = false;
-    };
     fzf-git-log = makeShellBin {
       src = ./bin/fzf-git-log.sh;
       deps = [ pkgs.coreutils pkgs.gnugrep pkgs.findutils pkgs.gawk pkgs.fzf pkgs.git pkgs.less ];

@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   home.packages = [
-    pkgs.custom.authrefresh
     pkgs.custom.itermcopy
   ];
   home.sessionVariables = {
