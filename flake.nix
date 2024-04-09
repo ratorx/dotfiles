@@ -8,17 +8,19 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs@{ self, flake-utils, nixpkgs, home-manager, nix-index-database, ... }:
+    let
+      mkPkgs = (system: import nixpkgs {
+        inherit system;
+        # config.allowUnfree = true;
+        overlays = [ nix-index-database.overlays.nix-index (import ./overlay inputs) ];
+      });
+    in
     flake-utils.lib.eachDefaultSystem
       (system:
         let
-          pkgs = self.legacyPackages.${system};
+          pkgs = mkPkgs system;
         in
         {
-          legacyPackages = import nixpkgs {
-            inherit system;
-            # config.allowUnfree = true;
-            overlays = [ nix-index-database.overlays.nix-index (import ./overlay inputs) ];
-          };
           formatter = pkgs.nixpkgs-fmt;
           # Make a system-specific package for every homeConfiguration
           packages = nixpkgs.lib.attrsets.filterAttrs
@@ -36,30 +38,29 @@
           };
         }) // {
       homeConfigurations = builtins.mapAttrs
-        (_: cfg: home-manager.lib.homeManagerConfiguration {
-          modules = [ ./modules/home.nix cfg.module ];
-          pkgs = self.legacyPackages.${cfg.system};
-        })
+        (_: cfg: home-manager.lib.homeManagerConfiguration (cfg // {
+          modules = [ ./modules/home.nix ] ++ cfg.modules;
+        }))
         {
           "reeto@zeus" = {
-            module = ./zeus.nix;
-            system = flake-utils.lib.system.x86_64-linux;
+            modules = [ ./zeus.nix ];
+            pkgs = mkPkgs flake-utils.lib.system.x86_64-linux;
           };
           "reeto@iapetus.c.googlers.com" = {
-            module = ./glinux.nix;
-            system = flake-utils.lib.system.x86_64-linux;
+            modules = [ ./glinux.nix ];
+            pkgs = mkPkgs flake-utils.lib.system.x86_64-linux;
           };
           "reeto@kronos.lon.corp.google.com" = {
-            module = ./glinux.nix;
-            system = flake-utils.lib.system.x86_64-linux;
+            modules = [ ./glinux.nix ];
+            pkgs = mkPkgs flake-utils.lib.system.x86_64-linux;
           };
           "reeto@oceanus.roam.internal" = {
-            module = ./oceanus.nix;
-            system = flake-utils.lib.system.x86_64-darwin;
+            modules = [ ./oceanus.nix ];
+            pkgs = mkPkgs flake-utils.lib.system.x86_64-darwin;
           };
           "reeto@poseidon" = {
-            module = ./poseidon.nix;
-            system = flake-utils.lib.system.aarch64-darwin;
+            modules = [ ./poseidon.nix ];
+            pkgs = mkPkgs flake-utils.lib.system.aarch64-darwin;
           };
         };
     };
