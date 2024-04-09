@@ -52,6 +52,11 @@ in
       deps = [ pkgs.autossh pkgs.tmux ];
       pure = false;
     };
+    maybe-gcert = makeShellBin {
+      src = ./bin/maybe-gcert.sh;
+      deps = [ pkgs.findutils ];
+      pure = false;
+    };
     pkgfile = makeShellBin {
       src = ./bin/pkgfile.sh;
       deps = [ pkgs.nix-index pkgs.gnused ];

@@ -65,7 +65,7 @@ in
         p.cmp-vsnip
       ];
     })
-    (lib.mkIf (!config.variants.minimal && !config.variants.work) {
+    (lib.mkIf (!config.variants.minimal) {
       programs.neovim.plugins = util.makePlugins [
         # TODO: null-ls has been archived. Replace (with none-ls)
         p.null-ls-nvim

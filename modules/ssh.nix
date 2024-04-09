@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   programs.ssh.enable = !config.variants.minimal;
 
@@ -29,12 +29,17 @@
       };
     }))
     (lib.mkIf config.variants.work ({
-      iapetus = {
+      autoCredentials = {
+        match = "host *.corp.google.com,*.c.googlers.com exec ${pkgs.custom.maybe-gcert}/bin/maybe-gcert";
+      };
+      iapetus = lib.hm.dag.entryAfter [ "autoCredentials" ] {
         hostname = "iapetus.c.googlers.com";
+        forwardAgent = true;
         extraOptions.ControlPersist = "15h";
       };
-      kronos = {
+      kronos = lib.hm.dag.entryAfter [ "autoCredentials" ] {
         hostname = "kronos.lon.corp.google.com";
+        forwardAgent = true;
         extraOptions.ControlPersist = "15h";
       };
     }))
