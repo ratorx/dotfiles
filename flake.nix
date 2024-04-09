@@ -38,9 +38,6 @@
       homeConfigurations = builtins.mapAttrs
         (_: cfg: home-manager.lib.homeManagerConfiguration {
           modules = [ ./modules/home.nix cfg.module ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
           pkgs = self.legacyPackages.${cfg.system};
         })
         {
