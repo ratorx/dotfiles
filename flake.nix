@@ -34,38 +34,37 @@
             nativeBuildInputs = [ pkgs.shfmt pkgs.shellcheck pkgs.nil pkgs.nixpkgs-fmt pkgs.sumneko-lua-language-server ];
             buildInputs = [ ];
           };
-        }) // (
-      let
-        homeCfgBase = {
-          modules = [ ./modules/home.nix ];
+        }) // {
+      homeConfigurations = builtins.mapAttrs
+        (_: cfg: home-manager.lib.homeManagerConfiguration {
+          modules = [ ./modules/home.nix cfg.module ];
           extraSpecialArgs = {
             inherit inputs;
             flakeRoot = builtins.toString ./.;
           };
+          pkgs = self.legacyPackages.${cfg.system};
+        })
+        {
+          "reeto@zeus" = {
+            module = ./zeus.nix;
+            system = flake-utils.lib.system.x86_64-linux;
+          };
+          "reeto@iapetus.c.googlers.com" = {
+            module = ./glinux.nix;
+            system = flake-utils.lib.system.x86_64-linux;
+          };
+          "reeto@kronos.lon.corp.google.com" = {
+            module = ./glinux.nix;
+            system = flake-utils.lib.system.x86_64-linux;
+          };
+          "reeto@oceanus.roam.internal" = {
+            module = ./oceanus.nix;
+            system = flake-utils.lib.system.x86_64-darwin;
+          };
+          "reeto@poseidon" = {
+            module = ./poseidon.nix;
+            system = flake-utils.lib.system.aarch64-darwin;
+          };
         };
-        makeCfg = (cfg: home-manager.lib.homeManagerConfiguration (homeCfgBase // cfg // { modules = homeCfgBase.modules ++ cfg.modules; }));
-      in
-      {
-        homeConfigurations."reeto@zeus" = makeCfg {
-          modules = [ ./zeus.nix ];
-          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
-        };
-        homeConfigurations."reeto@iapetus.c.googlers.com" = makeCfg {
-          modules = [ ./glinux.nix ];
-          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
-        };
-        homeConfigurations."reeto@kronos.lon.corp.google.com" = makeCfg {
-          modules = [ ./glinux.nix ];
-          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-linux};
-        };
-        homeConfigurations."reeto@oceanus.roam.internal" = makeCfg {
-          modules = [ ./oceanus.nix ];
-          pkgs = self.legacyPackages.${flake-utils.lib.system.x86_64-darwin};
-        };
-        homeConfigurations."reeto@poseidon" = makeCfg {
-          modules = [ ./poseidon.nix ];
-          pkgs = self.legacyPackages.${flake-utils.lib.system.aarch64-darwin};
-        };
-      }
-    );
+    };
 }
