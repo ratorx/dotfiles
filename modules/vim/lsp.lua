@@ -44,7 +44,6 @@ end
 -- TODO: Investigate language servers for:
 -- * Svelte (tsserver + sveltels + tailwindcssls + ???)
 local lsps = {
-  bashls = {},      -- Bash
   gopls = {},       -- Go
   hls = {},         -- Haskell
   lua_ls = {},      -- Lua
