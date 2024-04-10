@@ -1,4 +1,3 @@
-vim.opt.cmdheight = 1      -- TODO: Hide cmdline and show messages somehwere else
 vim.opt.conceallevel = 2   -- Hide concealed text unless replacement character defined
 vim.opt.cursorline = true  -- highlight current line
 vim.opt.signcolumn = 'yes' -- always show signcolumn
@@ -7,12 +6,11 @@ vim.opt.jumpoptions:append('stack')
 
 -- Terminal setup
 vim.opt.title = true
-vim.opt.termguicolors = true
 
 -- Default tab settings - will be overridden by filetype specific stuff
 vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 0
+vim.opt.shiftwidth = 0
 vim.opt.expandtab = true
 
 -- Break lines on punctuation and indent carry-on lines
