@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 # NOTE: Be careful about using variables in this file because the shell
 # needs to be restarted to use it.
 {
@@ -28,15 +33,9 @@
         dev = "$EDITOR (git ls-files --cached --others --exclude-standard)";
         nixify = "nix flake init -t github:ratorx/base";
       })
-      (lib.mkIf pkgs.stdenv.isLinux {
-        scu = "systemctl --user";
-      })
-      (lib.mkIf config.variants.work {
-        gssh = "/usr/local/bin/rw --check_remaining";
-      })
-      (lib.mkIf (!config.variants.work) {
-        refressh = "ssh-add -D && ssh-add -K";
-      })
+      (lib.mkIf pkgs.stdenv.isLinux { scu = "systemctl --user"; })
+      (lib.mkIf config.variants.work { gssh = "/usr/local/bin/rw --check_remaining"; })
+      (lib.mkIf (!config.variants.work) { refressh = "ssh-add -D && ssh-add -K"; })
     ];
     interactiveShellInit = lib.mkMerge [
       (builtins.readFile ./interactive.fish)

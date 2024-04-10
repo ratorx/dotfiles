@@ -5,12 +5,20 @@
 #   * CMP (consider making CMP part of default package)
 # Figure out way to exclude directories from LSP (for work)
 # Integrate tags into workflow
-{ config, lib, pkgs, ... }:
-let p = pkgs.vimPlugins;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  p = pkgs.vimPlugins;
+in
+{
   options.programs.neovim.plugins = lib.mkOption {
-    type = lib.types.listOf (lib.types.either lib.types.package
-      (lib.types.submodule { config.type = lib.mkDefault "lua"; }));
+    type = lib.types.listOf (
+      lib.types.either lib.types.package (lib.types.submodule { config.type = lib.mkDefault "lua"; })
+    );
   };
 
   config = lib.mkMerge [
@@ -32,12 +40,13 @@ in {
               source = ./ftplugin;
               recursive = true;
             };
-            runtime."lua/variants.lua".text = /* lua */ ''
-              return {
-                minimal = ${lib.trivial.boolToString config.variants.minimal},
-                work = ${lib.trivial.boolToString config.variants.work},
-              }
-            '';
+            runtime."lua/variants.lua".text = # lua
+              ''
+                return {
+                  minimal = ${lib.trivial.boolToString config.variants.minimal},
+                  work = ${lib.trivial.boolToString config.variants.work},
+                }
+              '';
           }
           { plugin = p.suda-vim; }
           { plugin = p.vim-vinegar; }
@@ -54,23 +63,24 @@ in {
           }
           {
             plugin = p.onedark-nvim;
-            config = /* lua */ ''
-              vim.opt.termguicolors = true
-              require('onedark').load()
-            '';
+            config = # lua
+              ''
+                vim.opt.termguicolors = true
+                require('onedark').load()
+              '';
           }
           {
             plugin = p.nvim-surround;
-            config = /* lua */ ''
-              require("nvim-surround").setup({ aliases = {} })
-            '';
+            config = # lua
+              ''
+                require("nvim-surround").setup({ aliases = {} })
+              '';
           }
         ];
       };
     }
     (lib.mkIf (!config.variants.minimal) {
-      home.packages =
-        [ (pkgs.custom.builder.nvimbench config.programs.neovim.finalPackage) ];
+      home.packages = [ (pkgs.custom.builder.nvimbench config.programs.neovim.finalPackage) ];
 
       programs.neovim.plugins = [
         {
@@ -87,7 +97,12 @@ in {
           plugin = pkgs.symlinkJoin {
             name = "cmp";
             # TODO: Replace with vim.snippet in 0.10+
-            paths = [ p.vim-vsnip p.nvim-cmp p.cmp-nvim-lsp p.cmp-path ];
+            paths = [
+              p.vim-vsnip
+              p.nvim-cmp
+              p.cmp-nvim-lsp
+              p.cmp-path
+            ];
           };
           config = builtins.readFile ./cmp.lua;
         }
@@ -99,4 +114,3 @@ in {
     })
   ];
 }
-

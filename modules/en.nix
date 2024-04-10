@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   home.packages = lib.mkMerge [
-    [
-      (pkgs.custom.n)
-    ]
+    [ (pkgs.custom.n) ]
     (lib.mkIf (!config.variants.minimal) [
       pkgs.custom.nman
       pkgs.custom.pkgfile

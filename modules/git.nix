@@ -1,15 +1,17 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   programs.git = {
     enable = true;
     userName = "Reeto Chatterjee";
-    userEmail = (
-      lib.lists.findSingle
-        (a: a.primary)
-        null
-        null
-        (builtins.attrValues config.accounts.email.accounts)
-    ).address;
+    userEmail =
+      (lib.lists.findSingle (a: a.primary) null null (builtins.attrValues config.accounts.email.accounts))
+      .address;
     aliases =
       let
         shortLog = "log --oneline --decorate --no-merges";
@@ -28,8 +30,7 @@
         c = "commit";
         cf = "commit --fixup";
         cm = "commit --message";
-        amd =
-          "commit --amend --no-edit";
+        amd = "commit --amend --no-edit";
 
         df = "diff";
         dfs = "diff --staged";
@@ -50,8 +51,7 @@
         sts = "stash save";
         stp = "stash pop";
         std = "stash drop";
-        stl =
-          "stash list";
+        stl = "stash list";
 
         s = "status --short";
         st = "status";
@@ -82,9 +82,10 @@
       diff.tool = "vimdiff";
       diff.guitool = "vscode";
       difftool.vscode.cmd = "code --wait --diff $LOCAL $REMOTE";
-      url = builtins.mapAttrs
-        (name: value: { insteadOf = value; pushInsteadOf = value; })
-        { "git@github.com:" = "github:"; };
+      url = builtins.mapAttrs (name: value: {
+        insteadOf = value;
+        pushInsteadOf = value;
+      }) { "git@github.com:" = "github:"; };
     };
   };
 }

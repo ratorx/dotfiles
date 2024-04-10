@@ -1,7 +1,6 @@
-{ pkgs, ... }: {
-  home.packages = [
-    pkgs.custom.itermcopy
-  ];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.custom.itermcopy ];
   home.sessionVariables = {
     NIX_SSL_CERT_FILE = "/etc/ssl/cert.pem";
   };
