@@ -1,8 +1,6 @@
 args@{ config, lib, pkgs, ... }:
 let
   util = (import ./util.nix) args;
-  # TODO: Remove exclusions once grammar/treesitter is fixed
-  excludedTSPlugins = builtins.map (s: "tree-sitter-${s}-grammar") [ "bash" ];
   p = pkgs.vimPlugins;
 in
 {
@@ -55,7 +53,7 @@ in
       ];
 
       programs.neovim.plugins = util.makePlugins [
-        (p.nvim-treesitter.withPlugins (_: builtins.filter (p: !(builtins.elem p.pname excludedTSPlugins)) pkgs.tree-sitter.allGrammars))
+        p.nvim-treesitter.withAllGrammars
         # TODO: Explore alternatives (luasnip)
         p.vim-vsnip
         p.nvim-cmp
