@@ -16,7 +16,7 @@ glog() {
     # FZF needs explicit TTY assignments for std{in,err,out} in 'execute' to
     # prevent it from inheriting the process ones.
     fzf \
-      --bind "tab:execute(LESS=\$LESS_NO_QUIT $cmd </dev/tty >/dev/tty 2>&1),backward-eof:abort" \
+      --bind "tab:execute($cmd </dev/tty >/dev/tty 2>&1),backward-eof:abort" \
       --delimiter "$delim" \
       --with-nth "..-2" \
       --nth 2,4 \

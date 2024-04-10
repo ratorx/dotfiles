@@ -34,7 +34,7 @@
       xdg.enable = true;
       home.sessionVariables = {
         LESSHISTFILE = "/dev/null";
-        LESS = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2 --quit-if-one-screen";
+        LESS = "--RAW-CONTROL-CHARS --ignore-case --mouse --tabs=2";
       };
 
       programs.home-manager.enable = true;
