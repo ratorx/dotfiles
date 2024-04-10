@@ -12,7 +12,7 @@ end
 cmp.setup({
   completion = {
     autocomplete = false,
-    completeopt = "menuone,noinsert",
+    completeopt = vim.opt.completeopt
   },
   snippet = {
     expand = function(args)
@@ -45,5 +45,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'path' }
-  })
+  }),
+  view = 'native'
 })
