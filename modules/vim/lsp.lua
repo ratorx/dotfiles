@@ -52,7 +52,7 @@ local lsps = {
   terraformls = {}, -- Terraform
   nil_ls = {
     ['nil'] = {
-      formatting = { command = { "nixpkgs-fmt" } }
+      formatting = { command = { "nixfmt" } }
     }
   }, -- Nix
   rust_analyzer = {

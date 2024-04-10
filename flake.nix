@@ -20,7 +20,8 @@
         let
           pkgs = mkPkgs system;
         in
-        {
+        rec {
+          # nixfmt tries to format .direnv
           formatter = pkgs.nixpkgs-fmt;
           # Make a system-specific package for every homeConfiguration
           packages = nixpkgs.lib.attrsets.filterAttrs
@@ -33,7 +34,7 @@
             '';
           };
           devShells.default = pkgs.mkShell {
-            nativeBuildInputs = [ pkgs.shfmt pkgs.shellcheck pkgs.nil pkgs.nixpkgs-fmt pkgs.sumneko-lua-language-server ];
+            nativeBuildInputs = [ formatter pkgs.nixfmt-rfc-style pkgs.shfmt pkgs.shellcheck pkgs.nil pkgs.sumneko-lua-language-server ];
             buildInputs = [ ];
           };
         }) // {
