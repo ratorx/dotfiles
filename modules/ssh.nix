@@ -35,17 +35,18 @@
     }))
     (lib.mkIf config.variants.work ({
       autoCredentials = {
-        match = "host *.corp.google.com,*.c.googlers.com exec ${pkgs.custom.maybe-gcert}/bin/maybe-gcert";
+        match = "host *.corp.google.com,*.c.googlers.com exec \"${pkgs.custom.maybe-gcert}/bin/maybe-gcert %h\"";
       };
-      iapetus = lib.hm.dag.entryAfter [ "autoCredentials" ] {
+      sshOptions = {
+        match = "host *.corp.google.com,*.c.googlers.com";
+        forwardAgent = true;
+        extraOptions.ControlPersist = "15h";
+      };
+      iapetus = lib.hm.dag.entryBefore [ "sshOptions" ] {
         hostname = "iapetus.c.googlers.com";
-        forwardAgent = true;
-        extraOptions.ControlPersist = "15h";
       };
-      kronos = lib.hm.dag.entryAfter [ "autoCredentials" ] {
+      kronos = lib.hm.dag.entryBefore [ "sshOptions" ] {
         hostname = "kronos.lon.corp.google.com";
-        forwardAgent = true;
-        extraOptions.ControlPersist = "15h";
       };
     }))
   ];

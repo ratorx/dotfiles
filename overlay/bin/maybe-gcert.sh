@@ -2,5 +2,8 @@
 # 
 set -eu
 
+# Check if running recursively
+[ -z "${MAYBE_GCERT+x}" ] && export MAYBE_GCERT=1 || exit 0
+
 # shellcheck disable=SC2015
-find ~/.sso/cookie -mmin -1200 2>/dev/null && gcertstatus --check_remaining=1h --nocheck_loas2 --quiet || gcert --noloas2
+/usr/local/bin/rw --no_multiplexing --nossh_interactively --check_remaining "$@"
